@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--создать веб-приложение для мобильных устройств с модулем "Домашнее задание" и меню модулей.-->
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Добавление домашки</title>
+    <link href="css/style-3.css" rel="stylesheet">
+    <!--<link href="css/outline.css" rel="stylesheet">-->
+    <!--<link href="css/outline-settings.css" rel="stylesheet">-->
+  </head>
+  <body>
+    <section class="top-panel">
+      <div class="top-panel-container">
+        <img class="top-panel-item-1" src="/img/cross.png">
+        <p class="top-panel-item-2 plant">Planit</p>
+        <img class="top-panel-item-3" src="/img/galka.png">
+        <img class="top-panel-item-4" src="/img/more-dotes.png">
+      </div>
+    </section>
+
+    <section class="tasks-panel">
+      <h1 class="tasks-panel-h1">Создание нового</h1>
+      <select id="mySelect" name="type-task" class="type-task">
+        <option value="" disabled selected hidden style="color: gray;">Выберите</option>
+        <option value="task" class="type-task-item">Задания</option>
+        <option value="event" class="type-task-item">События</option>
+      </select>
+    </section>
+
+    <section class="list-tasks">
+      <input name="name-event" class="name-event"  type="text" placeholder="Название" size="368">
+      <textarea name="desc-event" class="desc-event"  type="text" placeholder="Описание" size="368"></textarea>
+    
+      <section class="date-event">
+        <img class="watch" src="/img/schedule.png">
+        <!--<input type="date" name="day-event" class="day-event">-->
+        <div id="dateContainer" class="white-text">
+          <input class="day-event" type="date" id="dateInput" onchange="replaceWithFormattedDate()" required>
+        </div>
+        <input type="text" name="start-event-time" class="start-event-time" placeholder="00:00" pattern="[012][0-9]:[012][0-9]" title="Время должно быть в формате ЧЧ:ММ (например, 14:30)" required>
+        <p class="tire">-</p>
+        <input type="text" name="finish-event-time" class="finish-event-time" placeholder="00:00" pattern="[012][0-9]:[012][0-9]" title="Время должно быть в формате ЧЧ:ММ (например, 14:30)" required>
+      </section>
+
+      <section class="notification">
+        <img src="/img/notification_add.png" class="notification-bell">
+        <p class="Za">За:</p>
+        <div class="time-input-container">
+          <input type="number" name="time-notification" class="time-notification number-time-event" min="1" required onchange="updateMinutesLabel(this.value)">
+          <span id="minutes-label" class="minutes-label">минут</span>
+      </div>
+      </section>
+    </section>
+
+    <section class="bottom-nav">
+    </section>
+
+    <section class="footer">
+      <div class="yellow-button">
+        <img class="plus" src="/img/add_2.png">
+        <p class="button-add-task">Добавить новое событие</p>
+        <div class="home-indicator"></div>
+      </div>
+    </section>
+    <script src="js/script.js"></script>
+  </body>
+</html>

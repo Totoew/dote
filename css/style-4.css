@@ -1,0 +1,429 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    height: 798px; 
+    background-color: #ffffff;
+  }
+  
+  
+  .top-panel {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    background-color: #111828;
+    width: 393px;
+    height: 56px; 
+    top: 0;                  
+        
+  }
+  
+  .top-panel-container {
+    display: flex;  
+    align-items: center;   
+    justify-content: space-between; 
+    width: 373px;                   
+    height: 24px;
+  }
+  
+  .top-panel-item {
+    flex-shrink: 0;               
+  }
+  
+  .plant {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    width: 273px;
+  }
+  
+  .top-panel-item-1{
+    padding-left: 5px;
+    padding-right: 15px;
+  }
+  
+  .top-panel-item-2{
+    padding-right: 15px;
+  }
+  
+  .top-panel-item-4{
+    padding-right: 9.39px;
+    padding-left: 22.43px;
+  }
+  
+  .top-panel-item-3{
+    padding-left: 6px;
+  }
+  
+  .tasks-panel{
+    display: flex;  
+    margin-top: 0px;
+    background-color: #26334A;
+    width: 393px;                     
+    height: 64px; 
+  }
+  
+  .tasks-panel-h1{
+    font-size: 18px;
+    font-weight: 600;
+    font-family: Inter;
+    line-height: 21px;
+    width: 155px;
+    height: 21px;
+    padding-left: 12px;
+    color: #FCFAEE;
+    margin-left: 12px;
+    margin-right: 32px;
+    margin-top: 21px;
+    margin-bottom: 22px;
+  }
+  
+  .type-task{
+    width: 138px;
+    height: 38px;
+    padding: 10px 0px 0px 0px;
+    gap: 32px;
+    border-radius: 8px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    background-color: #26334A;
+    margin-left: 0px;
+    margin-right: 56px;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    padding-left: 9px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    font-size: 15px;
+  }
+  
+  select {
+    background-color:#26334A; 
+    color: initial;          
+  }
+  
+  #mySelect option:first-child {
+    color: gray !important;
+  }
+  
+  /*
+  .hidden-choise{
+    color: #818181;
+    font-family: Inter;
+    font-size: 151px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+  */
+  .type-task-item{
+    color: white;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+  
+  .list-tasks{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 393px;
+    height: 564px;
+    background-color: #111828;   
+  }
+
+  .name-event{
+    width: 368px;
+    height: 46px;
+    padding: 12px 0px 12px 24px;
+    gap: 10px;
+    border-radius: 16px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    background-color: #111828;
+    margin-top: 24px;
+    margin-left: 12px;
+    margin-right: 12px;
+    color:#ffffff
+  }
+
+  .desc-event{
+    width: 368px;
+    height:126px;
+    max-width: 368px;
+    max-height: 126px;
+    min-width: 368px;
+    min-height: 126px;
+    gap: 10px;
+    opacity: 0px;
+    padding: 12px 0px 12px 24px;
+    border-radius: 16px;
+    background-color:#111828;
+    margin-top: 32px;
+    margin-left: 12px;
+    margin-right: 12px;
+    color:#ffffff
+  }
+
+  .create-task-tags{
+    display: flex;
+    flex-direction: row;
+    width: 368px;
+    height: 32px;
+    margin-top: 32px;
+    margin-right: 12px;
+    margin-left: 12px;
+    gap: 12px;
+    opacity: 0px;
+  }
+
+  .task-tag-emblem{
+    width: 18.67px;
+    height: 21px;
+    margin-top: 5.5px;
+    margin-bottom: 5.5px;
+    margin-left: 5.5px;
+    margin-right: 15.5px;
+  }
+
+  .add-tag{
+    width:84px;
+    height: 32px;
+    padding: 2px 4px 2px 4px;
+    border-radius: 32px;
+    background-color: #ffd3354c;
+    color: #FCBC02;
+  }
+
+  .date-event{
+    display: flex;
+    flex-direction: row;
+    width: 368px;
+    height: 41px;
+    gap: 16px;
+    opacity: 0px;
+    background-color: #111828;
+    margin-top: 32px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .watch{
+    width: 23.33px;
+    height: 23.33px;
+    margin-left: 2px;
+    margin-top: 12px;
+    margin-right: 12px;
+  }
+
+  .day-event{
+    width: 93px;
+    height: 18px;
+    gap: 0px;
+    opacity: 0px;
+    margin-top: 9px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    background-color: #111828;
+    color: #ffffff;
+    border-bottom: 1px solid white;
+  }
+
+  .white-text{
+    color: #ffffff;
+    margin-top: 11px;
+    margin-right: 16px;
+    padding: 0px;
+    border-bottom: 1px solid white;
+    font-size: 16px; /* Установите нужный размер шрифта */
+    line-height: 1.5em;
+  }
+
+.date-span {
+    white-space: nowrap; /* Предотвращает перенос строки */
+}
+
+  .start-event-time{
+    width: 74px;
+    height: 41px;
+    padding: 10px ;
+    gap: 10px;
+    border-radius: 4px;
+    opacity: 0px;
+    background-color: rgba(255, 162, 0, 0.296);
+    color:rgb(245, 155, 0);
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    margin: 0px;
+  }
+
+  .finish-event-time{
+    width: 74px;
+    height: 41px;
+    padding: 10px ;
+    gap: 10px;
+    border-radius: 4px;
+    opacity: 0px;
+    background-color: rgba(255, 162, 0, 0.296);
+    color:rgb(245, 155, 0);
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    margin-right: 27px;
+  }
+
+  .tire{
+    color: white;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 26px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .notification{
+    display: flex;
+    flex-direction: row;
+    width: 368px;
+    height: 28px;
+    opacity: 0px;
+    margin-top: 32px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .notification-bell{
+    width: 22.17px;
+    height: 23.33px;
+    margin-left: 4px;
+    margin-top: 2px;
+    margin-right: 17px;
+  }
+
+  .Za{
+    width: 28px;
+    height: 21px;
+    color:#ffffff;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-top: 4px;
+    margin-right: 32px;
+  }
+
+  .time-input-container {
+    display: flex;
+    width: 93px;
+    align-items: center;
+    gap: 5px; 
+    border-bottom: 1px solid white;
+}
+
+.minutes-label {
+  white-space: nowrap; 
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    color: white;
+    margin-top: 4.5px;
+    margin-bottom: 4px;
+    width: 63px;
+    height: 18px;
+}
+
+  .time-notification{
+    width: 100px;
+    height: 18px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    color: white;
+    margin-top: 4.5px;
+    margin-bottom: 4px;
+    /*margin-right: 201px;*/
+    background-color: #111828;
+    /*border-bottom: 1px solid white;*/
+  }
+
+  .number-time-event{
+    max-width: 35px;
+}
+  .bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 393px;
+    height: 66px;
+    position: absolute;
+    background-color: #111828;
+    margin: 0;             
+  }
+  
+.footer{
+  display: flex;
+  justify-content: space-between;
+  width: 393px;
+  height: 48px;
+  position: absolute;
+  background-color: #111828;
+  margin-top: 66px;     
+}
+
+
+.yellow-button{
+  display: flex;
+  width: 380px;
+  height: 40px;
+  padding: 4px 0px 0px 0px;
+  gap: 10px;
+  border-radius: 8px;
+  opacity: 0px;
+  background-color: #FCBC02;
+  margin-top:0px;
+  margin-right: 7px;
+  margin-left: 7px;
+}
+
+.plus{
+  width: 18px;
+  height: 18px;
+  margin-left: 67px;
+  margin-right: 10px;
+  margin-top: 11px;
+  margin-bottom: 11px;
+}
+
+.button-add-task{
+  color: white;
+  width: 228px;
+  height: 21px;
+  margin-top: 9px;
+  margin-bottom: 5px;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21px;
+}

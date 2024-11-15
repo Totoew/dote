@@ -1,0 +1,9 @@
+input[type="date"] {
+    color: black; /* Изменяем цвет текста */
+    font-size: 16px; /* Меняем размер шрифта */
+    padding: 10px;  /* Добавляем внутренние отступы */
+    border-radius: 5px;  /* Закругленные углы */
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 30px;  /* Оставляем пространство для иконки */
+  }

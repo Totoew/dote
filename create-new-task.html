@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Добавление домашки</title>
+    <link href="css/style-5.css" rel="stylesheet">
+  </head>
+  <div class="header-1">
+    <section class="top-panel">
+      <div class="top-panel-container">
+        <img class="top-panel-item-1" src="/img/cross.png">
+        <p class="top-panel-item-2 plant">Planit</p>
+        <img class="top-panel-item-3" src="/img/galka.png">
+        <img class="top-panel-item-4" src="/img/more-dotes.png">
+      </div>
+    </section>
+
+    <section class="tasks-panel">
+      <div class="date-icon">
+        <p class="day-week">Сб</p>
+        <div class="circle">
+          <p class="day-number">19</p>
+        </div>
+      </div>
+      <h1 class="tasks-panel-h1">*Месяц*</h1>
+      <!--<img class="tasks-panel-img" src="/img/calendar_month_active.png">-->
+      <button class="button-calendar" onclick="showDatePicker()"><img class="tasks-panel-img" src="img/calendar_month_active.png" alt="Календарь"></button>
+    <input type="date" id="datePicker" style="display:none;" onchange="handleDateChange(event)" />
+    
+    <p id="result"></p>
+    
+    <script>
+        function handleDateChange(event) {
+            const datePicker = event.target;
+            const selectedDate = new Date(datePicker.value);
+
+            // Находим нужные элементы в DOM
+            const dayWeekElement = document.querySelector('.day-week');
+            const dayNumberElement = document.querySelector('.day-number');
+            const monthElement = document.querySelector('.tasks-panel-h1');
+
+            // Заполняем элементы данными
+            dayWeekElement.textContent = getDayOfWeek(selectedDate);
+            dayNumberElement.textContent = selectedDate.getDate();
+            monthElement.textContent = getMonthName(selectedDate);
+
+            // Скрываем поле ввода
+            datePicker.style.display = "none";
+        }
+
+        function showDatePicker() {
+            const datePicker = document.getElementById("datePicker");
+            datePicker.style.display = "block";
+            datePicker.focus(); // Открыть календарь
+        }
+
+        // Функция для получения названия дня недели
+        function getDayOfWeek(date) {
+            const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+            return days[date.getDay()];
+        }
+
+        // Функция для получения названия месяца
+        function getMonthName(date) {
+            const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+            return months[date.getMonth()];
+        }
+    </script>
+    
+    </section>
+  </div>
+  <div class="list-tasks">
+    <section class="scroll-box">
+      <div class="time-box">
+        <p class="time-box-elem-1">01:00</p>
+        <p class="time-box-elem">02:00</p>
+        <p class="time-box-elem">03:00</p>
+        <p class="time-box-elem">04:00</p>
+        <p class="time-box-elem">05:00</p>
+        <p class="time-box-elem">06:00</p>
+        <p class="time-box-elem">07:00</p>
+        <p class="time-box-elem">08:00</p>
+        <p class="time-box-elem">09:00</p>
+        <p class="time-box-elem">10:00</p>
+        <p class="time-box-elem">11:00</p>
+        <p class="time-box-elem">12:00</p>
+        <p class="time-box-elem">13:00</p>
+        <p class="time-box-elem">14:00</p>
+        <p class="time-box-elem">15:00</p>
+        <p class="time-box-elem">16:00</p>
+        <p class="time-box-elem">17:00</p>
+        <p class="time-box-elem">18:00</p>
+        <p class="time-box-elem">19:00</p>
+        <p class="time-box-elem">20:00</p>
+        <p class="time-box-elem">21:00</p>
+        <p class="time-box-elem">22:00</p>
+        <p class="time-box-elem">23:00</p>
+        <p class="time-box-elem">00:00</p>
+      </div>
+      <div class="empty-blocks">
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem">
+          <div class="event-in-calendar">Название события</div>
+        </article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem">
+          <div class="event-in-calendar">Название события</div>
+        </article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+      </div>
+    </section>
+  </div>
+
+    <div class="footer-1">
+      <section class="bottom-nav">
+        <div class="nav-item nav-item-1">
+          <img class="calendar image" src="/img/calendar_month_active.png">
+          <p class="nav-item-1-txt p-tag">Расписание</p>
+        </div>
+        <div class="nav-item nav-item-2">
+          <img class="split-screen" src="/img/splitscreen_passive.png">
+          <p class="nav-item-2-txt p-tag">Задачи</p>
+        </div>
+      </section>
+
+      <section class="footer">
+        <div class="yellow-button">
+          <img class="plus" src="/img/add_2.png">
+          <p class="button-add-task">Добавить новое событие</p>
+          <div class="home-indicator"></div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
+
+
