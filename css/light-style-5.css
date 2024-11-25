@@ -345,6 +345,10 @@
     margin-left: 7px;
   }
   
+  .a-none-decorat{
+    text-decoration: none
+  }
+  
   .plus{
     width: 18px;
     height: 18px;
