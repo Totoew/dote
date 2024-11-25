@@ -47,6 +47,7 @@ document.querySelector('.finish-event-time').addEventListener('input', function(
     }
 });
 
+//Склонение слова "минут"
 function updateMinutesLabel(value) {
     const minutesLabel = document.getElementById('minutes-label');
     

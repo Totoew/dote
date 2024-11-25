@@ -4,19 +4,11 @@
   <head>
     <meta charset="utf-8">
     <title>Создание нового события</title>
-    <link href="css/style-3.css" rel="stylesheet">
+    <link href="css/light-style-3.css" rel="stylesheet">
     <!--<link href="css/outline.css" rel="stylesheet">-->
     <!--<link href="css/outline-settings.css" rel="stylesheet">-->
   </head>
   <body>
-<!--<section class="top-panel">
-      <div class="top-panel-container">
-        <img class="top-panel-item-1" src="/img/cross.png">
-        <p class="top-panel-item-2 plant">Planit</p>
-        <img class="top-panel-item-3" src="/img/galka.png">
-        <img class="top-panel-item-4" src="/img/more-dotes.png">
-      </div>
-    </section>-->
     <form action="/submit-form" method="post">
     <section class="tasks-panel">
       <h1 class="tasks-panel-h1">Создать новое</h1>
@@ -31,7 +23,7 @@
       <textarea name="desc-event" class="desc-event"  type="text" placeholder="Описание" size="368" autocomplete="off"></textarea>
     
       <section class="date-event">
-        <img class="watch" src="/img/schedule.png">
+        <img class="watch" src="/img/schedule_light.png">
         <!--<input type="date" name="day-event" class="day-event">-->
         <div id="dateContainer" class="white-text">
           <input class="day-event" type="date" name="day-event" id="dateInput" onchange="replaceWithFormattedDate()" required>
@@ -42,7 +34,7 @@
       </section>
 
       <section class="notification">
-        <img src="/img/notification_add.png" class="notification-bell">
+        <img src="/img/notification_add_light.png" class="notification-bell">
         <p class="Za">За:</p>
         <div class="time-input-container">
           <input type="number" name="time-notification" class="time-notification number-time-event" min="1" required onchange="updateMinutesLabel(this.value)">
