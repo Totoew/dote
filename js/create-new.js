@@ -38,7 +38,6 @@ document.getElementById("mySelect").addEventListener("change", function () {
 
 //скрытие и показ картинки "плюс" при выборе селекта
 let isFirstChange = true;
-
 function toggleImages(value) {
     const firstImage = document.getElementById('first-image');
     const secondImage = document.getElementById('second-image');

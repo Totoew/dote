@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     // Получаем элементы
     const pageSelect = document.getElementById('page-select');
