@@ -113,54 +113,6 @@
     background-color: #ffffff;
   }
 
-  .top-panel {
-    display: flex;
-    justify-content: center; 
-    align-items: center;     
-    background-color: #111828;
-    width: 393px;
-    height: 56px; 
-    top: 0;                  
-        
-  }
-  
-  .top-panel-container {
-    display: flex;  
-    align-items: center;   
-    justify-content: space-between; 
-    width: 373px;                   
-    height: 24px;
-  }
-  
-  .top-panel-item {
-    flex-shrink: 0;               
-  }
-  
-  .plant {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 500;
-    width: 273px;
-  }
-  
-  .top-panel-item-1{
-    padding-left: 5px;
-    padding-right: 15px;
-  }
-  
-  .top-panel-item-2{
-    padding-right: 15px;
-  }
-  
-  .top-panel-item-4{
-    padding-right: 9.39px;
-    padding-left: 22.43px;
-  }
-  
-  .top-panel-item-3{
-    padding-left: 6px;
-  }
-  
   .tasks-panel{
     display: flex;  
     flex-direction: row;
@@ -248,7 +200,7 @@
     background:#26334A;
     padding: 0px;
   }
-  
+
   .button-calendar{
     margin-right: 8px;
     margin-top: 28px;
@@ -260,6 +212,8 @@
     border: 0px;
   }
 
+
+  
   .list-tasks{
     position: absolute;
     display: block;
@@ -300,7 +254,6 @@
     margin-left: 48px;
     margin-top: 10px;
   }
-  
   
   .nav-item-1-txt{
     margin-right: 16px;
