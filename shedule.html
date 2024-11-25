@@ -1,70 +1,154 @@
 <!DOCTYPE html>
-<!--создать веб-приложение для мобильных устройств с модулем "Домашнее задание" и меню модулей.-->
 <html lang="ru">
   <head>
     <meta charset="utf-8">
-    <title>Добавление домашки</title>
-    <link href="css/style-4.css" rel="stylesheet">
-    <!--<link href="css/outline.css" rel="stylesheet">-->
-    <!--<link href="css/outline-settings.css" rel="stylesheet">-->
+    <title>График событий</title>
+    <link href="css/style-5.css" rel="stylesheet">
   </head>
-  <body>
-    <section class="top-panel">
-      <div class="top-panel-container">
-        <img class="top-panel-item-1" src="/img/cross.png">
-        <p class="top-panel-item-2 plant">Planit</p>
-        <img class="top-panel-item-3" src="/img/galka.png">
-        <img class="top-panel-item-4" src="/img/more-dotes.png">
-      </div>
-    </section>
-
+  <div class="header-1">
     <section class="tasks-panel">
-      <h1 class="tasks-panel-h1">Создание нового</h1>
-      <select id="mySelect" name="type-task" class="type-task">
-        <option value="" disabled selected hidden style="color: gray;">Выберите</option>
-        <option value="task" class="type-task-item">Задания</option>
-        <option value="event" class="type-task-item">События</option>
-      </select>
-    </section>
-
-    <section class="list-tasks">
-      <input name="name-event" class="name-event"  type="text" placeholder="Название" size="368">
-      <textarea name="desc-event" class="desc-event"  type="text" placeholder="Описание" size="368"></textarea>
-    
-      <section class="create-task-tags">
-        <img src="/img/bookmark_add.png" class="task-tag-emblem">
-        <input type="button" name="add-tag" class="add-tag" value="+ Добавить">
-      </section>
-        
-      <section class="date-event">
-        <img class="watch" src="/img/schedule.png">
-        <!--<input type="date" name="day-event" class="day-event">-->
-        <div id="dateContainer" class="white-text">
-          <input class="day-event" type="date" id="dateInput" onchange="replaceWithFormattedDate()" required>
+      <div class="date-icon">
+        <p class="day-week">Сб</p>
+        <div class="circle">
+          <p class="day-number">19</p>
         </div>
-      </section>
-
-      <section class="notification">
-        <img src="/img/notification_add.png" class="notification-bell">
-        <p class="Za">За:</p>
-        <div class="time-input-container">
-            <input type="number" name="time-notification" class="time-notification number-time-event" min="1" required onchange="updateMinutesLabel(this.value)">
-            <span id="minutes-label" class="minutes-label">минут</span>
-        </div>
-      </section>
-    </section>
-
+      </div>
+      <h1 class="tasks-panel-h1">*Месяц*</h1>
+      <!--<img class="tasks-panel-img" src="/img/calendar_month_active.png">-->
+      <button class="button-calendar" onclick="showDatePicker()">
+        <img class="tasks-panel-img" src="img/calendar_month_active.png" alt="Календарь">
+      </button>
+      <input name="datePickerName" type="date" id="datePicker" style="display:none;" onchange="handleDateChange(event)" required/>
     
-    <section class="bottom-nav">
-    </section>
+    <p id="result"></p>
+  
+    <script>
+            function handleDateChange(event) {
+            const datePicker = event.target;
+            const selectedDate = new Date(datePicker.value);
 
-    <section class="footer">
-      <div class="yellow-button">
-        <img class="plus" src="/img/add_2.png">
-        <p class="button-add-task">Добавить новое событие</p>
-        <div class="home-indicator"></div>
+            // Находим нужные элементы в DOM
+            const dayWeekElement = document.querySelector('.day-week');
+            const dayNumberElement = document.querySelector('.day-number');
+            const monthElement = document.querySelector('.tasks-panel-h1');
+
+            // Заполняем элементы данными
+            dayWeekElement.textContent = getDayOfWeek(selectedDate);
+            dayNumberElement.textContent = selectedDate.getDate();
+            monthElement.textContent = getMonthName(selectedDate);
+
+            // Скрываем поле ввода
+            datePicker.style.display = "none";
+        }
+
+        function showDatePicker() {
+            const datePicker = document.getElementById("datePicker");
+            datePicker.style.display = "block";
+            datePicker.focus(); // Открыть календарь
+        }
+
+        // Функция для получения названия дня недели
+        function getDayOfWeek(date) {
+            const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+            return days[date.getDay()];
+        }
+
+        // Функция для получения названия месяца
+        function getMonthName(date) {
+            const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+            return months[date.getMonth()];
+        }
+    </script>
+    
+    </section>
+  </div>
+  <div class="list-tasks">
+    <section class="scroll-box">
+      <div class="time-box">
+        <p class="time-box-elem-1">01:00</p>
+        <p class="time-box-elem">02:00</p>
+        <p class="time-box-elem">03:00</p>
+        <p class="time-box-elem">04:00</p>
+        <p class="time-box-elem">05:00</p>
+        <p class="time-box-elem">06:00</p>
+        <p class="time-box-elem">07:00</p>
+        <p class="time-box-elem">08:00</p>
+        <p class="time-box-elem">09:00</p>
+        <p class="time-box-elem">10:00</p>
+        <p class="time-box-elem">11:00</p>
+        <p class="time-box-elem">12:00</p>
+        <p class="time-box-elem">13:00</p>
+        <p class="time-box-elem">14:00</p>
+        <p class="time-box-elem">15:00</p>
+        <p class="time-box-elem">16:00</p>
+        <p class="time-box-elem">17:00</p>
+        <p class="time-box-elem">18:00</p>
+        <p class="time-box-elem">19:00</p>
+        <p class="time-box-elem">20:00</p>
+        <p class="time-box-elem">21:00</p>
+        <p class="time-box-elem">22:00</p>
+        <p class="time-box-elem">23:00</p>
+        <p class="time-box-elem">00:00</p>
+      </div>
+      <div class="empty-blocks">
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem">
+          <div class="event-in-calendar">Название события</div>
+        </article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem">
+          <div class="event-in-calendar">Название события</div>
+        </article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
+        <article class="empty-blocks-elem"></article>
       </div>
     </section>
-    <script src="js/script.js"></script>
+  </div>
+
+    <div class="footer-1">
+      <section class="bottom-nav">
+        <div class="nav-item nav-item-1">
+        <a href="shedule.html">
+          <img class="calendar image" src="/img/calendar_month_active.png">
+        </a>
+        <p class="nav-item-1-txt p-tag">Расписание</p>
+      </div>
+      <div class="nav-item nav-item-2">
+        <a href="index.html">
+          <img class="split-screen" src="/img/splitscreen_passive.png">
+        </a>
+        <p class="nav-item-2-txt p-tag">Задачи</p>
+      </div>
+      </section>
+
+      <section class="footer">
+        <div class="yellow-button">
+          <img class="plus" src="/img/add_2.png">
+          <p class="button-add-task">Добавить новое событие</p>
+          <div class="home-indicator"></div>
+        </div>
+      </section>
+    </div>
+    <script src="js/shedule.js"></script>
   </body>
 </html>
+
+
