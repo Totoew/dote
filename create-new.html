@@ -11,7 +11,7 @@
   <body>
     <section class="tasks-panel">
       <h1 class="tasks-panel-h1">Создание нового</h1>
-      <select id="mySelect" name="type-task-or-event" class="type-task-or-event" required>
+      <select id="mySelect" name="type-task-or-event" class="type-task-or-event" onchange="toggleImages(this.value)" required>
         <option value="" disabled selected hidden style="color: gray;">Выберите</option>
         <option value="create-new-task.html" class="type-task-or-event-item">Задания</option>
         <option value="create-new-event.html" class="type-task-or-event-item">События</option>
@@ -26,7 +26,8 @@
 
     <section class="footer">
       <button type="button" id="go-button" class="yellow-button">
-        <img class="plus" src="/img/add_gray.png">
+        <img id="first-image" class="plus" src="/img/add_gray.png">
+        <img id="second-image" src="/img/add_2.png">
         <p class="button-add-task">Добавить</p>
         <div class="home-indicator"></div>
       </button>
