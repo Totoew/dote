@@ -35,3 +35,18 @@ document.getElementById("mySelect").addEventListener("change", function () {
         this.options[0].style.display = ""; // Показываем обратно, если ничего не выбрано
     }
 });
+
+//скрытие и показ картинки "плюс" при выборе селекта
+let isFirstChange = true;
+
+function toggleImages(value) {
+    const firstImage = document.getElementById('first-image');
+    const secondImage = document.getElementById('second-image');
+
+    if (isFirstChange && value !== '') {
+        firstImage.style.display = 'none';
+        secondImage.style.display = 'block';
+        isFirstChange = false;
+    }
+}
+

@@ -134,14 +134,14 @@ select {
   gap: 10px;
   border-radius: 8px;
   opacity: 0px;
-  background-color: yellow;
+  background-color: #FCBC02;
   margin-top:0px;
   margin-right: 7px;
   margin-left: 7px;
 }
 
 .black-add-text{
-  color: black;
+  color: white;
   width: 92px;
   height: 21px;
   margin-top: 6px;
@@ -158,8 +158,18 @@ select {
   height: 18px;
   margin-left: 130px;
   margin-right: 0px;
-  margin-top: 8px;
-  margin-bottom: 14px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+#second-image {
+  display: none;
+  width: 18px;
+  height: 18px;
+  margin-left: 130px;
+  margin-right: 0px;
+  margin-top: 6px;
+  margin-bottom: 16px;
 }
 
 .button-add-task{
