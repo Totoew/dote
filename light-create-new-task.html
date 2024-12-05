@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Добавление задачи</title>
-    <link href="css/style-4.css" rel="stylesheet">
+    <link href="css/light-style-4.css" rel="stylesheet">
     <!--<link href="css/outline.css" rel="stylesheet">-->
     <!--<link href="css/outline-settings.css" rel="stylesheet">-->
   </head>
@@ -23,14 +23,14 @@
         <textarea list="no-datalist" autocomplete="off" name="desc-task" class="desc-task"  type="text" placeholder="Описание" size="368"></textarea>
       
         <section class="create-task-tags">
-          <img src="/img/bookmark_add.png" class="task-tag-emblem">
+          <img src="/img/bookmark_add_light.png" class="task-tag-emblem">
           <input type="text" name="add-tag" class="add-tag" id="inputField" placeholder="+ Добавить"
            onkeyup="handleKeyUp(event)"  required>        
           <div id="output"></div>
         </section>
           
         <section class="date-event">
-          <img class="watch" src="/img/schedule.png">
+          <img class="watch" src="/img/schedule_light.png">
           <!--<input type="date" name="day-event" class="day-event">-->
           <div id="dateContainer" class="white-text">
             <input class="day-task" name="day-task" type="date" id="dateInput" onchange="replaceWithFormattedDate()" required>
@@ -38,7 +38,7 @@
         </section>
   
         <section class="notification">
-          <img src="/img/notification_add.png" class="notification-bell">
+          <img src="/img/notification_add_light.png" class="notification-bell">
           <p class="Za">За:</p>
           <div class="time-input-container">
               <input type="number" name="time-notification" class="time-notification number-time-event" min="1" required onchange="updateMinutesLabel(this.value)">
