@@ -1,9 +1,9 @@
 let color = '#FCBC02';
 const maxWidth = 300; // Максимальная допустимая ширина в пикселях
 
-function handleKeyUp(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault(); // Отменяем стандартное действие (отправку формы)
+function handleKeyUp(evt) {
+    if (evt.keyCode === 32) {
+        evt.preventDefault(); // Отменяем стандартное действие (отправку формы)
         
         const inputElement = document.getElementById('inputField');
         const outputElement = document.getElementById('output');

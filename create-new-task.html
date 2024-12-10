@@ -9,7 +9,7 @@
     <!--<link href="css/outline-settings.css" rel="stylesheet">-->
   </head>
   <body>
-    <form action="#" onsubmit="return false;" method="post">
+    <form id="darkTaskForm">
       <section class="tasks-panel">
         <h1 class="tasks-panel-h1">Создать новое</h1>
         <select id="mySelect" name="type-task" class="type-task">
@@ -31,7 +31,6 @@
               id="inputField" 
               placeholder="+ Добавить" 
               onkeyup="handleKeyUp(event)" 
-              required
           >
           <div id="output" class="tags-container"></div>
         </section>
@@ -75,12 +74,13 @@
       <section class="footer">
         <button type="submit" class="yellow-button">
           <img class="plus" src="/img/add_2.png">
-          <p class="button-add-task">Добавить новое событие</p>
+          <p class="button-add-task">Добавить новую задачу</p>
           <div class="home-indicator"></div>
         </button>
       </section>
       </form>
-
+      
     <script src="js/create-new-task.js"></script>
+    <script src="js/fetch-darkTaskForm.js"></script>
   </body>
 </html>

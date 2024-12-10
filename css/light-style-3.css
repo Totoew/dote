@@ -4,8 +4,11 @@
     margin: 0;
   }
   
-  body {
-    height: 742px; 
+  html, body {
+    height: 100%; /* Высота экрана */
+    display: flex;
+    width: 100%;
+    max-width: 393px; 
     background-color: #b7b7b7;
   }
 

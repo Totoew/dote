@@ -4,38 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Календарь</title>
-    <style>
-        /* Переопределяем стандартные стили */
-        .datepicker {
-            position: relative;
-        }
-        
-        .datepicker--wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        
-        .datepicker--calendar {
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        @media only screen and (max-width: 600px) {
-            .datepicker--calendar {
-                width: 90%;
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <div class="datepicker">
-        <div class="datepicker--wrapper">
-            <input type="date" class="datepicker--calendar">
-        </div>
-    </div>
+    <form id="example-form">
+        <input type="text" name="required-field" placeholder="Обязательное поле" required>
+        <input type="text" name="optional-field" placeholder="Необязательное поле">
+        <button type="submit">Отправить</button>
+      </form>
+      <script src="js/test.js"></script>
 </body>
 </html>
