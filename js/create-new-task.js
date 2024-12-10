@@ -1,44 +1,57 @@
-let colors = '#FCBC02';
-let currentColorIndex = 0;
+let color = '#FCBC02';
 const maxWidth = 300; // Максимальная допустимая ширина в пикселях
 
 function handleKeyUp(event) {
-              if (event.keyCode === 13) {
-                  event.preventDefault(); // Отменяем стандартное действие (отправку формы)
-                  
-                  const inputElement = document.getElementById('inputField');
-                  const outputElement = document.getElementById('output');
-                  
-                  let enteredWord = inputElement.value.trim();
-                  
-                  if (enteredWord !== '' && getTotalWidth(outputElement) <= maxWidth) {
-                      // Создаем новый div для слова
-                      let wordBlock = document.createElement('div');
-                      wordBlock.className = 'word-block';
-                      wordBlock.style.backgroundColor = colors;
-                      wordBlock.textContent = enteredWord;
-                      
-                      // Добавляем созданный блок в контейнер
-                      outputElement.appendChild(wordBlock);
-                      
-                      // Сбрасываем значение поля ввода
-                      inputElement.value = '';
-                      
-                      // Переходим к следующему цвету
-                      currentColorIndex++;  
-                  }
-              }
-          }
+    if (event.keyCode === 13) {
+        event.preventDefault(); // Отменяем стандартное действие (отправку формы)
+        
+        const inputElement = document.getElementById('inputField');
+        const outputElement = document.getElementById('output');
+        
+        let enteredWord = inputElement.value.trim();
+        
+        if (enteredWord !== '') 
+        {
+            if( getTotalWidth(outputElement) <= maxWidth){
+                // Создаем новый div для слова
+                let wordBlock = document.createElement('div');
+                wordBlock.className = 'word-block';
+                wordBlock.style.backgroundColor = color;
+                wordBlock.textContent = enteredWord;
 
-          // Функция для вычисления общей ширины всех блоков внутри контейнера
+                let plusButton = document.createElement('close-button');
+                plusButton.type = 'button'; 
+                plusButton.textContent = '✖'; 
+
+                plusButton.style.fontSize = '16px';
+                plusButton.style.width = '4px';
+                plusButton.style.height = '4px';
+                plusButton.style.cursor = 'pointer';
+                plusButton.style.marginLeft = "5px";
+                plusButton.addEventListener('click', (evt)=>{
+                    evt.preventDefault();
+                    wordBlock.remove();
+                })
+                wordBlock.appendChild(plusButton);          
+                outputElement.appendChild(wordBlock);
+                
+                // Сбрасываем значение поля ввода
+                inputElement.value = '';
+            } else{
+                alert('Всё доступное место занято!');
+            }
+        }
+    }
+}
+
+// Функция для вычисления общей ширины всех блоков внутри контейнера
 function getTotalWidth(container) {
     let totalWidth = 0;
     Array.from(container.children).forEach(child => {
-        totalWidth += child.offsetWidth;
+    totalWidth += child.offsetWidth;
     });
     return totalWidth;
 }
-
 
 function replaceWithFormattedDate() {
     const input = document.getElementById('dateInput');
@@ -86,3 +99,27 @@ function updateMinutesLabel(value) {
         minutesLabel.textContent = 'минут';
     }
 }
+
+//функция для отображения приоритетов
+document.getElementById('inputFieldPriority').addEventListener('change', function () {
+    const select = this;
+  
+    select.classList.remove('not-matter', 'normal', 'matter');
+
+    if (select.value === 'not-matter') {
+      select.classList.add('not-matter');
+    } else if (select.value === 'normal') {
+      select.classList.add('normal');
+    } else if (select.value === 'matter') {
+      select.classList.add('matter');
+    }
+  });
+  
+document.getElementById("inputFieldPriority").addEventListener("change", function () {
+    if (this.value !== "") {
+        // Если выбрана любая другая опция, кроме "Выберите..."
+        this.querySelectorAll("option")[0].style.display = "none"; 
+    } else {
+        this.options[0].style.display = ""; 
+    }
+});

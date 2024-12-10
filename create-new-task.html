@@ -24,11 +24,33 @@
       
         <section class="create-task-tags">
           <img src="/img/bookmark_add.png" class="task-tag-emblem">
-          <input type="text" name="add-tag" class="add-tag" id="inputField" placeholder="+ Добавить"
-           onkeyup="handleKeyUp(event)"  required>        
-          <div id="output"></div>
+          <input 
+              type="text" 
+              name="add-tag" 
+              class="add-tag" 
+              id="inputField" 
+              placeholder="+ Добавить" 
+              onkeyup="handleKeyUp(event)" 
+              required
+          >
+          <div id="output" class="tags-container"></div>
         </section>
-          
+        
+        <section class="priority">
+          <img src="/img/signal_cellular_alt.png" class="priority-emblem">
+          <select
+            id="inputFieldPriority"
+            class="add-priority"
+            name='priority-level'
+            required
+          >
+            <option value="" disabled selected hidden>Приоритет</option>
+            <option value="not-matter">Не важно</option>
+            <option value="normal">Нормально</option>
+            <option value="matter">Важно</option>
+          </select>
+        </section>
+
         <section class="date-event">
           <img class="watch" src="/img/schedule.png">
           <!--<input type="date" name="day-event" class="day-event">-->

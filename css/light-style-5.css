@@ -5,25 +5,40 @@
     margin: 0;
   }
 
-/****/
+
+body {
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  background-color: #8f8f8f;
+  overflow: hidden;
+  }
 
 .header-1{
-  position: fixed absolute;
-  margin-top: 0px;
+  left: 0;
+  width: 100%;
+  max-width: 393px;
+  margin-top: 0px;/*NDB*/
 }
 
 .footer-1{
   position: fixed;
-  margin-top: 564px; /*684px*/
+  bottom: 0;
+  width: 100%;
+  max-width: 393px;
+  height: 114px; /* Нижняя панель с учетом кнопки */
+  z-index: 10;
 }
+
 .scroll-box{
   display: flex;
   flex-direction: row;
   width: 393px;
-  height: 564px;
+  /*height: 564px;*/
   overflow-y: auto; 
   color: white;
 }
+
 
 .time-box{
   display: flex;
@@ -106,21 +121,24 @@
   z-index: 9999;
 }
 
-/****/
 
-  body {
-    height: 798px; 
-    background-color: #979797;
-  }
+.tasks-panel{
+  display: flex;  
+  flex-direction: row;
+  margin-top: 0px;
+  background-color: #E8E7E7;
+  width: 393px;                     
+  height: 64px; 
+}
 
-  .tasks-panel{
-    display: flex;  
-    flex-direction: row;
-    margin-top: 0px;
-    background-color: #E8E7E7;
-    width: 393px;                     
-    height: 64px; 
-  }
+.tasks-panel-h1{
+  font-size: 24px;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+  color: black;
+  text-align: center;
+  width: calc(100% - 40px);
+}
 
   .date-icon{
     display: flex;
@@ -173,6 +191,7 @@
     text-decoration-skip-ink: none;
   }
 
+  
   .tasks-panel-h1{
     font-size: 24px;
     font-weight: 600;
@@ -182,12 +201,12 @@
     width: 103px;
     height: 26px;
     padding: 0px;
-    color: black;
+    color: #000000;
     margin-top: 19px;
     margin-bottom: 19px;
     margin-right: 180px;
   }
-  
+
   .tasks-panel-img{  
     margin-right: 15px;
     margin-top: 22px;
@@ -201,6 +220,24 @@
     padding: 0px;
   }
 
+  
+  .list-tasks{
+    position: fixed; 
+    top: 64px; 
+    bottom: 114px;
+    left: 0; 
+    width: 100%; 
+    max-width: 393px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 24px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    background-color: #ffffff; 
+    padding: 12px 0;  
+  }
+
   .button-calendar{
     margin-right: 8px;
     margin-top: 28px;
@@ -211,28 +248,18 @@
     color:#E8E7E7;
     border: 0px;
   }
-
-
-  
-  .list-tasks{
-    position: absolute;
-    display: block;
-  /*justify-content: center; */
-    gap: 24px; 
-    width: 393px;
-    height: 564px;
-    background-color: #E8E7E7;  
-    margin-top: 0px; 
-  }
   
   .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 122px;
-    height: 100%;
+    justify-content: center;
+    width: 120px;
+    height: 60px;
+    border-radius: 16px;
+    background-color: white;
   }
-  
+
   .nav-item-1{
     width: 120px;
     height: 60px;
@@ -274,20 +301,18 @@
     color: #fff;
     margin-right: 48px;
     margin-left: 48px;
-    /*margin-top: 10px;*/
+    margin-top: 10px;
   }
-  
+
   .split-screen{
     margin-right: 48px;
     margin-left: 48px;
-    /*margin-top: 10px;*/
   }
-  
-  
+  /*
   .nav-item-1-txt{
     /*margin-right: 16px;
     margin-left: 16px;*/
-    margin-top: -12.5px;   
+  /*  margin-top: -12.5px;   
     color: black;
   }
   
@@ -295,9 +320,24 @@
     /*margin-right: 33px;
     margin-left: 33px;
     margin-top: 5px;*/
+   /* color: gray;
+  }*/
+  
+  .nav-item-1-txt {
+    margin-top: 5px;
+    margin-bottom: 13px;
+  }
+  
+  .nav-item-1-txt,
+  .nav-item-2-txt {
+    font-size: 12px;
     color: gray;
   }
   
+    .nav-item-1-txt {
+      color: rgb(0, 0, 0);
+    }
+
   .image {
     margin-bottom: 10px; 
   }
@@ -307,63 +347,79 @@
   }
   
   .bottom-nav {
-    display: flex;
-    justify-content: space-between;
-    width: 393px;
-    height: 66px;
-    position: absolute;
-    background-color: #E8E7E7;
-    margin: 0;       
-    padding-left: 64px;
-    padding-right:64px;  
-    padding-top: 3px;
-    padding-bottom: 3px;    
-  }
+  display: flex;
+  justify-content: center; /* Центрируем содержимое по горизонтали */
+  align-items: center; /* Центрируем содержимое по вертикали */
+  gap: 10px; /* Задаём расстояние между элементами */
+  height: 66px;
+  background-color: #E8E7E7;
+  margin: 0;
+}
   
   .footer{
     display: flex;
-    justify-content: space-between;
-    width: 393px;
+    justify-content: center;
+    align-items: center;
     height: 48px;
-    position: absolute;
-    background-color: #E8E7E7;
-    margin-top: 66px;     
+    background-color: #E8E7E7;  
   }
   
   
   .yellow-button{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     width: 380px;
     height: 40px;
-    padding: 4px 0px 0px 0px;
-    gap: 10px;
     border-radius: 8px;
-    opacity: 0px;
     background-color: #FCBC02;
-    margin-top:0px;
-    margin-right: 7px;
-    margin-left: 7px;
+    text-decoration: none;
   }
   
   .a-none-decorat{
-    text-decoration: none
+    text-decoration: none; 
+    color: inherit;
   }
   
+  
+.a-none-decorat:focus,
+.a-none-decorat:hover,
+.a-none-decorat:active {
+  outline: none; /* Убираем фокус-линию */
+  text-decoration: none; 
+}
+
   .plus{
     width: 18px;
     height: 18px;
-    margin-left: 67px;
-    margin-right: 10px;
-    margin-top: 11px;
-    margin-bottom: 11px;
   }
   
   .button-add-task{
     color: white;
     width: 216px;
     height: 21px;
-    margin-top: 11px;
-    margin-bottom: 11px;
-    margin-left: 0px;
   }
 
+  
+  /* Адаптация под маленькие экраны */
+@media (max-width: 393px) {
+  .tasks-panel-h1 {
+    font-size: 20px;
+  }
+
+  .list-tags-item {
+    font-size: 10px;
+    padding: 0 4px;
+  }
+
+  .yellow-button {
+    width: calc(100% - 14px);
+  }
+
+}
+
+
+.a-block{
+  height: 30px;
+}
