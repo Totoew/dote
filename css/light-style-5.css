@@ -1,10 +1,8 @@
-
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
   }
-
 
 body {
   height: 100vh; 
@@ -26,7 +24,7 @@ body {
   bottom: 0;
   width: 100%;
   max-width: 393px;
-  height: 114px; /* Нижняя панель с учетом кнопки */
+  height: 114px; 
   z-index: 10;
 }
 
@@ -204,11 +202,11 @@ body {
     color: #000000;
     margin-top: 19px;
     margin-bottom: 19px;
-    margin-right: 180px;
+    margin-right: 60px;
   }
 
   .tasks-panel-img{  
-    margin-right: 15px;
+    margin-right: 37px;
     margin-top: 22px;
     margin-bottom: 22px;
     width: 20px;
@@ -239,7 +237,7 @@ body {
   }
 
   .button-calendar{
-    margin-right: 8px;
+    margin-right: 30px;
     margin-top: 28px;
     margin-bottom: 16px;
     width: 14px;
@@ -268,11 +266,6 @@ body {
     border-radius: 16px;
     background-color: white;
     opacity: 0px;
-    /*margin-left: 63.5px;
-    margin-right: 26px;
-    margin-top: 3px;
-    margin-bottom: 3px;*/
-    /*margin-left: 25px;*/
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 10px;
@@ -287,11 +280,6 @@ body {
     border-radius: 16px;
     background-color: white;
     opacity: 0px;
-    /*margin-left: 63.5px;
-    margin-right: 26px;
-    margin-top: 3px;
-    margin-bottom: 3px;*/
-    /*margin-left: 25px;*/
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 10px;
@@ -306,9 +294,6 @@ body {
     border-radius: 16px;
     background-color: white;
     opacity: 0px;
-    /*margin-left: 63.5px;  
-    margin-top: 3px;
-    margin-bottom: 3px;*/
     padding-left: 33px;
     padding-right: 33px;
     padding-bottom: 10px;
@@ -326,20 +311,6 @@ body {
     margin-right: 48px;
     margin-left: 48px;
   }
-  /*
-  .nav-item-1-txt{
-    /*margin-right: 16px;
-    margin-left: 16px;*/
-  /*  margin-top: -12.5px;   
-    color: black;
-  }
-  
-  .nav-item-2-txt {
-    /*margin-right: 33px;
-    margin-left: 33px;
-    margin-top: 5px;*/
-   /* color: gray;
-  }*/
   
   .nav-item-1-txt {
     margin-top: 5px;
