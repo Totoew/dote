@@ -14,15 +14,15 @@
         </div>
       </div>
       <h1 class="tasks-panel-h1">*Месяц*</h1>
-      <!--<img class="tasks-panel-img" src="/img/calendar_month_active.png">-->
       <button class="button-calendar" onclick="showDatePicker()">
         <img class="tasks-panel-img" src="img/calendar_month_active.png" alt="Календарь">
       </button>
-      <div class="date-picker">
+      <input name="datePickerName" type="date" id="datePicker" style="display:none;" onchange="handleDateChange(event)" required>
+      <!--<div class="date-picker">
         <div class="datepicker--wrapper">
           <input name="datePickerName" type="date" id="datePicker" style="display:none;" onchange="handleDateChange(event)" required> 
         </div>   
-      </div>   
+      </div>-->
       <p id="result"></p>   
     </section>
   </div>

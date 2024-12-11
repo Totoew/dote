@@ -16,7 +16,7 @@ body {
   left: 0;
   width: 100%;
   max-width: 393px;
-  margin-top: 0px;/*NDB*/
+  margin-top: 0px;
 }
 
 .footer-1{
@@ -32,11 +32,20 @@ body {
   display: flex;
   flex-direction: row;
   width: 393px;
-  /*height: 564px;*/
   overflow-y: auto; 
   color: white;
 }
 
+#datePicker {
+  display: block; 
+  height: 18px; 
+  font-size: 12px; 
+  padding: 0; 
+  margin-top: 30px;
+  margin-left: -15px;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+}
 
 .time-box{
   display: flex;
@@ -118,7 +127,6 @@ body {
   margin-top: 61px;
   z-index: 9999;
 }
-
 
 .tasks-panel{
   display: flex;  
@@ -338,9 +346,9 @@ body {
   
   .bottom-nav {
   display: flex;
-  justify-content: center; /* Центрируем содержимое по горизонтали */
-  align-items: center; /* Центрируем содержимое по вертикали */
-  gap: 10px; /* Задаём расстояние между элементами */
+  justify-content: center; 
+  align-items: center; 
+  gap: 10px; 
   height: 66px;
   background-color: #E8E7E7;
   margin: 0;
@@ -376,7 +384,7 @@ body {
 .a-none-decorat:focus,
 .a-none-decorat:hover,
 .a-none-decorat:active {
-  outline: none; /* Убираем фокус-линию */
+  outline: none; 
   text-decoration: none; 
 }
 
@@ -391,8 +399,7 @@ body {
     height: 21px;
   }
 
-  
-  /* Адаптация под маленькие экраны */
+
 @media (max-width: 393px) {
   .tasks-panel-h1 {
     font-size: 20px;
@@ -413,3 +420,4 @@ body {
 .a-block{
   height: 30px;
 }
+
