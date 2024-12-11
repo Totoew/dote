@@ -17,28 +17,28 @@
 
     <div class="list-tasks">
     <section class="scroll-box">
-      <div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
+
+        <template id="taskCardTemplate">
+          <div class="task-card">
+            <div class="main-block">
+              <div class="info-title">
+                <img class="bell" src="/img/bell.png" alt="Уведомление">
+                <p class="name-task"></p>      
+              </div>
+              <div class="chip-list">
+                <div class="list-tags"></div>
+                <div>
+                  <p class="deadline"></p>
+                </div>
+              </div>
             </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div>
-                <p class="deadline">01.11.2024</p>
-              </div>
+            <div class="checker-box">
+              <img class="is-done" src="/img/da-galka.png" alt="Завершено">
+              <img class="delete" src="/img/been.png" alt="Удалить">
             </div>
           </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>  
+        </template>
+
         <div class="task-card">
           <div class="main-block">
             <div class="info-title">
@@ -220,6 +220,12 @@
 
 <div class="footer-1">
     <section class="bottom-nav">
+      <div class="nav-item nav-item-0">
+        <a href="settings.html">
+          <img class="tune image" src="/img/tune.png">
+        </a>
+        <p class="nav-item-0-txt p-tag">Настройки</p>
+      </div>
       <div class="nav-item nav-item-1">
         <a href="shedule.html">
           <img class="calendar image" src="/img/calendar_month.png">

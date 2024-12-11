@@ -313,7 +313,7 @@
     color: gray;
   }
   */
-  
+.nav-item-0-txt,
 .nav-item-1-txt,
 .nav-item-2-txt {
   font-size: 12px;
@@ -324,14 +324,14 @@
 .nav-item-1-txt {
   color: white;
 }
-
+/*
   .image {
     margin-bottom: 10px; 
   }
   
   .p-tag {
     text-align: left;
-  }
+  }*/
   
   .bottom-nav {
     display: flex;
