@@ -33,3 +33,23 @@ function getMonthName(date) {
     const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
     return months[date.getMonth()];
 }
+
+//Функция, которая по умолчанию ставит текущую дату 
+//на странице
+function getCurrentDate() {
+    let today = new Date();
+    
+    let daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+    let dayOfWeek = daysOfWeek[today.getDay()];
+    document.querySelector('.day-week').textContent = dayOfWeek;
+
+    let dayNumber = today.getDate().toString().padStart(2, '0');
+    document.querySelector('.day-number').textContent = dayNumber;
+
+    let months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 
+                  'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    let month = months[today.getMonth()];
+    document.querySelector('.tasks-panel-h1').textContent = month;
+}
+
+window.onload = getCurrentDate;
