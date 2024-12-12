@@ -50,7 +50,7 @@ window.onload = initApp;
 
 
 // Замените 1 на нужный вам user_id
-const userId = 1;
+userId = 1;
 
 fetch(`http://localhost:5000/tasks/${userId}`)
     .then(response => {
