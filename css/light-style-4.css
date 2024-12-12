@@ -4,8 +4,11 @@
     margin: 0;
   }
   
-  body {
-    height: 798px; 
+  html, body {
+    height: 100%; /* Высота экрана */
+    display: flex;
+    width: 100%;
+    max-width: 393px; 
     background-color: #b0b0b0;
   }
   
@@ -149,7 +152,7 @@
     margin-left: 5.5px;
     margin-right: 15.5px;
   }
-
+  
   .add-tag{
     width: 85px;
     height: 32px;
@@ -160,7 +163,7 @@
   }
 
   input[type="text"]::placeholder {
-    color: #FCBC02; 
+    color: #000000; 
   }
 
   .word-block {
@@ -173,7 +176,7 @@
     background-color: lightblue;
     border-radius: 32px;
 }
-
+/*
 .delete-btn {
   background-color: red;
   color: white;
@@ -192,8 +195,67 @@
 .delete-btn:hover {
   background-color: darkred;
 }
+*/
 
-  .date-event{
+.priority{
+  width:368px;
+  height: 28px;
+  margin-left: 12px;
+  margin-top: 32px;
+  margin-right: 12px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.priority-emblem{
+  margin-top:  15px;
+}
+
+    .add-priority {
+      width: 90px;
+      height: 28px;
+      gap: 32px;
+      border-radius: 8px;
+      border: 1px 0px 0px 0px;
+      opacity: 0px;
+      background-color: #ffffff;
+      margin-left: 30px;
+      margin-right: 56px;
+      margin-top: 10px;
+      margin-bottom: 16px;
+      padding-left: 10px;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      appearance: none;
+      -webkit-appearance: none; 
+      -moz-appearance: none;    
+      color: rgb(0, 0, 0);
+      transition: background-color 0.3s, color 0.3s ease; 
+      position: relative; 
+      top: -5px; 
+    }
+    
+    .add-priority.not-matter {
+      background-color: gray;
+      color: rgb(0, 0, 0);
+    }
+    
+    .add-priority.normal {
+      background-color: green;
+      color: rgb(0, 0, 0);
+    }
+    
+    .add-priority.matter {
+      background-color: red;
+      color: rgb(0, 0, 0);
+    }
+    
+    .add-priority {
+      background-image: none;
+    }
+
+
+.date-event{
     display: flex;
     flex-direction: row;
     width: 368px;
