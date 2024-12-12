@@ -1,6 +1,6 @@
 const task = document.querySelector('.task-card').querySelector('.name-task');
 
-window.tg.ready().then(() => {
+window.Telegram.WebApp.ready().then(() => {
     const userId = window.tg.user.id;
   
     fetch('https://laert.pythonanywhere.com/register', {
