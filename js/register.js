@@ -1,3 +1,5 @@
+const task = document.querySelector('.task-card').querySelector('.name-task');
+
 window.tg.ready().then(() => {
     const userId = window.tg.user.id;
   
@@ -14,6 +16,10 @@ window.tg.ready().then(() => {
       } else {
         console.log('ID пользователя успешно отправлен');
       }
+      return response.json
+    })
+    .then(data => {
+        task.textContent = data['telegram_id'];
     })
     .catch(error => {
       console.error('Ошибка отправки данных на сервер:', error);
