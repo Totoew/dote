@@ -59,7 +59,7 @@
     const data = JSON.parse(jsonString); // Парсим JSON-строку
 
     // Извлекаем telegram_id
-    return data.user.telegram_id; // В зависимости от структуры объекта может быть 'id' или 'telegram_id'
+    return data.user.id; // В зависимости от структуры объекта может быть 'id' или 'telegram_id'
 }
 
 // Используем функцию
@@ -67,7 +67,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const initData = urlParams.get('initData');
 const telegram_id = getTelegramId(initData);
 
-console.log('Telegram ID:', telegramId);
+console.log('Telegram ID:', telegram_id);
 
 window.onload = function() {
     sendRequest(telegram_id);
