@@ -1,5 +1,3 @@
-const task = document.querySelector('.task-card').querySelector('.name-task');
-
 /* window.Telegram.WebApp.ready.then(() => {
     const userId = window.tg.user.id;
   
@@ -26,6 +24,7 @@ const task = document.querySelector('.task-card').querySelector('.name-task');
     });
   }); */
 
+  const task = document.querySelector('.task-card').querySelector('.name-task');
   const tg = window.Telegram.WebApp;
 
   // Функция для отправки запроса на сервер
@@ -42,7 +41,7 @@ const task = document.querySelector('.task-card').querySelector('.name-task');
       })
       .then(response => response.json())
       .then(data => {
-          console.log('Успех:', data['telegram_id']);
+        task.textContent = data['telegram_id'];
       })
       .catch((error) => {
           console.error('Ошибка:', error);
