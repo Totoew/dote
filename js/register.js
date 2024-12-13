@@ -23,13 +23,11 @@
       console.error('Ошибка отправки данных на сервер:', error);
     });
   }); */
-
-  const task = document.querySelector('.task-card:last-child').querySelector('.name-task');
-  const tg = window.Telegram.WebApp;
+  //const tg = window.Telegram.WebApp;
 
   // Функция для отправки запроса на сервер
-  function sendRequest() {
-      const telegramId = tg.initDataUnsafe.user.id; // Получаем Telegram ID пользователя
+  function sendRequest(telegram_id) {
+      //const telegramId = tg.initDataUnsafe.user.id; // Получаем Telegram ID пользователя
       const url = 'https://laert.pythonanywhere.com/register'; // Замените на ваш URL
   
       fetch(url, {
@@ -37,11 +35,11 @@
           headers: {
               'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ telegram_id: telegramId }),
+          body: JSON.stringify({ 'telegram_id': telegram_id }),
       })
       .then(response => response.json())
       .then(data => {
-        task.textContent = data['telegram_id'];
+          console.log(data['telegram_id']);
       })
       .catch((error) => {
           console.error('Ошибка:', error);
@@ -49,7 +47,29 @@
   }
   
   // Отправляем запрос сразу при открытии приложения
-  window.onload = function() {
-      sendRequest();
-  };
+
+
+  function getTelegramId(initData) {
+    if (!initData) {
+        return null;
+    }
+
+    // Декодируем строку из Base64
+    const jsonString = atob(initData); // Используйте atob для декодирования base64
+    const data = JSON.parse(jsonString); // Парсим JSON-строку
+
+    // Извлекаем telegram_id
+    return data.user.id; // В зависимости от структуры объекта может быть 'id' или 'telegram_id'
+}
+
+// Используем функцию
+const urlParams = new URLSearchParams(window.location.search);
+const initData = urlParams.get('initData');
+const telegram_id = getTelegramId(initData);
+
+console.log('Telegram ID:', telegramId);
+
+window.onload = function() {
+    sendRequest(telegram_id);
+};
   
