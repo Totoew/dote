@@ -7,15 +7,15 @@
           headers: {
               'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ 'telegram_id': telegram_id })
-      })
-      .then(response => response.json())
+          body: JSON.stringify({ 'telegram_id': telegram_id }),
+      });
+      /*.then(response => response.json())
       .then(data => {
           console.log(data['telegram_id']);
       })
       .catch((error) => {
           console.error('Ошибка:', error);
-      });
+      });*/
     }
 
 
