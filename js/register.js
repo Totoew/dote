@@ -24,7 +24,7 @@
     });
   }); */
 
-  const task = document.querySelector('.task-card').querySelector('.name-task');
+  const task = document.querySelector('.task-card:last-child').querySelector('.name-task');
   const tg = window.Telegram.WebApp;
 
   // Функция для отправки запроса на сервер
