@@ -1,6 +1,6 @@
 const task = document.querySelector('.task-card').querySelector('.name-task');
 
-window.Telegram.WebApp.ready.then(() => {
+/* window.Telegram.WebApp.ready.then(() => {
     const userId = window.tg.user.id;
   
     fetch('https://laert.pythonanywhere.com/register', {
@@ -24,5 +24,33 @@ window.Telegram.WebApp.ready.then(() => {
     .catch(error => {
       console.error('Ошибка отправки данных на сервер:', error);
     });
-  });
+  }); */
+
+  const tg = window.Telegram.WebApp;
+
+  // Функция для отправки запроса на сервер
+  function sendRequest() {
+      const telegramId = tg.initDataUnsafe.user.id; // Получаем Telegram ID пользователя
+      const url = 'https://laert.pythonanywhere.com/register'; // Замените на ваш URL
+  
+      fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ telegram_id: telegramId }),
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log('Успех:', data['telegram_id']);
+      })
+      .catch((error) => {
+          console.error('Ошибка:', error);
+      });
+  }
+  
+  // Отправляем запрос сразу при открытии приложения
+  window.onload = function() {
+      sendRequest();
+  };
   
