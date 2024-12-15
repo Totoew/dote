@@ -65,122 +65,38 @@
     padding: 12px 0;  
   }
   
-  .task-card {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    width: 332px;
-    height: 100px;
+  .theme-block {
+    position: relative;
+    width: 300px;
+    height: 70px;
     border-radius: 16px;
     opacity: 0px;
-    background-color: white;
-    margin-top: 24px;
+    background-color: rgb(225, 224, 224);
     border: 1px solid gray;
+    display: flex;              
+    align-items: center;        
+    justify-content: flex-start;
+    padding-left: 20px;         
   }
   
-  .main-block{
-    display: flex;
-    flex-direction: column; 
-    width: 280px;
-    height: 80px; 
-    gap: 25px;
-    opacity: 0px;
-    margin-left: 8px;
+  .theme-block-hard {
+    display: flex;             
+    align-items: center;      
   }
   
-  .info-title{
-    display: flex;
-    align-items: center;
-    width: 280px;
-    height: 18.75px;
-    gap: 8px;
-    opacity: 0px;
+  .a-theme-block {
+    margin-right: 10px;       
   }
   
-  .name-task{
-    font-size: 16px;
-    font-weight: 500;
-    color: black;
-  }
-  
-  .chip-list{
-    display: flex;
-    justify-content: space-between;
-    width: 280px;
-    height: 20px;
-    gap: 10px;
-    opacity: 0px;
-  }
-  
-  
-.dd-block{
-  padding: 4px;
-} 
-
-  .list-tags {
-    display: flex; 
-    gap: 4px; 
-  }
-  
-  .list-tags-item {
-    background-color: yellow;
-  font-size: 12px;
-  padding: 0 6px;
-  line-height: 20px;
-  white-space: nowrap;
-
-  height: 20px; 
-  box-sizing: border-box; 
-  border-radius: 32px;
-  text-align: center; 
-  }
-  
-  
-.deadline {
-  font-size: 12px;
-  color: #000000;
-  margin-top: 4px;
-}
-
-.margin-deadline{
-  margin-top: 10px;
-  font-size: 12px;
-  color: #000000;
-}
-  .checker-box{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 80px;
-
-    width: 24px;
-    height: 64px;
-    opacity: 0px;
-  }
-  
-  .is-done{
-    padding-left: 2px ;
-    padding-right: 4px ;
-    padding-top: 6px ;
-    padding-bottom: 6px ;
-    margin-top: -6px;
-    cursor: pointer;
-  }
-  
-  .delete{
-    padding-left: 4px ;
-    padding-right: 4px ;
-    padding-top: 3px ;
-    padding-bottom: 3px ;
-    margin-top: 14px;
-    cursor: pointer;
+  .theme-text {
+    white-space: nowrap;       
   }
   
   .bottom-nav {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    gap: 10px; 
+    gap: 10px;
     height: 66px;
     background-color: #E8E7E7;
     margin: 0;
@@ -250,7 +166,7 @@
   color: gray;
 }
 
-  .nav-item-2-txt {
+  .nav-item-0-txt {
     color: rgb(0, 0, 0);
   }
   

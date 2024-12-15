@@ -4,58 +4,17 @@
     margin: 0;
   }
   
-  body {
-    height: 742px; 
-    background-color: #ffffff;
-  }
-/*
-  .top-panel {
+  html, body {
+    height: 100%; /* Высота экрана */
     display: flex;
-    justify-content: center; 
-    align-items: center;     
-    background-color: #111828;
-    width: 393px;
-    height: 56px; 
-    top: 0;                  
-        
+    width: 100%;
+    max-width: 393px;
+    flex-direction: column;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
   }
   
-  .top-panel-container {
-    display: flex;  
-    align-items: center;   
-    justify-content: space-between; 
-    width: 373px;                   
-    height: 24px;
-  }
-  
-  .top-panel-item {
-    flex-shrink: 0;               
-  }
-  
-  .plant {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 500;
-    width: 273px;
-  }
-  
-  .top-panel-item-1{
-    padding-left: 5px;
-    padding-right: 15px;
-  }
-  
-  .top-panel-item-2{
-    padding-right: 15px;
-  }
-  
-  .top-panel-item-4{
-    padding-right: 9.39px;
-    padding-left: 22.43px;
-  }
-  
-  .top-panel-item-3{
-    padding-left: 6px;
-  }*/
   
   .tasks-panel {
     display: flex;
@@ -64,8 +23,8 @@
     width: 393px;
     height: 64px;  
   }
-  
-  
+
+
   .tasks-panel-h1{
     font-size: 18px;
     font-weight: 600;
@@ -111,18 +70,6 @@
     color: gray !important;
   }
   
-  /*
-  .hidden-choise{
-    color: #818181;
-    font-family: Inter;
-    font-size: 151px;
-    font-weight: 400;
-    line-height: 18px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-  }
-  */
   .type-event-item{
     color: white;
     font-family: Inter;
@@ -139,10 +86,11 @@
   flex-direction: column;
   padding: 0;
   width: 393px;
-  height: 564px; /* Убедитесь, что секция имеет достаточно пространства */
+  height: 564px; 
   background-color: #111828;
-  padding-top: 20px; /* Добавлено пространство сверху */
+  padding-top: 20px; 
 }
+
 
 .name-event {
   width: 368px;
@@ -157,7 +105,6 @@
   color: #ffffff;
 }
 
-/* Поле для Описания */
 .desc-event {
   width: 368px;
     height:126px;
@@ -220,7 +167,7 @@
   }
 
 .date-span {
-    white-space: nowrap; /* Предотвращает перенос строки */
+    white-space: nowrap; 
 }
 
   .start-event-time{
@@ -352,7 +299,7 @@
     background-color: #111828;
     margin: 0;             
   }
-  
+
 .footer{
   display: flex;
   justify-content: space-between;
@@ -362,7 +309,6 @@
   background-color: #111828;
   margin-top: 66px;     
 }
-
 
 .yellow-button{
   display: flex;

@@ -4,8 +4,10 @@
   margin: 0;
 }
 
-body {
-  height: 798px; 
+html, body {
+  height: 100%;
+  width: 100%;
+  max-width: 393px;
   background-color: #ffffff;
 }
 

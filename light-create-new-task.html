@@ -9,7 +9,7 @@
     <!--<link href="css/outline-settings.css" rel="stylesheet">-->
   </head>
   <body>
-    <form action="#" onsubmit="return false;" method="post">
+    <form id="lightTaskForm">
       <section class="tasks-panel">
         <h1 class="tasks-panel-h1">Создать новое</h1>
         <select id="mySelect" name="type-task" class="type-task">
@@ -24,11 +24,32 @@
       
         <section class="create-task-tags">
           <img src="/img/bookmark_add_light.png" class="task-tag-emblem">
-          <input type="text" name="add-tag" class="add-tag" id="inputField" placeholder="+ Добавить"
-           onkeyup="handleKeyUp(event)"  required>        
-          <div id="output"></div>
+          <input 
+              type="text" 
+              name="add-tag" 
+              class="add-tag" 
+              id="inputField" 
+              placeholder="+ Добавить" 
+              onkeyup="handleKeyUp(event)" 
+          >
+          <div id="output" class="tags-container"></div>
         </section>
           
+        <section class="priority">
+          <img src="/img/signal_cellular_alt-light.png" class="priority-emblem">
+          <select
+            id="inputFieldPriority"
+            class="add-priority"
+            name='priority-level'
+            required
+          >
+            <option value="" disabled selected hidden>Приоритет</option>
+            <option value="not-matter">Не важно</option>
+            <option value="normal">Нормально</option>
+            <option value="matter">Важно</option>
+          </select>
+        </section>
+        
         <section class="date-event">
           <img class="watch" src="/img/schedule_light.png">
           <!--<input type="date" name="day-event" class="day-event">-->
@@ -53,12 +74,13 @@
       <section class="footer">
         <button type="submit" class="yellow-button">
           <img class="plus" src="/img/add_2.png">
-          <p class="button-add-task">Добавить новое событие</p>
+          <p class="button-add-task">Добавить новую задачу</p>
           <div class="home-indicator"></div>
         </button>
       </section>
       </form>
 
     <script src="js/create-new-task.js"></script>
+    <script src="js/fetch-lightTaskForm.js"></script>
   </body>
 </html>
