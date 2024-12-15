@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--создать веб-приложение для мобильных устройств с модулем "Домашнее задание" и меню модулей.-->
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Добавление задачи</title>
+    <link href="css/style-7.css" rel="stylesheet">
+    <!--<link href="css/outline.css" rel="stylesheet">-->
+    <!--<link href="css/outline-settings.css" rel="stylesheet">-->
+  </head>
+  <body>
+    <form id="darkTaskForm">
+      <section class="tasks-panel">
+        <h1 class="tasks-panel-h1">Изменить</h1>
+        <select id="mySelect" name="type-task" class="type-task">
+          <option value="task" class="type-task-item" selected="selected">Задание</option>
+          <option value="event" class="type-task-item">Событие</option>
+        </select>
+      </section>
+  
+      <section class="list-tasks">
+        <input list="no-datalist" autocomplete="off" name="name-task" class="name-task"  placeholder="Название" size="368" required>
+        <textarea list="no-datalist" autocomplete="off" name="desc-task" class="desc-task"  type="text" placeholder="Описание" size="368"></textarea>
+      
+        <section class="create-task-tags">
+          <img src="/img/bookmark_add.png" class="task-tag-emblem">
+          <input 
+              type="text" 
+              name="add-tag" 
+              class="add-tag" 
+              id="inputField" 
+              placeholder="+ Добавить" 
+              onkeyup="handleKeyUp(event)" 
+          >
+          <div id="output" class="tags-container"></div>
+        </section>
+        
+        <section class="priority">
+          <img src="/img/signal_cellular_alt.png" class="priority-emblem">
+          <select
+            id="inputFieldPriority"
+            class="add-priority"
+            name='priority-level'
+            required
+          >
+            <option value="" disabled selected hidden>Приоритет</option>
+            <option value="not-matter">Не важно</option>
+            <option value="normal">Нормально</option>
+            <option value="matter">Важно</option>
+          </select>
+        </section>
+
+        <section class="date-event">
+          <img class="watch" src="/img/schedule.png">
+          <!--<input type="date" name="day-event" class="day-event">-->
+          <div id="dateContainer" class="white-text">
+            <input class="day-task" name="day-task" type="date" id="dateInput" onchange="replaceWithFormattedDate()" required>
+          </div>
+        </section>
+  
+        <section class="notification">
+          <img src="/img/notification_add.png" class="notification-bell">
+          <p class="Za">За:</p>
+          <div class="time-input-container">
+              <input type="number" name="time-notification" class="time-notification number-time-event" min="1" required onchange="updateMinutesLabel(this.value)">
+              <span id="minutes-label" class="minutes-label">минут</span>
+          </div>
+        </section>
+      </section>
+     
+      <section class="bottom-nav">
+      </section>
+  
+      <section class="footer">
+        <button type="submit" class="yellow-button">
+          <p class="button-add-task">Сохранить изменения</p>
+        </button>
+      </section>
+      </form>
+      <script src="js/task-details.js"></script>
+      <script src="js/fetch-darkTaskForm.js"></script>
+  </body>
+</html>

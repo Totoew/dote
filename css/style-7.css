@@ -5,17 +5,16 @@
   }
   
   html, body {
-    height: 100%; /* Высота экрана */
-    display: flex;
+    height: 100%; /* Высота экрана */ 
     width: 100%;
-    max-width: 393px; 
-    background-color: #b0b0b0;
+    max-width: 393px;
+    background-color: #ffffff;
   }
   
   .tasks-panel{
     display: flex;  
     margin-top: 0px;
-    background-color: #E8E7E7;
+    background-color: #26334A;
     width: 393px;                     
     height: 64px; 
   }
@@ -28,7 +27,7 @@
     width: 155px;
     height: 21px;
     padding-left: 12px;
-    color: black;
+    color: #FCFAEE;
     margin-left: 12px;
     margin-right: 32px;
     margin-top: 21px;
@@ -43,7 +42,7 @@
     border-radius: 8px;
     border: 1px 0px 0px 0px;
     opacity: 0px;
-    background-color: #E8E7E7;
+    background-color: #26334A;
     margin-left: 0px;
     margin-right: 56px;
     margin-top: 13px;
@@ -53,11 +52,11 @@
     padding-bottom: 9px;
     font-size: 15px;
     pointer-events: none;
-    color: black;
+    color: white;
   }
   
   select {
-    background-color:#E8E7E7; 
+    background-color:#26334A; 
     color: initial;          
   }
   
@@ -78,7 +77,7 @@
   }
   */
   .type-task-item{
-    color: black;
+    color: white;
     font-family: Inter;
     font-size: 15px;
     font-weight: 400;
@@ -94,7 +93,7 @@
     padding: 0;
     width: 393px;
     height: 564px;
-    background-color: white;   
+    background-color: #111828;   
   }
 
   .name-task{
@@ -105,12 +104,11 @@
     border-radius: 16px;
     border: 1px 0px 0px 0px;
     opacity: 0px;
-    background-color: white;
+    background-color: #111828;
     margin-top: 24px;
     margin-left: 12px;
     margin-right: 12px;
-    color:black;
-    border: 1px solid gray;
+    color:#ffffff
   }
 
   .desc-task{
@@ -124,14 +122,13 @@
     opacity: 0px;
     padding: 12px 0px 12px 24px;
     border-radius: 16px;
-    background-color:white;
+    background-color:#111828;
     margin-top: 32px;
     margin-left: 12px;
     margin-right: 12px;
-    color:black;
-    border: 1px solid gray;
+    color:#ffffff
   }
-
+  
   .create-task-tags{
     display: flex;
     flex-direction: row;
@@ -152,7 +149,7 @@
     margin-left: 5.5px;
     margin-right: 15.5px;
   }
-  
+
   .add-tag{
     width: 85px;
     height: 32px;
@@ -162,8 +159,21 @@
     color: #FCBC02;
   }
 
+  .tag-item{
+      display: inline-block;
+      background-color: rgb(252, 188, 2);
+      color: #000;
+      height: 32px;
+      padding: 5px;
+      margin: 0px;
+      margin-right: 5px;
+      margin-top: -3px;
+      border-radius: 32px;
+      font-size: 16px;
+  }
+
   input[type="text"]::placeholder {
-    color: #000000; 
+    color: #FCBC02; 
   }
 
   .word-block {
@@ -194,8 +204,7 @@
 }
 .delete-btn:hover {
   background-color: darkred;
-}
-*/
+}*/
 
 .priority{
   width:368px;
@@ -218,7 +227,7 @@
       border-radius: 8px;
       border: 1px 0px 0px 0px;
       opacity: 0px;
-      background-color: #ffffff;
+      background-color: #26334A;
       margin-left: 30px;
       margin-right: 56px;
       margin-top: 10px;
@@ -229,7 +238,7 @@
       appearance: none;
       -webkit-appearance: none; 
       -moz-appearance: none;    
-      color: rgb(0, 0, 0);
+      color: white;
       transition: background-color 0.3s, color 0.3s ease; 
       position: relative; 
       top: -5px; 
@@ -253,15 +262,26 @@
     .add-priority {
       background-image: none;
     }
+    
+.type-task-or-event-item{
+    color: black;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
 
-.date-event{
+  .date-event{
     display: flex;
     flex-direction: row;
     width: 368px;
     height: 41px;
     gap: 16px;
     opacity: 0px;
-    background-color: white;
+    background-color: #111828;
     margin-top: 32px;
     margin-left: 12px;
     margin-right: 12px;
@@ -289,17 +309,17 @@
   }
 
   .white-text{
-    color: black;
+    color: #ffffff;
     margin-top: 11px;
     margin-right: 16px;
     padding: 0px;
-    border-bottom: 1px solid black;
-    font-size: 16px; /* Установите нужный размер шрифта */
+    border-bottom: 1px solid white;
+    font-size: 16px;
     line-height: 1.5em;
   }
 
 .date-span {
-    white-space: nowrap; /* Предотвращает перенос строки */
+    white-space: nowrap;
 }
 
   .start-event-time{
@@ -335,7 +355,7 @@
   }
 
   .tire{
-    color: black;
+    color: white;
     font-family: Inter;
     font-size: 24px;
     font-weight: 600;
@@ -369,7 +389,7 @@
   .Za{
     width: 28px;
     height: 21px;
-    color:black;
+    color:#ffffff;
     font-family: Inter;
     font-size: 18px;
     font-weight: 600;
@@ -386,7 +406,7 @@
     width: 93px;
     align-items: center;
     gap: 5px; 
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
 }
 
 .minutes-label {
@@ -395,7 +415,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
-    color: black;
+    color: white;
     margin-top: 4.5px;
     margin-bottom: 4px;
     width: 63px;
@@ -411,11 +431,11 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
-    color: black;
+    color: white;
     margin-top: 4.5px;
     margin-bottom: 4px;
     /*margin-right: 201px;*/
-    background-color: white;
+    background-color: #111828;
     /*border-bottom: 1px solid white;*/
   }
 
@@ -428,7 +448,7 @@
     width: 393px;
     height: 66px;
     position: absolute;
-    background-color: white;
+    background-color: #111828;
     margin: 0;             
   }
   
@@ -438,7 +458,7 @@
   width: 393px;
   height: 48px;
   position: absolute;
-  background-color: white;
+  background-color: #111828;
   margin-top: 66px;     
 }
 
@@ -451,7 +471,7 @@
   gap: 10px;
   border-radius: 8px;
   opacity: 0px;
-  background-color: #FCBC02;
+  background-color: #0e8a00;
   margin-top:0px;
   margin-right: 7px;
   margin-left: 7px;
@@ -472,7 +492,8 @@
   height: 21px;
   margin-top: 6px;
   margin-bottom: 8px;
-  margin-right: 30px;
+  margin-right: 73.5px;
+  margin-left: 73.5px;
   font-family: Inter;
   font-size: 18px;
   font-weight: 600;
