@@ -1,11 +1,11 @@
-let color = '#FCBC02';
-const maxWidth = 300; // Максимальная допустимая ширина в пикселях
+const color = '#FCBC02';
+const maxWidth = 300; // Максимальная допустимая ширина 
+const inputElement = document.getElementById('inputField');
 
 function handleKeyUp(evt) {
     if (evt.keyCode === 32) {
-        evt.preventDefault(); // Отменяем стандартное действие (отправку формы)
+        evt.preventDefault(); 
         
-        const inputElement = document.getElementById('inputField');
         const outputElement = document.getElementById('output');
         
         let enteredWord = inputElement.value.trim();
