@@ -25,6 +25,9 @@ document.getElementById('lightTaskForm').addEventListener('submit', function (ev
     });
 });*/
 
+import { get_user_id } from "./get_user_id";
+
+userId = get_user_id()
 
 document.getElementById('lightTaskForm').addEventListener('submit', function (evt) {
     evt.preventDefault(); 
@@ -35,7 +38,7 @@ document.getElementById('lightTaskForm').addEventListener('submit', function (ev
 
     const task = {
         task_id: null, // ID задачи, добавляется на сервере
-        user_id: null, // ID пользователя, добавляется на сервере
+        user_id: userId,
         task_name: form.querySelector('[name="name-task"]').value,
         task_description: form.querySelector('[name="desc-task"]').value,
         task_type: form.querySelector('[name="type-task"]').value,

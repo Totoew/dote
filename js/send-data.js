@@ -1,69 +1,28 @@
-form = document.querySelector('.create-form');
+const task = {
+    "user_id": 965696687,             
+    "task_name": "Задача 8888888889685",      
+    "task_description": "Описание задачи", 
+    "task_type": "task",          
+    "task_tags": ["tag1", "tag2"],
+    "task_priority": "matter",   
+    "task_date": "2024-12-31",  
+    "task_notification_time": 30,
+    "task_status": "pending"   
+};
 
-form.addEventListener('submit', function(event) {
-    event.preventDefault();  // Отменить стандартное поведение формы
+const jsonData = JSON.stringify(task);
 
-    const formData = new FormData(this);
-
-    fetch('/addtask', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.text();
-        }
-        throw new Error('Network response was not ok.');
-    })
-    .then(data => {
-        // Обработка успешного ответа
-        console.log(data);
-        alert('Задача успешно добавлена!');
-    })
-    .catch(error => {
-        console.error('Ошибка:', error);
-        alert('Произошла ошибка при добавлении задачи.');
-    });
+fetch('https://laert.pythonanywhere.com/tasks', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: jsonData,
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Ответ сервера:', data); 
+})
+.catch(error => {
+    console.error('Ошибка:', error); 
 });
-
-
-
-let userId = null;
-
-async function initApp() {
-    try {
-        const response = await fetch('http://localhost:5000/get_user_id');
-        if (!response.ok) {
-            throw new Error('Ошибка при получении ID пользователя');
-        }
-        const data = await response.json();
-        userId = data.user_id; // Сохраняем ID пользователя
-        console.log('ID пользователя:', userId);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-// Вызов initApp при загрузке страницы
-window.onload = initApp;
-
-
-
-// Замените 1 на нужный вам user_id
-userId = 1;
-
-fetch(`http://localhost:5000/tasks/${userId}`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Сеть ответила с ошибкой: ' + response.status);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Задачи:', data.tasks);
-        // Здесь вы можете обработать данные, например, отобразить их на странице
-    })
-    .catch(error => {
-        console.error('Произошла ошибка:', error);
-    });
-

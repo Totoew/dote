@@ -1,3 +1,7 @@
+import { get_user_id } from "./get_user_id";
+
+userId = get_user_id()
+
 /*const tags = Array.from(document.querySelectorAll('#output .tag')).map(tag => tag.textContent.trim());
 
 document.getElementById('darkTaskForm').addEventListener('submit', function (evt) {
@@ -7,7 +11,7 @@ document.getElementById('darkTaskForm').addEventListener('submit', function (evt
 
     const task = {
         task_id: null, // ID задачи, добавляется на сервере
-        user_id: null, // ID пользователя, добавляется на сервере
+        user_id: userId,
         task_name: form.querySelector('[name="name-task"]').value,
         task_description: form.querySelector('[name="desc-task"]').value,
         task_type: form.querySelector('[name="type-task"]').value,

@@ -26,6 +26,9 @@ document.getElementById('lightEvForm').addEventListener('submit', function (evt)
 });
 */
 
+import { get_user_id } from "./get_user_id";
+
+userId = get_user_id()
 
 document.getElementById('lightEvForm').addEventListener('submit', function (evt) {
     evt.preventDefault(); 
@@ -34,7 +37,7 @@ document.getElementById('lightEvForm').addEventListener('submit', function (evt)
 
     const event = {
         event_id: null, // ID события, добавляется на сервере
-        user_id: null, // ID пользователя, добавляется на сервере
+        user_id: userId,
         event_name: form.querySelector('[name="name-event"]').value,
         event_description: form.querySelector('[name="desc-event"]').value,
         event_type: form.querySelector('[name="type-event"]').value,
