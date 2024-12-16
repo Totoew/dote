@@ -1,13 +1,13 @@
 //тестовый файл для попытки отправки данных на сервер 
 const task = {
     "user_id": 965696687,             
-    "task_name": "Задача 1",      
+    "task_name": "Скушать пиццу",      
     "task_description": "Описание задачи", 
     "task_type": "task",          
-    "task_tags": ["tag1", "tag2"],
+    "task_tags": ["Egor", "Danil", "zhdut", "otvet"],
     "task_priority": "matter",   
     "task_date": "2024-12-31",  
-    "task_notification_time": 30,
+    "task_notification_time": 5,
     "task_status": "pending"   
 };
 

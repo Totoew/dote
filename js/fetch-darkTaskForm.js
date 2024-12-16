@@ -1,58 +1,122 @@
-/*const tags = Array.from(document.querySelectorAll('#output .tag')).map(tag => tag.textContent.trim());
-const taskMOC = {};
+//моздаем функцию для генерации айдишника
+async function get_user_id() {
+    try {
+        const response = await fetch('https://laert.pythonanywhere.com/get_user_id', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const data = await response.json();
+        return data['user_id'];
+    } catch (error) {
+        console.error('Ошибка при получении user_id:', error);
+        return null;
+    }
+}
 
-document.getElementById('darkTaskForm').addEventListener('submit', function (evt) {
-    evt.preventDefault(); 
+const tags = Array.from(document.querySelectorAll('#output .tag')).map(tag => tag.textContent.trim());
+let taskMOC = {};
+
+document.getElementById('darkTaskForm').addEventListener('submit', async function (evt) {
+    evt.preventDefault();
+
+    const userId = await get_user_id();
+    console.log("вот наш юзер-ид:  ", userId);
+
+    // Проверка: если userId не получен
+    if (!userId) {
+        console.error("Не удалось получить user_id.");
+        alert("Ошибка: не удалось получить идентификатор пользователя.");
+        return;
+    }
 
     const form = evt.target;
+
     const task = {
-        task_id:null, 
-        'user_id': 965696687, 
+        'task_id': null,
+        'user_id': userId, 
         'task_name': form.querySelector('[name="name-task"]').value,
         'task_description': form.querySelector('[name="desc-task"]').value,
         'task_type': form.querySelector('[name="type-task"]').value,
-        'task_tags': ["tags"], 
+        'task_tags': ['Квас', "Компот", "кола"],
         'task_priority': form.querySelector('[name="priority-level"]').value,
         'task_date': form.querySelector('[name="day-task"]').value,
         'task_notification_time': Number(form.querySelector('[name="time-notification"]').value),
-        'task_status': "pending", 
+        'task_status': "pending",
     };
-    console.log(task);
+
+    console.log("Отправляем задачу:", task);
+
     const jsonData = JSON.stringify(task);
-    getTaskData(jsonData);
+    await getTaskData(jsonData);
 });
 
-function getTaskData(jsonData) {
-    fetch('https://laert.pythonanywhere.com/tasks', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: jsonData,
-    })
-    .then(response => {
+async function getTaskData(jsonData) {
+    try {
+        const response = await fetch('https://laert.pythonanywhere.com/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
+        });
+
         if (!response.ok) {
             throw new Error(`Ошибка HTTP: ${response.status}`);
         }
-        return response.json(); 
-    })
-    .then(data => {
-        taskMOC = data;
-        console.log('Ответ сервера:', data); 
+
+        const data = await response.json();
+        console.log('Ответ сервера:', data);
+
+        // Логируем данные для сохранения в Local Storage
+        if (data && data.task) {
+            console.log('Данные task для сохранения:', data.task);
+            localStorage.setItem('serverResponse', JSON.stringify(data.task));
+        } else {
+            console.error('Отсутствуют данные task для сохранения');
+        }
+
         alert('Форма успешно отправлена!');
-    })
-    .catch(error => {
-        console.error('Ошибка:', error.status); 
+    } catch (error) {
+        console.error('Ошибка при отправке задачи:', error);
         alert('Произошла ошибка при отправке формы.');
-    });}
+    }
+}
+/*
+async function getTaskData(jsonData) {
+    try {
+        const response = await fetch('https://laert.pythonanywhere.com/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
+        });
 
-const showData = () => taskMOC;
+        if (!response.ok) {
+            throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
 
-export { showData }; */
+        const data = await response.json();
+        console.log('Ответ сервера:', data);
+
+        // Сохраняем ответ сервера в Local Storage
+        localStorage.setItem('serverResponse', JSON.stringify(data));
+
+        alert('Форма успешно отправлена!');
+    } catch (error) {
+        console.error('Ошибка при отправке задачи:', error);
+        alert('Произошла ошибка при отправке формы.');
+    }
+}
+*/
+/****************************************************************************************************** */
+
 
 //моковые данные, которые должны прийти 
 //с сервера в виде json. Допустим, я их преобазовал в js-объект
-taskMOC = {
+/*taskMOC = {
     task_id: null,              
     user_id: 965696687,             
     task_name: "Задача 1",      
@@ -163,4 +227,4 @@ function addDeleteEventToExistingCards() {
     });
 }
 
-addDeleteEventToExistingCards();
+addDeleteEventToExistingCards();*/

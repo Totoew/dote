@@ -42,10 +42,13 @@
         alert('Произошла ошибка при отправке формы.');
     });
 });*/
+import { get_user_id } from "./get_user_id";
+
+const userId = get_user_id()
 
 taskMOC = {
     task_id: null,              
-    user_id: 965696687,             
+    user_id: userId,             
     task_name: "Задача 1",      
     task_description: "Описание задачи", 
     task_type: "task",          
