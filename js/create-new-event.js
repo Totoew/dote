@@ -51,10 +51,8 @@ document.querySelector('.finish-event-time').addEventListener('input', function(
 function updateMinutesLabel(value) {
     const minutesLabel = document.getElementById('minutes-label');
     
-    // Преобразуем значение value в целое число
     const numberValue = parseInt(value);
     
-    // Проверяем последние две цифры числа
     const lastTwoDigits = numberValue % 100;
     
     if (lastTwoDigits === 11 || lastTwoDigits === 12 || lastTwoDigits === 13 || lastTwoDigits === 14) {

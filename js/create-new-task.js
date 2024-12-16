@@ -13,7 +13,6 @@ function handleKeyUp(evt) {
         if (enteredWord !== '') 
         {
             if( getTotalWidth(outputElement) <= maxWidth){
-                // Создаем новый div для слова
                 let wordBlock = document.createElement('div');
                 wordBlock.className = 'word-block';
                 wordBlock.style.backgroundColor = color;
@@ -35,7 +34,6 @@ function handleKeyUp(evt) {
                 wordBlock.appendChild(plusButton);          
                 outputElement.appendChild(wordBlock);
                 
-                // Сбрасываем значение поля ввода
                 inputElement.value = '';
             } else{
                 alert('Всё доступное место занято!');
@@ -57,7 +55,6 @@ function replaceWithFormattedDate() {
     const input = document.getElementById('dateInput');
     const dateValue = new Date(input.value);
 
-    // Массив названий месяцев
     const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
                     'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
@@ -67,10 +64,10 @@ function replaceWithFormattedDate() {
 
         const formattedDate = `${day} ${months[monthIndex]}`;
 
-        // Создаем новый span с отформатированной датой
         const span = document.createElement('span');
-        span.className = 'date-span'; // Применяем класс для стилей
+        span.className = 'date-span';
         span.innerText = formattedDate;
+        span.value = formattedDate;
 
         // Удаляем input и вставляем span на его место
         const container = document.getElementById('dateContainer');
@@ -83,10 +80,8 @@ function replaceWithFormattedDate() {
 function updateMinutesLabel(value) {
     const minutesLabel = document.getElementById('minutes-label');
     
-    // Преобразуем значение value в целое число
     const numberValue = parseInt(value);
     
-    // Проверяем последние две цифры числа
     const lastTwoDigits = numberValue % 100;
     
     if (lastTwoDigits === 11 || lastTwoDigits === 12 || lastTwoDigits === 13 || lastTwoDigits === 14) {

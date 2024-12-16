@@ -1,26 +1,29 @@
 /*const tags = Array.from(document.querySelectorAll('#output .tag')).map(tag => tag.textContent.trim());
+const taskMOC = {};
 
 document.getElementById('darkTaskForm').addEventListener('submit', function (evt) {
     evt.preventDefault(); 
 
     const form = evt.target;
-
     const task = {
-        task_id: null, // ID задачи, добавляется на сервере
-        user_id: null, // ID пользователя, добавляется на сервере
-        task_name: form.querySelector('[name="name-task"]').value,
-        task_description: form.querySelector('[name="desc-task"]').value,
-        task_type: form.querySelector('[name="type-task"]').value,
-        task_tags: tags, 
-        task_priority: form.querySelector('[name="priority-level"]').value,
-        task_date: form.querySelector('[name="day-task"]').value,
-        task_notification_time: form.querySelector('[name="time-notification"]').value,
-        task_status: "pending", 
+        task_id:null, 
+        'user_id': 965696687, 
+        'task_name': form.querySelector('[name="name-task"]').value,
+        'task_description': form.querySelector('[name="desc-task"]').value,
+        'task_type': form.querySelector('[name="type-task"]').value,
+        'task_tags': ["tags"], 
+        'task_priority': form.querySelector('[name="priority-level"]').value,
+        'task_date': form.querySelector('[name="day-task"]').value,
+        'task_notification_time': Number(form.querySelector('[name="time-notification"]').value),
+        'task_status': "pending", 
     };
-
+    console.log(task);
     const jsonData = JSON.stringify(task);
+    getTaskData(jsonData);
+});
 
-    fetch('https://laert.pythonanywhere.com/', {
+function getTaskData(jsonData) {
+    fetch('https://laert.pythonanywhere.com/tasks', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -34,20 +37,24 @@ document.getElementById('darkTaskForm').addEventListener('submit', function (evt
         return response.json(); 
     })
     .then(data => {
+        taskMOC = data;
         console.log('Ответ сервера:', data); 
         alert('Форма успешно отправлена!');
     })
     .catch(error => {
-        console.error('Ошибка:', error); 
+        console.error('Ошибка:', error.status); 
         alert('Произошла ошибка при отправке формы.');
-    });
-});*/
+    });}
+
+const showData = () => taskMOC;
+
+export { showData }; */
 
 //моковые данные, которые должны прийти 
 //с сервера в виде json. Допустим, я их преобазовал в js-объект
-const taskMOC = {
+taskMOC = {
     task_id: null,              
-    user_id: null,             
+    user_id: 965696687,             
     task_name: "Задача 1",      
     task_description: "Описание задачи", 
     task_type: "task",          
@@ -58,29 +65,9 @@ const taskMOC = {
     task_status: "pending"     
 };
 
-const anotherTask = {
-    task_id: null,              
-    user_id: null,             
-    task_name: "Задача 2",      
-    task_description: "Другое описание задачи", 
-    task_type: "task",          
-    task_tags: ["tagA", "tagB"], 
-    task_priority: "normal",   
-    task_date: "2024-12-25",  
-    task_notification_time: "15",
-    task_status: "pending"     
-};
-
 if (taskMOC) {
     console.log(taskMOC); 
     fillTaskTemplate(taskMOC); 
-} else {
-    console.error('Данные задачи не найдены в localStorage');
-}
-
-if (anotherTask) {
-    console.log(anotherTask);
-    fillTaskTemplate(anotherTask);
 } else {
     console.error('Данные задачи не найдены в localStorage');
 }
@@ -148,7 +135,7 @@ function fillTaskTemplate(task) {
 
     const cardElement = taskCard.querySelector('.main-block');
     cardElement.addEventListener('click', () => {
-        // Сохраняем данные задачи в localStorage для передачи между страницами
+        // Сохраняем данные задачи в localStorage для передачи между страницами 
         localStorage.setItem('currentTask', JSON.stringify(task));
         window.location.href = 'task-details.html';
     });
@@ -161,7 +148,7 @@ function addDeleteEventToExistingCards() {
         deleteButton.addEventListener('click', (event) => {
             const taskCard = event.target.closest('.task-card'); 
             if (taskCard) {
-                const taskId = taskCard.getAttribute('data-task-id'); // Получаем ID карточки
+                const taskId = taskCard.getAttribute('data-task-id'); 
                 if (taskId) {
                     // Сохраняем ID в localStorage
                     let deletedTasks = JSON.parse(localStorage.getItem('deletedTasks')) || [];
@@ -170,7 +157,7 @@ function addDeleteEventToExistingCards() {
                         localStorage.setItem('deletedTasks', JSON.stringify(deletedTasks));
                     }
                 }
-                taskCard.remove(); // Удаляем карточку из DOM
+                taskCard.remove(); 
             }
         });
     });
