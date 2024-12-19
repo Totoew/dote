@@ -145,26 +145,43 @@
     color:black;
     border: 1px solid gray;
 }
-  .date-event{
-    display: flex;
-    flex-direction: row;
-    width: 368px;
-    height: 41px;
-    gap: 16px;
-    opacity: 0px;
-    background-color: white;
-    margin-top: 32px;
-    margin-left: 12px;
-    margin-right: 12px;
-  }
+.date-event{
+  display: flex;
+  flex-direction: row;
+  width: 368px;
+  height: 41px;
+  gap: 16px;
+  opacity: 0px;
+  background-color: #ffffff;
+  margin-top: 32px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
 
-  .watch{
-    width: 23.33px;
-    height: 23.33px;
-    margin-left: 2px;
-    margin-top: 9px;
-    margin-right: 12px;
-  }
+.start-and-finish-time-block{
+  display: flex;
+  flex-direction: row;
+  width: 368px;
+  height: 41px;
+  margin-top: 32px;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-left: 0px;
+  gap: 7px;
+}
+
+.added-calendar{
+   margin-top: 15px;
+}
+
+.watch{
+  width: 23.33px;
+  height: 23.33px;
+  margin-left: 2px;
+  margin-top: 9px;
+  margin-right: 12px;
+  left: 0px;
+}
 
   .day-task{
     width: 93px;

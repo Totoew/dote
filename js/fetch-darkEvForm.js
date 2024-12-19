@@ -1,12 +1,11 @@
 //
-/*document.getElementById('darkEvForm').addEventListener('submit', function (evt) {
+document.getElementById('darkEvForm').addEventListener('submit', function (evt) {
     evt.preventDefault(); 
 
     const form = evt.target;
 
     const event = {
-        event_id: null, // ID события, добавляется на сервере
-        user_id: null, // ID пользователя, добавляется на сервере
+        user_id: 965696687, // ID пользователя, добавляется на сервере
         event_name: form.querySelector('[name="name-event"]').value,
         event_description: form.querySelector('[name="desc-event"]').value,
         event_type: form.querySelector('[name="type-event"]').value,
@@ -19,7 +18,7 @@
 
     const jsonData = JSON.stringify(event);
 
-    fetch('https://laert.pythonanywhere.com/', {
+    fetch('https://laert.pythonanywhere.com/events', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -40,21 +39,22 @@
         console.error('Ошибка:', error); 
         alert('Произошла ошибка при отправке формы.');
     });
-});*/
+});
 
 /*
 import { get_user_id } from "./get_user_id";
 
 const userId = get_user_id()*/
+/*
 const eventMOC = {
     event_id: null,
-    user_id: 1,
+    user_id: 965696687,
     event_name: "День рождения",
     event_description: "Описание дня рождения",
     event_type: "event",
     event_date: "2024-12-31",
-    event_time_first: "09:00",
-    event_time_second: "10:00",
+    event_time_first: "21:00",
+    event_time_second: "23:00",
     event_notification_time: "30",
     event_status: "pending"
 };
@@ -87,4 +87,4 @@ function addEventToSchedule(event) {
     }
 }
 
-addEventToSchedule(eventMOC);
+addEventToSchedule(eventMOC);*/

@@ -26,11 +26,16 @@
       <textarea name="desc-event" class="desc-event"  type="text" placeholder="Описание" size="368" autocomplete="off"></textarea>
     
       <section class="date-event">
-        <img class="watch" src="/img/schedule_light.png">
+        <img class="added-calendar" width="18px" height="20px" src="/img/calendar_month_light_active.png">
         <!--<input type="date" name="day-event" class="day-event">-->
         <div id="dateContainer" class="white-text">
-          <input class="day-event" type="date" name="day-event" id="dateInput" onchange="replaceWithFormattedDate()" required>
+          <input class="day-event" type="date" name="day-event" id="dateInput"  required>
+          <!--Убрано: onchange="replaceWithFormattedDate()"-->
         </div>
+      </section>
+
+      <section class="start-and-finish-time-block">
+        <img class="watch" src="/img/schedule_light.png">
         <input type="text" name="start-event-time" class="start-event-time" placeholder="00:00" autocomplete="off" required>      
         <p class="tire">-</p>
         <input type="text" name="finish-event-time" class="finish-event-time" placeholder="00:00" autocomplete="off" required>

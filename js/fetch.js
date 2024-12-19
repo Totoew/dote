@@ -1,19 +1,19 @@
 //тестовый файл для попытки отправки данных на сервер 
-const task = {
-    "user_id": 965696687,             
-    "task_name": "Скушать пиццу",      
-    "task_description": "Описание задачи", 
-    "task_type": "task",          
-    "task_tags": ["Egor", "Danil", "zhdut", "otvet"],
-    "task_priority": "matter",   
-    "task_date": "2024-12-31",  
-    "task_notification_time": 5,
-    "task_status": "pending"   
+const eventMOC = {
+    user_id: 965696687,
+    event_name: "День рождения",
+    event_description: "Описание дня рождения",
+    event_type: "event",
+    event_date: "2024-12-31",
+    event_time_first: "21:00",
+    event_time_second: "23:00",
+    event_notification_time: "30",
+    event_status: "pending"
 };
 
-const jsonData = JSON.stringify(task);
+const jsonData = JSON.stringify(eventMOC);
 
-fetch('https://laert.pythonanywhere.com/tasks', {
+fetch('https://laert.pythonanywhere.com/events', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

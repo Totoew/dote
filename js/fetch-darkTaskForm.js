@@ -50,7 +50,7 @@ document.getElementById('darkTaskForm').addEventListener('submit', async functio
     const form = evt.target;
 
     const task = {
-        'task_id': null,
+        /*'task_id': null,*/
         'user_id': userId, 
         'task_name': form.querySelector('[name="name-task"]').value,
         'task_description': form.querySelector('[name="desc-task"]').value,
