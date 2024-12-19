@@ -2,17 +2,23 @@ const color = '#FCBC02';
 const maxWidth = 300; // Максимальная допустимая ширина 
 const inputElement = document.getElementById('inputField');
 
-function handleKeyUp(evt) {
-    if (evt.keyCode === 32) {
+function handleClickOnBbb() {
+    const bbbElement = document.querySelector('.task-tag-emblem');
+    const outputElement = document.getElementById('output');
+    const maxWidth = 300; // Укажите максимальную ширину, если нужно
+
+    if (!bbbElement) {
+        console.error('Элемент с классом "bbb" не найден');
+        return;
+    }
+
+    bbbElement.addEventListener('click', (evt) => {
         evt.preventDefault(); 
-        
-        const outputElement = document.getElementById('output');
-        
+
         let enteredWord = inputElement.value.trim();
-        
-        if (enteredWord !== '') 
-        {
-            if( getTotalWidth(outputElement) <= maxWidth){
+
+        if (enteredWord !== '') {
+            if (getTotalWidth(outputElement) <= maxWidth) {
                 let wordBlock = document.createElement('div');
                 wordBlock.className = 'word-block';
                 wordBlock.style.backgroundColor = color;
@@ -27,20 +33,25 @@ function handleKeyUp(evt) {
                 plusButton.style.height = '4px';
                 plusButton.style.cursor = 'pointer';
                 plusButton.style.marginLeft = "5px";
-                plusButton.addEventListener('click', (evt)=>{
+
+                plusButton.addEventListener('click', (evt) => {
                     evt.preventDefault();
                     wordBlock.remove();
-                })
+                });
+
                 wordBlock.appendChild(plusButton);          
                 outputElement.appendChild(wordBlock);
-                
+
                 inputElement.value = '';
-            } else{
+            } else {
                 alert('Всё доступное место занято!');
             }
         }
-    }
+    });
 }
+
+// Вызов функции для добавления обработчика
+handleClickOnBbb();
 
 // Функция для вычисления общей ширины всех блоков внутри контейнера
 function getTotalWidth(container) {
