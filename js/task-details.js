@@ -169,3 +169,12 @@ function addTagWithRemoveOption(container, tagText) {
 
     container.appendChild(wordBlock);
 }
+
+//вернуться обратно
+document.getElementById('backButton').addEventListener('click', () => {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = 'create-new.html'; 
+    }
+});

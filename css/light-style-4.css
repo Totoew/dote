@@ -20,6 +20,19 @@
     height: 64px; 
   }
   
+.back-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.back-icon{
+  transform: rotate(90deg);
+  margin-left: 10px;
+}
+  
   .tasks-panel-h1{
     font-size: 18px;
     font-weight: 600;
