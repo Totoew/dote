@@ -4,17 +4,17 @@
   <head>
     <meta charset="utf-8">
     <title>Добавление задачи</title>
-    <link href="css/light-style-4.css" rel="stylesheet">
+    <link href="css/light-style-7.css" rel="stylesheet">
     <!--<link href="css/outline.css" rel="stylesheet">-->
     <!--<link href="css/outline-settings.css" rel="stylesheet">-->
   </head>
   <body>
-    <form id="lightTaskForm">
+    <form id="darkTaskForm">
       <section class="tasks-panel">
         <button id="backButton" class="back-button">
           <img src="/img/backButton-light.png" class="back-icon">
         </button>
-        <h1 class="tasks-panel-h1">Создать новое</h1>
+        <h1 class="tasks-panel-h1">Изменить</h1>
         <select id="mySelect" name="type-task" class="type-task">
           <option value="task" class="type-task-item" selected="selected">Задание</option>
           <option value="event" class="type-task-item">Событие</option>
@@ -37,7 +37,7 @@
           >
           <div id="output" class="tags-container"></div>
         </section>
-          
+        
         <section class="priority">
           <img src="/img/signal_cellular_alt-light.png" class="priority-emblem">
           <select
@@ -52,7 +52,7 @@
             <option value="matter">Важно</option>
           </select>
         </section>
-        
+
         <section class="date-event">
           <img class="watch" src="/img/schedule_light.png">
           <!--<input type="date" name="day-event" class="day-event">-->
@@ -76,14 +76,11 @@
   
       <section class="footer">
         <button type="submit" class="yellow-button">
-          <img class="plus" src="/img/add_2.png">
-          <p class="button-add-task">Добавить новую задачу</p>
-          <div class="home-indicator"></div>
+          <p class="button-add-task">Сохранить изменения</p>
         </button>
       </section>
       </form>
-
-    <script src="js/create-new-task.js"></script>
-    <script src="js/fetch-lightTaskForm.js"></script>
+      <script src="js/task-details.js"></script>
+      <script src="js/fetch-darkTaskForm.js"></script>
   </body>
 </html>

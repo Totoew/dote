@@ -1,137 +1,116 @@
-/*const tags = Array.from(document.querySelectorAll('#output .tag')).map(tag => tag.textContent.trim());
+//создаем функцию для генерации айдишника
+async function get_user_id() {
+    try {
+        const response = await fetch('https://laert.pythonanywhere.com/get_user_id', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const data = await response.json();
+        return data['user_id'];
+    } catch (error) {
+        console.error('Ошибка при получении user_id:', error);
+        return null;
+    }
+}
 
-document.getElementById('darkTaskForm').addEventListener('submit', function (evt) {
-    evt.preventDefault(); 
+//функция для преобразования тегов в массив слов
+function getTagsAsArray() {
+    const tagsContainer = document.getElementById('output');
+    if (!tagsContainer) {
+        console.error('Контейнер для тегов не найден');
+        return [];
+    }
+
+    const tags = [];
+    tagsContainer.querySelectorAll('.word-block').forEach(tagElement => {
+        tags.push(tagElement.textContent.replace('✖', '').trim());
+    });
+
+    return tags;
+}
+
+const tags = getTagsAsArray();
+let taskMOC = {};
+
+document.getElementById('darkTaskForm').addEventListener('submit', async function (evt) {
+    evt.preventDefault();
+
+    const userId = await get_user_id();
+    console.log("вот наш юзер-ид:  ", userId);
+
+    // Проверка: если userId не получен
+    if (!userId) {
+        console.error("Не удалось получить user_id.");
+        alert("Ошибка: не удалось получить идентификатор пользователя.");
+        return;
+    }
 
     const form = evt.target;
 
     const task = {
-        task_id: null, // ID задачи, добавляется на сервере
-        user_id: null, // ID пользователя, добавляется на сервере
-        task_name: form.querySelector('[name="name-task"]').value,
-        task_description: form.querySelector('[name="desc-task"]').value,
-        task_type: form.querySelector('[name="type-task"]').value,
-        task_tags: tags, 
-        task_priority: form.querySelector('[name="priority-level"]').value,
-        task_date: form.querySelector('[name="day-task"]').value,
-        task_notification_time: form.querySelector('[name="time-notification"]').value,
-        task_status: "pending", 
+        /*'task_id': null,*/
+        'user_id': userId, 
+        'task_name': form.querySelector('[name="name-task"]').value,
+        'task_description': form.querySelector('[name="desc-task"]').value,
+        'task_type': form.querySelector('[name="type-task"]').value,
+        'task_tags': tags,
+        'task_priority': form.querySelector('[name="priority-level"]').value,
+        'task_date': form.querySelector('[name="day-task"]').value,
+        'task_notification_time': Number(form.querySelector('[name="time-notification"]').value),
+        'task_status': "pending",
     };
 
-    const jsonData = JSON.stringify(task);
+    console.log("Отправляем задачу:", task);
 
-    fetch('https://laert.pythonanywhere.com/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: jsonData,
-    })
-    .then(response => {
+    const jsonData = JSON.stringify(task);
+    await getTaskData(jsonData);
+});
+
+async function getTaskData(jsonData) {
+    try {
+        const response = await fetch('https://laert.pythonanywhere.com/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
+        });
+
         if (!response.ok) {
             throw new Error(`Ошибка HTTP: ${response.status}`);
         }
-        return response.json(); 
-    })
-    .then(data => {
-        console.log('Ответ сервера:', data); 
-        alert('Форма успешно отправлена!');
-    })
-    .catch(error => {
-        console.error('Ошибка:', error); 
-        alert('Произошла ошибка при отправке формы.');
-    });
-});*/
 
+        const data = await response.json();
+        console.log('Ответ сервера:', data);
+
+        // Логируем данные для сохранения в Local Storage
+        if (data && data.task) {
+            console.log('Данные task для сохранения:', data.task);
+            localStorage.setItem('serverResponse', JSON.stringify(data.task));
+        } else {
+            console.error('Отсутствуют данные task для сохранения');
+        }
+
+        alert('Форма успешно отправлена!');
+    } catch (error) {
+        console.error('Ошибка при отправке задачи:', error);
+        alert('Произошла ошибка при отправке формы.');
+    }
+}
+/****************************************************************************************************** */
 //моковые данные, которые должны прийти 
 //с сервера в виде json. Допустим, я их преобазовал в js-объект
-const taskMOC = {
+/*taskMOC = {
     task_id: null,              
-    user_id: null,             
+    user_id: 965696687,             
     task_name: "Задача 1",      
     task_description: "Описание задачи", 
     task_type: "task",          
-    task_tags: ["tag1", "tag2"], 
-    task_priority: "normal",   
+    task_tags: ["tag1ghcgfhgff", "tag2"], 
+    task_priority: "matter",   
     task_date: "2024-12-31",  
     task_notification_time: "30",
     task_status: "pending"     
-};
-
-if (taskMOC) {
-    console.log(taskMOC); 
-    fillTaskTemplate(taskMOC); 
-} else {
-    console.error('Данные задачи не найдены в localStorage');
-}
-
-function fillTaskTemplate(task) {
-    const template = document.querySelector('#taskCardTemplate');
-    if (!template) {
-        console.error('Шаблон не найден');
-        return;
-    }
-
-    const taskCard = template.content.cloneNode(true);
-
-    // Название задачи
-    taskCard.querySelector('.name-task').textContent = task.task_name;
-
-    // Контейнер для тегов и приоритета
-    const tagsContainer = taskCard.querySelector('.list-tags');
-
-    // Приоритет
-    const priorityElement = document.createElement('span'); // Создаем span для приоритета
-    priorityElement.className = 'priority-element'; // Класс для приоритета
-    priorityElement.style.fontSize = '12px';
-    priorityElement.style.padding = '0 6px';
-    priorityElement.style.lineHeight = '20px';
-    priorityElement.style.whiteSpace = 'nowrap';
-    priorityElement.style.height = '20px';
-    priorityElement.style.boxSizing = 'border-box';
-    priorityElement.style.borderRadius = '32px';
-    priorityElement.style.textAlign = 'center';
-    priorityElement.style.marginRight = '0px'; // Отступ от тегов
-
-    switch (task.task_priority) {
-        case 'normal':
-            priorityElement.textContent = 'Нормально';
-            priorityElement.style.backgroundColor = 'green'; // Светло-зеленый фон
-            priorityElement.style.color = 'black';
-            break;
-        case 'not-matter':
-            priorityElement.textContent = 'Не важно';
-            priorityElement.style.backgroundColor = 'gray'; // Светло-серый фон
-            priorityElement.style.color = 'black';
-            break;
-        case 'matter':
-            priorityElement.textContent = 'Важно';
-            priorityElement.style.backgroundColor = 'red'; // Светло-красный фон
-            priorityElement.style.color = 'black';
-            break;
-        default:
-            priorityElement.textContent = 'Не указано';
-            priorityElement.style.backgroundColor = '#d4d4d4'; // Светло-черный фон
-            priorityElement.style.color = 'black';
-            break;
-    }
-
-    // Вставляем приоритет ПЕРЕД тегами
-    tagsContainer.prepend(priorityElement);
-
-    // Теги
-    task.task_tags.forEach(tag => {
-        const tagElement = document.createElement('span');
-        tagElement.className = 'list-tags-item';
-        tagElement.textContent = tag;
-        tagsContainer.appendChild(tagElement);
-    });
-
-    // Дедлайн
-    const deadlineElement = taskCard.querySelector('.deadline'); 
-    deadlineElement.className = 'margin-deadline';
-    deadlineElement.textContent = task.task_date;
-
-    // Добавляем карточку в контейнер задач
-    document.querySelector('.tasks-container').appendChild(taskCard);
-}
+};*/
