@@ -4,7 +4,6 @@
   <head>
     <meta charset="utf-8">
     <title>Список задач</title>
-    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <link href="css/style-1.css" rel="stylesheet">
     <!--<link href="css/light-style-1.css" rel="stylesheet">-->
   </head>
@@ -42,6 +41,14 @@
           </div>
         </template>
         <div class="tasks-container"></div>
+
+        <div id="delete-window-id" class="delete-window hidden">
+            <p class="confirm">Подтвердить удаление</p>
+            <div class="buttons-block">
+              <button class="confirm-true">Да</button>
+              <button class="confirm-false">Отмена</button>
+            </div>
+        </div>
         <!--<div class="task-card">
           <div class="main-block">
             <div class="info-title">
@@ -64,160 +71,7 @@
             <img class="delete" src="/img/been.png">
           </div>
         </div>
-        <div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
-            </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div>
-                <p class="deadline">01.11.2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
-            </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div>
-                <p class="deadline">01.11.2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
-            </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div>
-                <p class="deadline">01.11.2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
-            </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div>
-                <p class="deadline">01.11.2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
-            </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div>
-                <p class="deadline">01.11.2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
-            </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div>
-                <p class="deadline">01.11.2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>
-        <div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
-            </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div>
-                <p class="deadline">01.11.2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>-->
+        -->
      </section>
   </div>
 
@@ -252,6 +106,6 @@
       </a>
     </section>
   </div>
-<script src="js/script.js"></script>
+  <script src="js/test.js"></script>
 </body>
 </html>

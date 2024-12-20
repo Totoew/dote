@@ -2,24 +2,21 @@ function handleDateChange(event) {
     const datePicker = event.target;
     const selectedDate = new Date(datePicker.value);
 
-    // Находим нужные элементы в DOM
     const dayWeekElement = document.querySelector('.day-week');
     const dayNumberElement = document.querySelector('.day-number');
     const monthElement = document.querySelector('.tasks-panel-h1');
 
-    // Заполняем элементы данными
     dayWeekElement.textContent = getDayOfWeek(selectedDate);
     dayNumberElement.textContent = selectedDate.getDate();
     monthElement.textContent = getMonthName(selectedDate);
 
-    // Скрываем поле ввода
     datePicker.style.display = "none";
 }
 
 function showDatePicker() {
     const datePicker = document.getElementById("datePicker");
     datePicker.style.display = "block";
-    datePicker.focus(); // Открыть календарь
+    datePicker.focus(); 
 }
 
 // Функция для получения названия дня недели

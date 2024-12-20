@@ -5,10 +5,9 @@ const inputElement = document.getElementById('inputField');
 function handleClickOnBbb() {
     const bbbElement = document.querySelector('.task-tag-emblem');
     const outputElement = document.getElementById('output');
-    const maxWidth = 300; // Укажите максимальную ширину, если нужно
 
     if (!bbbElement) {
-        console.error('Элемент с классом "bbb" не найден');
+        console.error('Элемент с классом "task-tag-emblem" не найден');
         return;
     }
 
@@ -50,8 +49,8 @@ function handleClickOnBbb() {
     });
 }
 
-// Вызов функции для добавления обработчика
 handleClickOnBbb();
+
 
 // Функция для вычисления общей ширины всех блоков внутри контейнера
 function getTotalWidth(container) {
@@ -61,6 +60,7 @@ function getTotalWidth(container) {
     });
     return totalWidth;
 }
+
 
 function replaceWithFormattedDate() {
     const input = document.getElementById('dateInput');
@@ -76,9 +76,8 @@ function replaceWithFormattedDate() {
         const formattedDate = `${day} ${months[monthIndex]}`;
 
         const span = document.createElement('span');
-        span.className = 'date-span';
+        span.className = 'date-span'; 
         span.innerText = formattedDate;
-        span.value = formattedDate;
 
         // Удаляем input и вставляем span на его место
         const container = document.getElementById('dateContainer');
@@ -120,15 +119,56 @@ document.getElementById('inputFieldPriority').addEventListener('change', functio
       select.classList.add('matter');
     }
   });
-  
-document.getElementById("inputFieldPriority").addEventListener("change", function () {
-    if (this.value !== "") {
-        // Если выбрана любая другая опция, кроме "Выберите..."
-        this.querySelectorAll("option")[0].style.display = "none"; 
+
+//функция добавления данных в страницу редактирования
+  document.addEventListener('DOMContentLoaded', () => {
+    const taskData = localStorage.getItem('currentTask');
+
+    if (taskData) {
+        const task = JSON.parse(taskData);
+
+        document.querySelector('[name="name-task"]').value = task.task_name || '';
+        document.querySelector('[name="desc-task"]').value = task.task_description || '';
+        document.querySelector('[name="type-task"]').value = task.task_type || 'task';
+        document.querySelector('[name="priority-level"]').value = task.task_priority || '';
+        document.querySelector('[name="day-task"]').value = task.task_date || '';
+        document.querySelector('[name="time-notification"]').value = task.task_notification_time || '';
+
+        const tagsContainer = document.querySelector('#output');
+        if (Array.isArray(task.task_tags)) {
+            task.task_tags.forEach(tag => addTagWithRemoveOption(tagsContainer, tag));
+        }
     } else {
-        this.options[0].style.display = ""; 
+        console.error('Данные задачи не найдены в localStorage');
     }
 });
+
+function addTagWithRemoveOption(container, tagText) {
+    const wordBlock = document.createElement('div');
+    wordBlock.className = 'tag-item';
+    wordBlock.textContent = tagText;
+    wordBlock.style.padding = '5px 12px 5px 5px'; 
+    const closeButton = document.createElement('button');
+    closeButton.textContent = '✖';
+    closeButton.style.fontSize = '16px';
+    closeButton.style.margin = '0px';
+    closeButton.style.padding = '0px';
+    closeButton.style.marginLeft = '2px';
+    closeButton.style.height = '4px';
+    closeButton.style.width = '4px';
+    closeButton.style.border = 'none';
+    closeButton.style.background = 'none';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.color = 'black';
+
+    closeButton.addEventListener('click', () => {
+        wordBlock.remove();
+    });
+
+    wordBlock.appendChild(closeButton);
+
+    container.appendChild(wordBlock);
+}
 
 //вернуться обратно
 document.getElementById('backButton').addEventListener('click', () => {
