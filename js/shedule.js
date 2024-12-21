@@ -1,3 +1,37 @@
+function filterEventsByDate(selectedDate) {
+    const events = document.querySelectorAll(".event-in-calendar"); // Все события
+
+    events.forEach(eventElement => {
+        const eventDate = eventElement.getAttribute("data-date"); // Дата события из data-date
+        if (eventDate === selectedDate) {
+            eventElement.parentElement.style.display = ""; // Показываем событие
+        } else {
+            eventElement.parentElement.style.display = "none"; // Скрываем событие
+        }
+    });
+}
+
+// Обновляем handleDateChange для фильтрации
+function handleDateChange(event) {
+    const datePicker = event.target;
+    const selectedDate = datePicker.value; // Получаем выбранную дату в формате YYYY-MM-DD
+
+    const dayWeekElement = document.querySelector('.day-week');
+    const dayNumberElement = document.querySelector('.day-number');
+    const monthElement = document.querySelector('.tasks-panel-h1');
+
+    const selectedDateObj = new Date(selectedDate);
+    dayWeekElement.textContent = getDayOfWeek(selectedDateObj);
+    dayNumberElement.textContent = selectedDateObj.getDate();
+    monthElement.textContent = getMonthName(selectedDateObj);
+
+    datePicker.style.display = "none";
+
+    // Вызываем фильтрацию событий
+    filterEventsByDate(selectedDate);
+}
+
+/*
 function handleDateChange(event) {
     const datePicker = event.target;
     const selectedDate = new Date(datePicker.value);
@@ -12,7 +46,7 @@ function handleDateChange(event) {
 
     datePicker.style.display = "none";
 }
-
+*/
 function showDatePicker() {
     const datePicker = document.getElementById("datePicker");
     datePicker.style.display = "block";
@@ -34,19 +68,30 @@ function getMonthName(date) {
 //Функция, которая по умолчанию ставит текущую дату 
 //на странице
 function getCurrentDate() {
-    let today = new Date();
-    
-    let daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-    let dayOfWeek = daysOfWeek[today.getDay()];
+    const today = new Date();
+
+    const daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+    const dayOfWeek = daysOfWeek[today.getDay()];
     document.querySelector('.day-week').textContent = dayOfWeek;
 
-    let dayNumber = today.getDate().toString().padStart(2, '0');
+    const dayNumber = today.getDate().toString().padStart(2, '0');
     document.querySelector('.day-number').textContent = dayNumber;
 
-    let months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 
-                  'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-    let month = months[today.getMonth()];
+    const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 
+                    'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    const month = months[today.getMonth()];
     document.querySelector('.tasks-panel-h1').textContent = month;
+
+    // Устанавливаем текущую дату в поле выбора даты
+    const datePicker = document.getElementById('datePicker');
+    if (datePicker) {
+        const formattedDate = today.toISOString().split('T')[0]; // Формат YYYY-MM-DD
+        datePicker.value = formattedDate;
+
+        // Вызываем фильтрацию событий по сегодняшней дате
+        filterEventsByDate(formattedDate);
+    }
 }
 
 window.onload = getCurrentDate;
+

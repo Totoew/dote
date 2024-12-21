@@ -163,6 +163,7 @@ if (eventData) {
     articleElement.dataset.type = event.event_type;
     articleElement.dataset.notificationTime = event.event_notification_time;
     articleElement.dataset.status = event.event_status;
+    articleElement.dataset.date = event.event_date;
 
     // Добавляем обработчик клика на всю карточку
     articleElement.addEventListener('click', () => {
