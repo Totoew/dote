@@ -61,6 +61,8 @@
   background-color: #FCBC02; 
   display: inline-flex; 
   align-items: center; 
+  width: 250px;
+  height: 78px;
   padding: 10px; 
   border-radius: 8px; 
   margin-bottom: 10px; 
