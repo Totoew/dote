@@ -191,11 +191,11 @@ if (eventData) {
 }
 
 function calculateHeightEventCard(one, two, three, four) {
-    if(one > three && one == three && two > four){
+    if(one > three || one == three && two > four){
         const calculatedHeight = (((one + two / 60) - (three + four / 60)) * 78).toFixed(1);
         return calculatedHeight < 12 ? 12 : calculatedHeight;
     } else{
-        return 78*(24 - (three + four / 60))+5;
+        return 78*(24 - (three + four / 60));
     }
 }
 

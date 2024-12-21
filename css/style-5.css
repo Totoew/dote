@@ -90,6 +90,10 @@
   align-items: center;
 }
 
+.container{
+ height: 78px;
+}
+
 .icon-image {
   width: 20px; /* Размер картинки */
   height: 20px;
