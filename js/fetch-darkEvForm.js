@@ -1,50 +1,3 @@
-//
-document.getElementById('darkEvForm').addEventListener('submit', function (evt) {
-    evt.preventDefault(); 
-
-    const form = evt.target;
-
-    const event = {
-        user_id: 965696687, // ID пользователя, добавляется на сервере
-        event_name: form.querySelector('[name="name-event"]').value,
-        event_description: form.querySelector('[name="desc-event"]').value,
-        event_type: form.querySelector('[name="type-event"]').value,
-        event_date: form.querySelector('[name="day-event"]').value,
-        event_time_first: form.querySelector('[name="start-event-time"]').value,
-        event_time_second: form.querySelector('[name="finish-event-time"]').value,
-        event_notification_time: form.querySelector('[name="time-notification"]').value,
-        event_status: "pending", 
-    };
-
-    const jsonData = JSON.stringify(event);
-
-    fetch('https://laert.pythonanywhere.com/events', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: jsonData,
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
-        }
-        return response.json(); 
-    })
-    .then(data => {
-        console.log('Ответ сервера:', data); 
-        alert('Форма успешно отправлена!');
-    })
-    .catch(error => {
-        console.error('Ошибка:', error); 
-        alert('Произошла ошибка при отправке формы.');
-    });
-});
-
-/*
-import { get_user_id } from "./get_user_id";
-
-const userId = get_user_id()*/
 /*
 const eventMOC = {
     event_id: null,
@@ -88,3 +41,147 @@ function addEventToSchedule(event) {
 }
 
 addEventToSchedule(eventMOC);*/
+
+
+/*******
+async function get_user_id() {
+    try {
+        const response = await fetch('https://laert.pythonanywhere.com/get_user_id', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
+        const data = await response.json();
+        return data['user_id'];
+    } catch (error) {
+        console.error('Ошибка при получении user_id:', error);
+        return null; // Вернуть null, если возникла ошибка
+    }
+}
+
+// Получаем user_id при загрузке страницы
+let userId = null;
+get_user_id().then(id => {
+    if (id) {
+        userId = id;
+        console.log('Получен user_id:', userId);
+    } else {
+        alert('Не удалось получить user_id. Попробуйте позже.');
+    }
+});
+
+document.getElementById('darkEvForm').addEventListener('submit', async function (evt) {
+    evt.preventDefault();
+
+    if (!userId) {
+        alert('Пользователь не авторизован. Попробуйте позже.');
+        return;
+    }
+
+    const form = evt.target;
+
+    const event = {
+        user_id: userId, 
+        event_name: form.querySelector('[name="name-event"]').value.trim(),
+        event_description: form.querySelector('[name="desc-event"]').value.trim(),
+        event_type: form.querySelector('[name="type-event"]').value,
+        event_date: form.querySelector('[name="day-event"]').value,
+        event_time_first: form.querySelector('[name="start-event-time"]').value,
+        event_time_second: form.querySelector('[name="finish-event-time"]').value,
+        event_notification_time: form.querySelector('[name="time-notification"]').value,
+        event_status: "pending", 
+    };
+
+    if (!event.event_name || !event.event_date || !event.event_time_first || !event.event_time_second) {
+        alert('Пожалуйста, заполните все обязательные поля.');
+        return;
+    }
+
+    const jsonData = JSON.stringify(event);
+
+    try {
+        const response = await fetch('https://laert.pythonanywhere.com/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
+        });
+
+        if (!response.ok) {
+            throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Ответ сервера:', data);
+        alert('Форма успешно отправлена!');
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при отправке формы.');
+    }
+});*/
+
+// Функция для получения user_id
+async function fetchUserId() {
+    try {
+        const response = await fetch('https://laert.pythonanywhere.com/get_user_id', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
+        const data = await response.json();
+        return data['user_id'];
+    } catch (error) {
+        console.error('Ошибка при получении user_id:', error);
+        return null; // Вернуть null, если возникла ошибка
+    }
+}
+
+// Получаем user_id и сохраняем в localStorage
+fetchUserId().then(userId => {
+    if (userId) {
+        localStorage.setItem('user_id', userId);
+        console.log('user_id сохранен в localStorage:', userId);
+    } else {
+        alert('Не удалось получить user_id. Попробуйте позже.');
+    }
+});
+
+// Обработчик формы
+document.getElementById('darkEvForm').addEventListener('submit', async function (evt) {
+    evt.preventDefault();
+
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+        alert('Пользователь не авторизован. Попробуйте позже.');
+        return;
+    }
+
+    const form = evt.target;
+
+    const event = {
+        user_id: userId,
+        event_name: form.querySelector('[name="name-event"]').value.trim(),
+        event_description: form.querySelector('[name="desc-event"]').value.trim(),
+        event_type: form.querySelector('[name="type-event"]').value,
+        event_date: form.querySelector('[name="day-event"]').value,
+        event_time_first: form.querySelector('[name="start-event-time"]').value,
+        event_time_second: form.querySelector('[name="finish-event-time"]').value,
+        event_notification_time: form.querySelector('[name="time-notification"]').value,
+        event_status: "pending", // Статус по умолчанию
+    };
+
+    // Сохраняем данные события в localStorage
+    localStorage.setItem('event_data', JSON.stringify(event));
+    console.log('Данные события сохранены в localStorage:', event);
+});
+
+

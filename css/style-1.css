@@ -45,10 +45,33 @@ body {
   width: calc(100% - 40px);
 }
 
+#search-input {
+  display: none; 
+  margin: 0 10px;
+  width: 150px; 
+  height: 30px; 
+  padding: 5px; 
+  font-size: 14px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  box-sizing: border-box; 
+}
+
+.tasks-panel {
+  display: flex; 
+  align-items: center;
+  justify-content: flex-end; 
+}
+
+#search-btn {
+  cursor: pointer; 
+  border: none; 
+  background: none; 
+}
+
 .tasks-panel-img {
   margin-right: 12px;
 }
-
 
 .list-tasks {
   position: fixed; 

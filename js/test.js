@@ -8,7 +8,7 @@ const savedResponse = localStorage.getItem('serverResponse');
 if (savedResponse) {
     const parsedData = JSON.parse(savedResponse);
     console.log('Извлечённые данные из Local Storage:', parsedData);
-
+    let taskDFSD = parsedData.task_id;
     // Проверка, что данные содержат нужную структуру
     if (parsedData) {
         fillTaskTemplate(parsedData); // Заполняем шаблон, если данные присутствуют
@@ -17,10 +17,6 @@ if (savedResponse) {
     }
 } else {
     console.log('Данные из Local Storage отсутствуют.');
-}
-// Функция для генерации случайного ID
-function generateRandomTaskId() {
-    return 'task-' + Math.random().toString(36).substr(2, 9); // Генерация случайного ID
 }
 
 function fillTaskTemplate(taskMOC) {
@@ -38,7 +34,8 @@ function fillTaskTemplate(taskMOC) {
     const taskCard = template.content.cloneNode(true);
 
     // Генерируем уникальный task_id и добавляем к карточке
-    const taskId = generateRandomTaskId();
+    const taskId = taskMOC.task_id;
+    console.log("айдишник таски равен: ", taskId)
     taskCard.querySelector('.task-card').setAttribute('data-task-id', taskId);
 
     // Заполняем карточку данными
