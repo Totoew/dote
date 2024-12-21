@@ -3,8 +3,18 @@ const template = document.getElementById('EventCardTemplate'); // Шаблон
 const container = document.querySelector('.container'); // Контейнер, куда добавляются элементы
 
 if (eventData) {
-    const event = JSON.parse(eventData); // Преобразуем JSON-строку обратно в объект
+    const event = JSON.parse(eventData); 
     console.log('Айдишник события:', event.event_id);
+    //размещение события в календаре событий
+    const startTime = event.event_time_first; 
+    const endTime = event.event_time_second; 
+    console.log(`Начальное время: ${startTime}, Конечное время: ${endTime}`);
+    let intBeginningStartTime = Number(startTime.slice(0, 2));
+    let intEndStartTime = Number(startTime.slice(3, 5));
+    let intBeginningFinishTime = Number(endTime.slice(0, 2));
+    let intEndFinishTime = Number(endTime.slice(3, 5));
+    let marginTop = 78*intBeginningStartTime + Math.round(intEndStartTime/60)*78
+    let heightEventCard = calculateHeightEventCard(intBeginningFinishTime, intEndFinishTime, intBeginningStartTime, intEndStartTime);
 
     // Создаем копию содержимого шаблона
     const templateContent = template.content.cloneNode(true);
@@ -42,6 +52,15 @@ if (eventData) {
     container.appendChild(templateContent);
 } else {
     console.error('Данные события отсутствуют в localStorage.');
+}
+
+function calculateHeightEventCard(one, two, three, four){
+    let calculatedHeight =  (((one + two/60) - (three + four/60))*78).toFixed(1);
+    if (calculatedHeight < 12){
+        return 12;
+    } else {
+        return calculatedHeight;
+    }
 }
 
 function addDeleteEventToExistingCards() {
