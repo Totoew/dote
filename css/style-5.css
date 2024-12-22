@@ -100,20 +100,20 @@
   object-fit: contain;
 }
 
-.delete-window{
-  position: absolute;
-  top: 12px;           
-  left: 30px; 
-  z-index: 100;  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #375589;
-  width: 332px;
-  height: 200px;
-  border-radius: 16px;
-  margin-top: 24px;
-  padding: 30px;
+.delete-window {
+  position: fixed;          
+  top: 50%;                 
+  left: 187.5px;               
+  transform: translate(-50%, -50%); 
+  z-index: 100;             
+  display: flex;            
+  flex-direction: column;   
+  align-items: center;      
+  background-color: #375589; 
+  width: 332px;            
+  height: 200px;            
+  border-radius: 16px;     
+  padding: 30px;     
 }
 
 .hidden{

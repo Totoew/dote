@@ -117,8 +117,6 @@ function addDeleteEventToExistingCards() {
 }
 
 addDeleteEventToExistingCards();*/
-
-const eventData = localStorage.getItem('event_data'); // Получаем данные события из localStorage
 const template = document.getElementById('EventCardTemplate'); // Шаблон
 const container = document.querySelector('.container'); // Контейнер для событий
 
@@ -126,70 +124,69 @@ if (container) {
     container.style.position = 'relative';
 }
 
-if (eventData) {
-    const event = JSON.parse(eventData);
-    console.log('Айдишник события:', event.event_id);
+// Отображение всех событий из localStorage
+Object.keys(localStorage).forEach(key => {
+    if (key.startsWith('event_')) {
+        const event = JSON.parse(localStorage.getItem(key));
 
-    // Время начала и окончания события
-    const startTime = event.event_time_first;
-    const endTime = event.event_time_second;
-    console.log(`Начальное время: ${startTime}, Конечное время: ${endTime}`);
-    const intBeginningStartTime = Number(startTime.slice(0, 2));
-    const intEndStartTime = Number(startTime.slice(3, 5));
-    const intBeginningFinishTime = Number(endTime.slice(0, 2));
-    const intEndFinishTime = Number(endTime.slice(3, 5));
+        // Время начала и окончания события
+        const startTime = event.event_time_first;
+        const endTime = event.event_time_second;
+        const intBeginningStartTime = Number(startTime.slice(0, 2));
+        const intEndStartTime = Number(startTime.slice(3, 5));
+        const intBeginningFinishTime = Number(endTime.slice(0, 2));
+        const intEndFinishTime = Number(endTime.slice(3, 5));
 
-    const topPosition = 78 * intBeginningStartTime + Math.round((intEndStartTime / 60) * 78);
-    const heightEventCard = calculateHeightEventCard(
-        intBeginningFinishTime,
-        intEndFinishTime,
-        intBeginningStartTime,
-        intEndStartTime
-    );
+        const topPosition = 78 * intBeginningStartTime + Math.round((intEndStartTime / 60) * 78);
+        const heightEventCard = calculateHeightEventCard(
+            intBeginningFinishTime,
+            intEndFinishTime,
+            intBeginningStartTime,
+            intEndStartTime
+        );
 
-    // Создаем копию содержимого шаблона
-    const templateContent = template.content.cloneNode(true);
+        // Создаем копию содержимого шаблона
+        const templateContent = template.content.cloneNode(true);
 
-    // Наполняем элемент данными события
-    const eventBlock = templateContent.querySelector('.event-in-calendar');
-    const eventNameElement = templateContent.querySelector('.event-name');
-    eventNameElement.textContent = `${event.event_name}`;
+        // Наполняем элемент данными события
+        const eventBlock = templateContent.querySelector('.event-in-calendar');
+        const eventNameElement = templateContent.querySelector('.event-name');
+        eventNameElement.textContent = `${event.event_name}`;
 
-    // Храним дополнительные данные в атрибутах data-*
-    const articleElement = templateContent.querySelector('.event-in-calendar');
-    articleElement.dataset.eventId = event.event_id;
-    articleElement.dataset.userId = event.user_id;
-    articleElement.dataset.description = event.event_description;
-    articleElement.dataset.type = event.event_type;
-    articleElement.dataset.notificationTime = event.event_notification_time;
-    articleElement.dataset.status = event.event_status;
-    articleElement.dataset.date = event.event_date;
+        // Храним дополнительные данные в атрибутах data-*
+        const articleElement = templateContent.querySelector('.event-in-calendar');
+        articleElement.dataset.eventId = event.event_id;
+        articleElement.dataset.userId = event.user_id;
+        articleElement.dataset.description = event.event_description;
+        articleElement.dataset.type = event.event_type;
+        articleElement.dataset.notificationTime = event.event_notification_time;
+        articleElement.dataset.status = event.event_status;
+        articleElement.dataset.date = event.event_date;
 
-    // Добавляем обработчик клика на всю карточку
-    articleElement.addEventListener('click', () => {
-        localStorage.setItem('current_event_data', JSON.stringify(event));
-        window.location.href = 'event-details.html';
-    });
+        // Добавляем обработчик клика на всю карточку
+        articleElement.addEventListener('click', () => {
+            localStorage.setItem('current_event_data', JSON.stringify(event));
+            window.location.href = 'event-details.html';
+        });
 
-    // Настраиваем кнопку
-    const button = templateContent.querySelector('.icon-button');
-    button.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
+        // Настраиваем кнопку
+        const button = templateContent.querySelector('.icon-button');
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
 
-    // Устанавливаем стили для абсолютного позиционирования
-    articleElement.style.position = 'absolute';
-    articleElement.style.top = `${topPosition}px`;
-    articleElement.style.height = `${heightEventCard}px`;
-    articleElement.style.left = '0'; // Если требуется выравнивание по левому краю
-    articleElement.style.right = '0'; // Или можно настроить ширину
-    articleElement.style.zIndex = 10; // Высокий z-index для отображения поверх
+        // Устанавливаем стили для абсолютного позиционирования
+        articleElement.style.position = 'absolute';
+        articleElement.style.top = `${topPosition}px`;
+        articleElement.style.height = `${heightEventCard}px`;
+        articleElement.style.left = '0'; // Если требуется выравнивание по левому краю
+        articleElement.style.right = '0'; // Или можно настроить ширину
+        articleElement.style.zIndex = 10; // Высокий z-index для отображения поверх
 
-    // Добавляем карточку в контейнер
-    container.appendChild(templateContent);
-} else {
-    console.error('Данные события отсутствуют в localStorage.');
-}
+        // Добавляем карточку в контейнер
+        container.appendChild(templateContent);
+    }
+});
 
 function calculateHeightEventCard(one, two, three, four) {
     if(one > three || one == three && two > four){

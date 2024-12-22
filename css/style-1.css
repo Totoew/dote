@@ -101,36 +101,20 @@ body {
   background-color: #26334A;
   margin-top: 24px;
 }
-/*
-.delete-window{
-  position: absolute;
-  top: 12px;           
-  left: 30px; 
-  z-index: 100;  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #375589;
-  width: 332px;
-  height: 200px;
-  border-radius: 16px;
-  margin-top: 24px;
-  padding: 30px;
-}
-*/
+
 .delete-window {
-  position: fixed;          /* Окно позиционируется фиксированно на экране */
-  top: 50%;                 /* Центрируем окно по вертикали */
-  left: 187.5px;               /* Добавляем отступ 30 пикселей от левого края экрана */
-  transform: translate(-50%, -50%); /* Сдвигаем окно на половину своих размеров, чтобы центрировать */
-  z-index: 100;             /* Уровень отображения над другими элементами */
-  display: flex;            /* Используем flexbox для центрирования содержимого внутри */
-  flex-direction: column;   /* Организуем содержимое в колонну */
-  align-items: center;      /* Центрируем элементы по вертикали */
-  background-color: #375589; /* Цвет фона окна */
-  width: 332px;             /* Ширина окна */
-  height: 200px;            /* Высота окна */
-  border-radius: 16px;      /* Скругляем углы окна */
+  position: fixed;          
+  top: 50%;                 
+  left: 187.5px;               
+  transform: translate(-50%, -50%); 
+  z-index: 100;             
+  display: flex;            
+  flex-direction: column;   
+  align-items: center;      
+  background-color: #375589; 
+  width: 332px;            
+  height: 200px;            
+  border-radius: 16px;     
   padding: 30px;     
 }
 
