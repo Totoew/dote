@@ -95,6 +95,7 @@ async function getTaskData(jsonData) {
         }
 
         alert('Форма успешно отправлена!');
+        window.location.href = 'index.html';
     } catch (error) {
         console.error('Ошибка при отправке задачи:', error);
         alert('Произошла ошибка при отправке формы.');

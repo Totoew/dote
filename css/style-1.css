@@ -101,7 +101,7 @@ body {
   background-color: #26334A;
   margin-top: 24px;
 }
-
+/*
 .delete-window{
   position: absolute;
   top: 12px;           
@@ -116,6 +116,22 @@ body {
   border-radius: 16px;
   margin-top: 24px;
   padding: 30px;
+}
+*/
+.delete-window {
+  position: fixed;          /* Окно позиционируется фиксированно на экране */
+  top: 50%;                 /* Центрируем окно по вертикали */
+  left: 187.5px;               /* Добавляем отступ 30 пикселей от левого края экрана */
+  transform: translate(-50%, -50%); /* Сдвигаем окно на половину своих размеров, чтобы центрировать */
+  z-index: 100;             /* Уровень отображения над другими элементами */
+  display: flex;            /* Используем flexbox для центрирования содержимого внутри */
+  flex-direction: column;   /* Организуем содержимое в колонну */
+  align-items: center;      /* Центрируем элементы по вертикали */
+  background-color: #375589; /* Цвет фона окна */
+  width: 332px;             /* Ширина окна */
+  height: 200px;            /* Высота окна */
+  border-radius: 16px;      /* Скругляем углы окна */
+  padding: 30px;     
 }
 
 .hidden{

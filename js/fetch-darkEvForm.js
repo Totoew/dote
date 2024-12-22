@@ -125,7 +125,12 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
     }
 });*/
 
-// Функция для получения user_id
+
+
+
+
+
+
 async function fetchUserId() {
     try {
         const response = await fetch('https://laert.pythonanywhere.com/get_user_id', {
@@ -182,6 +187,9 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
     // Сохраняем данные события в localStorage
     localStorage.setItem('event_data', JSON.stringify(event));
     console.log('Данные события сохранены в localStorage:', event);
+    window.location.href = 'shedule.html';
 });
+
+
 
 
