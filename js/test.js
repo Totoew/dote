@@ -1,27 +1,18 @@
-/************************************************************************* */
-//разделили один файл на 2. fetch-darkTaskForm собирает данные с форм
-//этот файл принимает по функции showData данные, возвращенные с сервера
-//и вставляет их в шаблон
+// Получение всех ключей из localStorage
+const taskKeys = Object.keys(localStorage);
 
-const savedResponse = localStorage.getItem('serverResponse');
+// Объединение задач, если их несколько
+const tasks = taskKeys.map(key => {
+    const taskData = localStorage.getItem(key);
+    return JSON.parse(taskData);
+}).filter(task => task !== null);
 
-if (savedResponse) {
-    const parsedData = JSON.parse(savedResponse);
-    console.log('Извлечённые данные из Local Storage:', parsedData);
+console.log('Загруженные задачи из Local Storage:', tasks);
 
-    // Проверка, что данные содержат нужную структуру
-    if (parsedData) {
-        fillTaskTemplate(parsedData); // Заполняем шаблон, если данные присутствуют
-    } else {
-        console.error('Ошибка: в Local Storage нет валидных данных.');
-    }
-} else {
-    console.log('Данные из Local Storage отсутствуют.');
-}
-// Функция для генерации случайного ID
-function generateRandomTaskId() {
-    return 'task-' + Math.random().toString(36).substr(2, 9); // Генерация случайного ID
-}
+// Заполнение шаблона для каждой задачи
+tasks.forEach(taskMOC => {
+    fillTaskTemplate(taskMOC);
+});
 
 function fillTaskTemplate(taskMOC) {
     if (!taskMOC) {
@@ -38,7 +29,8 @@ function fillTaskTemplate(taskMOC) {
     const taskCard = template.content.cloneNode(true);
 
     // Генерируем уникальный task_id и добавляем к карточке
-    const taskId = generateRandomTaskId();
+    const taskId = taskMOC.task_id;
+    console.log("Айдишник таски равен: ", taskId)
     taskCard.querySelector('.task-card').setAttribute('data-task-id', taskId);
 
     // Заполняем карточку данными
@@ -112,7 +104,7 @@ function fillTaskTemplate(taskMOC) {
     // Получаем контейнер для задач
     const tasksContainer = document.querySelector('.tasks-container');
     if (tasksContainer) {
-        console.log('Добавляем новую задачу в контейнер');
+        console.log('Добавляем задачу в контейнер');
         // Добавляем карточку в контейнер
         tasksContainer.appendChild(taskCard);
     } else {
@@ -145,17 +137,25 @@ function addDeleteEventToExistingCards() {
             if (deleteWindow) {
                 const taskId = deleteWindow.getAttribute('data-task-id');
                 if (taskId) {
+                    // Удаляем карточку задачи из DOM
                     const taskCard = document.querySelector(`.task-card[data-task-id="${taskId}"]`);
                     if (taskCard) {
                         taskCard.remove();
                     }
 
-                    let deletedTasks = JSON.parse(localStorage.getItem('deletedTasks')) || [];
-                    if (!deletedTasks.includes(taskId)) {
-                        deletedTasks.push(taskId);
-                        localStorage.setItem('deletedTasks', JSON.stringify(deletedTasks));
-                    }
+                    // Удаляем задачу из localStorage
+                    const taskKeys = Object.keys(localStorage);
+                    taskKeys.forEach(key => {
+                        const taskData = JSON.parse(localStorage.getItem(key));
+                        if (taskData && taskData.task_id === taskId) {
+                            localStorage.removeItem(key); // Удаляем задачу
+                            console.log(`Удалено из localStorage: ключ ${key}`);
+                        }
+                    });
 
+                    console.log(`Задача с ID ${taskId} удалена из localStorage и DOM.`);
+
+                    // Скрываем окно подтверждения удаления
                     deleteWindow.classList.add('hidden');
                 }
             }
@@ -173,4 +173,7 @@ function addDeleteEventToExistingCards() {
     }
 }
 
+// Вызов функции для добавления событий на кнопки удаления
 addDeleteEventToExistingCards();
+
+

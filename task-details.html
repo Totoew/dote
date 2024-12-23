@@ -22,7 +22,7 @@
       </section>
   
       <section class="list-tasks">
-        <input list="no-datalist" autocomplete="off" name="name-task" class="name-task"  placeholder="Название" size="368" required>
+        <input list="no-datalist" autocomplete="off" name="name-task" class="name-task"  placeholder="Название" maxlength="29" size="368" required>
         <textarea list="no-datalist" autocomplete="off" name="desc-task" class="desc-task"  type="text" placeholder="Описание" size="368"></textarea>
       
         <section class="create-task-tags">
@@ -34,6 +34,9 @@
               id="inputField" 
               placeholder="+ Добавить" 
               onkeyup="handleKeyUp(event)" 
+
+
+              
           >
           <div id="output" class="tags-container"></div>
         </section>
@@ -81,6 +84,6 @@
       </section>
       </form>
       <script src="js/task-details.js"></script>
-      <script src="js/fetch-darkTaskForm.js"></script>
+      <script src="js/edit-darkTaskFormm.js"></script>
   </body>
 </html>

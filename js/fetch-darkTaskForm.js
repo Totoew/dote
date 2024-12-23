@@ -16,6 +16,7 @@ async function get_user_id() {
 }
 
 //функция для преобразования тегов в массив слов
+//не работает она
 function getTagsAsArray() {
     const tagsContainer = document.getElementById('output');
     if (!tagsContainer) {
@@ -88,12 +89,13 @@ async function getTaskData(jsonData) {
         // Логируем данные для сохранения в Local Storage
         if (data && data.task) {
             console.log('Данные task для сохранения:', data.task);
-            localStorage.setItem('serverResponse', JSON.stringify(data.task));
+            localStorage.setItem(`task_${data.task.task_id}`, JSON.stringify(data.task));
         } else {
             console.error('Отсутствуют данные task для сохранения');
         }
 
         alert('Форма успешно отправлена!');
+        window.location.href = 'index.html';
     } catch (error) {
         console.error('Ошибка при отправке задачи:', error);
         alert('Произошла ошибка при отправке формы.');
