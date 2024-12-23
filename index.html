@@ -11,7 +11,10 @@
     <div class="header-1">     
       <section class="tasks-panel">
         <h1 class="tasks-panel-h1">Список задач</h1>
-        <img class="tasks-panel-img" src="/img/manage_search.png">
+        <input type="text" id="search-input" placeholder="Найти">
+        <button id="search-btn">
+          <img class="tasks-panel-img" src="/img/manage_search.png">
+        </button>
       </section>
     </div>
 
@@ -49,29 +52,6 @@
               <button class="confirm-false">Отмена</button>
             </div>
         </div>
-        <!--<div class="task-card">
-          <div class="main-block">
-            <div class="info-title">
-              <img class="bell" src="/img/bell.png">
-              <p class="name-task">Название задачи</p>      
-            </div>
-            <div class="chip-list">
-              <div class="list-tags">
-                <p class="list-tags-item">учеба</p>
-                <p class="list-tags-item">домашка</p>
-                <p class="list-tags-item">событие</p>
-              </div>
-              <div class="dd-block">
-                <p class="deadline">01.11.2024</p>
-              </div>
-            </div>
-          </div>
-          <div class="checker-box">
-            <img class="is-done" src="/img/da-galka.png" >
-            <img class="delete" src="/img/been.png">
-          </div>
-        </div>
-        -->
      </section>
   </div>
 
@@ -106,6 +86,9 @@
       </a>
     </section>
   </div>
-  <script src="js/test.js"></script>
+<script src="js/test.js"></script>
+<script src="js/search-name-task.js"></script>
+<script src="js/filter-tasks.js"></script>
 </body>
 </html>
+

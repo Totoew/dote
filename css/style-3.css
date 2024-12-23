@@ -154,9 +154,9 @@
     width: 368px;
     height: 41px;
     margin-top: 32px;
-    margin-left: 12px;
+    margin-left: 0px;
     margin-right: 12px;
-    padding-left: 0px;
+    padding-left: 12px;
     gap: 7px;
   }
 
@@ -167,7 +167,7 @@
   .watch{
     width: 23.33px;
     height: 23.33px;
-    margin-left: 2px;
+    margin-left: 0px;
     margin-top: 9px;
     margin-right: 12px;
     left: 0px;

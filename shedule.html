@@ -94,14 +94,27 @@
         <article class="empty-blocks-elem"></article>
       </div>-->
       <div class="empty-blocks">
+        <div id="delete-window-id" class="delete-window hidden">
+          <p class="confirm">Подтвердить удаление</p>
+          <div class="buttons-block">
+            <button class="confirm-true">Да</button>
+            <button class="confirm-false">Отмена</button>
+          </div>
+        </div>
+        
         <template id="EventCardTemplate">
           <article class="empty-blocks-elem">
-            <div class="event-in-calendar"></div>
+            <div class="event-in-calendar">
+              <span class="event-name"></span>
+              <button class="icon-button">
+                <img src="img/been.png" class="icon-image">
+              </button>
+            </div>
           </article>
         </template>
-      
+        <div class="container" height=""></div>
         <!-- Пустые блоки с атрибутами data-hour -->
-        <article class="empty-blocks-elem" data-hour="00"></article>
+        <!--<article class="empty-blocks-elem" data-hour="00"></article>-->
         <article class="empty-blocks-elem" data-hour="01"></article>
         <article class="empty-blocks-elem" data-hour="02"></article>
         <article class="empty-blocks-elem" data-hour="03"></article>
@@ -162,8 +175,10 @@
       </section>
     </div>
     <script src="js/shedule.js"></script>
-    <script src="js/fetch-darkEvForm.js"></script>
+    <script src="js/draw-event.js"></script>
   </body>
 </html>
+
+
 
 
