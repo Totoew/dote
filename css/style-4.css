@@ -2,24 +2,58 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: Spectral, serif;
   }
   
   html, body {
-    height: 100%; /* Высота экрана */ 
-    width: 100%;
-    max-width: 393px;
+    height: 100vh; 
+    width: 393px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column; 
     background-color: #ffffff;
   }
   
-  .tasks-panel{
-    display: flex;  
-    margin-top: 0px;
-    background-color: #26334A;
-    width: 393px;                     
-    height: 64px; 
+  #darkTaskForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
   }
   
+  .tasks-panel {
+    display: flex;
+    background-color: #26334A;
+    width: 393px;
+    height: 64px;
+    flex-shrink: 0; 
+  }
   
+  .content {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-color: #111828;
+    overflow-y: auto;
+  }
+  
+.content::-webkit-scrollbar {
+  width: 6px; 
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #555; 
+  border-radius: 3px; 
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}
+
 .back-button {
   background: none;
   border: none;
@@ -36,7 +70,7 @@
   .tasks-panel-h1{
     font-size: 18px;
     font-weight: 600;
-    font-family: Inter;
+    font-family: Spectral, serif;
     line-height: 21px;
     width: 155px;
     height: 21px;
@@ -78,7 +112,7 @@
     color: gray !important;
   }
   
-  /*
+  /**********
   .hidden-choise{
     color: #818181;
     font-family: Inter;
@@ -89,10 +123,10 @@
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
   }
-  */
+  **********/
   .type-task-item{
     color: white;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -100,47 +134,42 @@
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
   }
-  
-  .list-tasks{
+
+  .list-tasks {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    width: 393px;
-    height: 564px;
-    background-color: #111828;   
+    align-items: center; 
   }
 
-  .name-task{
+  .name-task, .desc-task {
+    width: 368px; 
+    margin: 12px 0; 
+  }
+
+  .name-task {
     width: 368px;
     height: 46px;
-    padding: 12px 0px 12px 24px;
-    gap: 10px;
+    padding: 12px 24px;
     border-radius: 16px;
-    border: 1px 0px 0px 0px;
-    opacity: 0px;
     background-color: #111828;
-    margin-top: 24px;
-    margin-left: 12px;
+    color: #ffffff;
+    margin-top: 24px; 
+    margin-left: 12px; 
     margin-right: 12px;
-    color:#ffffff
   }
 
-  .desc-task{
+  .desc-task {
     width: 368px;
-    height:126px;
-    max-width: 368px;
-    max-height: 126px;
-    min-width: 368px;
-    min-height: 126px;
-    gap: 10px;
-    opacity: 0px;
-    padding: 12px 0px 12px 24px;
+    height: 126px;
+    padding: 12px 24px;
     border-radius: 16px;
-    background-color:#111828;
-    margin-top: 32px;
-    margin-left: 12px;
-    margin-right: 12px;
-    color:#ffffff
+    background-color: #111828;
+    color: #ffffff;
+    resize: none; 
+    margin-top: 32px; 
+    margin-left: 12px; 
+    margin-right: 12px; 
   }
   
   .create-task-tags{
@@ -200,8 +229,8 @@
     background-color: lightblue;
     border-radius: 32px;
 }
-/*
-.delete-btn {
+
+/*.delete-btn {
   background-color: red;
   color: white;
   border: none;
@@ -279,7 +308,7 @@
     
 .type-task-or-event-item{
     color: black;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -345,7 +374,7 @@
     opacity: 0px;
     background-color: rgba(255, 162, 0, 0.296);
     color:rgb(245, 155, 0);
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -361,7 +390,7 @@
     opacity: 0px;
     background-color: rgba(255, 162, 0, 0.296);
     color:rgb(245, 155, 0);
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -370,7 +399,7 @@
 
   .tire{
     color: white;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 24px;
     font-weight: 600;
     line-height: 26px;
@@ -404,7 +433,7 @@
     width: 28px;
     height: 21px;
     color:#ffffff;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -425,7 +454,7 @@
 
 .minutes-label {
   white-space: nowrap; 
-    font-family: Inter;
+  font-family: Spectral, serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
@@ -441,7 +470,7 @@
     height: 18px;
     gap: 0px;
     opacity: 0px;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
@@ -461,21 +490,18 @@
     justify-content: space-between;
     width: 393px;
     height: 66px;
-    position: absolute;
-    background-color: #111828;
-    margin: 0;             
+    background-color: #111828;           
   }
-  
-.footer{
+
+.footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 393px;
   height: 48px;
-  position: absolute;
   background-color: #111828;
-  margin-top: 66px;     
+  flex-shrink: 0; 
 }
-
 
 .yellow-button{
   display: flex;
@@ -507,8 +533,9 @@
   margin-top: 6px;
   margin-bottom: 8px;
   margin-right: 30px;
-  font-family: Inter;
+  font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 21px;
-}
+} 
+

@@ -29,7 +29,6 @@ searchButton.addEventListener('click', () => {
     }
 });
 
-
 // Слушатель событий для получения входных данных и запуска поиска
 searchInput.addEventListener('input', (event) => {
     const query = event.target.value;

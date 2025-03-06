@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: Spectral, serif;
   }
   
   html, body {
@@ -35,7 +36,7 @@
   .tasks-panel-h1{
     font-size: 18px;
     font-weight: 600;
-    font-family: Inter;
+    font-family: Spectral, serif;
     line-height: 21px;
     width: 155px;
     height: 21px;
@@ -91,7 +92,7 @@
   */
   .type-task-item{
     color: white;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -278,7 +279,7 @@
     
 .type-task-or-event-item{
     color: black;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -344,7 +345,7 @@
     opacity: 0px;
     background-color: rgba(255, 162, 0, 0.296);
     color:rgb(245, 155, 0);
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -360,7 +361,7 @@
     opacity: 0px;
     background-color: rgba(255, 162, 0, 0.296);
     color:rgb(245, 155, 0);
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -369,7 +370,7 @@
 
   .tire{
     color: white;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 24px;
     font-weight: 600;
     line-height: 26px;
@@ -403,7 +404,7 @@
     width: 28px;
     height: 21px;
     color:#ffffff;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -424,7 +425,7 @@
 
 .minutes-label {
   white-space: nowrap; 
-    font-family: Inter;
+  font-family: Spectral, serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
@@ -440,7 +441,7 @@
     height: 18px;
     gap: 0px;
     opacity: 0px;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
@@ -507,7 +508,7 @@
   margin-bottom: 8px;
   margin-right: 73.5px;
   margin-left: 73.5px;
-  font-family: Inter;
+  font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 21px;
