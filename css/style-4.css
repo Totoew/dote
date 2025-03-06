@@ -13,7 +13,7 @@
     flex-direction: column; 
     background-color: #ffffff;
   }
-  
+
   #darkTaskForm {
     display: flex;
     flex-direction: column;
@@ -146,7 +146,7 @@
     width: 368px; 
     margin: 12px 0; 
   }
-
+/**************************/
   .name-task {
     width: 368px;
     height: 46px;
