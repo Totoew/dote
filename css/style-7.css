@@ -6,20 +6,54 @@
   }
   
   html, body {
-    height: 100%; /* Высота экрана */ 
-    width: 100%;
-    max-width: 393px;
+    height: 100vh; 
+    width: 393px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column; 
     background-color: #ffffff;
   }
   
+  #darkTaskForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+  }
+
   .tasks-panel{
-    display: flex;  
-    margin-top: 0px;
+    display: flex;
     background-color: #26334A;
-    width: 393px;                     
-    height: 64px; 
+    width: 393px;
+    height: 64px;
+    flex-shrink: 0; 
   }
   
+  .content {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-color: #111828;
+    overflow-y: auto;
+  }
+  
+.content::-webkit-scrollbar {
+  width: 6px; 
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #555; 
+  border-radius: 3px; 
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}
+
 .back-button {
   background: none;
   border: none;
@@ -101,20 +135,23 @@
     text-decoration-skip-ink: none;
   }
   
-  .list-tasks{
+  .list-tasks {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    width: 393px;
-    height: 564px;
-    background-color: #111828;   
+    align-items: center; 
+  }
+
+  .name-task, .desc-task {
+    width: 368px; 
+    margin: 12px 0; 
   }
 
   .name-task{
     width: 368px;
     height: 46px;
     padding: 12px 0px 12px 24px;
-    gap: 10px;
+    /*gap: 10px;*/
     border-radius: 16px;
     border: 1px 0px 0px 0px;
     opacity: 0px;
@@ -128,12 +165,12 @@
   .desc-task{
     width: 368px;
     height:126px;
-    max-width: 368px;
+   /* max-width: 368px;
     max-height: 126px;
     min-width: 368px;
     min-height: 126px;
     gap: 10px;
-    opacity: 0px;
+    opacity: 0px;*/
     padding: 12px 0px 12px 24px;
     border-radius: 16px;
     background-color:#111828;
@@ -456,26 +493,24 @@
   .number-time-event{
     max-width: 35px;
 }
-  .bottom-nav {
-    display: flex;
-    justify-content: space-between;
-    width: 393px;
-    height: 66px;
-    position: absolute;
-    background-color: #111828;
-    margin: 0;             
-  }
-  
-.footer{
+
+.bottom-nav {
   display: flex;
   justify-content: space-between;
   width: 393px;
-  height: 48px;
-  position: absolute;
-  background-color: #111828;
-  margin-top: 66px;     
+  height: 66px;
+  background-color: #111828;           
 }
-
+  
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 393px;
+  height: 48px;
+  background-color: #111828;
+  flex-shrink: 0; 
+}
 
 .yellow-button{
   display: flex;
