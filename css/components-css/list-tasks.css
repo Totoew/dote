@@ -1,0 +1,171 @@
+.list-tasks {
+    position: fixed; 
+    top: 64px; 
+    bottom: 114px;
+    left: 0; 
+    width: 100%; 
+    max-width: 393px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 24px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    background-color: #111828; 
+    padding: 12px 0; 
+  }
+  
+  .task-card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 332px;
+    height: 100px;
+    border-radius: 16px;
+    opacity: 0px;
+    background-color: #26334A;
+    margin-top: 24px;
+  }
+  
+  .delete-window {
+    position: fixed;          
+    top: 50%;                 
+    left: 187.5px;               
+    transform: translate(-50%, -50%); 
+    z-index: 100;             
+    display: flex;            
+    flex-direction: column;   
+    align-items: center;      
+    background-color: #375589; 
+    width: 332px;            
+    height: 200px;            
+    border-radius: 16px;     
+    padding: 30px;     
+  }
+  
+  .hidden{
+    display: none;
+  }
+  
+  .confirm{
+    color: white;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-left: 54.5px;
+    margin-right: 54.5px;
+    margin-bottom: 20px;
+  }
+  
+  .buttons-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:10px;
+  }
+  
+  .confirm-true{
+    background-color: #00811c; /* Цвет фона кнопки */
+    color: rgb(0, 0, 0);              /* Цвет текста */
+    border-radius: 16px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .confirm-false{
+    background-color: #bb433a; /* Цвет фона кнопки */
+    color: rgb(0, 0, 0);              /* Цвет текста */
+    border-radius: 16px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .main-block {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: 80px; 
+    gap: 25px;
+    opacity: 0px;
+    margin-left: 8px;
+  }
+  
+  .info-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 280px;
+    height: 18.75px;
+    opacity: 0px;
+  }
+  
+  .name-task {
+    font-size: 16px;
+    font-weight: 500;
+    color: #FCFAEE;
+  }
+  
+  .chip-list {
+    display: flex;
+    justify-content: space-between;
+    width: 280px;
+    height: 20px;
+    gap: 10px;
+    opacity: 0px;
+  }
+  
+  .list-tags {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .list-tags-item {
+    background-color: yellow;
+    font-size: 12px;
+    padding: 0 6px;
+    line-height: 20px;
+    white-space: nowrap;
+    height: 20px; 
+    box-sizing: border-box; 
+    border-radius: 32px;
+    text-align: center; 
+  }
+  
+  .deadline {
+    font-size: 12px;
+    color: #ffffff;
+    margin-top: 4px;
+  }
+  
+  .margin-deadline{
+    margin-top: 10px;
+    font-size: 12px;
+    color: #ffffff;
+  }
+  
+  .checker-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80px;
+    width: 24px;
+    height: 64px;
+    opacity: 0px;
+  }
+  
+  .is-done{
+    padding-left: 2px ;
+    padding-right: 4px ;
+    padding-top: 6px ;
+    padding-bottom: 6px ;
+    margin-top: -6px;
+    cursor: pointer;
+  }
+  
+  .delete {
+    padding-left: 4px ;
+    padding-right: 4px ;
+    padding-top: 3px ;
+    padding-bottom: 3px ;
+    margin-top: 5px;
+    cursor: pointer;
+  }

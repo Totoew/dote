@@ -1,99 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <title>Список задач</title>
-    <link rel="icon" href="img/logo.png" type="png">
-    <link href="css/style-1.css" rel="stylesheet">
-    <!--<link href="css/light-style-1.css" rel="stylesheet">-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
-    rel="stylesheet">
-  </head>
-  <body>
-    <div class="header-1">     
-      <section class="tasks-panel">
-        <h1 class="tasks-panel-h1">Список задач</h1>
-        <input type="text" id="search-input" placeholder="Найти">
-        <button id="search-btn">
-          <img class="tasks-panel-img" src="/img/manage_search.png">
-        </button>
-      </section>
-    </div>
+    <head>
+        <meta charset="utf-8">
+        <title>Список задач</title>
+        <link rel="icon" href="img/logo.png" type="png">
+        <link href="css/style-1.css" rel="stylesheet">
+        <!--<link href="css/light-style-1.css" rel="stylesheet">-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
+        rel="stylesheet">
+    </head>
+    <body>
+        <div id="header"></div>
+        <div id="list-tasks"></div>
+        <div id="footer"></div>
 
-    <div class="list-tasks">
-    <section class="scroll-box">
-
-        <template id="taskCardTemplate">
-          <div class="task-card">
-            <div class="main-block">
-              <div class="info-title">
-                <img class="bell" src="/img/bell.png" alt="Уведомление">
-                <p class="name-task"></p>      
-              </div>
-              <div class="chip-list">
-                <div class="list-tags">
-                  <p class="priorit"></p>
-                </div>
-                <div>
-                  <p class="deadline"></p>
-                </div>
-              </div>
-            </div>
-            <div class="checker-box">
-              <img class="is-done" src="/img/da-galka.png" alt="Завершено">
-              <img class="delete" src="/img/been.png" alt="Удалить">
-            </div>
-          </div>
-        </template>
-        <div class="tasks-container"></div>
-
-        <div id="delete-window-id" class="delete-window hidden">
-            <p class="confirm">Подтвердить удаление</p>
-            <div class="buttons-block">
-              <button class="confirm-true">Да</button>
-              <button class="confirm-false">Отмена</button>
-            </div>
-        </div>
-     </section>
-  </div>
-
-<div class="footer-1">
-    <section class="bottom-nav">
-      <div class="nav-item nav-item-0">
-        <a href="settings.html">
-          <img class="tune image" src="/img/tune.png">
-        </a>
-        <p class="nav-item-0-txt p-tag">Настройки</p>
-      </div>
-      <div class="nav-item nav-item-1">
-        <a href="shedule.html">
-          <img class="calendar image" src="/img/calendar_month.png">
-        </a>
-        <p class="nav-item-1-txt p-tag">Расписание</p>
-      </div>
-      <div class="nav-item nav-item-2">
-        <a href="index.html">
-          <img class="split-screen" src="/img/splitscreen.png">
-        </a>
-        <p class="nav-item-2-txt p-tag">Задачи</p>
-      </div>
-    </section>
-
-    <section class="footer">
-      <a class="a-none-decorat" href="create-new.html">
-        <div class="yellow-button">
-          <img class="plus" src="/img/add_2.png">
-          <p class="button-add-task">Добавить новую задачу</p>
-        </div>
-      </a>
-    </section>
-  </div>
-<script src="js/test.js"></script>
-<script src="js/search-name-task.js"></script>
-<script src="js/filter-tasks.js"></script>
-</body>
+        <script src="js/component-js/index.js" type="module"></script>
+        <script src="js/test.js"></script>
+        <script src="js/search-name-task.js"></script>
+        <script src="js/filter-tasks.js"></script>
+    </body>
 </html>
-

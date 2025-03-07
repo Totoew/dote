@@ -1,0 +1,114 @@
+.footer-1 {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 393px;
+    height: 114px; /* Нижняя панель с учетом кнопки */
+    z-index: 10; /* Поверх контента */
+  }
+  
+  .bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 66px;
+    background-color: #26334A;
+  }
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+  }
+  
+  .nav-item-0-txt,
+  .nav-item-1-txt,
+  .nav-item-2-txt {
+    font-size: 12px;
+    color: gray;
+  }
+  
+  .nav-item-1-txt {
+    color: white;
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    background-color: #111828;
+  }
+  
+  .yellow-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 380px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #FCBC02;
+    text-decoration: none;
+  }
+  
+  .plus {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .button-add-task {
+    color: white;
+    width: 216px;
+    height: 21px;
+  }
+  
+  .a-none-decorat {
+    text-decoration: none; /* Убираем стандартное подчеркивание */
+    color: inherit; /* Сохраняем цвет текста, если это важно */
+  }
+  
+  .a-none-decorat:focus,
+  .a-none-decorat:hover,
+  .a-none-decorat:active {
+    outline: none; /* Убираем фокус-линию */
+    text-decoration: none; /* Убираем подчеркивание при любых состояниях */
+  }
+  
+  .a-block {
+    text-decoration: none; /* Убираем стандартное подчеркивание */
+    color: inherit; /* Сохраняем цвет текста, если это важно */
+  }
+  
+  .a-block:focus,
+  .a-block:hover,
+  .a-block:active {
+    outline: none; /* Убираем фокус-линию */
+    text-decoration: none; /* Убираем подчеркивание при любых состояниях */
+  }
+  
+  .image {
+    margin-right: 48px;
+    margin-left: 48px;
+    margin-top: 10px;
+  }
+  
+  .split-screen {
+    margin-right: 48px;
+    margin-left: 48px;
+    margin-top: 10px;
+  }
+  
+  .tune {
+    margin-right: 48px;
+    margin-left: 48px;
+    margin-top: 10px;
+  }
+  
+  .calendar {
+    margin-right: 48px;
+    margin-left: 48px;
+    margin-top: 10px;
+  }

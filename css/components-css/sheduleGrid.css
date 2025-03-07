@@ -1,0 +1,178 @@
+.list-tasks {
+    position: fixed;
+    top: 64px;
+    bottom: 114px;
+    left: 0;
+    width: 100%;
+    max-width: 393px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #111828;
+    padding: 12px 0;
+  }
+  
+  .scroll-box {
+    display: flex;
+    flex-direction: row;
+    width: 393px;
+    overflow-y: auto;
+    color: white;
+  }
+  
+  .time-box {
+    display: flex;
+    flex-direction: column;
+    height: 1882px;
+    width: 88px;
+    background-color: #111828;
+    color: gray;
+    border-right: 1px solid gray;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+  
+  .time-box-elem {
+    width: 42px;
+    height: 18px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Spectral, serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    color: gray;
+    padding: 0px;
+    margin-top: 60px;
+    margin-right: 12px;
+    margin-left: 12px;
+  }
+  
+  .time-box-elem-1 {
+    width: 42px;
+    height: 18px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Spectral, serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    color: gray;
+    padding: 0px;
+    margin-top: 70px;
+    margin-right: 12px;
+    margin-left: 12px;
+  }
+  
+  .empty-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    height: 1882px;
+    width: 305px;
+    background-color: #111828;
+    color: gray;
+    border: 1px solid gray;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+  }
+  
+  .empty-blocks-elem {
+    height: 78px;
+    width: 305px;
+    border: 1px solid gray;
+  }
+  
+  .event-in-calendar {
+    background-color: #FCBC02;
+    display: inline-flex;
+    align-items: center;
+    width: 250px;
+    height: 78px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-left: 15px;
+  }
+  
+  .event-name {
+    font-size: 16px;
+    margin-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: black;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon-image {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  
+  .delete-window {
+    position: fixed;
+    top: 50%;
+    left: 187.5px;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #375589;
+    width: 332px;
+    height: 200px;
+    border-radius: 16px;
+    padding: 30px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .confirm {
+    color: white;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-left: 54.5px;
+    margin-right: 54.5px;
+    margin-bottom: 20px;
+  }
+  
+  .buttons-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .confirm-true {
+    background-color: #00811c;
+    color: rgb(0, 0, 0);
+    border-radius: 16px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .confirm-false {
+    background-color: #bb433a;
+    color: rgb(0, 0, 0);
+    border-radius: 16px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
