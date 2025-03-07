@@ -1,0 +1,50 @@
+.header-1 {
+    left: 0;
+    width: 100%; 
+    max-width: 393px; 
+  }
+  
+  .tasks-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #26334A;
+    height: 64px; 
+  }
+  
+  .tasks-panel-h1 {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Spectral, serif;
+    color: #FCFAEE;
+    text-align: center;
+    width: calc(100% - 40px);
+  }
+  
+  #search-input {
+    display: none; 
+    margin: 0 10px;
+    width: 150px; 
+    height: 30px; 
+    padding: 5px; 
+    font-size: 14px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+  }
+  
+  .tasks-panel {
+    display: flex; 
+    align-items: center;
+    justify-content: flex-end; 
+  }
+  
+  #search-btn {
+    cursor: pointer; 
+    border: none; 
+    background: none; 
+  }
+  
+  .tasks-panel-img {
+    margin-right: 12px;
+  }

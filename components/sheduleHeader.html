@@ -1,0 +1,21 @@
+<div class="header-1">
+    <section class="tasks-panel">
+      <div class="date-icon">
+        <p class="day-week">Сб</p>
+        <div class="circle">
+          <p class="day-number">19</p>
+        </div>
+      </div>
+      <h1 class="tasks-panel-h1">*Месяц*</h1>
+      <button class="button-calendar" onclick="showDatePicker()">
+        <img class="tasks-panel-img" src="img/calendar_month_active.png" alt="Календарь">
+      </button>
+      <input name="datePickerName" type="date" id="datePicker" style="display:none;" onchange="handleDateChange(event)" required>
+      <!--<div class="date-picker">
+        <div class="datepicker--wrapper">
+          <input name="datePickerName" type="date" id="datePicker" style="display:none;" onchange="handleDateChange(event)" required> 
+        </div>   
+      </div>-->
+      <p id="result"></p>   
+    </section>
+  </div>

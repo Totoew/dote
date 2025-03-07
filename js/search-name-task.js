@@ -7,8 +7,8 @@ function searchTasks(query) {
     const taskCards = document.querySelectorAll('.task-card');
     taskCards.forEach(task => {
         const taskName = task.querySelector('.name-task').textContent.toLowerCase();
-        const words = taskName.split(/\s+/); // Разбиваем название на массив слов
-        const matches = words.some(word => word.startsWith(query.toLowerCase())); // Проверяем, начинается ли хоть одно слово с подстроки
+        const words = taskName.split(/\s+/); 
+        const matches = words.some(word => word.startsWith(query.toLowerCase())); 
         if (matches) {
             task.style.display = 'flex';
         } else {
