@@ -2,8 +2,8 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Spectral, serif;
 }
-
 
 body {
   height: 100vh; /* Используем всю высоту экрана */
@@ -39,7 +39,7 @@ body {
 .tasks-panel-h1 {
   font-size: 24px;
   font-weight: 600;
-  font-family: Inter, sans-serif;
+  font-family: Spectral, serif;
   color: #FCFAEE;
   text-align: center;
   width: calc(100% - 40px);
