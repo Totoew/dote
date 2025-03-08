@@ -7,7 +7,8 @@
   
   html, body {
     height: 100vh; 
-    width: 393px;
+    /*width: 393px;*/
+    width: 100%;
     overflow: hidden; 
     display: flex;
     flex-direction: column; 
@@ -23,7 +24,8 @@
   .tasks-panel{
     display: flex;
     background-color: #26334A;
-    width: 393px;
+    /*width: 393px;*/
+    width: 100%;
     height: 64px;
     flex-shrink: 0; 
   }
@@ -497,7 +499,8 @@
 .bottom-nav {
   display: flex;
   justify-content: space-between;
-  width: 393px;
+  /*width: 393px;*/
+  width: 100%;
   height: 66px;
   background-color: #111828;           
 }
@@ -506,24 +509,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 393px;
+  /*width: 393px;*/
+  width: 100%;
   height: 48px;
   background-color: #111828;
   flex-shrink: 0; 
 }
 
-.yellow-button{
+.yellow-button {
   display: flex;
-  width: 380px;
+  align-items: center; 
+  justify-content: center; 
+  width: 90%; 
   height: 40px;
-  padding: 4px 0px 0px 0px;
-  gap: 10px;
   border-radius: 8px;
-  opacity: 0px;
-  background-color: #0e8a00;
-  margin-top:0px;
-  margin-right: 7px;
-  margin-left: 7px;
+  background-color: #FCBC02; 
+  margin: 0 auto; 
+  padding: 0; 
 }
 
 .plus{
@@ -535,17 +537,14 @@
   margin-bottom: 14px;
 }
 
-.button-add-task{
-  color: white;
-  width: 228px;
-  height: 21px;
-  margin-top: 6px;
-  margin-bottom: 8px;
-  margin-right: 73.5px;
-  margin-left: 73.5px;
+.button-add-task {
+  color: white; /* Белый текст */
   font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 21px;
+  text-align: center; /* Центрируем текст */
+  margin: 0; /* Убираем отступы */
+  white-space: nowrap; /* Запрещаем перенос текста */
 }
 
