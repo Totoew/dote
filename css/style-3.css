@@ -7,7 +7,8 @@
   
   html, body {
     height: 100vh; 
-    width: 393px;
+    /*width: 393px;*/
+    width: 100%;
     overflow: hidden; 
     display: flex;
     flex-direction: column;
@@ -23,7 +24,8 @@
   .tasks-panel {
     display: flex;
     background-color: #26334A;
-    width: 393px;
+    /*width: 393px;*/
+    width: 100%;
     height: 64px;  
     flex-shrink: 0; 
   }
@@ -139,7 +141,6 @@
   width: 368px;
   height: 46px; 
   padding: 12px 0px 12px 24px;
-  /*gap: 10px;*/
   border-radius: 16px;
   background-color: #111828;
   margin-top: 24px;
@@ -151,12 +152,6 @@
 .desc-event {
   width: 368px;
     height:126px;
-    /*max-width: 368px;
-    max-height: 126px;
-    min-width: 368px;
-    min-height: 126px;
-    gap: 10px;
-    opacity: 0px;*/
     padding: 12px 0px 12px 24px;
     border-radius: 16px;
     background-color:#111828;
@@ -342,9 +337,7 @@
     color: white;
     margin-top: 4.5px;
     margin-bottom: 4px;
-    /*margin-right: 201px;*/
     background-color: #111828;
-    /*border-bottom: 1px solid white;*/
   }
 
   .number-time-event{
@@ -354,7 +347,8 @@
 .bottom-nav {
     display: flex;
     justify-content: space-between;
-    width: 393px;
+    /*width: 393px;*/
+    width: 100%;
     height: 66px;
     background-color: #111828;   
 }
@@ -363,24 +357,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 393px;
+  /*width: 393px;*/
+  width: 100%;
   height: 48px;
   background-color: #26334A;
   flex-shrink: 0; 
 }
 
-.yellow-button{
+.yellow-button {
   display: flex;
-  width: 380px;
-  height: 40px;
-  padding: 4px 0px 0px 0px;
+  align-items: center; 
+  justify-content: center; 
   gap: 10px;
+  width: 90%; 
+  height: 40px;
   border-radius: 8px;
-  opacity: 0px;
-  background-color: #FCBC02;
-  margin-top:0px;
-  margin-right: 7px;
-  margin-left: 7px;
+  background-color: #0e8a00; 
+  margin: 0 auto; 
+  padding: 0; 
 }
 
 .plus{
@@ -392,15 +386,13 @@
   margin-bottom: 14px;
 }
 
-.button-add-task{
-  color: white;
-  width: 228px;
-  height: 21px;
-  margin-top: 6px;
-  margin-bottom: 8px;
-  margin-right: 30px;
+.button-add-task {
+  color: white; /* Белый текст */
   font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 21px;
+  text-align: center; /* Центрируем текст */
+  margin: 0; /* Убираем отступы */
+  white-space: nowrap; /* Запрещаем перенос текста */
 }
