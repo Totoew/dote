@@ -48,3 +48,10 @@ document.getElementById('backButton').addEventListener('click', () => {
         window.location.href = 'create-new.html'; 
     }
 });
+
+//не закрывать приложение при свайпе вниз
+document.addEventListener('touchmove', function (event) {
+    if (event.touches && event.touches[0].clientY > 0) {
+      event.preventDefault();
+    }
+  }, { passive: false });
