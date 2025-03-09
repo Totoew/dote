@@ -82,7 +82,13 @@ document.getElementById('darkEvForm').addEventListener('submit', function (evt) 
     window.location.href = 'shedule.html'; // Переход на нужную страницу после сохранения
 });
 
-
+//не закрывать приложение при свайпе вниз
+document.addEventListener('touchmove', function (event) {
+    if (event.touches && event.touches[0].clientY > 0) {
+      event.preventDefault();
+    }
+  }, { passive: false });
+  
 /*
 document.getElementById('darkEvForm').addEventListener('submit', function (evt) {
     evt.preventDefault(); // Предотвращаем отправку формы по умолчанию

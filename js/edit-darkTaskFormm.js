@@ -53,3 +53,10 @@ document.getElementById('darkTaskForm').addEventListener('submit', function (evt
     // Переход на главную страницу или другую нужную страницу
     window.location.href = 'index.html';
 });
+
+//не закрывать приложение при свайпе вниз
+document.addEventListener('touchmove', function (event) {
+    if (event.touches && event.touches[0].clientY > 0) {
+      event.preventDefault();
+    }
+  }, { passive: false });
