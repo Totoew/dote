@@ -372,7 +372,7 @@
   width: 90%; 
   height: 40px;
   border-radius: 8px;
-  background-color: #0e8a00; 
+  background-color: #FCBC02;
   margin: 0 auto; 
   padding: 0; 
 }
@@ -380,19 +380,15 @@
 .plus{
   width: 18px;
   height: 18px;
-  margin-left: 73px;
-  margin-right: 0px;
-  margin-top: 8px;
-  margin-bottom: 14px;
 }
 
 .button-add-task {
-  color: white; /* Белый текст */
+  color: white; 
   font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 21px;
-  text-align: center; /* Центрируем текст */
-  margin: 0; /* Убираем отступы */
-  white-space: nowrap; /* Запрещаем перенос текста */
+  text-align: center; 
+  margin: 0; 
+  white-space: nowrap; 
 }
