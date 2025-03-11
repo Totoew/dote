@@ -1,12 +1,13 @@
-* {
+/* * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Spectral, serif;
 }
 
 
 body {
-  height: 100vh; /* Используем всю высоту экрана */
+  height: 100vh; 
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
@@ -24,8 +25,8 @@ body {
   bottom: 0;
   width: 100%;
   max-width: 393px;
-  height: 114px; /* Нижняя панель с учетом кнопки */
-  z-index: 10; /* Поверх контента */
+  height: 114px; 
+  z-index: 10; 
 }
 
 .tasks-panel {
@@ -33,13 +34,13 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #26334A;
-  height: 64px; /* Фиксированная высота */
+  height: 64px; 
 }
 
 .tasks-panel-h1 {
   font-size: 24px;
   font-weight: 600;
-  font-family: Inter, sans-serif;
+  font-family: Spectral, serif;
   color: #FCFAEE;
   text-align: center;
   width: calc(100% - 40px);
@@ -166,13 +167,181 @@ body {
 }
 
 .a-none-decorat {
-  text-decoration: none; /* Убираем стандартное подчеркивание */
-  color: inherit; /* Сохраняем цвет текста, если это важно */
+  text-decoration: none; 
+  color: inherit; 
 }
 
 .a-none-decorat:focus,
 .a-none-decorat:hover,
 .a-none-decorat:active {
-  outline: none; /* Убираем фокус-линию */
-  text-decoration: none; /* Убираем подчеркивание при любых состояниях */
+  outline: none; 
+  text-decoration: none; 
+}  */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Spectral, serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.header-1 {
+  width: 100%;
+  background-color: #26334A;
+}
+
+.footer-1 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 114px;
+  z-index: 10;
+  background-color: #26334A;
+}
+
+.tasks-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #26334A;
+  height: 64px;
+  width: 100%;
+}
+
+.tasks-panel-h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #FCFAEE;
+  text-align: center;
+  width: calc(100% - 40px);
+}
+
+.tasks-panel-img {
+  margin-right: 12px;
+}
+
+.list-tasks {
+  position: fixed;
+  top: 64px;
+  bottom: 114px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #111828;
+  padding: 12px 0;
+}
+
+.theme-block {
+  position: relative;
+  width: 300px;
+  height: 70px;
+  border-radius: 16px;
+  background-color: #26334A;
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.theme-block-hard {
+  display: flex;
+  align-items: center;
+}
+
+.a-theme-block {
+  margin-right: 10px;
+}
+
+.theme-text {
+  white-space: nowrap;
+  color: white;
+  font-size: 16px;
+}
+
+.main-block {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 80px;
+  gap: 25px;
+  margin-left: 8px;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 66px;
+  background-color: #26334A;
+  width: 100%;
+  padding: 0 12.725vw;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.nav-item-0-txt,
+.nav-item-1-txt,
+.nav-item-2-txt {
+  font-size: 12px;
+  color: gray;
+}
+
+.nav-item-0-txt {
+  color: white;
+}
+
+.image {
+  margin-right: 25.45vw;
+}
+
+.split-screen,
+.calendar,
+.tune {
+  margin-right: 25.45vw;
+}
+
+.split-screen:last-child,
+.calendar:last-child,
+.tune:last-child {
+  margin-right: 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  background-color: #111828;
+  width: 100%;
+}
+
+.a-none-decorat {
+  text-decoration: none;
+  color: inherit;
+}
+
+.a-none-decorat:focus,
+.a-none-decorat:hover,
+.a-none-decorat:active {
+  outline: none;
+  text-decoration: none;
 }

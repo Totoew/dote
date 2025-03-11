@@ -1,26 +1,23 @@
-
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: Spectral, serif;
   }
 
   body {
     height: 100vh; 
+    width: 100%;
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
     overflow: hidden;
   }
 
-
 .header-1{
   left: 0;
   width: 100%;
-  max-width: 393px;
-  margin-top: 0px;/*NDB*/
 }
-
 
 .delete-window{
   position: absolute;
@@ -70,7 +67,6 @@
   margin-left: 15px;
 }
 
-/* Название события */
 .event-name {
   font-size: 16px;
   margin-right: 5px; 
@@ -80,7 +76,6 @@
   color: black;
 }
 
-/* Кнопка */
 .icon-button {
   background: none;
   border: none;
@@ -95,7 +90,7 @@
 }
 
 .icon-image {
-  width: 20px; /* Размер картинки */
+  width: 20px; 
   height: 20px;
   object-fit: contain;
 }
@@ -137,16 +132,16 @@
 }
 
 .confirm-true{
-  background-color: #00811c; /* Цвет фона кнопки */
-  color: rgb(0, 0, 0);              /* Цвет текста */
+  background-color: #00811c; 
+  color: rgb(0, 0, 0);             
   border-radius: 16px;
   padding: 10px 20px;
   font-size: 16px;
 }
 
 .confirm-false{
-  background-color: #bb433a; /* Цвет фона кнопки */
-  color: rgb(0, 0, 0);              /* Цвет текста */
+  background-color: #bb433a; 
+  color: rgb(0, 0, 0);              
   border-radius: 16px;
   padding: 10px 20px;
   font-size: 16px;
@@ -156,7 +151,6 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  max-width: 393px;
   height: 114px; 
   z-index: 10;
 }
@@ -164,8 +158,7 @@
 .scroll-box{
   display: flex;
   flex-direction: row;
-  width: 393px;
-  /*height: 564px;*/
+  width: 100%;
   overflow-y: auto; 
   color: white;
 }
@@ -199,7 +192,7 @@
   height: 18px;
   gap: 0px;
   opacity: 0px;
-  font-family: Inter;
+  font-family: Spectral, serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 18px;
@@ -215,7 +208,7 @@
   height: 18px;
   gap: 0px;
   opacity: 0px;
-  font-family: Inter;
+  font-family: Spectral, serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 18px;
@@ -232,7 +225,7 @@
   flex-direction: column;
   gap: 0px;
   height: 1882px;
-  width: 305px;
+  width: 100%;
   background-color: #111828;
   color: gray;
   border: 1px solid gray;
@@ -243,7 +236,7 @@
 
 .empty-blocks-elem{
   height: 78px;
-  width: 305px;
+  width: 100%;
   border: 1px solid gray;
 }
 
@@ -252,21 +245,20 @@
   flex-direction: row;
   margin-top: 0px;
   background-color: #26334A;
-  width: 393px;
+  width: 100%;
   height: 64px;
 }
-
 
 .tasks-panel-h1 {
   font-size: 24px;
   font-weight: 600;
-  font-family: Inter, sans-serif;
+  font-family: Spectral, serif;
   color: #FCFAEE;
   text-align: center;
   width: calc(100% - 40px);
 }
 
-  .date-icon{
+.date-icon{
     display: flex;
     flex-direction: column;
     width: 32px;
@@ -294,7 +286,7 @@
 
   .day-week{
     color: #FCBC02;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -320,7 +312,7 @@
   }
 
   .day-number{
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -332,7 +324,7 @@
   .tasks-panel-h1{
     font-size: 24px;
     font-weight: 600;
-    font-family: Inter;
+    font-family: Spectral, serif;
     line-height: 26px;
     text-align: center;
     width: 103px;
@@ -345,7 +337,7 @@
   }
   
   .tasks-panel-img{  
-    margin-right: 37px;/*15*/
+    margin-right: 37px;
     margin-top: 22px;
     margin-bottom: 22px;
     width: 20px;
@@ -358,14 +350,12 @@
     text-align: left;
   }
 
-  
   .list-tasks{
     position: fixed; 
   top: 64px; 
   bottom: 114px;
   left: 0; 
   width: 100%; 
-  max-width: 393px; 
   display: flex;
   flex-direction: column; 
   align-items: center;
@@ -377,7 +367,7 @@
   }
 
   .button-calendar{
-    margin-right: 30px;/*8*/
+    margin-right: 30px;
     margin-top: 28px;
     margin-bottom: 16px;
     width: 14px;
@@ -391,7 +381,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 0.25rem;
     width: 100%;
   }
 
@@ -419,13 +409,14 @@
   color: white;
 }
 
-  .bottom-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 66px;
-    background-color: #26334A;       
-  }
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 66px;
+  background-color: #26334A;    
+  padding: 0 12.725vw;   
+}
   
   .footer{
     display: flex;
@@ -435,22 +426,26 @@
   background-color: #111828;     
   }
   
-  
-  .yellow-button{
-    display: flex;
+.yellow-button{
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 380px;
+  width: 90%;
   height: 40px;
   border-radius: 8px;
   background-color: #FCBC02;
   text-decoration: none;
-  }
+  margin-right: 5%;
+  margin-left:5%;
+}
   
-  .a-none-decorat{
-    text-decoration: none; 
-    color: inherit;
+.a-none-decorat{
+  text-decoration: none; 
+  color: inherit;
+  width: 90%;
+  margin-right: 5%;
+  margin-left:5%;
   }
 
 .a-none-decorat:focus,
@@ -458,14 +453,29 @@
 .a-none-decorat:active {
   outline: none; 
   text-decoration: none;
+  width: 90%;
+  margin-right: 5%;
+  margin-left:5%;
 }
   
-  .plus{
+.split-screen,
+.calendar,
+.tune {
+  margin-right: 25.45vw;
+}
+
+.split-screen:last-child,
+.calendar:last-child,
+.tune:last-child {
+  margin-right: 0;
+}
+
+.plus{
     width: 18px;
     height: 18px;
   }
   
-  .button-add-task{
+.button-add-task{
     color: white;
   width: 216px;
   height: 21px;
@@ -485,4 +495,8 @@
     width: calc(100% - 14px);
   }
 
+}
+
+.image{
+  margin: 0;
 }

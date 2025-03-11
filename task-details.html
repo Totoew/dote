@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<!--создать веб-приложение для мобильных устройств с модулем "Домашнее задание" и меню модулей.-->
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <title>Добавление задачи</title>
+    <link rel="icon" href="img/logo.png" type="png">
     <link href="css/style-7.css" rel="stylesheet">
     <!--<link href="css/outline.css" rel="stylesheet">-->
     <!--<link href="css/outline-settings.css" rel="stylesheet">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
+    rel="stylesheet">
   </head>
   <body>
     <form id="darkTaskForm">
@@ -21,58 +25,60 @@
         </select>
       </section>
   
-      <section class="list-tasks">
-        <input list="no-datalist" autocomplete="off" name="name-task" class="name-task"  placeholder="Название" maxlength="29" size="368" required>
-        <textarea list="no-datalist" autocomplete="off" name="desc-task" class="desc-task"  type="text" placeholder="Описание" size="368"></textarea>
-      
-        <section class="create-task-tags">
-          <img src="/img/bookmark_add.png" class="task-tag-emblem">
-          <input 
-              type="text" 
-              name="add-tag" 
-              class="add-tag" 
-              id="inputField" 
-              placeholder="+ Добавить" 
-              onkeyup="handleKeyUp(event)" 
-
-
-              
-          >
-          <div id="output" class="tags-container"></div>
-        </section>
+      <main class="content">
+        <section class="list-tasks">
+          <input list="no-datalist" autocomplete="off" name="name-task" class="name-task"  placeholder="Название" maxlength="29" size="368" required>
+          <textarea list="no-datalist" autocomplete="off" name="desc-task" class="desc-task"  type="text" placeholder="Описание" size="368"></textarea>
         
-        <section class="priority">
-          <img src="/img/signal_cellular_alt.png" class="priority-emblem">
-          <select
-            id="inputFieldPriority"
-            class="add-priority"
-            name='priority-level'
-            required
-          >
-            <option value="" disabled selected hidden>Приоритет</option>
-            <option value="not-matter">Не важно</option>
-            <option value="normal">Нормально</option>
-            <option value="matter">Важно</option>
-          </select>
-        </section>
+          <section class="create-task-tags">
+            <img src="/img/bookmark_add.png" class="task-tag-emblem">
+            <input 
+                type="text" 
+                name="add-tag" 
+                class="add-tag" 
+                id="inputField" 
+                placeholder="+ Добавить" 
+                onkeyup="handleKeyUp(event)" 
 
-        <section class="date-event">
-          <img class="watch" src="/img/schedule.png">
-          <!--<input type="date" name="day-event" class="day-event">-->
-          <div id="dateContainer" class="white-text">
-            <input class="day-task" name="day-task" type="date" id="dateInput" required>
-          </div>
+
+                
+            >
+            <div id="output" class="tags-container"></div>
+          </section>
+          
+          <section class="priority">
+            <img src="/img/signal_cellular_alt.png" class="priority-emblem">
+            <select
+              id="inputFieldPriority"
+              class="add-priority"
+              name='priority-level'
+              required
+            >
+              <option value="" disabled selected hidden>Приоритет</option>
+              <option value="not-matter">Не важно</option>
+              <option value="normal">Нормально</option>
+              <option value="matter">Важно</option>
+            </select>
+          </section>
+
+          <section class="date-event">
+            <img class="watch" src="/img/schedule.png">
+            <!--<input type="date" name="day-event" class="day-event">-->
+            <div id="dateContainer" class="white-text">
+              <input class="day-task" name="day-task" type="date" id="dateInput" required>
+            </div>
+          </section>
+    
+          <section class="notification">
+            <img src="/img/notification_add.png" class="notification-bell">
+            <p class="Za">За:</p>
+            <div class="time-input-container">
+                <input type="number" name="time-notification" class="time-notification number-time-event" min="1" required onchange="updateMinutesLabel(this.value)">
+                <span id="minutes-label" class="minutes-label">минут</span>
+            </div>
+          </section>
         </section>
-  
-        <section class="notification">
-          <img src="/img/notification_add.png" class="notification-bell">
-          <p class="Za">За:</p>
-          <div class="time-input-container">
-              <input type="number" name="time-notification" class="time-notification number-time-event" min="1" required onchange="updateMinutesLabel(this.value)">
-              <span id="minutes-label" class="minutes-label">минут</span>
-          </div>
-        </section>
-      </section>
+      </main>
      
       <section class="bottom-nav">
       </section>

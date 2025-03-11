@@ -2,24 +2,58 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: Spectral, serif;
   }
   
   html, body {
-    height: 100%; /* Высота экрана */
+    height: 100vh; 
+    width: 393px;
+    overflow: hidden; 
     display: flex;
-    width: 100%;
-    max-width: 393px; 
+    flex-direction: column; 
     background-color: #b0b0b0;
   }
   
+  #lightTaskForm{
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+  }
+
   .tasks-panel{
-    display: flex;  
-    margin-top: 0px;
+    display: flex;
     background-color: #E8E7E7;
-    width: 393px;                     
-    height: 64px; 
+    width: 393px;
+    height: 64px;
+    flex-shrink: 0; 
   }
   
+  .content {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-color:#ffffff;
+    overflow-y: auto;
+  }
+
+  .content::-webkit-scrollbar {
+    width: 6px; 
+  }
+  
+  .content::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+  
+  .content::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 3px; 
+  }
+  
+  .content::-webkit-scrollbar-thumb:hover {
+    background: #888; 
+  }
+
 .back-button {
   background: none;
   border: none;
@@ -36,7 +70,7 @@
   .tasks-panel-h1{
     font-size: 18px;
     font-weight: 600;
-    font-family: Inter;
+    font-family: Spectral, serif;
     line-height: 21px;
     width: 155px;
     height: 21px;
@@ -92,7 +126,7 @@
   */
   .type-task-item{
     color: black;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -102,22 +136,25 @@
   }
   
   .list-tasks{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    width: 393px;
-    height: 564px;
-    background-color: white;   
+    align-items: center;   
   }
 
+  .name-task, .desc-task {
+    width: 368px; 
+    margin: 12px 0; 
+  }
+  
   .name-task{
     width: 368px;
     height: 46px;
     padding: 12px 0px 12px 24px;
-    gap: 10px;
+    /*gap: 10px;*/
     border-radius: 16px;
     border: 1px 0px 0px 0px;
-    opacity: 0px;
+    /*opacity: 0px;*/
     background-color: white;
     margin-top: 24px;
     margin-left: 12px;
@@ -130,11 +167,11 @@
     width: 368px;
     height:126px;
     max-width: 368px;
-    max-height: 126px;
+   /* max-height: 126px;
     min-width: 368px;
     min-height: 126px;
     gap: 10px;
-    opacity: 0px;
+    opacity: 0px;*/
     padding: 12px 0px 12px 24px;
     border-radius: 16px;
     background-color:white;
@@ -267,6 +304,17 @@
       background-image: none;
     }
 
+    .type-task-or-event-item{
+      color: rgb(255, 255, 255);
+      font-family: Spectral, serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 18px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+    }
+
 .date-event{
     display: flex;
     flex-direction: row;
@@ -307,12 +355,12 @@
     margin-right: 16px;
     padding: 0px;
     border-bottom: 1px solid black;
-    font-size: 16px; /* Установите нужный размер шрифта */
+    font-size: 16px; 
     line-height: 1.5em;
   }
 
 .date-span {
-    white-space: nowrap; /* Предотвращает перенос строки */
+    white-space: nowrap; 
 }
 
   .start-event-time{
@@ -324,7 +372,7 @@
     opacity: 0px;
     background-color: rgba(255, 162, 0, 0.296);
     color:rgb(245, 155, 0);
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -340,7 +388,7 @@
     opacity: 0px;
     background-color: rgba(255, 162, 0, 0.296);
     color:rgb(245, 155, 0);
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -349,7 +397,7 @@
 
   .tire{
     color: black;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 24px;
     font-weight: 600;
     line-height: 26px;
@@ -383,7 +431,7 @@
     width: 28px;
     height: 21px;
     color:black;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -404,15 +452,15 @@
 
 .minutes-label {
   white-space: nowrap; 
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 18px;
-    color: black;
-    margin-top: 4.5px;
-    margin-bottom: 4px;
-    width: 63px;
-    height: 18px;
+  font-family: Spectral, serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  color: black;
+  margin-top: 4.5px;
+  margin-bottom: 4px;
+  width: 63px;
+  height: 18px;
 }
 
   .time-notification{
@@ -420,7 +468,7 @@
     height: 18px;
     gap: 0px;
     opacity: 0px;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
@@ -435,24 +483,23 @@
   .number-time-event{
     max-width: 35px;
 }
+
   .bottom-nav {
     display: flex;
     justify-content: space-between;
     width: 393px;
     height: 66px;
-    position: absolute;
-    background-color: white;
-    margin: 0;             
+    background-color: white;            
   }
   
 .footer{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 393px;
   height: 48px;
-  position: absolute;
-  background-color: white;
-  margin-top: 66px;     
+  background-color: #E8E7E7;
+  flex-shrink: 0;    
 }
 
 
@@ -486,7 +533,7 @@
   margin-top: 6px;
   margin-bottom: 8px;
   margin-right: 30px;
-  font-family: Inter;
+  font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 21px;

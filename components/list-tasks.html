@@ -1,0 +1,34 @@
+<div class="list-tasks">
+    <section class="scroll-box">
+      <template id="taskCardTemplate">
+        <div class="task-card">
+          <div class="main-block">
+            <div class="info-title">
+              <img class="bell" src="/img/bell.png" alt="Уведомление">
+              <p class="name-task"></p>      
+            </div>
+            <div class="chip-list">
+              <div class="list-tags">
+                <p class="priorit"></p>
+              </div>
+              <div>
+                <p class="deadline"></p>
+              </div>
+            </div>
+          </div>
+          <div class="checker-box">
+            <img class="is-done" src="/img/da-galka.png" alt="Завершено">
+            <img class="delete" src="/img/been.png" alt="Удалить">
+          </div>
+        </div>
+      </template>
+      <div class="tasks-container"></div>
+      <div id="delete-window-id" class="delete-window hidden">
+        <p class="confirm">Подтвердить удаление</p>
+        <div class="buttons-block">
+          <button class="confirm-true">Да</button>
+          <button class="confirm-false">Отмена</button>
+        </div>
+      </div>
+    </section>
+  </div>

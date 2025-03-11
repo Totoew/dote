@@ -2,44 +2,59 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Spectral, serif;
 }
 
-
 body {
-  height: 100vh; /* Используем всю высоту экрана */
+  height: 100vh; 
+  width: 100%;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
   overflow: hidden; 
 }
 
+@media (max-width: 393px) {
+  .tasks-panel-h1 {
+    font-size: 20px;
+  }
+
+  .list-tags-item {
+    font-size: 10px;
+    padding: 0 4px;
+  }
+
+  .yellow-button {
+    width: calc(100% - 14px);
+  }
+
+  .name-task {
+    font-size: 14px;
+  }
+
+  .deadline {
+    font-size: 10px;
+  }
+}
+
 .header-1 {
   left: 0;
   width: 100%; 
-  max-width: 393px; 
-}
-
-.footer-1 {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  max-width: 393px;
-  height: 114px; /* Нижняя панель с учетом кнопки */
-  z-index: 10; /* Поверх контента */
 }
 
 .tasks-panel {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
   background-color: #26334A;
-  height: 64px; /* Фиксированная высота */
+  height: 64px; 
 }
 
 .tasks-panel-h1 {
   font-size: 24px;
   font-weight: 600;
-  font-family: Inter, sans-serif;
+  font-family: Spectral, serif;
   color: #FCFAEE;
   text-align: center;
   width: calc(100% - 40px);
@@ -79,7 +94,6 @@ body {
   bottom: 114px;
   left: 0; 
   width: 100%; 
-  max-width: 393px; 
   display: flex;
   flex-direction: column; 
   align-items: center;
@@ -139,16 +153,16 @@ body {
 }
 
 .confirm-true{
-  background-color: #00811c; /* Цвет фона кнопки */
-  color: rgb(0, 0, 0);              /* Цвет текста */
+  background-color: #00811c; 
+  color: rgb(0, 0, 0);              
   border-radius: 16px;
   padding: 10px 20px;
   font-size: 16px;
 }
 
 .confirm-false{
-  background-color: #bb433a; /* Цвет фона кнопки */
-  color: rgb(0, 0, 0);              /* Цвет текста */
+  background-color: #bb433a; 
+  color: rgb(0, 0, 0);              
   border-radius: 16px;
   padding: 10px 20px;
   font-size: 16px;
@@ -158,7 +172,6 @@ body {
   display: flex;
   flex-direction: column;
   width: 280px;
-
   height: 80px; 
   gap: 25px;
   opacity: 0px;
@@ -169,7 +182,6 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-
   width: 280px;
   height: 18.75px;
   opacity: 0px;
@@ -184,15 +196,10 @@ body {
 .chip-list {
   display: flex;
   justify-content: space-between;
-
   width: 280px;
   height: 20px;
   gap: 10px;
   opacity: 0px;
-}
-
-.dd-block{
-  padding: 4px;
 }
 
 .list-tags {
@@ -206,7 +213,6 @@ body {
   padding: 0 6px;
   line-height: 20px;
   white-space: nowrap;
-
   height: 20px; 
   box-sizing: border-box; 
   border-radius: 32px;
@@ -230,7 +236,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 80px;
-
   width: 24px;
   height: 64px;
   opacity: 0px;
@@ -250,24 +255,42 @@ body {
   padding-right: 4px ;
   padding-top: 3px ;
   padding-bottom: 3px ;
-
   margin-top: 5px;
   cursor: pointer;
 }
 
+.footer-1 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 114px; 
+  z-index: 10; 
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  background-color: #111828;
+}
+
 .bottom-nav {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   height: 66px;
   background-color: #26334A;
+  padding: 0 12.725vw;
 }
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
   width: 100%;
 }
 
@@ -282,24 +305,18 @@ body {
   color: white;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  background-color: #111828;
-}
-
 .yellow-button {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 380px;
+  width: 90%;
   height: 40px;
   border-radius: 8px;
   background-color: #FCBC02;
   text-decoration: none;
+  margin-right: 5%;
+  margin-left:5%;
 }
 
 .plus {
@@ -313,37 +330,32 @@ body {
   height: 21px;
 }
 
-@media (max-width: 393px) {
-  .tasks-panel-h1 {
-    font-size: 20px;
-  }
-
-  .list-tags-item {
-    font-size: 10px;
-    padding: 0 4px;
-  }
-
-  .yellow-button {
-    width: calc(100% - 14px);
-  }
-
-  .name-task {
-    font-size: 14px;
-  }
-
-  .deadline {
-    font-size: 10px;
-  }
-}
-
 .a-none-decorat {
-  text-decoration: none; /* Убираем стандартное подчеркивание */
-  color: inherit; /* Сохраняем цвет текста, если это важно */
+  text-decoration: none; 
+  color: inherit; 
+  width: 90%;
+  margin-right: 5%;
+  margin-left:5%;
 }
 
 .a-none-decorat:focus,
 .a-none-decorat:hover,
 .a-none-decorat:active {
-  outline: none; /* Убираем фокус-линию */
-  text-decoration: none; /* Убираем подчеркивание при любых состояниях */
+  outline: none; 
+  text-decoration: none; 
+  width: 90%;
+  margin-right: 5%;
+  margin-left:5%;
+}
+
+.split-screen,
+.calendar,
+.tune {
+  margin-right: 25.45vw;
+}
+
+.split-screen:last-child,
+.calendar:last-child,
+.tune:last-child {
+  margin-right: 0;
 }

@@ -1,0 +1,106 @@
+.header-1 {
+    left: 0;
+    width: 100%;
+    max-width: 393px;
+    margin-top: 0px; /* NDB */
+  }
+  
+  .tasks-panel {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0px;
+    background-color: #26334A;
+    width: 393px;
+    height: 64px;
+  }
+  
+  .date-icon {
+    display: flex;
+    flex-direction: column;
+    width: 32px;
+    height: 52px;
+    padding: 0px;
+    gap: 8px;
+    opacity: 0px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 12px;
+    margin-right: 32px;
+  }
+  
+  .day-week {
+    color: #FCBC02;
+    font-family: Spectral, serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-top: 1px;
+    margin-right: 6px;
+    margin-left: 6px;
+    margin-bottom: 0px;
+  }
+  
+  .circle {
+    width: 24px;
+    height: 24px;
+    background-color: #FCBC02; 
+    border-radius: 50%; 
+    margin-top: 0px;
+    margin-right: 4px;
+    margin-left: 4px;
+    margin-bottom: 1px;
+    padding-left: 3.5px;
+    padding-right: 3.5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+  
+  .day-number {
+    font-family: Spectral, serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+  
+  .tasks-panel-h1 {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Spectral, serif;
+    line-height: 26px;
+    text-align: center;
+    width: 103px;
+    height: 26px;
+    padding: 0px;
+    color: #FCFAEE;
+    margin-top: 19px;
+    margin-bottom: 19px;
+    margin-right: 60px;
+  }
+  
+  .tasks-panel-img {
+    margin-right: 37px; /* 15 */
+    margin-top: 22px;
+    margin-bottom: 22px;
+    width: 20px;
+    height: 20px;
+    opacity: 0px;
+    margin: 0px;
+    background-color: #26334A;
+    background: #26334A;
+    padding: 0px;
+    text-align: left;
+  }
+  
+  .button-calendar {
+    margin-right: 30px; /* 8 */
+    margin-top: 28px;
+    margin-bottom: 16px;
+    width: 14px;
+    height: 16px;
+    background-color: #26334A;
+    color: #26334A;
+    border: 0px;
+  }

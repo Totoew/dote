@@ -179,9 +179,9 @@ Object.keys(localStorage).forEach(key => {
         articleElement.style.position = 'absolute';
         articleElement.style.top = `${topPosition}px`;
         articleElement.style.height = `${heightEventCard}px`;
-        articleElement.style.left = '0'; // Если требуется выравнивание по левому краю
-        articleElement.style.right = '0'; // Или можно настроить ширину
-        articleElement.style.zIndex = 10; // Высокий z-index для отображения поверх
+        articleElement.style.left = '0'; 
+        articleElement.style.right = '0'; 
+        articleElement.style.zIndex = 10;
 
         // Добавляем карточку в контейнер
         container.appendChild(templateContent);
@@ -248,3 +248,9 @@ function addDeleteEventToExistingCards() {
 
 addDeleteEventToExistingCards();
 
+//не закрывать приложение при свайпе вниз
+document.addEventListener('touchmove', function (event) {
+    if (event.touches && event.touches[0].clientY > 0) {
+      event.preventDefault();
+    }
+  }, { passive: false });

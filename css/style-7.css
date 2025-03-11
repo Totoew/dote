@@ -2,23 +2,60 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: Spectral, serif;
   }
   
   html, body {
-    height: 100%; /* Высота экрана */ 
+    height: 100vh; 
+    /*width: 393px;*/
     width: 100%;
-    max-width: 393px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column; 
     background-color: #ffffff;
   }
   
+  #darkTaskForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+  }
+
   .tasks-panel{
-    display: flex;  
-    margin-top: 0px;
+    display: flex;
     background-color: #26334A;
-    width: 393px;                     
-    height: 64px; 
+    /*width: 393px;*/
+    width: 100%;
+    height: 64px;
+    flex-shrink: 0; 
   }
   
+  .content {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-color: #111828;
+    overflow-y: auto;
+  }
+  
+.content::-webkit-scrollbar {
+  width: 6px; 
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #555; 
+  border-radius: 3px; 
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}
+
 .back-button {
   background: none;
   border: none;
@@ -35,7 +72,7 @@
   .tasks-panel-h1{
     font-size: 18px;
     font-weight: 600;
-    font-family: Inter;
+    font-family: Spectral, serif;
     line-height: 21px;
     width: 155px;
     height: 21px;
@@ -91,7 +128,7 @@
   */
   .type-task-item{
     color: white;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -100,20 +137,23 @@
     text-decoration-skip-ink: none;
   }
   
-  .list-tasks{
+  .list-tasks {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    width: 393px;
-    height: 564px;
-    background-color: #111828;   
+    align-items: center; 
+  }
+
+  .name-task, .desc-task {
+    width: 368px; 
+    margin: 12px 0; 
   }
 
   .name-task{
     width: 368px;
     height: 46px;
     padding: 12px 0px 12px 24px;
-    gap: 10px;
+    /*gap: 10px;*/
     border-radius: 16px;
     border: 1px 0px 0px 0px;
     opacity: 0px;
@@ -127,12 +167,12 @@
   .desc-task{
     width: 368px;
     height:126px;
-    max-width: 368px;
+   /* max-width: 368px;
     max-height: 126px;
     min-width: 368px;
     min-height: 126px;
     gap: 10px;
-    opacity: 0px;
+    opacity: 0px;*/
     padding: 12px 0px 12px 24px;
     border-radius: 16px;
     background-color:#111828;
@@ -278,7 +318,7 @@
     
 .type-task-or-event-item{
     color: black;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
@@ -344,7 +384,7 @@
     opacity: 0px;
     background-color: rgba(255, 162, 0, 0.296);
     color:rgb(245, 155, 0);
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -360,7 +400,7 @@
     opacity: 0px;
     background-color: rgba(255, 162, 0, 0.296);
     color:rgb(245, 155, 0);
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -369,7 +409,7 @@
 
   .tire{
     color: white;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 24px;
     font-weight: 600;
     line-height: 26px;
@@ -403,7 +443,7 @@
     width: 28px;
     height: 21px;
     color:#ffffff;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
     line-height: 21px;
@@ -424,7 +464,7 @@
 
 .minutes-label {
   white-space: nowrap; 
-    font-family: Inter;
+  font-family: Spectral, serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
@@ -440,7 +480,7 @@
     height: 18px;
     gap: 0px;
     opacity: 0px;
-    font-family: Inter;
+    font-family: Spectral, serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
@@ -455,39 +495,37 @@
   .number-time-event{
     max-width: 35px;
 }
-  .bottom-nav {
-    display: flex;
-    justify-content: space-between;
-    width: 393px;
-    height: 66px;
-    position: absolute;
-    background-color: #111828;
-    margin: 0;             
-  }
-  
-.footer{
+
+.bottom-nav {
   display: flex;
   justify-content: space-between;
-  width: 393px;
+  /*width: 393px;*/
+  width: 100%;
+  height: 66px;
+  background-color: #111828;           
+}
+  
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*width: 393px;*/
+  width: 100%;
   height: 48px;
-  position: absolute;
   background-color: #111828;
-  margin-top: 66px;     
+  flex-shrink: 0; 
 }
 
-
-.yellow-button{
+.yellow-button {
   display: flex;
-  width: 380px;
+  align-items: center; 
+  justify-content: center; 
+  width: 90%; 
   height: 40px;
-  padding: 4px 0px 0px 0px;
-  gap: 10px;
   border-radius: 8px;
-  opacity: 0px;
-  background-color: #0e8a00;
-  margin-top:0px;
-  margin-right: 7px;
-  margin-left: 7px;
+  background-color: #FCBC02; 
+  margin: 0 auto; 
+  padding: 0; 
 }
 
 .plus{
@@ -499,17 +537,14 @@
   margin-bottom: 14px;
 }
 
-.button-add-task{
-  color: white;
-  width: 228px;
-  height: 21px;
-  margin-top: 6px;
-  margin-bottom: 8px;
-  margin-right: 73.5px;
-  margin-left: 73.5px;
-  font-family: Inter;
+.button-add-task {
+  color: white; /* Белый текст */
+  font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 21px;
+  text-align: center; /* Центрируем текст */
+  margin: 0; /* Убираем отступы */
+  white-space: nowrap; /* Запрещаем перенос текста */
 }
 

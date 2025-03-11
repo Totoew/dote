@@ -176,4 +176,15 @@ function addDeleteEventToExistingCards() {
 // Вызов функции для добавления событий на кнопки удаления
 addDeleteEventToExistingCards();
 
-
+// Отключаем свайп вниз на уровне документа
+document.addEventListener('touchmove', function (event) {
+    if (event.touches && event.touches[0].clientY > 0) {
+      event.preventDefault();
+    }
+  }, { passive: false });
+  
+// Разрешаем скролл внутри контейнера .scroll-box
+const scrollBox = document.querySelector('.list-tasks');
+scrollBox.addEventListener('touchmove', function (event) {
+    event.stopPropagation();
+  }, { passive: true });
