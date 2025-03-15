@@ -23,16 +23,3 @@ spec:
           value: "7688220876:AAEdlJxaqWj9ZBaJsKU_b8Mxu0oBSC99CPY"
       imagePullSecrets:
         - name: my-application-secret
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-node-app
-spec:
-  type: NodePort
-  ports:
-    - port: 3000
-      targetPort: 3000
-      nodePort: 30000
-  selector:
-    app: my-node-app

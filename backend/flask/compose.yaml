@@ -25,15 +25,3 @@ spec:
           value: "sqlite:///users.db"
       imagePullSecrets:
         - name: my-application-secret
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-flask-app-service
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 5000
-  selector:
-    app: my-flask-app
