@@ -22,7 +22,7 @@ make_flask_docker_image:
     - docker push $FLASK_LATEST
   when: manual
   only:
-    - main
+    - 2025-version
 
 make_node_docker_image:
   stage: make_docker_image
@@ -35,7 +35,7 @@ make_node_docker_image:
     - docker push $NODE_LATEST
   when: manual
   only:
-    - main
+    - 2025-version
 
 deploy:
   stage: deploy
@@ -46,7 +46,7 @@ deploy:
     - kubectl apply -f ./cicd/kubernetes-deployment.yaml
   when: manual
   only:
-    - main
+    - 2025-version
 
 logs:
   stage: logs
@@ -55,4 +55,4 @@ logs:
     - kubectl logs -n stellar deploy/my-application-backend --since=30m
   when: manual
   only:
-    - main
+    - 2025-version
