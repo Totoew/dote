@@ -52,7 +52,7 @@ logs:
   stage: logs
   image: hub.66bit.ru/shared/stk8s:1.26.2
   script:
-    - kubectl logs -n stellar deploy/my-flask-app --since=30m
+    #- kubectl logs -n stellar deploy/my-flask-app --since=30m
     - kubectl logs -n stellar deploy/my-node-app --since=30m
   when: manual
   only:
