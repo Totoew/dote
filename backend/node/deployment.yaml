@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-node-app
+  namespace: stellar
 spec:
   replicas: 3
   selector:
@@ -20,6 +21,8 @@ spec:
         env:
         - name: TELEGRAM_BOT_TOKEN
           value: "7688220876:AAEdlJxaqWj9ZBaJsKU_b8Mxu0oBSC99CPY"
+      imagePullSecrets:
+        - name: my-application-secret
 ---
 apiVersion: v1
 kind: Service
@@ -30,6 +33,6 @@ spec:
   ports:
     - port: 3000
       targetPort: 3000
-      nodePort: 30000  # Вы можете выбрать любой доступный порт
+      nodePort: 30000
   selector:
     app: my-node-app

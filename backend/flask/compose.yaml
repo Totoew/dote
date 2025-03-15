@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-flask-app
+  namespace: stellar
   labels:
     app: my-flask-app
 spec:
@@ -22,6 +23,8 @@ spec:
         env:
         - name: DATABASE_URL
           value: "sqlite:///users.db"
+      imagePullSecrets:
+        - name: my-application-secret
 ---
 apiVersion: v1
 kind: Service
