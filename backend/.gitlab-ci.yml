@@ -15,7 +15,7 @@ create_namespace_and_secret:
   stage: create_namespace_and_secret
   image: hub.66bit.ru/shared/stk8s:1.26.2
   script:
-    - kubectl create namespace stellar
+    #- kubectl create namespace stellar
     - kubectl create secret generic my-application-secret --from-file=.dockerconfigjson=$CR_CONFIG --type=kubernetes.io/dockerconfigjson --namespace=stellar
   when: manual
 
