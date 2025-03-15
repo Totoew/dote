@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-node-app
-        image: $CI_REGISTRY_IMAGE/backend/node:latest
+        image: ./backend/node:latest
         ports:
         - containerPort: 3000
         env:
