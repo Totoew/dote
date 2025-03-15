@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: my-flask-app:latest
+        image: $CI_REGISTRY_IMAGE/backend/flask:latest
         ports:
         - containerPort: 5000
         env:

@@ -1,8 +1,7 @@
 variables:
-  FLASK_LATEST: $CI_REGISTRY_IMAGE/backend:latest
-  NODE_LATEST: $CI_REGISTRY_IMAGE/backend:latest
+  FLASK_LATEST: $CI_REGISTRY_IMAGE/backend/flask:latest
+  NODE_LATEST: $CI_REGISTRY_IMAGE/backend/node:latest
 stages:
-  #- create_namespace_and_secret
   - make_docker_image
   - deploy
   - logs
