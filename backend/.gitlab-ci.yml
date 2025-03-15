@@ -49,7 +49,7 @@ deploy:
   stage: deploy
   image: hub.66bit.ru/shared/stk8s:1.26.2
   script:
-    - kubectl delete -f ./cicd/kubernetes-deployment.yaml
+    #- kubectl delete -f ./cicd/kubernetes-deployment.yaml
     - kubectl apply -f ./cicd/kubernetes-persistent.yaml
     - kubectl apply -f ./cicd/kubernetes-deployment.yaml
   when: manual
