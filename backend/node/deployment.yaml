@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-node-app
-        image: ./backend/node:latest
+        image: hub.66bit.ru/urfu/stellar/school-timeplanner/backend/node:latest
         ports:
         - containerPort: 3000
         env:
