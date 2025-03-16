@@ -40,7 +40,7 @@ deploy:
   stage: deploy
   image: hub.66bit.ru/shared/stk8s:1.26.2
   script:
-    #- kubectl delete -f ./backend/node/deployment.yaml
+    - kubectl delete -f ./backend/node/deployment.yaml
     - kubectl apply -f ./backend/node/service.yaml
     - kubectl apply -f ./backend/node/deployment.yaml
   when: manual
