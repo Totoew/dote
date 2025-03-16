@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-node-app
-        image: https://git.66bit.ru/internship-2025/school-timeplanner/school-timeplanner/container_registry/274:latest
+        image: hub.66bit.ru/internship-2025/school-timeplanner/school-timeplanner/container_registry/274:latest
         ports:
         - containerPort: 3000
         env:
