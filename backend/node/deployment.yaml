@@ -4,7 +4,7 @@ metadata:
   name: my-node-app
   namespace: stellar
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: my-node-app
