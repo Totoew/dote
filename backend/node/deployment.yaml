@@ -21,5 +21,9 @@ spec:
         env:
         - name: TELEGRAM_BOT_TOKEN
           value: "7688220876:AAEdlJxaqWj9ZBaJsKU_b8Mxu0oBSC99CPY"
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
       imagePullSecrets:
         - name: my-application-secret
