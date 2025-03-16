@@ -5,10 +5,10 @@ const schedule = require('node-schedule');
 
 const app = express();
 const TELEGRAM_BOT_TOKEN = '7688220876:AAEdlJxaqWj9ZBaJsKU_b8Mxu0oBSC99CPY'
-const bot = new Telegraf(TELEGRAM_BOT_TOKEN); // Замените на токен вашего бота
+const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
 const cors = require('cors');
 app.use(cors());
-const domain = 'https://school-planner.netlify.app'; // URL вашего веб-приложения
+const domain = 'https://school-planner.netlify.app';
 
 app.use(express.json());
 
