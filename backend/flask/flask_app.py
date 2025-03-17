@@ -48,7 +48,7 @@ class Database:
 
 app = Flask(__name__)
 CORS(app)
-db = Database('192.168.0.169', '5432', 'laert', '04062005', 'school-planner')
+db = Database('my-application-postgres-service', '5432', 'laert', '04062005', 'school-planner')
 
 # Переменная, необходимая для запоминания последнего пользователя, вошедшего в приложение
 last_user_id = None
