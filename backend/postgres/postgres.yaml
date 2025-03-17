@@ -27,7 +27,7 @@ spec:
             - name: POSTGRES_USER
               value: laert
             - name: POSTGRES_PASSWORD
-              value: 04062005
+              value: "04062005"
             - name: POSTGRES_DB
               value: school-planner
             - name: PGDATA
