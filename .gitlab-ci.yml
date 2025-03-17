@@ -62,6 +62,7 @@ logs:
   script:
     - kubectl logs -n stellar deploy/my-node-app --since=30m
     - kubectl logs -n stellar deploy/my-flask-app --since=30m
+    - kubectl logs -n stellar deploy/my-application-database --since=30m
   when: manual
   only:
     - 2025-version
