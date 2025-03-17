@@ -1,4 +1,4 @@
--- Создание таблицы users
+'''-- Создание таблицы users
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     telegram_id INT UNIQUE NOT NULL
@@ -32,4 +32,6 @@ CREATE TABLE events (
     start_time VARCHAR(50) NOT NULL,
     finish_time VARCHAR(50) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
+);'''
+
+\dt
