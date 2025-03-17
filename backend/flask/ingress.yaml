@@ -15,25 +15,25 @@ spec:
               service:
                 name: my-flask-app-service
                 port:
-                  number: 5000
+                  number: 80
           - pathType: Prefix
             path: /get_user_id
             backend:
               service:
                 name: my-flask-app-service
                 port:
-                  number: 5000
+                  number: 80
           - pathType: Prefix
             path: /tasks
             backend:
               service:
                 name: my-flask-app-service
                 port:
-                  number: 5000
+                  number: 80
           - pathType: Prefix
             path: /events
             backend:
               service:
                 name: my-flask-app-service
                 port:
-                  number: 5000
+                  number: 80
