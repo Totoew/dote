@@ -21,4 +21,5 @@ COPY . .
 EXPOSE 5000
 
 # Запускаем приложение
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "flask_app:app"]
+#CMD ["gunicorn", "--bind", "0.0.0.0:80", "flask_app:app"]
+CMD ["python", "flask_app.py"]
