@@ -54,7 +54,7 @@ deploy:
     - kubectl apply -f ./backend/flask/deployment.yaml
 
     - kubectl get pods -n stellar
-    - kubectl exec -i my-application-database-0 -- psql -U laert -d school-planner < ./backend/postgres/create_tables.sql
+    - kubectl exec -i my-application-database-0 -n stellar -- psql -U laert -d school-planner < ./backend/postgres/create_tables.sql
   when: manual
   only:
     - 2025-version
