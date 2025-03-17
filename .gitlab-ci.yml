@@ -52,6 +52,8 @@ deploy:
     - kubectl apply -f ./backend/flask/service.yaml
     - kubectl apply -f ./backend/flask/ingress.yaml
     - kubectl apply -f ./backend/flask/deployment.yaml
+
+    - kubectl get pods
   when: manual
   only:
     - 2025-version
