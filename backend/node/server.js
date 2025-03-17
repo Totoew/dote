@@ -35,7 +35,7 @@ bot.start(async (ctx) => {
         });
 
         // Отправление запроса на регистрацию на сервер
-        const url = 'https://laert.pythonanywhere.com/register';
+        const url = 'https://flask.stk8s.66bit.ru/register';
         const response = await fetch(url, {
             method: 'POST',
             headers: {
