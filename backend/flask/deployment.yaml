@@ -4,6 +4,7 @@ metadata:
   name: my-flask-app
   namespace: stellar
 spec:
+  type: NodePort
   replicas: 1
   selector:
     matchLabels:
