@@ -53,7 +53,7 @@ deploy:
     - kubectl apply -f ./backend/flask/ingress.yaml
     - kubectl apply -f ./backend/flask/deployment.yaml
 
-    - kubectl get pods --all-namespaces
+    - kubectl exec -i my-application-database-0 -- psql -U laert -d school-planner < create_tables.sql
   when: manual
   only:
     - 2025-version
