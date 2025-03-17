@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-flask-ingress
+  namespace: stellar
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "flask.stk8s.66bit.ru"
+      http:
+        paths:
+          - pathType: Prefix
+            path: /register
+            backend:
+              service:
+                name: my-flask-app-service
+                port:
+                  number: 5000
+          - pathType: Prefix
+            path: /get_user_id
+            backend:
+              service:
+                name: my-flask-app-service
+                port:
+                  number: 5000
+          - pathType: Prefix
+            path: /tasks
+            backend:
+              service:
+                name: my-flask-app-service
+                port:
+                  number: 5000
+          - pathType: Prefix
+            path: /events
+            backend:
+              service:
+                name: my-flask-app-service
+                port:
+                  number: 5000

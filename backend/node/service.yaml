@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-node-app
+  name: my-node-app-service
   namespace: stellar
 spec:
   type: NodePort
