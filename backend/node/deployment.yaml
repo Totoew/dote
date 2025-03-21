@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-node-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-node-app
+  template:
+    metadata:
+      labels:
+        app: my-node-app
+    spec:
+      containers:
+      - name: my-node-app
+        image: my-node-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: TELEGRAM_BOT_TOKEN
+          value: "7688220876:AAEdlJxaqWj9ZBaJsKU_b8Mxu0oBSC99CPY"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-node-app
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30000  # Вы можете выбрать любой доступный порт
+  selector:
+    app: my-node-app
