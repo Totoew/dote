@@ -201,4 +201,5 @@ def update_task_status(task_id):
 
 # Запуск приложения
 if __name__ == '__main__':
+    print('Your app is listening on port 80')
     app.run(port=80)
