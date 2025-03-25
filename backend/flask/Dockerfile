@@ -22,4 +22,4 @@ EXPOSE 80
 
 # Запускаем приложение
 #CMD ["gunicorn", "--bind", "0.0.0.0:80", "flask_app:app"]
-CMD ["flask_app.py"]
+CMD ["python", "flask_app.py"]
