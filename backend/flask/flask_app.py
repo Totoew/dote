@@ -4,7 +4,7 @@ import requests
 import psycopg2
 
 
-'''class Database:
+class Database:
     def __init__(self, host, port, user, password, database):
         self.connection = psycopg2.connect(
             host=host,
@@ -43,12 +43,12 @@ import psycopg2
 
     def get_user(self, telegram_id):
         self.cursor.execute('SELECT 1 FROM users WHERE telegram_id = %s LIMIT 1', (telegram_id,))
-        return self.cursor.fetchone()'''
+        return self.cursor.fetchone()
 
 
 app = Flask(__name__)
 CORS(app)
-#db = Database('my-application-postgres-service', '5432', 'laert', '04062005', 'school-planner')
+db = Database('my-application-postgres-service', '5432', 'laert', '04062005', 'school-planner')
 
 # Переменная, необходимая для запоминания последнего пользователя, вошедшего в приложение
 last_user_id = None
@@ -64,15 +64,15 @@ def register_user():
     if not telegram_id:
         return jsonify({"error": "Telegram ID is required"}), 400
 
-    '''user = db.get_user(telegram_id)
+    user = db.get_user(telegram_id)
     if not user:
-        db.insert_into_table('users', (telegram_id,))'''
+        db.insert_into_table('users', (telegram_id,))
     last_user_id = telegram_id
     return jsonify({"telegram_id": telegram_id}), 200
 
 
 # Маршрут, необходимый для получения последнего пользователя приложения
-'''@app.route('/get_user_id', methods=['GET'])
+@app.route('/get_user_id', methods=['GET'])
 def get_user_id():
     if last_user_id:
         return jsonify({"user_id": last_user_id}), 200
@@ -148,10 +148,10 @@ def send_data_to_server(url, data):
         else:
             print(f"Ошибка при отправке данных: {response.status_code} - {response.text}")
     except Exception as e:
-        print("Произошла ошибка:", e)'''
+        print("Произошла ошибка:", e)
 
 # Маршрут, используемый для получения всех задач конкретного пользователя (не используется)
-'''@app.route('/users/tasks', methods=['GET'])
+@app.route('/users/tasks', methods=['GET'])
 def get_tasks(user_id):
     tasks = Task.query.filter_by(user_id=user_id).all()
 
@@ -173,11 +173,11 @@ def get_tasks(user_id):
             'task_priority': task.priority
         })
 
-    return jsonify({'tasks': tasks_list}), 200'''
+    return jsonify({'tasks': tasks_list}), 200
 
 
 # Маршрут для обновления статуса задачи (не используется)
-'''@app.route('/users/<int:user_id>/tasks/<int:task_id>', methods=['PUT'])
+@app.route('/users/<int:user_id>/tasks/<int:task_id>', methods=['PUT'])
 def update_task_status(task_id):
     data = request.get_json()
 
@@ -196,9 +196,9 @@ def update_task_status(task_id):
     task.status = new_status  # Предполагается, что у вас есть поле status в модели Task
     db.session.commit()
 
-    return jsonify({'message': 'Статус задачи успешно обновлён.'}), 200'''
+    return jsonify({'message': 'Статус задачи успешно обновлён.'}), 200
 
 
 # Запуск приложения
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(port=80)

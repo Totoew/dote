@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Открываем порт, на котором будет работать приложение
-EXPOSE 5000
+EXPOSE 80
 
 # Запускаем приложение
 CMD ["gunicorn", "--bind", "0.0.0.0:80", "flask_app:app"]
