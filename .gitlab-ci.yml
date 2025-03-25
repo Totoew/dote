@@ -51,12 +51,13 @@ deploy:
     - kubectl delete -f ./backend/flask/deployment.yaml
     - kubectl delete -f ./backend/flask/service.yaml
     - kubectl delete -f ./backend/flask/ingress.yaml
-    
+
     - kubectl apply -f ./backend/flask/service.yaml
     - kubectl apply -f ./backend/flask/ingress.yaml
     - kubectl apply -f ./backend/flask/deployment.yaml
 
     - kubectl get services -n stellar
+    - kubectl describe service my-flask-app -n stellar
     - kubectl exec -i my-application-database-0 -n stellar -- psql -U laert -d school-planner < ./backend/postgres/create_tables.sql
   when: manual
   only:
