@@ -48,7 +48,7 @@ deploy:
     - kubectl apply -f ./backend/postgres/postgres.yaml
     - kubectl apply -f ./backend/postgres/service.yaml
 
-    #- kubectl delete -f ./backend/flask/deployment.yaml
+    - kubectl delete -f ./backend/flask/deployment.yaml
     - kubectl apply -f ./backend/flask/service.yaml
     - kubectl apply -f ./backend/flask/ingress.yaml
     - kubectl apply -f ./backend/flask/deployment.yaml
