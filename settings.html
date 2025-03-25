@@ -1,12 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
-    <title>Список задач</title>
+    <title>Настройки</title>
     <link rel="icon" href="img/logo.png" type="png">
-    <link href="css/style-6.css" rel="stylesheet">
-    <!--<link href="css/light-style-1.css" rel="stylesheet">-->
+    <link id="theme-style" href="css/style-6.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
@@ -16,7 +14,7 @@
     <div class="header-1">     
       <section class="tasks-panel">
         <h1 class="tasks-panel-h1">Настройки</h1>
-        <img class="tasks-panel-img" src="/img/manage_search.png">
+        <img class="tasks-panel-img" src="/img/manage_search.png" data-light="img/manage_search_light.png" data-dark="img/manage_search.png">
       </section>
     </div>
 
@@ -24,25 +22,27 @@
     <section class="scroll-box">
       <div class="theme-block">
         <div class="theme-block-hard">
-          <a class='a-theme-block' href="light-settings.html">
-            <img width="18px" height="18px" class="theme-image" src="/img/rectan_light.jpg">
-          </a>
+          <button id="theme-toggle" class="a-theme-block">
+            <img width="18px" height="18px" class="theme-image" src="/img/rectan_light.jpg"
+             data-light="img/rectan_dark.jpg" data-dark="img/rectan_light.jpg">
+          </button>
           <p class="theme-text">Сменить тему на светлую</p>
         </div>
       </div>
     </section>
   </div>
 
-<div class="footer-1">
+  <div class="footer-1">
     <section class="bottom-nav">
       <div class="nav-item nav-item-0">
-        <a href="settings.html">
-          <img class="tune image" src="/img/tune-active.png">
+        <a class='a-block' href="settings.html">
+          <img class="tune image" src="/img/tune-active.png"
+           data-light="img/tune-light-active.png" data-dark="img/tune-active.png">
         </a>
         <p class="nav-item-0-txt p-tag">Настройки</p>
       </div>
       <div class="nav-item nav-item-1">
-        <a href="shedule.html">
+        <a class='a-block' href="shedule.html">
           <img class="calendar image" src="/img/calendar_month.png">
         </a>
         <p class="nav-item-1-txt p-tag">Расписание</p>
@@ -57,8 +57,10 @@
 
     <section class="footer">
     </section>
-    
+
   </div>
 <script src="js/no-scroll.js"></script>
+<script src="js/theme-change.js"></script>
 </body>
 </html>
+
