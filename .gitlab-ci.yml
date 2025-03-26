@@ -48,8 +48,7 @@ deploy:
     - kubectl apply -f ./backend/postgres/postgres.yaml
     - kubectl apply -f ./backend/postgres/service.yaml
 
-    #- kubectl delete deployment my-flask-app -n stellar
-    #- kubectl delete -f ./backend/flask/deployment.yaml
+    - kubectl delete -f ./backend/flask/deployment.yaml
     - kubectl delete -f ./backend/flask/service.yaml
     - kubectl delete -f ./backend/flask/ingress.yaml
 
