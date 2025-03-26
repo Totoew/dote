@@ -39,7 +39,8 @@ class Database:
 
     def get_new_id(self, table_name):
         self.cursor.execute(f'SELECT * FROM \"{table_name}\" ORDER BY ID DESC LIMIT 1')
-        return self.cursor.fetchone()[0] + 1
+        result = self.cursor.fetchone()
+        return 0 if result is None else result[0] + 1
 
     def get_user(self, telegram_id):
         self.cursor.execute('SELECT 1 FROM users WHERE telegram_id = %s LIMIT 1', (telegram_id,))
