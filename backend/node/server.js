@@ -70,17 +70,34 @@ app.post('/schedule', (req, res) => {
     console.log(telegram_id, time, message)
     const schedule_time = new Date(time);
 
+    const currentDateTime = new Date();
+    const isoString = currentDateTime.toISOString();
+
     // Запланировать отправку сообщения
     try {
         const job = schedule.scheduleJob(schedule_time, async function () {
             await sendMessage(telegram_id, message);
         });
-        res.send('Message scheduled successfully!');
+        res.send('Message scheduled successfully!', isoString);
     } catch (error) {
         console.error('Error scheduling message:', error);
         res.status(500).send('Failed to schedule message.');
     }
 });
+
+function parseDate(dateStr, timeStr) {
+    const [day, month, year] = dateStr.split('.').map(Number);
+    
+    // Создаем объект Date с учетом часового пояса Екатеринбурга (UTC+5)
+    const date = new Date(Date.UTC(year, month - 1, day, ...timeStr.split(':').map(Number), 0));
+    
+    // Устанавливаем часовой пояс Екатеринбурга
+    const mskOffset = 5 * 60; // смещение в минутах для Екатеринбурга
+    const utcOffset = date.getTimezoneOffset(); // смещение в минутах для текущего часового пояса
+    date.setMinutes(date.getMinutes() + mskOffset + utcOffset);
+
+    return date;
+}
 
 const sendMessage = async (telegram_id, message) => {
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
