@@ -72,13 +72,13 @@ app.post('/schedule', (req, res) => {
 
     const currentDateTime = new Date();
     const isoString = currentDateTime.toISOString();
-
+    console.log(isoString)
     // Запланировать отправку сообщения
     try {
         const job = schedule.scheduleJob(schedule_time, async function () {
             await sendMessage(telegram_id, message);
         });
-        res.send('Message scheduled successfully!', isoString);
+        res.status(201).send('Message scheduled successfully!', isoString);
     } catch (error) {
         console.error('Error scheduling message:', error);
         res.status(500).send('Failed to schedule message.');
