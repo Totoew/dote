@@ -58,7 +58,6 @@ deploy:
 
     - kubectl get services -n stellar
     - kubectl describe service my-flask-app -n stellar
-    - kubectl exec -i my-application-database-0 -n stellar -- psql -U laert -d school-planner < ./backend/postgres/create_tables.sql
   when: manual
   only:
     - 2025-version
@@ -69,6 +68,7 @@ logs:
   script:
     - kubectl logs -n stellar deploy/my-node-app --since=30m
     - kubectl logs -n stellar deploy/my-flask-app --since=30m
+    - kubectl exec -i my-application-database-0 -n stellar -- psql -U laert -d school-planner < ./backend/postgres/create_tables.sql
   when: manual
   only:
     - 2025-version
