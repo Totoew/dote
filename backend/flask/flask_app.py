@@ -25,7 +25,7 @@ class Database:
 
     def insert_into_table(self, table_name, values):
         try:
-            id = (get_user_id(table_name),)
+            id = (get_new_id(table_name),)
             values = id + values
 
             placeholders = ', '.join(['%s'] * len(values))
