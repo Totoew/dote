@@ -43,7 +43,7 @@ class Database:
         return 0 if result is None else result[0] + 1
 
     def get_user(self, telegram_id):
-        self.cursor.execute('SELECT 1 FROM users WHERE telegram_id = %s LIMIT 1', (telegram_id,))
+        self.cursor.execute('SELECT telegram_id FROM users WHERE telegram_id = %s LIMIT 1', (telegram_id,))
         return self.cursor.fetchone()
 
 
@@ -90,7 +90,7 @@ def create_task():
         return jsonify({'message': 'Пользователь не найден.'}), 404
 
     print(user)
-    telegram_id = user[1]
+    telegram_id = user[0]
 
     # Создаем новую задачу
     new_task = (
@@ -120,7 +120,7 @@ def create_event():
     if not user:
         return jsonify({'message': 'Пользователь не найден.'}), 404
 
-    telegram_id = user[1]
+    telegram_id = user[0]
 
     # Создаём новое событие
     new_event = (
