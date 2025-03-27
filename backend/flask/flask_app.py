@@ -111,8 +111,9 @@ def create_task():
         'telegram_id': telegram_id,
         'date': data['task_date'],
         'time': data['task_notification_time'],
-        'message': f'Не забудь о своей задаче! {data['task_name']}!'
+        'message': f"Не забудь о своей задаче! {data['task_name']}!"
     }
+    data_to_shedule = json.dumps(data_to_shedule)
     send_data_to_server(data_to_shedule)
 
     data['task_id'] = db.get_new_id('tasks') - 1
