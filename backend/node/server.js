@@ -114,16 +114,15 @@ const sendMessage = async (telegram_id, message) => {
 };
 
 function parseDate(date, time) {
-    const baseTime = '17:35:00'.split(':').map(Number)
-    baseTime.setMinutes(baseTime.getMinutes() - time)
+    const baseTime = '17:40:00'.split(':').map(Number)
     const [year, month, day] = date.split('-').map(Number);
-    
-    const formated_date = new Date(Date.UTC(year, month - 1, day, ...baseTime, 0));
+    const baseDate = new Date(Date.UTC(year, month - 1, day, ...baseTime, 0))
+    baseDate.setMinutes(baseDate.getMinutes() - time)
   
-    const utcOffset = formated_date.getTimezoneOffset();
-    formated_date.setMinutes(formated_date.getMinutes() + utcOffset);
+    const utcOffset = baseDate.getTimezoneOffset();
+    baseDate.setMinutes(baseDate.getMinutes() + utcOffset);
   
-    return formated_date.toISOString();
+    return baseDate.toISOString();
   }
 
 // Запуск бота
