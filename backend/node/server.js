@@ -68,13 +68,16 @@ app.post('/webhook', (req, res) => {
 
 //2025-03-26T14:48:27.090Z - время в iso формате
 app.post('/schedule', (req, res) => {
-    const { telegram_id, time, message } = req.body;
-    console.log(telegram_id, time, message)
-    const schedule_time = new Date(time);
+    const { telegram_id, date, time, message } = req.body;
+    console.log(telegram_id, date, time, message)
 
+    /*const schedule_time = new Date(time);
     const currentDateTime = new Date();
-    const isoString = currentDateTime.toISOString();
+    const isoString = currentDateTime.toISOString();*/
+
+    const isoString = parseDate(date, time);
     console.log(isoString)
+
     // Запланировать отправку сообщения
     try {
         const job = schedule.scheduleJob(schedule_time, async function () {
@@ -110,19 +113,18 @@ const sendMessage = async (telegram_id, message) => {
     }
 };
 
-function parseDate(dateStr, timeStr) {
-    const [day, month, year] = dateStr.split('.').map(Number);
+function parseDate(date, time) {
+    const baseTime = '17:15:00'.split(':').map(Number)
+    baseTime.setMinutes(baseTime.getMinutes() - time)
+    const [year, month, day] = date.split('-').map(Number);
     
-    // Создаем объект Date с учетом часового пояса Екатеринбурга (UTC+5)
-    const date = new Date(Date.UTC(year, month - 1, day, ...timeStr.split(':').map(Number), 0));
-    
-    // Устанавливаем часовой пояс Екатеринбурга
-    const mskOffset = 5 * 60; // смещение в минутах для Екатеринбурга
-    const utcOffset = date.getTimezoneOffset(); // смещение в минутах для текущего часового пояса
-    date.setMinutes(date.getMinutes() + mskOffset + utcOffset);
-
-    return date;
-}
+    const formated_date = new Date(Date.UTC(year, month - 1, day, ...baseTime, 0));
+  
+    const utcOffset = formated_date.getTimezoneOffset();
+    formated_date.setMinutes(formated_date.getMinutes() + utcOffset);
+  
+    return formated_date.toISOString();
+  }
 
 // Запуск бота
 bot.launch();

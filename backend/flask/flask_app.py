@@ -85,16 +85,16 @@ def get_user_id():
 def create_task():
     data = request.json
 
-    user = db.get_user(data['user_id'])
+    telegram_id = data['user_id']
+    user = db.get_user(telegram_id)
     if not user:
         return jsonify({'message': 'Пользователь не найден.'}), 404
 
-    print(user)
-    telegram_id = user[0]
+    user_id = user[0]
 
     # Создаем новую задачу
     new_task = (
-        telegram_id,
+        user_id,
         data['task_type'],
         data['task_name'],
         data.get('task_description', None),
@@ -107,7 +107,15 @@ def create_task():
 
     db.insert_into_table('tasks', new_task)
 
-    data['task_id'] = db.get_new_id('tasks')
+    data_to_shedule = {
+        'telegram_id': telegram_id,
+        'date': data['task_date'],
+        'time': data['task_notification_time'],
+        'message': f'Не забудь о своей задаче! {data['task_name']}!'
+    }
+    send_data_to_server(data_to_shedule)
+
+    data['task_id'] = db.get_new_id('tasks') - 1
     return jsonify({'message': 'Задача успешно создана.', 'task': data}), 201
 
 
@@ -116,15 +124,16 @@ def create_task():
 def create_event():
     data = request.json
 
-    user = db.get_user(data['user_id'])
+    telegram_id = data['user_id']
+    user = db.get_user(telegram_id)
     if not user:
         return jsonify({'message': 'Пользователь не найден.'}), 404
 
-    telegram_id = user[0]
+    user_id = user[0]
 
     # Создаём новое событие
     new_event = (
-        telegram_id,
+        user_id,
         data['event_type'],
         data['event_name'],
         data.get('event_description', None),
@@ -141,7 +150,8 @@ def create_event():
     return jsonify({'message': 'Событие успешно создано.', 'event': data}), 201
 
 
-def send_data_to_server(url, data):
+def send_data_to_server(data):
+    url = 'https://node.stk8s.66bit.ru/schedule'
     try:
         response = requests.post(url, json=data)
 
