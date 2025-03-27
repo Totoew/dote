@@ -114,7 +114,7 @@ const sendMessage = async (telegram_id, message) => {
 };
 
 function parseDate(date, time) {
-    const baseTime = '17:32:00'.split(':').map(Number)
+    const baseTime = '17:35:00'.split(':').map(Number)
     baseTime.setMinutes(baseTime.getMinutes() - time)
     const [year, month, day] = date.split('-').map(Number);
     

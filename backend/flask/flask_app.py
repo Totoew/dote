@@ -114,7 +114,6 @@ def create_task():
         'time': data['task_notification_time'],
         'message': f"Не забудь о своей задаче! {data['task_name']}!"
     }
-    data_to_schedule = json.dumps(data_to_schedule, ensure_ascii=False)
     send_data_to_server(data_to_schedule)
 
     data['task_id'] = db.get_new_id('tasks') - 1
