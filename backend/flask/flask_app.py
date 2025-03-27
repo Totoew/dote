@@ -151,7 +151,7 @@ def create_event():
         'telegram_id': telegram_id,
         'date': data['event_date'],
         'time': data['event_notification_time'],
-        'message': f"Не забудь о своей задаче! {data['event_name']}!",
+        'message': f"Не забудь о своём событии! {data['event_name']}!",
         'start_time': data['event_time_first']
     }
     send_data_to_server(data_to_schedule)
