@@ -68,10 +68,10 @@ app.post('/webhook', (req, res) => {
 
 //2025-03-26T14:48:27.090Z - время в iso формате
 app.post('/schedule', (req, res) => {
-    const { telegram_id, date, time, message, start_time = '18:55:00' } = req.body;
+    const { telegram_id, date, time, message, start_time = '19:00:00' } = req.body;
     console.log(telegram_id, date, time, message)
 
-    const isoString = parseDate(date, time);
+    const isoString = parseDate(date, time, start_time);
     console.log(isoString)
 
     /*const schedule_time = new Date(time);
