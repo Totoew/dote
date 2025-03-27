@@ -43,7 +43,7 @@ class Database:
         return 0 if result is None else result[0] + 1
 
     def get_user(self, telegram_id):
-        self.cursor.execute('SELECT telegram_id FROM users WHERE telegram_id = %s LIMIT 1', (telegram_id,))
+        self.cursor.execute('SELECT 1 FROM users WHERE telegram_id = %s LIMIT 1', (telegram_id,))
         return self.cursor.fetchone()
 
 
