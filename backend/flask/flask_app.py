@@ -147,6 +147,15 @@ def create_event():
 
     db.insert_into_table('events', new_event)
 
+    data_to_schedule = {
+        'telegram_id': telegram_id,
+        'date': data['event_date'],
+        'time': data['event_notification_time'],
+        'message': f"Не забудь о своей задаче! {data['event_name']}!",
+        'start_time': data['event_time_first']
+    }
+    send_data_to_server(data_to_schedule)
+
     data['event_id'] = db.get_new_id('events')
     return jsonify({'message': 'Событие успешно создано.', 'event': data}), 201
 
