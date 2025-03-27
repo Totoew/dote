@@ -80,7 +80,7 @@ app.post('/schedule', (req, res) => {
 
     // Запланировать отправку сообщения
     try {
-        const job = schedule.scheduleJob(schedule_time, async function () {
+        const job = schedule.scheduleJob(isoString, async function () {
             await sendMessage(telegram_id, message);
         });
         res.status(201).json({
@@ -114,13 +114,13 @@ const sendMessage = async (telegram_id, message) => {
 };
 
 function parseDate(date, time) {
-    const baseTime = '17:40:00'.split(':').map(Number)
+    const baseTime = '17:45:00'.split(':').map(Number);
     const [year, month, day] = date.split('-').map(Number);
-    const baseDate = new Date(Date.UTC(year, month - 1, day, ...baseTime, 0))
-    baseDate.setMinutes(baseDate.getMinutes() - time)
+    const baseDate = new Date(Date.UTC(year, month - 1, day, ...baseTime, 0));
+    baseDate.setMinutes(baseDate.getMinutes() - time);
   
-    const utcOffset = baseDate.getTimezoneOffset();
-    baseDate.setMinutes(baseDate.getMinutes() + utcOffset);
+    const offset = 5 * 60;
+    baseDate.setMinutes(baseDate.getMinutes() - offset);
   
     return baseDate.toISOString();
   }
