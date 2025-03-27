@@ -89,6 +89,7 @@ def create_task():
     if not user:
         return jsonify({'message': 'Пользователь не найден.'}), 404
 
+    print(user)
     telegram_id = user[1]
 
     # Создаем новую задачу
