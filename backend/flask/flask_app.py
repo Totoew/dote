@@ -108,14 +108,14 @@ def create_task():
 
     db.insert_into_table('tasks', new_task)
 
-    data_to_shedule = {
+    data_to_schedule = {
         'telegram_id': telegram_id,
         'date': data['task_date'],
         'time': data['task_notification_time'],
         'message': f"Не забудь о своей задаче! {data['task_name']}!"
     }
-    data_to_shedule = json.dumps(data_to_schedule, ensure_ascii=False)
-    send_data_to_server(data_to_shedule)
+    data_to_schedule = json.dumps(data_to_schedule, ensure_ascii=False)
+    send_data_to_server(data_to_schedule)
 
     data['task_id'] = db.get_new_id('tasks') - 1
     return jsonify({'message': 'Задача успешно создана.', 'task': data}), 201
