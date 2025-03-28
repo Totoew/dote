@@ -1,7 +1,7 @@
 //создаем функцию для генерации айдишника
 async function get_user_id() {
     try {
-        const response = await fetch('https://laert.pythonanywhere.com/get_user_id', {
+        const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ document.getElementById('darkTaskForm').addEventListener('submit', async functio
 
 async function getTaskData(jsonData) {
     try {
-        const response = await fetch('https://laert.pythonanywhere.com/tasks', {
+        const response = await fetch('https://flask.stk8s.66bit.ru/tasks', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -105,10 +105,10 @@ async function getTaskData(jsonData) {
 //не закрывать приложение при свайпе вниз
 document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
-      event.preventDefault();
+        event.preventDefault();
     }
-  }, { passive: false });
-  
+}, { passive: false });
+
 /****************************************************************************************************** */
 //моковые данные, которые должны прийти 
 //с сервера в виде json. Допустим, я их преобазовал в js-объект

@@ -22,7 +22,7 @@ document.getElementById('darkTaskForm').addEventListener('submit', function (evt
 });
 
 function getTaskData(jsonData) {
-    fetch('https://laert.pythonanywhere.com/tasks', {
+    fetch('https://flask.stk8s.66bit.ru/tasks', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ const eventMOC = {
 
 const jsonData = JSON.stringify(eventMOC);
 
-fetch('https://laert.pythonanywhere.com/events', {
+fetch('https://flask.stk8s.66bit.ru/events', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

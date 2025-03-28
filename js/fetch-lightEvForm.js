@@ -49,7 +49,7 @@ document.getElementById('lightEvForm').addEventListener('submit', function (evt)
 
     const jsonData = JSON.stringify(event);
 
-    fetch('https://laert.pythonanywhere.com/', {
+    fetch('https://flask.stk8s.66bit.ru/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

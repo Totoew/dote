@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>График событий</title>
     <link rel="icon" href="img/logo.png" type="png">
-    <link href="css/style-5.css" rel="stylesheet">
+    <link id="theme-style" href="css/style-5.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
@@ -21,7 +21,8 @@
         </div>
         <h1 class="tasks-panel-h1">*Месяц*</h1>
         <button class="button-calendar" onclick="showDatePicker()">
-          <img class="tasks-panel-img" src="img/calendar_month_active.png" alt="Календарь">
+          <img class="tasks-panel-img" src="img/calendar_month_active.png"
+          data-light="img/calendar_month_light_active.png" data-dark="img/calendar_month_active.png" alt="Календарь">
         </button>
         <input name="datePickerName" type="date" id="datePicker" style="display:none;" onchange="handleDateChange(event)" required>
         <!--<div class="date-picker">
@@ -158,9 +159,10 @@
         </div>
         <div class="nav-item nav-item-1">
           <a href="shedule.html">
-            <img class="calendar image" src="/img/calendar_month_active.png">
+            <img class="calendar image" src="/img/calendar_month_active.png"
+            data-light="img/calendar_month_light_active.png" data-dark="img/calendar_month_active.png" alt="Календарь">
           </a>
-          <p class="nav-item-1-txt p-tag">Расписание</p>
+          <b class="nav-item-1-txt p-tag">Расписание</b>
         </div>
         <div class="nav-item nav-item-2">
           <a href="index.html">
@@ -182,6 +184,7 @@
 
     <script src="js/shedule.js"></script>
     <script src="js/draw-event.js"></script>
+    <script src="js/theme-change.js"></script>
   </body>
 </html>
 

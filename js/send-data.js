@@ -16,7 +16,7 @@ async function main() {
     
     const jsonData = JSON.stringify(task);
     
-    fetch('https://laert.pythonanywhere.com/tasks', {
+    fetch('https://flask.stk8s.66bit.ru/tasks', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
