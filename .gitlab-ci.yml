@@ -1,0 +1,72 @@
+variables:
+  FLASK_LATEST: $CI_REGISTRY_IMAGE/backend/flask:latest
+  NODE_LATEST: $CI_REGISTRY_IMAGE/backend/node:latest
+stages:
+  - make_docker_image
+  - deploy
+  - logs
+
+.before script docker registry login: &before-script-docker-registry-login
+  - mkdir ~/.docker
+  - cat $CR_CONFIG > ~/.docker/config.json
+
+make_flask_docker_image:
+  stage: make_docker_image
+  image: docker:latest
+  before_script:
+    - *before-script-docker-registry-login
+  script:
+    - cd backend/flask
+    - docker build --pull -t $FLASK_LATEST .
+    - docker push $FLASK_LATEST
+  when: manual
+  only:
+    - 2025-version
+
+make_node_docker_image:
+  stage: make_docker_image
+  image: docker:latest
+  before_script:
+    - *before-script-docker-registry-login
+  script:
+    - cd backend/node
+    - docker build --pull -t $NODE_LATEST .
+    - docker push $NODE_LATEST
+  when: manual
+  only:
+    - 2025-version
+
+deploy:
+  stage: deploy
+  image: hub.66bit.ru/shared/stk8s:1.26.2
+  script:
+    - kubectl delete -f ./backend/node/deployment.yaml
+    - kubectl apply -f ./backend/node/service.yaml
+    - kubectl apply -f ./backend/node/ingress.yaml
+    - kubectl apply -f ./backend/node/deployment.yaml
+
+    - kubectl apply -f ./backend/postgres/postgres.yaml
+    - kubectl apply -f ./backend/postgres/service.yaml
+
+    - kubectl delete -f ./backend/flask/deployment.yaml
+
+    - kubectl apply -f ./backend/flask/service.yaml
+    - kubectl apply -f ./backend/flask/ingress.yaml
+    - kubectl apply -f ./backend/flask/deployment.yaml
+
+    - kubectl get services -n stellar
+    - kubectl describe service my-flask-app -n stellar
+  when: manual
+  only:
+    - 2025-version
+
+logs:
+  stage: logs
+  image: hub.66bit.ru/shared/stk8s:1.26.2
+  script:
+    - kubectl logs -n stellar deploy/my-node-app --since=30m
+    - kubectl logs -n stellar deploy/my-flask-app --since=30m
+    - kubectl exec -i my-application-database-0 -n stellar -- psql -U laert -d school-planner < ./backend/postgres/create_tables.sql
+  when: manual
+  only:
+    - 2025-version

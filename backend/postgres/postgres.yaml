@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-application-database
+  namespace: stellar
+spec:
+  selector:
+    matchLabels:
+      app: my-application-database
+  replicas: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: my-application-database
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: my-application-database
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: my-application-database-volume
+              mountPath: /var/lib/postgresql/data
+          env:
+            - name: POSTGRES_USER
+              value: laert
+            - name: POSTGRES_PASSWORD
+              value: "04062005"
+            - name: POSTGRES_DB
+              value: school-planner
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+  volumeClaimTemplates:
+    - metadata:
+        name: my-application-database-volume
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "rook-ceph-block"
+        resources:
+          requests:
+            storage: 1Gi
