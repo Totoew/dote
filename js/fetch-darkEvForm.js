@@ -1,6 +1,6 @@
 async function fetchUserId() {
     try {
-        const response = await fetch('https://laert.pythonanywhere.com/get_user_id', {
+        const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,8 +62,8 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
 //не закрывать приложение при свайпе вниз
 document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
-      event.preventDefault();
+        event.preventDefault();
     }
-  }, { passive: false });
+}, { passive: false });
 
 

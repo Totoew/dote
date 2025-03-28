@@ -13,7 +13,7 @@ body {
   background-color: #ffffff;
   overflow: hidden; 
 }
-
+/*
 @media (max-width: 393px) {
   .tasks-panel-h1 {
     font-size: 20px;
@@ -35,7 +35,7 @@ body {
   .deadline {
     font-size: 10px;
   }
-}
+}*/
 
 .header-1 {
   left: 0;

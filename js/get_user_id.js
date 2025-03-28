@@ -1,6 +1,6 @@
 async function get_user_id() {
     try {
-        const response = await fetch('https://laert.pythonanywhere.com/get_user_id', {
+        const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
