@@ -41,7 +41,6 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
     const eventId = Date.now();
 
     const event = {
-        event_id: eventId,
         user_id: userId,
         event_name: form.querySelector('[name="name-event"]').value.trim(),
         event_description: form.querySelector('[name="desc-event"]').value.trim(),
@@ -53,11 +52,37 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
         event_status: "pending", // Статус по умолчанию
     };
 
+    const jsonData = JSON.stringify(event);
+    await getTaskData(jsonData);
+
     // Сохраняем данные события в localStorage
     localStorage.setItem(`event_${eventId}`, JSON.stringify(event));
     console.log('Данные события сохранены в localStorage:', event);
     window.location.href = 'shedule.html';
 });
+
+// Функция для отправки данных
+async function getTaskData(jsonData) {
+    try {
+        const response = await fetch('https://flask.stk8s.66bit.ru/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
+        });
+
+        if (!response.ok) {
+            throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Ответ сервера:', data);
+    } catch (error) {
+        console.error('Ошибка при отправке задачи:', error);
+        alert('Произошла ошибка при отправке формы.');
+    }
+}
 
 //не закрывать приложение при свайпе вниз
 document.addEventListener('touchmove', function (event) {
