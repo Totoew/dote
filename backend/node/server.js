@@ -5,10 +5,10 @@ const schedule = require('node-schedule');
 
 const app = express();
 const TELEGRAM_BOT_TOKEN = '7688220876:AAEdlJxaqWj9ZBaJsKU_b8Mxu0oBSC99CPY'
-const bot = new Telegraf(TELEGRAM_BOT_TOKEN); // Замените на токен вашего бота
+const bot = new Telegraf(TELEGRAM_BOT_TOKEN);
 const cors = require('cors');
 app.use(cors());
-const domain = 'https://school-planner.netlify.app'; // URL вашего веб-приложения
+const domain = 'https://school-planner.netlify.app';
 
 app.use(express.json());
 
@@ -35,7 +35,7 @@ bot.start(async (ctx) => {
         });
 
         // Отправление запроса на регистрацию на сервер
-        const url = 'https://laert.pythonanywhere.com/register';
+        const url = 'https://flask.stk8s.66bit.ru/register';
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -65,17 +65,28 @@ app.post('/webhook', (req, res) => {
         });
 });
 
+
+//2025-03-26T14:48:27.090Z - время в iso формате
 app.post('/schedule', (req, res) => {
-    const { telegram_id, time, message } = req.body;
-    console.log(telegram_id, time, message)
-    const schedule_time = new Date(time);
+    const { telegram_id, date, time, message, start_time = '19:05:00' } = req.body;
+    console.log(telegram_id, date, time, message)
+
+    const isoString = parseDate(date, time, start_time);
+    console.log(isoString)
+
+    /*const schedule_time = new Date(time);
+    const currentDateTime = new Date();
+    const isoString = currentDateTime.toISOString();*/
 
     // Запланировать отправку сообщения
     try {
-        const job = schedule.scheduleJob(schedule_time, async function () {
+        const job = schedule.scheduleJob(isoString, async function () {
             await sendMessage(telegram_id, message);
         });
-        res.send('Message scheduled successfully!');
+        res.status(201).json({
+            message: 'Message scheduled successfully!',
+            scheduledTime: isoString
+        });
     } catch (error) {
         console.error('Error scheduling message:', error);
         res.status(500).send('Failed to schedule message.');
@@ -101,6 +112,18 @@ const sendMessage = async (telegram_id, message) => {
         console.error('Error sending message:', error);
     }
 };
+
+function parseDate(date, notification_time, start_time) {
+    const baseTime = start_time.split(':').map(Number);
+    const [year, month, day] = date.split('-').map(Number);
+    const baseDate = new Date(Date.UTC(year, month - 1, day, ...baseTime, 0));
+    baseDate.setMinutes(baseDate.getMinutes() - notification_time);
+  
+    const offset = 5 * 60;
+    baseDate.setMinutes(baseDate.getMinutes() - offset);
+  
+    return baseDate.toISOString();
+  }
 
 // Запуск бота
 bot.launch();

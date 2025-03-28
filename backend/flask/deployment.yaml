@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-flask-app
+  namespace: stellar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-flask-app
+  template:
+    metadata:
+      labels:
+        app: my-flask-app
+    spec:
+      containers:
+      - name: my-flask-app
+        image: hub.66bit.ru/internship-2025/school-timeplanner/school-timeplanner/backend/flask
+        ports:
+        - containerPort: 80
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+      imagePullSecrets:
+        - name: my-application-secret
