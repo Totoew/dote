@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-node-app
+  namespace: stellar
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: my-node-app
@@ -14,22 +15,15 @@ spec:
     spec:
       containers:
       - name: my-node-app
-        image: my-node-app:latest
+        image: hub.66bit.ru/internship-2025/school-timeplanner/school-timeplanner/backend/node:latest
         ports:
         - containerPort: 3000
         env:
         - name: TELEGRAM_BOT_TOKEN
           value: "7688220876:AAEdlJxaqWj9ZBaJsKU_b8Mxu0oBSC99CPY"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-node-app
-spec:
-  type: NodePort
-  ports:
-    - port: 3000
-      targetPort: 3000
-      nodePort: 30000  # Вы можете выбрать любой доступный порт
-  selector:
-    app: my-node-app
+      dnsConfig:
+        options:
+        - name: ndots
+          value: "1"
+      imagePullSecrets:
+        - name: my-application-secret
