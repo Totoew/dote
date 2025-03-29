@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             themeStyle.setAttribute('href', `css/style-${numberCSSfile}.css`);
             body.setAttribute('data-theme', 'dark');
         }
-        localStorage.setItem('theme', theme); // Сохраняем в localStorage
+        localStorage.setItem('theme', theme); 
 
         //Обновляем изображения при смене темы
         document.querySelectorAll('[data-light][data-dark]').forEach(img => {
@@ -35,3 +35,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     themeToggle.addEventListener('click', toggleTheme);
 });
+
+

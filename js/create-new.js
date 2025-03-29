@@ -12,15 +12,20 @@ document.addEventListener('DOMContentLoaded', function() {
     goButton.addEventListener('click', function(event) {
         event.preventDefault(); 
         const selectedPage = pageSelect.value;
-        
+
         if (selectedPage !== '') {
             window.location.href = selectedPage; 
         }
     });
 });
-
+/*
 document.getElementById('mySelect').addEventListener('change', function() {
     this.style.color = 'white'; 
+});*/
+
+document.getElementById('mySelect').addEventListener('change', function() {
+    const currentTheme = document.body.getAttribute('data-theme');
+    this.style.color = currentTheme === 'dark' ? 'white' : 'black';
 });
 
 document.getElementById("mySelect").addEventListener("change", function () {
@@ -57,6 +62,6 @@ document.getElementById('backButton').addEventListener('click', () => {
 //не закрывать приложение при свайпе вниз
 document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
-      event.preventDefault();
+        event.preventDefault();
     }
-  }, { passive: false });
+}, { passive: false });
