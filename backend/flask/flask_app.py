@@ -151,7 +151,7 @@ def create_event():
 
 
 # Маршрут для удаления задачи/события
-@app.route('/delete', methods=['DELETE'])
+@app.route('/delete', methods=['PUT'])
 def delete_object_by_id():
     data = request.json
     telegram_id, user_id = find_user(data)
