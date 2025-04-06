@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from datetime import datetime, timedelta, timezone
 import requests
 import psycopg2
 import json
@@ -108,15 +109,17 @@ def create_task():
 
     db.insert_into_table('tasks', new_task)
 
+    time_to_schedule = parse_date(data['task_date'], data['task_notification_time'], '19:05:00')
+    task_id = db.get_new_id('tasks') - 1
     data_to_schedule = {
         'telegram_id': telegram_id,
-        'date': data['task_date'],
-        'time': data['task_notification_time'],
+        'schedule_id': task_id,
+        'time': time_to_schedule,
         'message': f"Не забудь о своей задаче! {data['task_name']}!"
     }
     send_data_to_server(data_to_schedule)
 
-    data['task_id'] = db.get_new_id('tasks') - 1
+    data['task_id'] = task_id
     return jsonify({'message': 'Задача успешно создана.', 'task': data}), 201
 
 
@@ -147,18 +150,24 @@ def create_event():
 
     db.insert_into_table('events', new_event)
 
+    time_to_schedule = parse_date(data['event_date'], data['event_notification_time'], data['event_time_first'])
+    event_id = db.get_new_id('events') - 1
     data_to_schedule = {
         'telegram_id': telegram_id,
-        'date': data['event_date'],
-        'time': data['event_notification_time'],
-        'message': f"Не забудь о своём событии! {data['event_name']}!",
-        'start_time': data['event_time_first']
+        'schedule_id': event_id,
+        'time': time_to_schedule,
+        'message': f"Не забудь о своём событии! {data['event_name']}!"
     }
     send_data_to_server(data_to_schedule)
 
-    data['event_id'] = db.get_new_id('events')
+    data['event_id'] = event_id
     return jsonify({'message': 'Событие успешно создано.', 'event': data}), 201
 
+
+def parse_date(date, notification_time, start_time):
+    base_date = datetime.strptime(f"{date} {start_time}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+    base_date -= timedelta(minutes=notification_time + 5 * 60)
+    return base_date.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
 def send_data_to_server(data):
     url = 'https://node.stk8s.66bit.ru/schedule'

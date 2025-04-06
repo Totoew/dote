@@ -1,2 +1,5 @@
-SELECT * FROM tasks;
-SELECT * FROM events;
+DELETE FROM tasks;
+ALTER TABLE tasks ADD COLUMN schedule_time VARCHAR(50) NOT NULL;
+
+DELETE FROM events;
+ALTER TABLE events ADD COLUMN schedule_time VARCHAR(50) NOT NULL;

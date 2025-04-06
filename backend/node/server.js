@@ -68,24 +68,17 @@ app.post('/webhook', (req, res) => {
 
 //2025-03-26T14:48:27.090Z - время в iso формате
 app.post('/schedule', (req, res) => {
-    const { telegram_id, date, time, message, start_time = '19:05:00' } = req.body;
-    console.log(telegram_id, date, time, message)
-
-    const isoString = parseDate(date, time, start_time);
-    console.log(isoString)
-
-    /*const schedule_time = new Date(time);
-    const currentDateTime = new Date();
-    const isoString = currentDateTime.toISOString();*/
+    const { telegram_id, schedule_id, time, message } = req.body;
+    console.log(telegram_id, time, message)
 
     // Запланировать отправку сообщения
     try {
-        const job = schedule.scheduleJob(isoString, async function () {
+        const job = schedule.scheduleJob(time, async function () {
             await sendMessage(telegram_id, message);
         });
         res.status(201).json({
             message: 'Message scheduled successfully!',
-            scheduledTime: isoString
+            scheduledTime: time
         });
     } catch (error) {
         console.error('Error scheduling message:', error);
@@ -112,18 +105,6 @@ const sendMessage = async (telegram_id, message) => {
         console.error('Error sending message:', error);
     }
 };
-
-function parseDate(date, notification_time, start_time) {
-    const baseTime = start_time.split(':').map(Number);
-    const [year, month, day] = date.split('-').map(Number);
-    const baseDate = new Date(Date.UTC(year, month - 1, day, ...baseTime, 0));
-    baseDate.setMinutes(baseDate.getMinutes() - notification_time);
-  
-    const offset = 5 * 60;
-    baseDate.setMinutes(baseDate.getMinutes() - offset);
-  
-    return baseDate.toISOString();
-  }
 
 // Запуск бота
 bot.launch();
