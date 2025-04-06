@@ -155,13 +155,13 @@ def create_event():
 def delete_object_by_id():
     data = request.json
     telegram_id, user_id = find_user(data)
-    object_id, type = data['id'], data['type']
-    object = db.get_object_by_value(type + 's', 'id', object_id)
+    object_id, object_type = data['id'], data['type']
+    object = db.get_object_by_value(object_type + 's', 'id', object_id)
     if object and object[1] == user_id:
         data_to_schedule = {
             'telegram_id': telegram_id,
             'schedule_id': object_id,
-            'type': type
+            'type': object_type
         }
         send_data_to_server(data_to_schedule, 'https://node.stk8s.66bit.ru/unschedule')
         return jsonify({'message': 'Объект был удалён.'}), 200

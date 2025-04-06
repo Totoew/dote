@@ -92,11 +92,10 @@ app.post('/schedule', (req, res) => {
 
 app.post('/unschedule', (req, res) => {
     const data = req.body;
-    console.log(data);
     const { telegram_id, schedule_id, type } = data;
-    console.log(telegram_id, schedule_id, type);
     const key = `${telegram_id}_${schedule_id}_${type}`;
     const job = jobs[key];
+    console.log(jobs, job);
     try {
         if (!job) {
             return res.status(404).json({
