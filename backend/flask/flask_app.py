@@ -157,7 +157,6 @@ def delete_object_by_id():
     telegram_id, user_id = find_user(data)
     object_id, type = data['id'], data['type']
     object = db.get_object_by_value(type + 's', 'id', object_id)
-    print(object)
     if object and object[1] == user_id:
         data_to_schedule = {
             'telegram_id': telegram_id,

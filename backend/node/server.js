@@ -72,7 +72,6 @@ app.post('/webhook', (req, res) => {
 app.post('/schedule', (req, res) => {
     const data = req.body;
     const { telegram_id, schedule_id, time, type, message } = data;
-    console.log(telegram_id, time, message)
 
     // Запланировать отправку сообщения
     try {
@@ -93,7 +92,9 @@ app.post('/schedule', (req, res) => {
 
 app.post('/unschedule', (req, res) => {
     const data = req.body;
+    console.log(data);
     const { telegram_id, schedule_id, type } = data;
+    console.log(telegram_id, schedule_id, type);
     const key = `${telegram_id}_${schedule_id}_${type}`;
     const job = jobs[key];
     try {
@@ -103,7 +104,7 @@ app.post('/unschedule', (req, res) => {
             });
         }
 
-        job.cancel();
+        await job.cancel();
         delete jobs[key];
 
         res.status(204).json({
