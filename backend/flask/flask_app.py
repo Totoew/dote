@@ -184,7 +184,7 @@ def find_user(data):
     user = db.get_object_by_value('users', 'telegram_id', telegram_id)
     if not user:
         return jsonify({'message': 'Пользователь не найден.'}), 404
-    return telegram_id, user[1]
+    return telegram_id, user[0]
 
 def parse_date(date, notification_time, start_time):
     base_date = datetime.strptime(f"{date} {start_time}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
