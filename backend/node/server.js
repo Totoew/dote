@@ -104,7 +104,7 @@ app.post('/unschedule', (req, res) => {
             });
         }
 
-        await job.cancel();
+        job.cancel();
         delete jobs[key];
 
         res.status(204).json({
