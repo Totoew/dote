@@ -158,7 +158,7 @@ def delete_object_by_id():
     object_id, type = data['id'], data['type']
     object = db.get_object_by_value(type + 's', 'id', object_id)
     print(object)
-    if object and object[0][1] == user_id:
+    if object and object[1] == user_id:
         data_to_schedule = {
             'telegram_id': telegram_id,
             'schedule_id': object_id,
@@ -182,10 +182,9 @@ def get_data_to_schedule(telegram_id, schedule_id, time, type, message):
 def find_user(data):
     telegram_id = data['user_id']
     user = db.get_object_by_value('users', 'telegram_id', telegram_id)
-    print(user)
     if not user:
         return jsonify({'message': 'Пользователь не найден.'}), 404
-    return telegram_id, user[0]
+    return telegram_id, user[1]
 
 def parse_date(date, notification_time, start_time):
     base_date = datetime.strptime(f"{date} {start_time}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
