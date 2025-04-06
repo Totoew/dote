@@ -40,7 +40,7 @@ class Database:
             print('Ошибка при добавлении данных:', e)
 
     def get_object_by_value(self, table_name, column_name, value):
-        self.cursor.execute(f'SELECT 1 FROM {table_name} WHERE {column_name} = %s LIMIT 1', (value,))
+        self.cursor.execute(f'SELECT * FROM {table_name} WHERE {column_name} = %s LIMIT 1', (value,))
         return self.cursor.fetchone()
 
     def get_new_id(self, table_name):
@@ -182,6 +182,7 @@ def get_data_to_schedule(telegram_id, schedule_id, time, type, message):
 def find_user(data):
     telegram_id = data['user_id']
     user = db.get_object_by_value('users', 'telegram_id', telegram_id)
+    print(user)
     if not user:
         return jsonify({'message': 'Пользователь не найден.'}), 404
     return telegram_id, user[0]
