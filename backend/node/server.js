@@ -79,7 +79,8 @@ app.post('/schedule', (req, res) => {
         const job = schedule.scheduleJob(time, async function () {
             await sendMessage(telegram_id, message);
         });
-        jobs[(telegram_id, schedule_id, type)] = job;
+        const key = `${telegram_id}_${schedule_id}_${type}`;
+        jobs[key] = job;
         res.status(201).json({
             message: 'Message scheduled successfully!',
             scheduledTime: time
@@ -93,16 +94,21 @@ app.post('/schedule', (req, res) => {
 app.post('/unschedule', (req, res) => {
     const data = req.body;
     const { telegram_id, schedule_id, type } = data;
-    const key = (telegram_id, schedule_id, type);
+    const key = `${telegram_id}_${schedule_id}_${type}`;
     const job = jobs[key];
     try {
-        if (job) {
-            job.cancel();
-            delete jobs[key];
-            res.status(204).json({
-                message: 'Message deleted successfully!'
+        if (!job) {
+            return res.status(404).json({
+                message: 'Job not found.'
             });
         }
+
+        job.cancel();
+        delete jobs[key];
+
+        res.status(204).json({
+            message: 'Message deleted successfully!'
+        });
     } catch (error) {
         console.error('Error deleting message:', error);
         res.status(500).send('Failed to delete message.');
