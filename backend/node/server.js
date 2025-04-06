@@ -10,6 +10,8 @@ const cors = require('cors');
 app.use(cors());
 const domain = 'https://school-planner.netlify.app';
 
+const jobs = {};
+
 app.use(express.json());
 
 // Обработка команды /start
@@ -68,7 +70,8 @@ app.post('/webhook', (req, res) => {
 
 //2025-03-26T14:48:27.090Z - время в iso формате
 app.post('/schedule', (req, res) => {
-    const { telegram_id, schedule_id, time, message } = req.body;
+    const data = req.body;
+    const { telegram_id, schedule_id, time, type, message } = data;
     console.log(telegram_id, time, message)
 
     // Запланировать отправку сообщения
@@ -76,6 +79,7 @@ app.post('/schedule', (req, res) => {
         const job = schedule.scheduleJob(time, async function () {
             await sendMessage(telegram_id, message);
         });
+        jobs[(telegram_id, schedule_id, type)] = job;
         res.status(201).json({
             message: 'Message scheduled successfully!',
             scheduledTime: time
@@ -83,6 +87,25 @@ app.post('/schedule', (req, res) => {
     } catch (error) {
         console.error('Error scheduling message:', error);
         res.status(500).send('Failed to schedule message.');
+    }
+});
+
+app.post('/unschedule', (req, res) => {
+    const data = req.body;
+    const { telegram_id, schedule_id, type } = data;
+    const key = (telegram_id, schedule_id, type);
+    const job = jobs[key];
+    try {
+        if (job) {
+            job.cancel();
+            delete jobs[key];
+            res.status(204).json({
+                message: 'Message deleted successfully!'
+            });
+        }
+    } catch (error) {
+        console.error('Error deleting message:', error);
+        res.status(500).send('Failed to delete message.');
     }
 });
 

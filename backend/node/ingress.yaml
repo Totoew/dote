@@ -10,14 +10,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /webhook
-            backend:
-              service:
-                name: my-node-app-service
-                port:
-                  number: 3000
-          - pathType: Prefix
-            path: /schedule
+            path: /
             backend:
               service:
                 name: my-node-app-service
