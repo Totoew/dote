@@ -86,7 +86,7 @@ app.post('/schedule', (req, res) => {
         });
     } catch (error) {
         console.error('Error scheduling message:', error);
-        res.status(500).send('Failed to schedule message.');
+        res.status(500).json({error: 'Failed to schedule message.'});
     }
 });
 
@@ -111,7 +111,7 @@ app.post('/unschedule', (req, res) => {
         });
     } catch (error) {
         console.error('Error deleting message:', error);
-        res.status(500).send('Failed to delete message.');
+        res.status(500).json({error: 'Failed to delete message.'});
     }
 });
 
