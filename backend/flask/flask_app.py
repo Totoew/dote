@@ -43,6 +43,10 @@ class Database:
         self.cursor.execute(f'SELECT * FROM {table_name} WHERE {column_name} = %s LIMIT 1', (value,))
         return self.cursor.fetchone()
 
+    def delete_object_by_id(self, table_name, id):
+        self.cursor.execute(f'DELETE FROM {table_name} WHERE id = %s', (id,))
+        return
+
     def get_new_id(self, table_name):
         self.cursor.execute(f'SELECT * FROM \"{table_name}\" ORDER BY ID DESC LIMIT 1')
         result = self.cursor.fetchone()
@@ -164,6 +168,7 @@ def delete_object_by_id():
             'type': object_type
         }
         send_data_to_server(data_to_schedule, 'https://node.stk8s.66bit.ru/unschedule')
+        db.delete_object_by_id(object_type + 's', object_id)
         return jsonify({'message': 'Объект был удалён.'}), 200
     return jsonify({'message': 'Что-то пошло не так.'}), 400
 
@@ -194,8 +199,10 @@ def send_data_to_server(data, url = 'https://node.stk8s.66bit.ru/schedule'):
     try:
         response = requests.post(url, json=data)
 
-        if response.status_code == 201 or response.status_code == 200:
+        if response.status_code == 201:
             print("Данные успешно отправлены:", response.json())
+        elif response.status_code == 200:
+            print("Успешно!", response.json())
         else:
             print(f"Ошибка при отправке данных: {response.status_code} - {response.text}")
     except Exception as e:

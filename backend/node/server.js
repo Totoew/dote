@@ -95,7 +95,6 @@ app.post('/unschedule', (req, res) => {
     const { telegram_id, schedule_id, type } = data;
     const key = `${telegram_id}_${schedule_id}_${type}`;
     const job = jobs[key];
-    console.log(jobs, job);
     try {
         if (!job) {
             return res.status(404).json({
@@ -105,7 +104,7 @@ app.post('/unschedule', (req, res) => {
 
         job.cancel();
         delete jobs[key];
-
+        console.log(jobs)
         res.status(200).json({ message: 'Message deleted successfully!' });
     } catch (error) {
         console.error('Error deleting message:', error);
