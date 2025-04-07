@@ -44,8 +44,12 @@ class Database:
         return self.cursor.fetchone()
 
     def delete_object_by_id(self, table_name, id):
-        self.cursor.execute(f'DELETE FROM {table_name} WHERE id = %s', (id,))
-        return
+        try:
+            self.cursor.execute(f'DELETE FROM {table_name} WHERE id = %s', (id,))
+            self.connection.commit()
+            print('Удаление из базы данных завершилось успешно.')
+        except Exception as e:
+            print('Ошибка при удалении данных:', e)
 
     def get_new_id(self, table_name):
         self.cursor.execute(f'SELECT * FROM \"{table_name}\" ORDER BY ID DESC LIMIT 1')
