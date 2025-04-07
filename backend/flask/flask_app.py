@@ -194,7 +194,7 @@ def send_data_to_server(data, url = 'https://node.stk8s.66bit.ru/schedule'):
     try:
         response = requests.post(url, json=data)
 
-        if response.status_code == 201 or response.status_code == 204:
+        if response.status_code == 201 or response.status_code == 200:
             print("Данные успешно отправлены:", response.json())
         else:
             print(f"Ошибка при отправке данных: {response.status_code} - {response.text}")
