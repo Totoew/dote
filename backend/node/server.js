@@ -106,7 +106,7 @@ app.post('/unschedule', (req, res) => {
         job.cancel();
         delete jobs[key];
 
-        res.status(204).json({
+        res.status(205).json({
             message: 'Message deleted successfully!'
         });
     } catch (error) {
