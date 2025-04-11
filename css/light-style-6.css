@@ -43,6 +43,7 @@ body {
   font-family: Spectral, serif;
   color: #000000;
   text-align: left;
+  margin-left: 12px;
 }
 
 .scroll-box {
