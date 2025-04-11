@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTheme(currentTheme);
     }
 
-    themeToggle.addEventListener('click', () => toggleTheme, 0);
+    themeToggle.addEventListener('click', toggleTheme);
 });
 
 
