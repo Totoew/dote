@@ -131,6 +131,18 @@ input:checked + .button::before {
   transform: translateX(20px);
 }
 
+.notification-button {
+  width: 51px;
+  height: 31px;
+  background-color: #E8E7E7;
+  margin-left: 25px;
+  border: none;
+}
+
+.notification-button img {
+  margin-top: 5px;
+}
+
 .theme-text {
   white-space: nowrap;
   color: rgb(0, 0, 0);
