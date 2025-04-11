@@ -53,9 +53,6 @@ deploy:
     - kubectl apply -f ./backend/flask/service.yaml
     - kubectl apply -f ./backend/flask/ingress.yaml
     - kubectl apply -f ./backend/flask/deployment.yaml
-
-    - kubectl get services -n stellar
-    - kubectl describe service my-flask-app -n stellar
   when: manual
   only:
     - 2025-version

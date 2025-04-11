@@ -10,6 +10,8 @@ const cors = require('cors');
 app.use(cors());
 const domain = 'https://school-planner.netlify.app';
 
+const jobs = {};
+
 app.use(express.json());
 
 // Обработка команды /start
@@ -68,28 +70,45 @@ app.post('/webhook', (req, res) => {
 
 //2025-03-26T14:48:27.090Z - время в iso формате
 app.post('/schedule', (req, res) => {
-    const { telegram_id, date, time, message, start_time = '19:05:00' } = req.body;
-    console.log(telegram_id, date, time, message)
-
-    const isoString = parseDate(date, time, start_time);
-    console.log(isoString)
-
-    /*const schedule_time = new Date(time);
-    const currentDateTime = new Date();
-    const isoString = currentDateTime.toISOString();*/
+    const data = req.body;
+    const { telegram_id, schedule_id, time, type, message } = data;
 
     // Запланировать отправку сообщения
     try {
-        const job = schedule.scheduleJob(isoString, async function () {
+        const job = schedule.scheduleJob(time, async function () {
             await sendMessage(telegram_id, message);
         });
+        const key = `${telegram_id}_${schedule_id}_${type}`;
+        jobs[key] = job;
         res.status(201).json({
             message: 'Message scheduled successfully!',
-            scheduledTime: isoString
+            scheduledTime: time
         });
     } catch (error) {
         console.error('Error scheduling message:', error);
-        res.status(500).send('Failed to schedule message.');
+        res.status(500).json({error: 'Failed to schedule message.'});
+    }
+});
+
+app.post('/unschedule', (req, res) => {
+    const data = req.body;
+    const { telegram_id, schedule_id, type } = data;
+    const key = `${telegram_id}_${schedule_id}_${type}`;
+    const job = jobs[key];
+    try {
+        if (!job) {
+            return res.status(404).json({
+                message: 'Job not found.'
+            });
+        }
+
+        job.cancel();
+        delete jobs[key];
+        console.log(schedule.scheduledJobs)
+        res.status(200).json({ message: 'Message deleted successfully!' });
+    } catch (error) {
+        console.error('Error deleting message:', error);
+        res.status(500).json({error: 'Failed to delete message.'});
     }
 });
 
@@ -112,18 +131,6 @@ const sendMessage = async (telegram_id, message) => {
         console.error('Error sending message:', error);
     }
 };
-
-function parseDate(date, notification_time, start_time) {
-    const baseTime = start_time.split(':').map(Number);
-    const [year, month, day] = date.split('-').map(Number);
-    const baseDate = new Date(Date.UTC(year, month - 1, day, ...baseTime, 0));
-    baseDate.setMinutes(baseDate.getMinutes() - notification_time);
-  
-    const offset = 5 * 60;
-    baseDate.setMinutes(baseDate.getMinutes() - offset);
-  
-    return baseDate.toISOString();
-  }
 
 // Запуск бота
 bot.launch();
