@@ -49,6 +49,11 @@ body {
   margin-right: 12px;
 }
 
+.scroll-box {
+  display: grid;
+  gap: 20px;
+}
+
 .list-tasks {
   position: fixed;
   top: 64px;
@@ -66,26 +71,76 @@ body {
 
 .theme-block {
   position: relative;
-  width: 300px;
-  height: 70px;
-  border-radius: 16px;
+  width: 344px;
+  height: 48px;
+  border-radius: 8px;
   background-color: #26334A;
   border: 1px solid gray;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 .theme-block-hard {
   display: flex;
   align-items: center;
+  gap: 135px;
 }
 
 .a-theme-block {
   display: flex;
-  margin-right: 10px;
+  margin-left: 30px;
   align-items: center;
+  order: 2;
+}
+
+.a-theme-block input {
+  display: none;
+}
+
+.button {
+  width: 51px;
+  height: 31px;
+  border-radius: 100px;
+  background-color: #34C759;
+  position: relative;
+  transition: 0.1s;
+}
+
+.button::before {
+  position: absolute;
+  content: '';
+  width: 27px;
+  height: 27px;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin-left: 22px;
+  margin-top: 2px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  transition: 0.1s;
+}
+
+input:checked + .button {
+  background-color: rgba(120, 120, 128, 0.16);
+}
+
+input:checked + .button::before {
+  transform: translateX(-20px);
+}
+
+.notification-button {
+  width: 51px;
+  height: 31px;
+  background-color: #26334A;
+  margin-left: 25px;
+  border: none;
+}
+
+.notification-button img {
+  margin-top: 5px;
 }
 
 .theme-text {

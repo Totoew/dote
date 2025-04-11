@@ -30,10 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
     //Функция для смены темы
     function toggleTheme() {
         const currentTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        themeToggle.checked = false;
         setTheme(currentTheme);
     }
 
-    themeToggle.addEventListener('click', toggleTheme);
+    themeToggle.addEventListener('click', () => setTimeout(toggleTheme, 200));
 });
 
 
