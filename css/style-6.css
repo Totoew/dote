@@ -75,15 +75,15 @@ body {
   border: 1px solid gray;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
 }
 
 .theme-block-hard {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 135px;
 }
 
 .a-theme-block {
