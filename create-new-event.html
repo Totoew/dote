@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<!--создать веб-приложение для мобильных устройств с модулем "Домашнее задание" и меню модулей.-->
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <title>Создание нового события</title>
     <link rel="icon" href="img/logo.png" type="png">
-    <link href="css/style-3.css" rel="stylesheet">
+    <link id="theme-style" href="css/style-3.css" rel="stylesheet">
     <!--<link href="css/outline.css" rel="stylesheet">-->
     <!--<link href="css/outline-settings.css" rel="stylesheet">-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,18 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
     rel="stylesheet">
   </head>
-  
+
   <body>
     <form id="darkEvForm" >
     <section class="tasks-panel">
       <button id="backButton" class="back-button">
-        <img src="/img/backButton.png" class="back-icon">
+        <img src="/img/backButton.png" class="back-icon"
+          data-light="img/backButton-light.png" data-dark="/img/backButton.png">
       </button>
       <h1 class="tasks-panel-h1">Создать новое</h1>
-      <!-- <select id="mySelect" name="type-event" class="type-event">
-        <option value="task" class="type-event-item" name="type-event-item">Задание</option>
-        <option value="event" class="type-event-item" name="type-event-item" selected="selected">Событие</option>
-      </select> -->
       <select id="mySelect" name="type-event" class="type-event" disabled>
         <option value="event" class="type-event-item" selected>Событие</option>
       </select>
@@ -36,7 +32,8 @@
         <textarea name="desc-event" class="desc-event"  type="text" placeholder="Описание" size="368" autocomplete="off"></textarea>
       
         <section class="date-event">
-            <img class="added-calendar" width="18px" height="20px" src="/img/calendar_month_active.png">
+            <img class="added-calendar" width="18px" height="20px"
+            data-light="img/calendar_month_light_active.png" data-dark="/img/calendar_month_active.png">
             <!--<input type="date" name="day-event" class="day-event">-->
             <div id="dateContainer" class="white-text">
               <input class="day-event" type="date" name="day-event" id="dateInput"  required>
@@ -44,14 +41,16 @@
         </section>
         
         <section class="start-and-finish-time-block">
-          <img class="watch" src="/img/schedule.png">
+          <img class="watch"
+          data-light="img/schedule_light.png" data-dark="/img/schedule.png">
           <input type="text" name="start-event-time" class="start-event-time" placeholder="00:00" autocomplete="off" required>      
           <p class="tire">-</p>
           <input type="text" name="finish-event-time" class="finish-event-time" placeholder="00:00" autocomplete="off" required>
         </section>      
 
         <section class="notification">
-          <img src="/img/notification_add.png" class="notification-bell">
+          <img class="notification-bell"
+          data-light="img/notification_add_light.png" data-dark="/img/notification_add.png">
           <p class="Za">За:</p>
           <div class="time-input-container">
             <input type="number" name="time-notification" class="time-notification number-time-event" min="1" required onchange="updateMinutesLabel(this.value)">
@@ -71,8 +70,9 @@
         <div class="home-indicator"></div>
       </button>
     </section>
-   </form>
+  </form>
     <script src="js/create-new-event.js"></script>
     <script src="js/fetch-darkEvForm.js"></script>
+    <script src="js/theme-change.js"></script>
   </body>
 </html>
