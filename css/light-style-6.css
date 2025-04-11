@@ -30,7 +30,7 @@ body {
 
 .tasks-panel {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   background-color: #E8E7E7;
   height: 64px;
@@ -39,14 +39,10 @@ body {
 .tasks-panel-h1 {
   font-size: 24px;
   font-weight: 600;
+  line-height: 26px;
   font-family: Spectral, serif;
   color: #000000;
-  text-align: center;
-  width: calc(100% - 40px);
-}
-
-.tasks-panel-img {
-  margin-right: 12px;
+  text-align: left;
 }
 
 .scroll-box {
