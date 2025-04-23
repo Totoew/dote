@@ -33,17 +33,24 @@ function updateDisplay(time) {
     const currentValue = document.getElementById(`${time}-current-value`);
 
     if (time == 'hours') {
-        prevValue = modifyTime((currentHoursValue - 1 + maxHours) % maxHours);
-        nextValue = modifyTime((currentHoursValue + 1) % maxHours);
-        currentValue.textContent = modifyTime(currentHoursValue);
+        prevValue = checkBounds(modifyTime((currentHoursValue - 1 + maxHours) % maxHours), maxHours);
+        nextValue = checkBounds(modifyTime((currentHoursValue + 1) % maxHours), maxHours, '+');
+        currentValue.textContent = modifyTime(currentHoursValue), maxHours;
     } else {
-        prevValue = modifyTime((currentMinutesValue - 1 + maxMinutes) % maxMinutes);
-        nextValue = modifyTime((currentMinutesValue + 1) % maxMinutes);
-        currentValue.textContent = modifyTime(currentMinutesValue);
+        prevValue = checkBounds(modifyTime((currentMinutesValue - 1 + maxMinutes) % maxMinutes), maxMinutes);
+        nextValue = checkBounds(modifyTime((currentMinutesValue + 1) % maxMinutes), maxMinutes, '+');
+        currentValue.textContent = modifyTime(currentMinutesValue), maxMinutes;
     }
     
     document.getElementById(`${time}-prev-value`).textContent = prevValue;
     document.getElementById(`${time}-next-value`).textContent = nextValue;
+}
+
+function checkBounds(value, maxValue, operation = '-') {
+    if (value == 0 && operation == '+' || value == maxValue - 1 && operation == '-') {
+        return '';
+    }
+    return value;
 }
 
 function modifyTime(time) {
@@ -58,9 +65,9 @@ function scrollValues(evt) {
     const time = evt.target.id.split('-')[0];
     const delta = Math.sign(evt.deltaY);
     if (time == 'hours') {
-        currentHoursValue = (currentHoursValue + delta + maxHours) % maxHours;
+        currentHoursValue = boundValues(currentHoursValue, maxHours, delta);
     } else {
-        currentMinutesValue = (currentMinutesValue + delta + maxMinutes) % maxMinutes; 
+        currentMinutesValue = boundValues(currentMinutesValue, maxMinutes, delta);
     }
     updateDisplay(time);
 }
@@ -77,15 +84,25 @@ function moveTouch(evt) {
     const time = evt.target.id.split('-')[0];
     if (Math.abs(delta) > 10) {
         if (time == 'hours') {
-            currentHoursValue = (currentHoursValue + (delta > 0 ? -1 : 1) + maxHours) % maxHours;
+            currentHoursValue = boundValues(currentHoursValue, maxHours, delta, 1);
         } else {
-            currentMinutesValue = (currentMinutesValue + (delta > 0 ? -1 : 1) + maxMinutes) % maxMinutes;
+            currentMinutesValue = boundValues(currentMinutesValue, maxMinutes, delta, 1);
         }
         updateDisplay(time);
         startY = touchY;
     }
 }
 
+function boundValues(currentValue, maxValue, delta, factor = -1) {
+    delta = delta > 0 ? -1 * factor : 1 * factor;
+    if (currentValue == 0 && delta == -1) {
+        return currentValue;
+    } else if (currentValue == maxValue - 1 && delta == 1) {
+        return maxValue - 1;
+    }
+    currentValue = (currentValue + delta + maxValue) % maxValue;
+    return currentValue;
+}
 
 
 hours.addEventListener('wheel', scrollValues);
