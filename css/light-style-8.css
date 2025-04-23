@@ -3,70 +3,69 @@
     padding: 0;
     margin: 0;
     font-family: Spectral, serif;
-  }
-  
-  html, body {
+}
+
+html, body {
     height: 100vh; 
     width: 100%;
     overflow: hidden; 
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     background-color: #ffffff;
-  }
-  
-  #darkTaskForm {
+}
+
+#darkEvForm{
     display: flex;
     flex-direction: column;
     height: 100%; 
-  }
+}
 
-  .tasks-panel{
+.tasks-panel {
     display: flex;
-    background-color: #26334A;
-    /*width: 393px;*/
+    background-color: #ffffff;
     width: 100%;
-    height: 64px;
+    height: 64px;  
     flex-shrink: 0; 
-  }
-  
-  .content {
+}
+
+.content {
     flex: 1; 
     display: flex;
     flex-direction: column;
     align-items: center; 
-    background-color: #111828;
+    background-color:#E8E7E7;
     overflow-y: auto;
-  }
-  
+}
+
 .content::-webkit-scrollbar {
-  width: 6px; 
+    width: 6px; 
 }
 
 .content::-webkit-scrollbar-track {
-  background: transparent; 
+    background: transparent; 
 }
 
 .content::-webkit-scrollbar-thumb {
-  background: #555; 
-  border-radius: 3px; 
+    background: #555; 
+    border-radius: 3px; 
 }
 
 .content::-webkit-scrollbar-thumb:hover {
-  background: #888; 
+    background: #888; 
 }
 
 .back-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.back-icon{
-  transform: rotate(90deg);
-  margin-left: 10px;
-}
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .back-icon{
+    transform: rotate(90deg);
+    margin-left: 10px;
+  }
   
   .tasks-panel-h1{
     font-size: 18px;
@@ -76,14 +75,14 @@
     width: 155px;
     height: 21px;
     padding-left: 12px;
-    color: #FCFAEE;
+    color: #000000;
     margin-left: 12px;
     margin-right: 32px;
     margin-top: 21px;
     margin-bottom: 22px;
   }
   
-  .type-task{
+  .type-event{
     width: 138px;
     height: 38px;
     padding: 10px 0px 0px 0px;
@@ -91,7 +90,7 @@
     border-radius: 8px;
     border: 1px 0px 0px 0px;
     opacity: 0px;
-    background-color: #26334A;
+    background-color: #ffffff;
     margin-left: 0px;
     margin-right: 56px;
     margin-top: 13px;
@@ -101,11 +100,11 @@
     padding-bottom: 9px;
     font-size: 15px;
     pointer-events: none;
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   select {
-    background-color:#26334A; 
+    background-color:#ffffff; 
     color: initial;          
   }
   
@@ -113,8 +112,8 @@
     color: gray !important;
   }
   
-  .type-task-item{
-    color: white;
+  .type-event-item{
+    color: rgb(0, 0, 0);
     font-family: Spectral, serif;
     font-size: 15px;
     font-weight: 400;
@@ -124,170 +123,41 @@
     text-decoration-skip-ink: none;
   }
   
-  .list-tasks {
+.list-tasks {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center; 
-  }
+}
 
-  .name-task, .desc-task {
-    width: 368px; 
-    margin: 12px 0; 
-  }
+.name-event, .desc-event {
+  width: 368px; 
+  margin: 12px 0; 
+}
 
-  .name-task{
-    width: 368px;
-    height: 46px;
-    padding: 12px 0px 12px 24px;
-    /*gap: 10px;*/
-    border-radius: 16px;
-    border: 1px 0px 0px 0px;
-    opacity: 0px;
-    background-color: #111828;
-    margin-top: 24px;
-    margin-left: 12px;
-    margin-right: 12px;
-    color:#ffffff
-  }
+.name-event {
+  width: 368px;
+  height: 46px; 
+  padding: 12px 0px 12px 24px;
+  border-radius: 16px;
+  background-color: #E8E7E7;
+  margin-top: 24px;
+  margin-left: 12px;
+  margin-right: 12px;
+  color: #000000;
+}
 
-  .desc-task{
-    width: 368px;
+.desc-event {
+  width: 368px;
     height:126px;
     padding: 12px 0px 12px 24px;
     border-radius: 16px;
-    background-color:#111828;
+    background-color:#E8E7E7;
     margin-top: 32px;
     margin-left: 12px;
     margin-right: 12px;
-    color:#ffffff
-  }
-  
-  .create-task-tags{
-    display: flex;
-    flex-direction: row;
-    width: 368px;
-    height: 40px;
-    margin-top: 32px;
-    margin-right: 12px;
-    margin-left: 12px;
-    gap: 12px;
-    opacity: 0px;
-  }
-
-  .task-tag-emblem{
-    width: 18.67px;
-    height: 21px;
-    margin-top: 5.5px;
-    margin-bottom: 5.5px;
-    margin-left: 5.5px;
-    margin-right: 15.5px;
-  }
-
-  .add-tag{
-    width: 85px;
-    height: 32px;
-    padding: 2px 4px 2px 4px;
-    border-radius: 32px;
-    background-color: #ffd3354c;
-    color: #FCBC02;
-  }
-
-  .tag-item{
-      display: inline-block;
-      background-color: rgb(252, 188, 2);
-      color: #000;
-      height: 32px;
-      padding: 5px;
-      margin: 0px;
-      margin-right: 5px;
-      margin-top: -3px;
-      border-radius: 32px;
-      font-size: 16px;
-  }
-
-  input[type="text"]::placeholder {
-    color: #FCBC02; 
-  }
-
-  .word-block {
-    display: inline-block;
-    height: 32px;
-    padding: 5px;
-    margin: 0px;
-    margin-right: 3px;
-    margin-top: 3px;
-    background-color: lightblue;
-    border-radius: 32px;
+    color:#000000
 }
-
-.priority{
-  width:368px;
-  height: 28px;
-  margin-left: 12px;
-  margin-top: 32px;
-  margin-right: 12px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-}
-
-.priority-emblem{
-  margin-top:  15px;
-}
-
-    .add-priority {
-      width: 90px;
-      height: 28px;
-      gap: 32px;
-      border-radius: 8px;
-      border: 1px 0px 0px 0px;
-      opacity: 0px;
-      background-color: #26334A;
-      margin-left: 30px;
-      margin-right: 56px;
-      margin-top: 10px;
-      margin-bottom: 16px;
-      padding-left: 10px;
-      padding-top: 1px;
-      padding-bottom: 1px;
-      appearance: none;
-      -webkit-appearance: none; 
-      -moz-appearance: none;    
-      color: white;
-      transition: background-color 0.3s, color 0.3s ease; 
-      position: relative; 
-      top: -5px; 
-    }
-    
-    .add-priority.not-matter {
-      background-color: gray;
-      color: rgb(0, 0, 0);
-    }
-    
-    .add-priority.normal {
-      background-color: green;
-      color: rgb(0, 0, 0);
-    }
-    
-    .add-priority.matter {
-      background-color: red;
-      color: rgb(0, 0, 0);
-    }
-    
-    .add-priority {
-      background-image: none;
-    }
-    
-.type-task-or-event-item{
-    color: black;
-    font-family: Spectral, serif;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 18px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-  }
 
   .date-event{
     display: flex;
@@ -296,49 +166,66 @@
     height: 41px;
     gap: 16px;
     opacity: 0px;
-    background-color: #111828;
+    background-color: #E8E7E7;
     margin-top: 32px;
     margin-left: 12px;
     margin-right: 12px;
   }
 
+  .start-and-finish-time-block{
+    display: flex;
+    flex-direction: row;
+    width: 368px;
+    height: 41px;
+    margin-top: 32px;
+    margin-left: 0px;
+    margin-right: 12px;
+    padding-left: 12px;
+    gap: 7px;
+  }
+
+  .added-calendar{
+    margin-top: 15px;
+  }
+
   .watch{
     width: 23.33px;
     height: 23.33px;
-    margin-left: 2px;
-    margin-top: 12px;
+    margin-left: 0px;
+    margin-top: 9px;
     margin-right: 12px;
+    left: 0px;
   }
 
-  .day-event{
+  .day-task{
     width: 93px;
     height: 18px;
     gap: 0px;
     opacity: 0px;
-    margin-top: 9px;
+    margin-top: 11px;
     margin-bottom: 10px;
     margin-right: 10px;
-    background-color: #111828;
-    color: #ffffff;
-    border-bottom: 1px solid white;
+    background-color: #E8E7E7;
+    color: #000000;
+    border-bottom: 1px solid rgb(0, 0, 0);
   }
 
   .white-text{
-    color: #ffffff;
+    color: #000000;
     margin-top: 11px;
     margin-right: 16px;
     padding: 0px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgb(0, 0, 0);
     font-size: 16px;
     line-height: 1.5em;
   }
 
 .date-span {
-    white-space: nowrap;
+    white-space: nowrap; 
 }
 
   .start-event-time{
-    width: 74px;
+    width: 66px;
     height: 41px;
     padding: 10px ;
     gap: 10px;
@@ -354,7 +241,7 @@
   }
 
   .finish-event-time{
-    width: 74px;
+    width: 66px;
     height: 41px;
     padding: 10px ;
     gap: 10px;
@@ -370,7 +257,7 @@
   }
 
   .tire{
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: Spectral, serif;
     font-size: 24px;
     font-weight: 600;
@@ -404,7 +291,7 @@
   .Za{
     width: 28px;
     height: 21px;
-    color:#ffffff;
+    color:#000000;
     font-family: Spectral, serif;
     font-size: 18px;
     font-weight: 600;
@@ -421,7 +308,7 @@
     width: 93px;
     align-items: center;
     gap: 5px; 
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 .minutes-label {
@@ -430,7 +317,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-top: 4.5px;
     margin-bottom: 4px;
     width: 63px;
@@ -446,44 +333,43 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-top: 4.5px;
     margin-bottom: 4px;
-    background-color: #111828;
+    background-color: #E8E7E7;
   }
 
   .number-time-event{
     max-width: 35px;
 }
+  .bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 66px;
+    background-color: #E8E7E7;       
+  }
 
-.bottom-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 66px;
-  background-color: #111828;           
-}
-  
-.footer {
+.footer{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 48px;
-  background-color: #111828;
-  flex-shrink: 0; 
+  background-color: #ffffff;
+  flex-shrink: 0;  
 }
 
-.yellow-button {
-  display: flex;
-  align-items: center; 
-  justify-content: center; 
-  width: 90%; 
-  height: 40px;
-  border-radius: 8px;
-  background-color: green; 
-  margin: 0 auto; 
-  padding: 0; 
+  .yellow-button {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    width: 90%; 
+    height: 40px;
+    border-radius: 8px;
+    background-color: #0e8a00; 
+    margin: 0 auto; 
+    padding: 0; 
 }
 
 .plus{
@@ -496,7 +382,7 @@
 }
 
 .button-add-task {
-  color: white;
+  color: rgb(255, 255, 255);
   font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
@@ -505,4 +391,83 @@
   margin: 0; 
   white-space: nowrap; 
 }
+  
+.red-button{
+  display: flex;
+  width: 380px;
+  height: 40px;
+  padding: 4px 0px 0px 0px;
+  gap: 10px;
+  border-radius: 8px;
+  opacity: 0px;
+  background-color: #9b0000;
+  margin-bottom:50px;
+  margin-right: 7px;
+  margin-left: 7px;
+}
 
+.button-delete-task{
+  color: white;
+  width: 228px;
+  height: 21px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  margin-right: 73.5px;
+  margin-left: 73.5px;
+  font-family: Spectral, serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.delete-window{
+  position: absolute;
+  top: 12px;           
+  left: 30px; 
+  z-index: 100;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #375589;
+  width: 332px;
+  height: 200px;
+  border-radius: 16px;
+  margin-top: 240px;
+  padding: 30px;
+}
+
+.hidden{
+  display: none;
+}
+
+.confirm{
+  color: white;
+  font-size: 16px;
+  margin-top: 15px;
+  margin-left: 54.5px;
+  margin-right: 54.5px;
+  margin-bottom: 20px;
+}
+
+.buttons-block{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap:10px;
+}
+
+.confirm-true{
+  background-color: #00811c; 
+  color: rgb(0, 0, 0);              
+  border-radius: 16px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.confirm-false{
+  background-color: #bb433a; 
+  color: rgb(0, 0, 0);              
+  border-radius: 16px;
+  padding: 10px 20px;
+  font-size: 16px;
+}

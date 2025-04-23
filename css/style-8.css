@@ -7,7 +7,6 @@
   
   html, body {
     height: 100vh; 
-    /*width: 393px;*/
     width: 100%;
     overflow: hidden; 
     display: flex;
@@ -24,8 +23,7 @@
   .tasks-panel {
     display: flex;
     background-color: #26334A;
-     /*width: 393px;*/
-     width: 100%;
+    width: 100%;
     height: 64px;  
     flex-shrink: 0; 
   }
@@ -126,7 +124,7 @@
   }
   
 .list-tasks {
- width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -141,7 +139,6 @@
   width: 368px;
   height: 46px; 
   padding: 12px 0px 12px 24px;
-  /*gap: 10px;*/
   border-radius: 16px;
   background-color: #111828;
   margin-top: 24px;
@@ -153,12 +150,6 @@
 .desc-event {
   width: 368px;
     height:126px;
-    /*max-width: 368px;
-    max-height: 126px;
-    min-width: 368px;
-    min-height: 126px;
-    gap: 10px;
-    opacity: 0px;*/
     padding: 12px 0px 12px 24px;
     border-radius: 16px;
     background-color:#111828;
@@ -167,6 +158,7 @@
     margin-right: 12px;
     color:#ffffff
 }
+
   .date-event{
     display: flex;
     flex-direction: row;
@@ -193,7 +185,7 @@
   }
 
   .added-calendar{
-     margin-top: 15px;
+    margin-top: 15px;
   }
 
   .watch{
@@ -224,7 +216,7 @@
     margin-right: 16px;
     padding: 0px;
     border-bottom: 1px solid white;
-    font-size: 16px; /* Установите нужный размер шрифта */
+    font-size: 16px;
     line-height: 1.5em;
   }
 
@@ -344,9 +336,7 @@
     color: white;
     margin-top: 4.5px;
     margin-bottom: 4px;
-    /*margin-right: 201px;*/
     background-color: #111828;
-    /*border-bottom: 1px solid white;*/
   }
 
   .number-time-event{
@@ -355,8 +345,7 @@
   .bottom-nav {
     display: flex;
     justify-content: space-between;
-     /*width: 393px;*/
-     width: 100%;
+    width: 100%;
     height: 66px;
     background-color: #111828;       
   }
@@ -365,8 +354,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-   /*width: 393px;*/
-   width: 100%;
+  width: 100%;
   height: 48px;
   background-color: #26334A;
   flex-shrink: 0;  
@@ -394,14 +382,14 @@
 }
 
 .button-add-task {
-  color: white; /* Белый текст */
+  color: white;
   font-family: Spectral, serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 21px;
-  text-align: center; /* Центрируем текст */
-  margin: 0; /* Убираем отступы */
-  white-space: nowrap; /* Запрещаем перенос текста */
+  text-align: center; 
+  margin: 0; 
+  white-space: nowrap; 
 }
   
 .red-button{
@@ -469,16 +457,16 @@
 }
 
 .confirm-true{
-  background-color: #00811c; /* Цвет фона кнопки */
-  color: rgb(0, 0, 0);              /* Цвет текста */
+  background-color: #00811c; 
+  color: rgb(0, 0, 0);              
   border-radius: 16px;
   padding: 10px 20px;
   font-size: 16px;
 }
 
 .confirm-false{
-  background-color: #bb433a; /* Цвет фона кнопки */
-  color: rgb(0, 0, 0);              /* Цвет текста */
+  background-color: #bb433a; 
+  color: rgb(0, 0, 0);              
   border-radius: 16px;
   padding: 10px 20px;
   font-size: 16px;

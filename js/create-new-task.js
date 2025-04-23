@@ -87,7 +87,6 @@ function replaceWithFormattedDate() {
     }
 }
 
-
 function updateMinutesLabel(value) {
     const minutesLabel = document.getElementById('minutes-label');
     
