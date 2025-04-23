@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -43,9 +44,37 @@
         <section class="start-and-finish-time-block">
           <img class="watch"
           data-light="img/schedule_light.png" data-dark="/img/schedule.png">
-          <input type="text" name="start-event-time" class="start-event-time" placeholder="00:00" autocomplete="off" required>      
+          <input type="text" name="start-event-time" class="start-event-time" placeholder="00:00" required>      
           <p class="tire">-</p>
           <input type="text" name="finish-event-time" class="finish-event-time" placeholder="00:00" autocomplete="off" required>
+
+          <div id="overlay" class="overlay"></div>
+          <div id="popup-time" class="popup-time">
+            <p class="choice">Выберите время</p>
+
+            <div class="time-picker">
+              <div class="hours">
+                <div id="hours-prev-value" class="time prev-time"></div>
+                <div id="hours-current-value" class="time current-time"></div>
+                <div id="hours-next-value" class="time future-time"></div>
+              </div>
+              <p class="time-divider">:</p>
+              <div class="minutes">
+                <div id="minutes-prev-value" class="time prev-time"></div>
+                <div id="minutes-current-value" class="time current-time"></div>
+                <div id="minutes-next-value" class="time future-time"></div>
+              </div>
+            </div>
+
+            <div class="buttons">
+              <button class="popup-cancel">
+                <p>Отмена</p>
+              </button>
+              <button class="popup-save">
+                <p>Сохранить</p>
+              </button>
+            </div>
+          </div>
         </section>      
 
         <section class="notification">
@@ -74,5 +103,6 @@
     <script src="js/create-new-event.js"></script>
     <script src="js/fetch-darkEvForm.js"></script>
     <script src="js/theme-change.js"></script>
+    <script src="js/time-picker.js"></script>
   </body>
 </html>

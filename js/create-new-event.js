@@ -25,28 +25,6 @@ function replaceWithFormattedDate() {
     }
 }
 
-document.querySelector('.start-event-time').addEventListener('input', function(e) {
-    const timeInput = e.target.value;
-    const validTimeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
-
-    if (!validTimeRegex.test(timeInput)) {
-        e.target.setCustomValidity('Время должно быть в формате ЧЧ:MM (например, 14:30)');
-    } else {
-        e.target.setCustomValidity('');
-    }
-});
-
-document.querySelector('.finish-event-time').addEventListener('input', function(e) {
-    const timeInput = e.target.value;
-    const validTimeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
-
-    if (!validTimeRegex.test(timeInput)) {
-        e.target.setCustomValidity('Время должно быть в формате ЧЧ:MM (например, 14:30)');
-    } else {
-        e.target.setCustomValidity('');
-    }
-});
-
 //Склонение слова "минут"
 function updateMinutesLabel(value) {
     const minutesLabel = document.getElementById('minutes-label');

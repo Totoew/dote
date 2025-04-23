@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Циклический выбор значений</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.popup {
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#value-container {
+    margin: 20px 0;
+}
+
+hr {
+    border: 1px solid black;
+    margin: 10px 0; /* Отступы для лучшего визуального восприятия */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Выбор значения</h1>
+    <input type="text" id="value-input" placeholder="Нажмите для выбора значения" readonly onclick="togglePopup()">
+
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    
+    <div class="popup" id="value-popup">
+        <h2>Выбор значения</h2>
+        <div id="value-container" onwheel="scrollValues(event)" ontouchstart="startTouch(event)" ontouchmove="moveTouch(event)">
+            <div id="prev-value"></div>
+            <hr> <!-- Тонкая черта между значениями -->
+            <div id="current-value"></div>
+            <hr> <!-- Тонкая черта между значениями -->
+            <div id="next-value"></div>
+        </div>
+        <button onclick="closePopup()">Закрыть</button>
+    </div>
+
+    <script>
+        let currentValue = 0;
+        const totalValues = 5;
+        let startY;
+
+        function initializeValues() {
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const prevValue = (currentValue - 1 + totalValues) % totalValues;
+            const nextValue = (currentValue + 1) % totalValues;
+
+            document.getElementById('prev-value').textContent = prevValue; // Показываем предыдущее значение
+            document.getElementById('current-value').textContent = currentValue; // Показываем текущее значение
+            document.getElementById('next-value').textContent = nextValue; // Показываем следующее значение
+        }
+
+        function scrollValues(event) {
+            event.preventDefault();
+            const delta = Math.sign(event.deltaY);
+            currentValue = (currentValue + delta + totalValues) % totalValues; // Зацикливание
+            updateDisplay();
+        }
+
+        function startTouch(event) {
+            const popup = document.getElementById('value-popup');
+            const rect = popup.getBoundingClientRect(); // Получаем размеры и положение всплывающего окна
+            const centerY = rect.top + rect.height / 2; // Находим центр по оси Y
+            startY = centerY; // Запоминаем начальное положение касания в центре всплывающего окна
+        }
+
+        function moveTouch(event) {
+            const touchY = event.touches[0].clientY;
+            const delta = touchY - startY;
+            if (Math.abs(delta) > 15) { // Если перемещение достаточно велико
+                currentValue = (currentValue + (delta > 0 ? -1 : 1) + totalValues) % totalValues; // Зацикливание
+                updateDisplay();
+                startY = touchY; // Обновляем начальное положение
+            }
+        }
+
+        function togglePopup() {
+            const popup = document.getElementById('value-popup');
+            const overlay = document.getElementById('overlay');
+            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+            if (popup.style.display === 'block') {
+                initializeValues();
+            }
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('value-popup');
+            const overlay = document.getElementById('overlay');
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+            document.getElementById('value-input').value = currentValue; // Обновляем значение в поле ввода
+        }
+    </script>
+</body>
+</html>
