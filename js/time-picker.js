@@ -65,20 +65,24 @@ function scrollValues(evt) {
     updateDisplay(time);
 }
 
-function startTouch() {
-    const rect = popup.getBoundingClientRect();
-    const centerY = rect.top + rect.height / 2;
-    startY = centerY;
+function startTouch(evt) {
+    evt.preventDefault();
+    startY = evt.touches[0].clientY;
 }
 
 function moveTouch(evt) {
+    evt.preventDefault();
     const touchY = evt.touches[0].clientY;
     const delta = touchY - startY;
     const time = evt.target.id.split('-')[0];
-    if (Math.abs(delta) > 0) {
-        currentValue = (currentValue + (delta > 0 ? -1 : 1) + totalValues) % totalValues;
+    if (Math.abs(delta) > 10) {
+        if (time == 'hours') {
+            currentHoursValue = (currentHoursValue + (delta > 0 ? -1 : 1) + maxHours) % maxHours;
+        } else {
+            currentMinutesValue = (currentMinutesValue + (delta > 0 ? -1 : 1) + maxMinutes) % maxMinutes;
+        }
         updateDisplay(time);
-        //startY = touchY;
+        startY = touchY;
     }
 }
 
