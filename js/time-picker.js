@@ -74,9 +74,10 @@ function startTouch() {
 function moveTouch(evt) {
     const touchY = evt.touches[0].clientY;
     const delta = touchY - startY;
+    const time = evt.target.id.split('-')[0];
     if (Math.abs(delta) > 30) {
         currentValue = (currentValue + (delta > 0 ? -1 : 1) + totalValues) % totalValues;
-        updateDisplay();
+        updateDisplay(time);
         //startY = touchY;
     }
 }
