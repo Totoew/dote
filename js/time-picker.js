@@ -66,7 +66,6 @@ function scrollValues(evt) {
 }
 
 function startTouch() {
-    const popup = document.getElementById('value-popup');
     const rect = popup.getBoundingClientRect();
     const centerY = rect.top + rect.height / 2;
     startY = centerY;
