@@ -421,9 +421,9 @@ input[type="text"]::placeholder {
   color: #333333;
   height: 56px;
   height: 56px;
-  display: flex;                /* Добавлено для вертикального выравнивания текста */
-  align-items: center;          /* Центрируем текст по вертикали */
-  justify-content: center;      /* Центрируем текст по горизонтали */
+  display: flex;          
+  align-items: center;   
+  justify-content: center; 
   box-sizing: border-box;
 }
 
