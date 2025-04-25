@@ -11,6 +11,18 @@ let flag = 'start';
 let currentHoursValue = NaN;
 let currentMinutesValue = NaN;
 
+window.onload = function() {
+    const hours = new Date().getHours()
+    start_event.placeholder = hours + 1 < 24 ? `${modifyTime(hours + 1)}:00` : '00:00';
+    if (hours + 2 == 25) {
+        finish_event.placeholder = '01:00';
+    } else if (hours + 2 == 24) {
+        finish_event.placeholder = '00:00';
+    } else {
+        finish_event.placeholder = `${modifyTime(hours + 2)}:00`
+    }
+}
+
 
 
 function initializeValues() {

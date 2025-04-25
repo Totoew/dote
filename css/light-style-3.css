@@ -124,6 +124,10 @@ select {
   text-decoration-skip-ink: none;
 }
 
+input[type="text"]::placeholder {
+  color: #333333;
+}
+
 .list-tasks {
   width: 100%;
   display: flex;
@@ -199,7 +203,7 @@ width: 368px;
 .popup-time {
   width: 364px;
   height: 360px;
-  background-color: #111828;
+  background-color: #FFFFFF;
   border-radius: 12px;
 
   flex-direction: column; 
@@ -223,7 +227,7 @@ width: 368px;
   font-family: "Inter" sans-serif;
   font-size: 24px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #050505;
   line-height: 25px;
   width: 343px;
   height: 49px;
@@ -252,7 +256,7 @@ width: 368px;
   font-weight: 600;
   font-size: 28px;
   line-height: 26px;
-  color: #333333;
+  color: #818181;
   height: 56px;
   height: 56px;
   display: flex;          
@@ -280,12 +284,12 @@ width: 368px;
   padding: 0;
   padding-top: 70px;
   padding-right: 0px;
-  color: #ffffff;
+  color: #050505;
   display: block;
 }
 
 .current-time {
-  color: #ffffff;
+  color: #050505;
   border-top: 1px solid #333333;
   border-bottom: 1px solid #333333;
 }
@@ -306,7 +310,7 @@ width: 368px;
 }
 
 .popup-cancel {
-  background-color: #111828;
+  background-color: #ffffff;
   border: 1px solid #333333;
 }
 
@@ -372,7 +376,7 @@ width: 368px;
 .start-event-time{
   width: 74px;
   height: 41px;
-  padding: 10px ;
+  padding: 10px;
   gap: 10px;
   border-radius: 4px;
   border: none;
@@ -413,6 +417,7 @@ width: 368px;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   margin: 0px;
+  margin-top: 5px;
   padding: 0px;
 }
 

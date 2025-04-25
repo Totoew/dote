@@ -481,7 +481,7 @@ input[type="text"]::placeholder {
 }
 
 .popup-cancel p, .popup-save p {
-  font-family: "Inter" sans-serif;
+  font-family: 'Inter' sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 18px;

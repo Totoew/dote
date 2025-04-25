@@ -240,7 +240,7 @@ input[type="text"]::placeholder {
 .popup-time {
   width: 364px;
   height: 360px;
-  background-color: #111828;
+  background-color: #ffffff;
   border-radius: 12px;
 
   flex-direction: column; 
@@ -264,7 +264,7 @@ input[type="text"]::placeholder {
   font-family: "Inter" sans-serif;
   font-size: 24px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #050505;
   line-height: 25px;
   width: 343px;
   height: 49px;
@@ -293,7 +293,7 @@ input[type="text"]::placeholder {
   font-weight: 600;
   font-size: 28px;
   line-height: 26px;
-  color: #333333;
+  color: #818181;
   height: 56px;
   height: 56px;
   display: flex;   
@@ -321,12 +321,12 @@ input[type="text"]::placeholder {
   padding: 0;
   padding-top: 70px;
   padding-right: 0px;
-  color: #ffffff;
+  color: #050505;
   display: block;
 }
 
 .current-time {
-  color: #ffffff;
+  color: #050505;
   border-top: 1px solid #333333;
   border-bottom: 1px solid #333333;
 }
@@ -347,7 +347,7 @@ input[type="text"]::placeholder {
 }
 
 .popup-cancel {
-  background-color: #111828;
+  background-color: #ffffff;
   border: 1px solid #333333;
 }
 

@@ -11,6 +11,11 @@ let currentMinutesValue = NaN;
 
 
 
+window.onload = function() {
+    const hours = new Date().getHours();
+    timePicker.placeholder = hours + 1 < 24 ? `${modifyTime(hours + 1)}:00` : '00:00';
+}
+
 function initializeValues() {
     let value = timePicker.value.split(':')
     value = value[0] == '' ? timePicker.placeholder.split(':') : value;
