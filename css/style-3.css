@@ -225,35 +225,41 @@
     white-space: nowrap; 
 }
 
+input[type="text"]::placeholder {
+  color: #333333;
+}
+
   .start-event-time{
-    width: 66px;
+    width: 74px;
     height: 41px;
     padding: 10px ;
     gap: 10px;
     border-radius: 4px;
+    border: none;
     opacity: 0px;
-    background-color: rgba(255, 162, 0, 0.296);
-    color:rgb(245, 155, 0);
-    font-family: Spectral, serif;
-    font-size: 18px;
+    background-color: #818181;
+    color: #333333;
+    font-family: 'Inter' sans-serif;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 21px;
+    line-height: 25px;
     margin: 0px;
   }
 
   .finish-event-time{
-    width: 66px;
+    width: 74px;
     height: 41px;
     padding: 10px ;
     gap: 10px;
     border-radius: 4px;
+    border: none;
     opacity: 0px;
-    background-color: rgba(255, 162, 0, 0.296);
-    color:rgb(245, 155, 0);
-    font-family: Spectral, serif;
-    font-size: 18px;
+    background-color: #818181;
+    color:#333333;
+    font-family: 'Inter' sans-serif;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 21px;
+    line-height: 25px;
     margin-right: 27px;
   }
 
@@ -267,6 +273,7 @@
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     margin: 0px;
+    margin-top: 5px;
     padding: 0px;
   }
   

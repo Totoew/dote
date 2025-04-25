@@ -96,7 +96,7 @@ def create_task():
     data = request.json
 
     telegram_id, user_id = find_user(data)
-    time_to_schedule = parse_date(data['task_date'], data['task_notification_time'], '19:05:00')
+    time_to_schedule = parse_date(data['task_date'], data['task_notification_time'], data['task_time'] + ':00')
 
     # Создаем новую задачу
     new_task = (
@@ -109,7 +109,7 @@ def create_task():
         data.get('task_notification_time', None),
         data['task_status'],
         data.get('task_priority', None),
-        time_to_schedule
+        data['task_time']
     )
 
     db.insert_into_table('tasks', new_task)

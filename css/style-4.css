@@ -205,7 +205,7 @@
   }
 
   input[type="text"]::placeholder {
-    color: #FCBC02; 
+    color: #333333; 
   }
 
   .word-block {
@@ -335,50 +335,170 @@
     white-space: nowrap;
 }
 
-  .start-event-time{
-    width: 74px;
-    height: 41px;
-    padding: 10px ;
-    gap: 10px;
-    border-radius: 4px;
-    opacity: 0px;
-    background-color: rgba(255, 162, 0, 0.296);
-    color:rgb(245, 155, 0);
-    font-family: Spectral, serif;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 21px;
-    margin: 0px;
-  }
 
-  .finish-event-time{
-    width: 74px;
-    height: 41px;
-    padding: 10px ;
-    gap: 10px;
-    border-radius: 4px;
-    opacity: 0px;
-    background-color: rgba(255, 162, 0, 0.296);
-    color:rgb(245, 155, 0);
-    font-family: Spectral, serif;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 21px;
-    margin-right: 27px;
-  }
-
-  .tire{
-    color: white;
-    font-family: Spectral, serif;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 26px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    margin: 0px;
-    padding: 0px;
+.task-time-picker {
+  margin-top: 5px;
 }
+
+.task-time {
+  width: 74px;
+  height: 41px;
+  border-radius: 4px;
+  border: none;
+  background-color: #818181;
+  padding: 10px;
+
+  font-family: 'Inter' sans-serif;
+  font-weight: 600;
+  line-height: 25px;
+  font-size: 20px;
+  color: #333333;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup-time {
+  width: 364px;
+  height: 360px;
+  background-color: #111828;
+  border-radius: 12px;
+
+  flex-direction: column; 
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  filter: blur(30);
+}
+
+.choice {
+  padding: 12px 18px 12px 16px;
+  font-family: "Inter" sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 25px;
+  width: 343px;
+  height: 49px;
+  margin: 0;
+}
+
+.time-picker {
+  width: 202px;
+  height: 168px;
+  margin: 15px 81px;
+  display: flex;
+  justify-content: center;
+}
+
+.hours, .minutes {
+  width: 101px;
+  height: 168px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.time, .time-divider {
+  font-family: 'Inter' sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 26px;
+  color: #333333;
+  height: 56px;
+  height: 56px;
+  display: flex;                /* Добавлено для вертикального выравнивания текста */
+  align-items: center;          /* Центрируем текст по вертикали */
+  justify-content: center;      /* Центрируем текст по горизонтали */
+  box-sizing: border-box;
+}
+
+.minutes .time {
+  margin-left: 0;
+  padding: 10px 0;
+  padding-right: 60px;
+  margin-bottom: 0;
+}
+
+.hours .time {
+  margin-right: 0;
+  padding: 10px 0;
+  padding-left: 60px;
+  margin-bottom: 0;
+}
+
+.time-divider {
+  margin: 0;
+  padding: 0;
+  padding-top: 70px;
+  padding-right: 0px;
+  color: #ffffff;
+  display: block;
+}
+
+.current-time {
+  color: #ffffff;
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+}
+
+.buttons {
+  width: 312px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.popup-cancel, .popup-save {
+  width: 148px;
+  height: 56px;
+  border-radius: 12px;
+  padding: 18px 16px;
+}
+
+.popup-cancel {
+  background-color: #111828;
+  border: 1px solid #333333;
+}
+
+.popup-save {
+  background-color: #78BA6F;
+}
+
+.popup-cancel p, .popup-save p {
+  font-family: "Inter" sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.popup-save p {
+  color: #FFFFFF;
+}
+
+.popup-cancel p {
+  color: #818181;
+}
+
 
   .notification{
     display: flex;

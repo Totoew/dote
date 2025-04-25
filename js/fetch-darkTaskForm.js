@@ -61,6 +61,7 @@ document.getElementById('darkTaskForm').addEventListener('submit', async functio
         'task_date': form.querySelector('[name="day-task"]').value,
         'task_notification_time': Number(form.querySelector('[name="time-notification"]').value),
         'task_status': "pending",
+        'task_time': form.querySelector('[name="task-time"]').value,
     };
 
     console.log("Отправляем задачу:", task);
@@ -122,5 +123,6 @@ document.addEventListener('touchmove', function (event) {
     task_priority: "matter",   
     task_date: "2024-12-31",  
     task_notification_time: "30",
-    task_status: "pending"     
+    task_status: "pending",
+    task_time: "08:00",   
 };*/

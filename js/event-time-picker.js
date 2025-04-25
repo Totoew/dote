@@ -15,11 +15,13 @@ let currentMinutesValue = NaN;
 
 function initializeValues() {
     if (flag == 'start') {
-        const value = start_event.value.split(':')
+        let value = start_event.value.split(':')
+        value = value[0] == '' ? start_event.placeholder.split(':') : value;
         currentHoursValue = isNaN(value[0]) ? 0 : Number(value[0]);
         currentMinutesValue = isNaN(value[1]) ? 0 : Number(value[1]);
     } else if (flag == 'finish') {
-        const value = finish_event.value.split(':')
+        let value = finish_event.value.split(':')
+        value = value[0] == '' ? finish_event.placeholder.split(':') : value;
         currentHoursValue = isNaN(value[0]) ? 0 : Number(value[0]);
         currentMinutesValue = isNaN(value[1]) ? 0 : Number(value[1]);
     }
@@ -141,8 +143,12 @@ document.querySelector('.popup-cancel').addEventListener('click', closePopup);
 document.querySelector('.popup-save').addEventListener('click', () => {
     if (flag == 'start') {
         start_event.value = `${modifyTime(currentHoursValue)}:${modifyTime(currentMinutesValue)}`;
+        start_event.style.backgroundColor = '#292A3C';
+        start_event.style.color = '#ffffff';
     } else {
         finish_event.value = `${modifyTime(currentHoursValue)}:${modifyTime(currentMinutesValue)}`;
+        finish_event.style.backgroundColor = '#292A3C';
+        finish_event.style.color = '#ffffff';
     }
     closePopup();
 });
