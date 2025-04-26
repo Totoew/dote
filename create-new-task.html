@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
     rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   </head>
   <body>
     <form id="darkTaskForm">
@@ -69,6 +70,38 @@
             <!--<input class="day-task" name="day-task" type="date" id="dateInput" onchange="replaceWithFormattedDate()" required>-->
             <input class="day-task" name="day-task" type="date" id="dateInput" required>
           </div>
+
+          <section class="task-time-picker">
+            <input type="text" name="task-time" class="task-time" autocomplete="off" readonly required>
+  
+            <div id="overlay" class="overlay"></div>
+            <div id="popup-time" class="popup-time">
+              <p class="choice">Выберите время</p>
+  
+              <div class="time-picker">
+                <div class="hours">
+                  <div id="hours-prev-value" class="time prev-time"></div>
+                  <div id="hours-current-value" class="time current-time"></div>
+                  <div id="hours-next-value" class="time future-time"></div>
+                </div>
+                <p class="time-divider">:</p>
+                <div class="minutes">
+                  <div id="minutes-prev-value" class="time prev-time"></div>
+                  <div id="minutes-current-value" class="time current-time"></div>
+                  <div id="minutes-next-value" class="time future-time"></div>
+                </div>
+              </div>
+  
+              <div class="buttons">
+                <button class="popup-cancel">
+                  <p>Отмена</p>
+                </button>
+                <button class="popup-save">
+                  <p>Сохранить</p>
+                </button>
+              </div>
+            </div>
+          </section>
         </section>
   
         <section class="notification">
@@ -96,6 +129,7 @@
       </form>
       
     <script src="js/create-new-task.js"></script>
+    <script src="js/task-time-picker.js"></script>
     <script type='module' src="js/fetch-darkTaskForm.js"></script>
     <script src="js/theme-change.js"></script>
   </body>

@@ -14,20 +14,26 @@
     <div class="header-1">     
       <section class="tasks-panel">
         <h1 class="tasks-panel-h1">Настройки</h1>
-        <img class="tasks-panel-img" src="/img/manage_search.png" data-light="img/manage_search_light.png" data-dark="img/manage_search.png">
       </section>
     </div>
 
     <div class="list-tasks">
     <section class="scroll-box">
       <div class="theme-block">
-        <div class="theme-block-hard">
-          <button id="theme-toggle" class="a-theme-block">
-            <img width="18px" height="18px" class="theme-image" src="/img/rectan_light.jpg"
-              data-light="img/rectan_dark.jpg" data-dark="img/rectan_light.jpg">
+        <p class="theme-text">Уведомления</p>
+          <button class="notification-button">
+            <img class="notifications-arrow" width="11.78" height="20" src="img/arrow_forward_dark_theme.png" 
+              data-light="img/arrow_forward_light_theme.png" data-dark="img/arrow_forward_dark_theme.png">
           </button>
-          <p class="theme-text">Сменить тему на светлую</p>
+      </div>
+
+      <div class="theme-block">
+        <div class="a-theme-block">
+          <input type="checkbox" id="theme-toggle">
+          <label for="theme-toggle" class="button"></label>
         </div>
+
+        <p class="theme-text">Тёмная тема</p>
       </div>
     </section>
   </div>
