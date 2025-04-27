@@ -108,18 +108,18 @@ function updateMinutesLabel(value) {
 //функция для отображения приоритетов
 document.getElementById('inputFieldPriority').addEventListener('change', function () {
     const select = this;
-  
+
     select.classList.remove('not-matter', 'normal', 'matter');
 
     if (select.value === 'not-matter') {
-      select.classList.add('not-matter');
+        select.classList.add('not-matter');
     } else if (select.value === 'normal') {
-      select.classList.add('normal');
+        select.classList.add('normal');
     } else if (select.value === 'matter') {
-      select.classList.add('matter');
+        select.classList.add('matter');
     }
-  });
-  
+});
+
 document.getElementById("inputFieldPriority").addEventListener("change", function () {
     if (this.value !== "") {
         // Если выбрана любая другая опция, кроме "Выберите..."
@@ -141,6 +141,6 @@ document.getElementById('backButton').addEventListener('click', () => {
 //не закрывать приложение при свайпе вниз
 document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
-      event.preventDefault();
+        event.preventDefault();
     }
-  }, { passive: false });
+}, { passive: false });

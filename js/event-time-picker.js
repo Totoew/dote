@@ -11,31 +11,46 @@ let flag = 'start';
 let currentHoursValue = NaN;
 let currentMinutesValue = NaN;
 
+
 window.onload = function() {
     const hours = new Date().getHours()
-    start_event.placeholder = hours + 1 < 24 ? `${modifyTime(hours + 1)}:00` : '00:00';
+    start_event.value = hours + 1 < 24 ? `${modifyTime(hours + 1)}:00` : '00:00';
     if (hours + 2 == 25) {
-        finish_event.placeholder = '01:00';
+        finish_event.value = '01:00';
     } else if (hours + 2 == 24) {
-        finish_event.placeholder = '00:00';
+        finish_event.value = '00:00';
     } else {
-        finish_event.placeholder = `${modifyTime(hours + 2)}:00`
+        finish_event.value = `${modifyTime(hours + 2)}:00`
     }
 }
 
-
+// function initializeValues() {
+//     if (flag == 'start') {
+//         let value = start_event.value.split(':')
+//         value = value[0] == '' ? start_event.placeholder.split(':') : value;
+//         currentHoursValue = isNaN(value[0]) ? 0 : Number(value[0]);
+//         currentMinutesValue = isNaN(value[1]) ? 0 : Number(value[1]);
+//     } else if (flag == 'finish') {
+//         let value = finish_event.value.split(':')
+//         value = value[0] == '' ? finish_event.placeholder.split(':') : value;
+//         currentHoursValue = isNaN(value[0]) ? 0 : Number(value[0]);
+//         currentMinutesValue = isNaN(value[1]) ? 0 : Number(value[1]);
+//     }
+//     updateDisplay('hours');
+//     updateDisplay('minutes');
+// }
 
 function initializeValues() {
+    let value;
     if (flag == 'start') {
-        let value = start_event.value.split(':')
-        value = value[0] == '' ? start_event.placeholder.split(':') : value;
-        currentHoursValue = isNaN(value[0]) ? 0 : Number(value[0]);
-        currentMinutesValue = isNaN(value[1]) ? 0 : Number(value[1]);
+        value = start_event.value.split(':');
+        // Если поле пустое, устанавливаем 00:00 вместо плейсхолдера
+        currentHoursValue = value[0] === '' ? 0 : Number(value[0]) || 0;
+        currentMinutesValue = value[1] === '' ? 0 : Number(value[1]) || 0;
     } else if (flag == 'finish') {
-        let value = finish_event.value.split(':')
-        value = value[0] == '' ? finish_event.placeholder.split(':') : value;
-        currentHoursValue = isNaN(value[0]) ? 0 : Number(value[0]);
-        currentMinutesValue = isNaN(value[1]) ? 0 : Number(value[1]);
+        value = finish_event.value.split(':');
+        currentHoursValue = value[0] === '' ? 0 : Number(value[0]) || 0;
+        currentMinutesValue = value[1] === '' ? 0 : Number(value[1]) || 0;
     }
     updateDisplay('hours');
     updateDisplay('minutes');
@@ -118,7 +133,6 @@ function boundValues(currentValue, maxValue, delta, factor = -1) {
     return currentValue;
 }
 
-
 hours.addEventListener('wheel', scrollValues);
 hours.addEventListener('touchstart', startTouch);
 hours.addEventListener('touchmove', moveTouch);
@@ -126,7 +140,6 @@ hours.addEventListener('touchmove', moveTouch);
 minutes.addEventListener('wheel', scrollValues);
 minutes.addEventListener('touchstart', startTouch);
 minutes.addEventListener('touchmove', moveTouch);
-
 
 start_event.addEventListener('click', () => {
     flag = 'start';

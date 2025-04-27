@@ -1,10 +1,14 @@
 // Получение всех ключей из localStorage
 const taskKeys = Object.keys(localStorage);
-
+console.log(taskKeys);
 // Объединение задач, если их несколько
 const tasks = taskKeys.map(key => {
     const taskData = localStorage.getItem(key);
-    return JSON.parse(taskData);
+    console.log(taskData, key);
+    if (key.includes('task') || key.includes('event')) {
+        return JSON.parse(taskData);
+    }
+    
 }).filter(task => task !== null);
 
 console.log('Загруженные задачи из Local Storage:', tasks);
@@ -179,12 +183,12 @@ addDeleteEventToExistingCards();
 // Отключаем свайп вниз на уровне документа
 document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
-      event.preventDefault();
+        event.preventDefault();
     }
-  }, { passive: false });
-  
+}, { passive: false });
+
 // Разрешаем скролл внутри контейнера .scroll-box
 const scrollBox = document.querySelector('.list-tasks');
 scrollBox.addEventListener('touchmove', function (event) {
     event.stopPropagation();
-  }, { passive: true });
+}, { passive: true });

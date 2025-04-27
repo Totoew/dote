@@ -17,6 +17,7 @@ async function fetchUserId() {
     }
 }
 
+///убрать
 // Получаем user_id и сохраняем в localStorage
 fetchUserId().then(userId => {
     if (userId) {
@@ -39,6 +40,16 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
 
     const form = evt.target;
     const eventId = Date.now();
+
+    const startTimeInput = form.querySelector('[name="start-event-time"]');
+    const endTimeInput = form.querySelector('[name="finish-event-time"]');
+
+    // Проверяем, что время было выбрано явно (значение отличается от плейсхолдера)
+    if (startTimeInput.value === startTimeInput.placeholder || 
+        endTimeInput.value === endTimeInput.placeholder) {
+        alert('Пожалуйста, выберите время вручную!');
+        return;
+    }
 
     const event = {
         user_id: userId,

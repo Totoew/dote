@@ -36,6 +36,6 @@ fetch('https://flask.stk8s.66bit.ru/events', {
 //не закрывать приложение при свайпе вниз
 document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
-      event.preventDefault();
+        event.preventDefault();
     }
-  }, { passive: false });
+}, { passive: false });
