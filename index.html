@@ -43,12 +43,14 @@
                   </div>
                   <div class="checker-box">
                     <img class="is-done" src="/img/da-galka.png" alt="Завершено">
-                    <img class="delete" src="/img/been.png" alt="Удалить">
+                    <button class="icon-button">
+                      <img class="delete" src="/img/been.png" alt="Удалить">
+                    </button>
                   </div>
                 </div>
               </template>
-              <div class="tasks-container"></div>
-              <div id="delete-window-id" class="delete-window hidden">
+              <div class="container"></div>
+              <div id="delete-window" class="delete-window hidden">
                 <p class="confirm">Подтвердить удаление</p>
                 <div class="buttons-block">
                   <button class="confirm-true">Да</button>
@@ -90,11 +92,12 @@
               </a>
             </section>
           </div>
-        <script src="js/test.js"></script> 
-        <!-- <script src="./main.js"></script> -->
+        <!-- <script src="js/test.js"></script>   -->
+        <script src="./main.js"></script>
         <script src="js/search-name-task.js"></script>
         <script src="js/filter-tasks.js"></script>
         <script src="js/theme-change.js"></script>
+        <script src="js/draw-task.js"></script>
     </body>
 </html>
 

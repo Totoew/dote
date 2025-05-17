@@ -86,7 +86,7 @@
 }
 
 .container{
- height: 78px;
+  height: 78px;
 }
 
 .icon-image {
@@ -96,17 +96,14 @@
 }
 
 .delete-window {
-  position: fixed;          
-  top: 50%;                 
-  left: 187.5px;               
-  transform: translate(-50%, -50%); 
-  z-index: 100;             
-  display: flex;            
+  z-index: 100;               
+  top: 40%;
+  left: 30%;     
   flex-direction: column;   
   align-items: center;      
   background-color: #375589; 
-  width: 332px;            
-  height: 200px;            
+  width: 40vw;            
+  height: 25vw;            
   border-radius: 16px;     
   padding: 30px;     
 }
@@ -117,7 +114,7 @@
 
 .confirm{
   color: white;
-  font-size: 16px;
+  font-size: 26px;
   margin-top: 15px;
   margin-left: 54.5px;
   margin-right: 54.5px;
@@ -136,7 +133,7 @@
   color: rgb(0, 0, 0);             
   border-radius: 16px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 26px;
 }
 
 .confirm-false{
@@ -144,7 +141,7 @@
   color: rgb(0, 0, 0);              
   border-radius: 16px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 26px;
 }
 
 .footer-1{

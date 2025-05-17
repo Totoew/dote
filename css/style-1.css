@@ -93,29 +93,51 @@ body {
   margin-top: 24px;
 }
 
-.delete-window {
-  position: fixed;          
-  top: 50%;                 
-  left: 187.5px;               
-  transform: translate(-50%, -50%); 
-  z-index: 100;             
-  display: flex;            
-  flex-direction: column;   
-  align-items: center;      
-  background-color: #375589; 
-  width: 332px;            
-  height: 200px;            
-  border-radius: 16px;     
-  padding: 30px;     
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.delete-window{
+  position: absolute;
+  top: 12px;           
+  left: 30px; 
+  z-index: 100;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #375589;
+  width: 332px;
+  height: 200px;
+  border-radius: 16px;
+  margin-top: 24px;
+  padding: 30px;
 }
 
 .hidden{
   display: none;
 }
 
+.delete-window {
+  z-index: 100;               
+  top: 37,5%;
+  left: 30%;     
+  flex-direction: column;   
+  align-items: center;      
+  background-color: #375589; 
+  width: 40vw;            
+  height: 25vw;            
+  border-radius: 16px;     
+  padding: 30px;     
+}
+
 .confirm{
   color: white;
-  font-size: 16px;
+  font-size: 26px;
   margin-top: 15px;
   margin-left: 54.5px;
   margin-right: 54.5px;
@@ -131,10 +153,10 @@ body {
 
 .confirm-true{
   background-color: #00811c; 
-  color: rgb(0, 0, 0);              
+  color: rgb(0, 0, 0);             
   border-radius: 16px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 26px;
 }
 
 .confirm-false{
@@ -142,7 +164,7 @@ body {
   color: rgb(0, 0, 0);              
   border-radius: 16px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 26px;
 }
 
 .main-block {
@@ -194,6 +216,44 @@ body {
   box-sizing: border-box; 
   border-radius: 32px;
   text-align: center; 
+}
+
+/* Базовые стили для контейнера приоритета */
+.list-tags {
+    min-width: 80px; /* Фиксированная ширина для всех блоков */
+    height: 24px; /* Фиксированная высота */
+    border-radius: 12px; /* Скругленные углы */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+}
+
+/* Стили текста приоритета */
+.list-tags p.priorit {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0 8px;
+    text-align: center;
+}
+
+/* Альтернативный вариант с CSS-классами */
+.priority-normal {
+    background-color: #4CAF50 !important; /* Зеленый */
+}
+
+.priority-matter {
+    background-color: #9E9E9E !important; /* Серый */
+}
+
+.priority-important {
+    background-color: #F44336 !important; /* Красный */
+}
+
+.priority-default {
+    background-color: #E0E0E0 !important; /* Серый по умолчанию */
 }
 
 .deadline {

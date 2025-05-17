@@ -1,135 +1,101 @@
-/*const eventData = localStorage.getItem('event_data'); // Получаем данные события из localStorage
-const template = document.getElementById('EventCardTemplate'); // Шаблон
-const container = document.querySelector('.container'); // Контейнер, куда добавляются элементы
+const template = document.getElementById('EventCardTemplate');
+const container = document.querySelector('.container');
+let EVENT_DATA = [];
 
-if (eventData) {
-    const event = JSON.parse(eventData); 
-    console.log('Айдишник события:', event.event_id);
-    //размещение события в календаре событий
-    const startTime = event.event_time_first; 
-    const endTime = event.event_time_second; 
-    console.log(`Начальное время: ${startTime}, Конечное время: ${endTime}`);
-    let intBeginningStartTime = Number(startTime.slice(0, 2));
-    let intEndStartTime = Number(startTime.slice(3, 5));
-    let intBeginningFinishTime = Number(endTime.slice(0, 2));
-    let intEndFinishTime = Number(endTime.slice(3, 5));
-    let marginTop = 78*intBeginningStartTime + Math.round(intEndStartTime/60)*78
-    let heightEventCard = calculateHeightEventCard(intBeginningFinishTime, intEndFinishTime, intBeginningStartTime, intEndStartTime);
-
-    // Создаем копию содержимого шаблона
-    const templateContent = template.content.cloneNode(true);
-
-    // Наполняем элемент данными события
-    const eventBlock = templateContent.querySelector('.event-in-calendar');
-    const eventNameElement = templateContent.querySelector('.event-name');
-    eventNameElement.textContent = `${event.event_name}`; // Устанавливаем название события
-
-    // Храним дополнительные данные в атрибутах data-*
-    const articleElement = templateContent.querySelector('.empty-blocks-elem');
-    articleElement.dataset.eventId = event.event_id;
-    articleElement.dataset.userId = event.user_id;
-    articleElement.dataset.description = event.event_description;
-    articleElement.dataset.type = event.event_type;
-    articleElement.dataset.notificationTime = event.event_notification_time;
-    articleElement.dataset.status = event.event_status;
-
-    // Добавляем обработчик клика на всю карточку
-    articleElement.addEventListener('click', () => {
-        // Сохраняем данные события в localStorage для страницы редактирования
-        localStorage.setItem('current_event_data', JSON.stringify(event));
-        // Перенаправляем на страницу редактирования
-        window.location.href = 'event-details.html';
-    });
-
-    // Настраиваем кнопку
-    const button = templateContent.querySelector('.icon-button');
-    button.addEventListener('click', (e) => {
-        e.stopPropagation(); // Чтобы предотвратить срабатывание события клика на карточке
-        /*alert(`Вы нажали на кнопку события с ID: ${event.event_id}`);*/
-    /* });
-
-    // Добавляем копию шаблона в контейнер
-    container.appendChild(templateContent);
-} else {
-    console.error('Данные события отсутствуют в localStorage.');
-}
-
-function calculateHeightEventCard(one, two, three, four){
-    let calculatedHeight =  (((one + two/60) - (three + four/60))*78).toFixed(1);
-    if (calculatedHeight < 12){
-        return 12;
-    } else {
-        return calculatedHeight;
+async function fetchUserId() {
+    try {
+        const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+        const data = await response.json();
+        return data['user_id'];
+    } catch (error) {
+        console.error('Ошибка при получении user_id:', error);
+        return null;
     }
 }
 
-function addDeleteEventToExistingCards() {
-    // Добавляем обработчик события на кнопки удаления
-    document.querySelectorAll('.icon-button').forEach(deleteButton => {
-        deleteButton.addEventListener('click', (event) => {
-            const deleteWindow = document.getElementById('delete-window-id');
-            if (deleteWindow) {
-                // Показываем окно подтверждения удаления
-                deleteWindow.classList.remove('hidden');
-
-                // Получаем карточку задачи, которую нужно удалить
-                const taskCard = event.target.closest('.event-in-calendar');
-                if (taskCard) {
-                    deleteWindow.setAttribute('data-event-id', taskCard.getAttribute('data-event-id'));
-                }
-            }
+async function fetchEvents(userId) {
+    try {
+        const response = await fetch('https://flask.stk8s.66bit.ru/get_all', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                table_name: "events"
+            })
         });
-    });
-
-    const confirmTrueButton = document.querySelector('.confirm-true');
-    if (confirmTrueButton) {
-        confirmTrueButton.addEventListener('click', () => {
-            const deleteWindow = document.getElementById('delete-window-id');
-            if (deleteWindow) {
-                const taskId = deleteWindow.getAttribute('data-event-id');
-                if (taskId) {
-                    const taskCard = document.querySelector(`.event-in-calendar[data-event-id="${taskId}"]`);
-                    if (taskCard) {
-                        taskCard.remove();
-                    }
-
-                    let deletedTasks = JSON.parse(localStorage.getItem('deletedTasks')) || [];
-                    if (!deletedTasks.includes(taskId)) {
-                        deletedTasks.push(taskId);
-                        localStorage.setItem('deletedTasks', JSON.stringify(deletedTasks));
-                    }
-
-                    deleteWindow.classList.add('hidden');
-                }
-            }
-        });
-    }
-
-    const confirmFalseButton = document.querySelector('.confirm-false');
-    if (confirmFalseButton) {
-        confirmFalseButton.addEventListener('click', () => {
-            const deleteWindow = document.getElementById('delete-window-id');
-            if (deleteWindow) {
-                deleteWindow.classList.add('hidden');
-            }
-        });
+        if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+        const data = await response.json();
+        return data.objects || [];
+    } catch (error) {
+        console.error('Ошибка при получении данных:', error);
+        return [];
     }
 }
 
-addDeleteEventToExistingCards();*/
-const template = document.getElementById('EventCardTemplate'); // Шаблон
-const container = document.querySelector('.container'); // Контейнер для событий
+function transformEvents(eventsArray) {
+    return eventsArray.map(event => ({
+        event_id: event[0],
+        user_id: event[1],
+        event_type: event[2],
+        event_name: event[3],
+        event_description: event[4],
+        event_date: event[5],
+        event_notification_time: event[6],
+        event_status: event[7],
+        event_time_first: event[8],
+        event_time_second: event[9]
+    }));
+}
 
-if (container) {
+async function deleteEventById(eventId) {
+    try {
+        const userId = localStorage.getItem('user_id'); 
+        const response = await fetch('https://flask.stk8s.66bit.ru/delete', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: parseInt(userId), // Преобразуем в число
+                id: eventId,
+                type: 'event',
+            }),
+        });
+
+        if (response.status === 200) {
+            const result = await response.json();
+            console.log('Успех:', result.message);
+            return true;
+        } else if (response.status === 400) {
+            const error = await response.json();
+            console.error('Ошибка:', error.message);
+            return false;
+        } else {
+            console.error('Неожиданный статус:', response.status);
+            return false;
+        }
+    } catch (error) {
+        console.error('Сетевая ошибка:', error);
+        return false;
+    }
+}
+
+// Функция отрисовки событий
+function renderEvents(events) {
+    if (!container) return;
     container.style.position = 'relative';
-}
+    container.innerHTML = '';
 
-// Отображение всех событий из localStorage
-Object.keys(localStorage).forEach(key => {
-    if (key.startsWith('event_')) {
-        const event = JSON.parse(localStorage.getItem(key));
-
-        // Время начала и окончания события
+    events.forEach(event => {
         const startTime = event.event_time_first;
         const endTime = event.event_time_second;
         const intBeginningStartTime = Number(startTime.slice(0, 2));
@@ -145,15 +111,10 @@ Object.keys(localStorage).forEach(key => {
             intEndStartTime
         );
 
-        // Создаем копию содержимого шаблона
         const templateContent = template.content.cloneNode(true);
-
-        // Наполняем элемент данными события
-        const eventBlock = templateContent.querySelector('.event-in-calendar');
         const eventNameElement = templateContent.querySelector('.event-name');
-        eventNameElement.textContent = `${event.event_name}`;
+        eventNameElement.textContent = event.event_name;
 
-        // Храним дополнительные данные в атрибутах data-*
         const articleElement = templateContent.querySelector('.event-in-calendar');
         articleElement.dataset.eventId = event.event_id;
         articleElement.dataset.userId = event.user_id;
@@ -163,94 +124,110 @@ Object.keys(localStorage).forEach(key => {
         articleElement.dataset.status = event.event_status;
         articleElement.dataset.date = event.event_date;
 
-        // Добавляем обработчик клика на всю карточку
         articleElement.addEventListener('click', () => {
             localStorage.setItem('current_event_data', JSON.stringify(event));
             window.location.href = 'event-details.html';
         });
 
-        // Настраиваем кнопку
-        const button = templateContent.querySelector('.icon-button');
-        button.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+        const deleteButton = templateContent.querySelector('.icon-button');  // Находим кнопку внутри клона
 
-        // Устанавливаем стили для абсолютного позиционирования
-        articleElement.style.position = 'absolute';
-        articleElement.style.top = `${topPosition}px`;
-        articleElement.style.height = `${heightEventCard}px`;
-        articleElement.style.left = '0'; 
-        articleElement.style.right = '0'; 
-        articleElement.style.zIndex = 10;
+        deleteButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Предотвращаем всплытие события (чтобы не сработал клик по карточке
+            const eventId = event.event_id;  // Получаем eventId
 
-        // Добавляем карточку в контейнер
-        container.appendChild(templateContent);
-    }
-});
-
-function calculateHeightEventCard(one, two, three, four) {
-    if(one > three || one == three && two > four){
-        const calculatedHeight = (((one + two / 60) - (three + four / 60)) * 78).toFixed(1);
-        return calculatedHeight < 12 ? 12 : calculatedHeight;
-    } else{
-        return 78*(24 - (three + four / 60));
-    }
-}
-
-function addDeleteEventToExistingCards() {
-    document.querySelectorAll('.icon-button').forEach((deleteButton) => {
-        deleteButton.addEventListener('click', (event) => {
+            // Показываем окно подтверждения
             const deleteWindow = document.getElementById('delete-window-id');
             if (deleteWindow) {
                 deleteWindow.classList.remove('hidden');
-                const taskCard = event.target.closest('.event-in-calendar');
-                if (taskCard) {
-                    deleteWindow.setAttribute('data-event-id', taskCard.getAttribute('data-event-id'));
-                }
-            }
-        });
-    });
 
-    const confirmTrueButton = document.querySelector('.confirm-true');
-    if (confirmTrueButton) {
-        confirmTrueButton.addEventListener('click', () => {
-            const deleteWindow = document.getElementById('delete-window-id');
-            if (deleteWindow) {
-                const taskId = deleteWindow.getAttribute('data-event-id');
-                if (taskId) {
-                    const taskCard = document.querySelector(`.event-in-calendar[data-event-id="${taskId}"]`);
-                    if (taskCard) {
-                        taskCard.remove();
-                    }
+                // Обработчик для кнопки "Да"
+                const confirmTrueButton = deleteWindow.querySelector('.confirm-true');
+                const confirmFalseButton = deleteWindow.querySelector('.confirm-false');
 
-                    const deletedTasks = JSON.parse(localStorage.getItem('deletedTasks')) || [];
-                    if (!deletedTasks.includes(taskId)) {
-                        deletedTasks.push(taskId);
-                        localStorage.setItem('deletedTasks', JSON.stringify(deletedTasks));
-                    }
+                // Сначала удаляем старые обработчики, чтобы не плодить их
+                confirmTrueButton.onclick = null;
+                confirmFalseButton.onclick = null;
 
+                confirmTrueButton.onclick = () => {
+                    deleteEventById(eventId)
+                        .then(success => {
+                            if (success) {
+                                console.log(`Событие с ID ${eventId} успешно удалено.`);
+                                loadAndRenderEvents(); // Обновляем список событий
+                            } else {
+                                console.error(`Не удалось удалить событие с ID ${eventId}.`);
+                                alert("Не удалось удалить событие."); // Сообщаем об ошибке
+                            }
+                        });
+                    deleteWindow.classList.add('hidden'); // Скрываем окно после удаления
+                };
+
+                // Обработчик для кнопки "Отмена"
+                confirmFalseButton.onclick = () => {
+                    deleteWindow.classList.add('hidden'); 
+                };
+                document.addEventListener('mousedown', (event) => {
+                const deleteWindow = document.getElementById('delete-window-id');
+
+                if (deleteWindow && !deleteWindow.classList.contains('hidden')) {
+                    if (!deleteWindow.contains(event.target)) {
                     deleteWindow.classList.add('hidden');
+                    }
                 }
+                });
+            } else {
+                console.error('Элемент #delete-window-id не найден.');
+                alert('Не удалось отобразить окно подтверждения.');
             }
         });
-    }
 
-    const confirmFalseButton = document.querySelector('.confirm-false');
-    if (confirmFalseButton) {
-        confirmFalseButton.addEventListener('click', () => {
-            const deleteWindow = document.getElementById('delete-window-id');
-            if (deleteWindow) {
-                deleteWindow.classList.add('hidden');
-            }
-        });
+        articleElement.style.position = 'absolute';
+        articleElement.style.top = `${topPosition}px`;
+        articleElement.style.height = `${heightEventCard}px`;
+        articleElement.style.left = '0';
+        articleElement.style.right = '0';
+        articleElement.style.zIndex = '10';
+
+        container.appendChild(templateContent);
+    });
+}
+
+function calculateHeightEventCard(one, two, three, four) {
+    if (one > three || (one === three && two > four)) {
+        const calculatedHeight = (((one + two / 60) - (three + four / 60)) * 78).toFixed(1);
+        return Math.max(calculatedHeight, 12);
+    } else {
+        return 78 * (24 - (three + four / 60));
     }
 }
 
-addDeleteEventToExistingCards();
-
-//не закрывать приложение при свайпе вниз
-document.addEventListener('touchmove', function (event) {
-    if (event.touches && event.touches[0].clientY > 0) {
-        event.preventDefault();
+// Блокировка свайпа
+document.addEventListener('touchmove', (e) => {
+    if (e.touches?.[0]?.clientY > 0) {
+        e.preventDefault();
     }
 }, { passive: false });
+
+// Основная функция загрузки и отрисовки
+async function loadAndRenderEvents() {
+    try {
+        const userId = await fetchUserId();
+        if (!userId) {
+            throw new Error('Не удалось получить user_id');
+        }
+        localStorage.setItem('user_id', userId);
+
+        const rawEvents = await fetchEvents(userId);
+        EVENT_DATA = transformEvents(rawEvents);
+        renderEvents(EVENT_DATA);
+    } catch (error) {
+        console.error('Ошибка загрузки событий:', error);
+        alert('Не удалось загрузить события');
+    }
+}
+
+// Функция для обновления событий после удаления
+window.refreshEvents = loadAndRenderEvents;
+
+// Запуск при загрузке страницы
+document.addEventListener('DOMContentLoaded', loadAndRenderEvents);
