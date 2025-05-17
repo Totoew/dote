@@ -1,233 +1,297 @@
-const template = document.getElementById('EventCardTemplate');
-const container = document.querySelector('.container');
-let EVENT_DATA = [];
-
-async function fetchUserId() {
-    try {
-        const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
-        const data = await response.json();
-        return data['user_id'];
-    } catch (error) {
-        console.error('Ошибка при получении user_id:', error);
-        return null;
-    }
-}
-
-async function fetchEvents(userId) {
-    try {
-        const response = await fetch('https://flask.stk8s.66bit.ru/get_all', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                user_id: userId,
-                table_name: "events"
-            })
-        });
-        if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
-        const data = await response.json();
-        return data.objects || [];
-    } catch (error) {
-        console.error('Ошибка при получении данных:', error);
-        return [];
-    }
-}
-
-function transformEvents(eventsArray) {
-    return eventsArray.map(event => ({
-        event_id: event[0],
-        user_id: event[1],
-        event_type: event[2],
-        event_name: event[3],
-        event_description: event[4],
-        event_date: event[5],
-        event_notification_time: event[6],
-        event_status: event[7],
-        event_time_first: event[8],
-        event_time_second: event[9]
-    }));
-}
-
-async function deleteEventById(eventId) {
-    try {
-        const userId = localStorage.getItem('user_id'); 
-        const response = await fetch('https://flask.stk8s.66bit.ru/delete', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                user_id: parseInt(userId), // Преобразуем в число
-                id: eventId,
-                type: 'event',
-            }),
-        });
-
-        if (response.status === 200) {
-            const result = await response.json();
-            console.log('Успех:', result.message);
-            return true;
-        } else if (response.status === 400) {
-            const error = await response.json();
-            console.error('Ошибка:', error.message);
-            return false;
-        } else {
-            console.error('Неожиданный статус:', response.status);
-            return false;
+// Объект для управления календарем и событиями
+const CalendarManager = {
+    selectedDate: '',
+    EVENT_DATA: [],
+    datePicker: null,
+    
+    // Инициализация при загрузке страницы
+    init: function() {
+        this.setupDatePicker();
+        this.setupEventListeners();
+        this.loadAndRenderEvents();
+        this.setCurrentDate();
+    },
+    
+    // Настройка элемента выбора даты
+    setupDatePicker: function() {
+        this.datePicker = document.getElementById('datePicker');
+        if (!this.datePicker) {
+            console.error('Элемент datePicker не найден');
+            return;
         }
-    } catch (error) {
-        console.error('Сетевая ошибка:', error);
-        return false;
-    }
-}
-
-// Функция отрисовки событий
-function renderEvents(events) {
-    if (!container) return;
-    container.style.position = 'relative';
-    container.innerHTML = '';
-
-    events.forEach(event => {
-        const startTime = event.event_time_first;
-        const endTime = event.event_time_second;
-        const intBeginningStartTime = Number(startTime.slice(0, 2));
-        const intEndStartTime = Number(startTime.slice(3, 5));
-        const intBeginningFinishTime = Number(endTime.slice(0, 2));
-        const intEndFinishTime = Number(endTime.slice(3, 5));
-
-        const topPosition = 78 * intBeginningStartTime + Math.round((intEndStartTime / 60) * 78);
-        const heightEventCard = calculateHeightEventCard(
-            intBeginningFinishTime,
-            intEndFinishTime,
-            intBeginningStartTime,
-            intEndStartTime
-        );
-
-        const templateContent = template.content.cloneNode(true);
-        const eventNameElement = templateContent.querySelector('.event-name');
-        eventNameElement.textContent = event.event_name;
-
-        const articleElement = templateContent.querySelector('.event-in-calendar');
-        articleElement.dataset.eventId = event.event_id;
-        articleElement.dataset.userId = event.user_id;
-        articleElement.dataset.description = event.event_description;
-        articleElement.dataset.type = event.event_type;
-        articleElement.dataset.notificationTime = event.event_notification_time;
-        articleElement.dataset.status = event.event_status;
-        articleElement.dataset.date = event.event_date;
-
-        articleElement.addEventListener('click', () => {
-            localStorage.setItem('current_event_data', JSON.stringify(event));
-            window.location.href = 'event-details.html';
-        });
-
-        const deleteButton = templateContent.querySelector('.icon-button');  // Находим кнопку внутри клона
-
-        deleteButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Предотвращаем всплытие события (чтобы не сработал клик по карточке
-            const eventId = event.event_id;  // Получаем eventId
-
-            // Показываем окно подтверждения
-            const deleteWindow = document.getElementById('delete-window-id');
-            if (deleteWindow) {
-                deleteWindow.classList.remove('hidden');
-
-                // Обработчик для кнопки "Да"
-                const confirmTrueButton = deleteWindow.querySelector('.confirm-true');
-                const confirmFalseButton = deleteWindow.querySelector('.confirm-false');
-
-                // Сначала удаляем старые обработчики, чтобы не плодить их
-                confirmTrueButton.onclick = null;
-                confirmFalseButton.onclick = null;
-
-                confirmTrueButton.onclick = () => {
-                    deleteEventById(eventId)
-                        .then(success => {
-                            if (success) {
-                                console.log(`Событие с ID ${eventId} успешно удалено.`);
-                                loadAndRenderEvents(); // Обновляем список событий
-                            } else {
-                                console.error(`Не удалось удалить событие с ID ${eventId}.`);
-                                alert("Не удалось удалить событие."); // Сообщаем об ошибке
-                            }
-                        });
-                    deleteWindow.classList.add('hidden'); // Скрываем окно после удаления
-                };
-
-                // Обработчик для кнопки "Отмена"
-                confirmFalseButton.onclick = () => {
-                    deleteWindow.classList.add('hidden'); 
-                };
-                document.addEventListener('mousedown', (event) => {
-                const deleteWindow = document.getElementById('delete-window-id');
-
-                if (deleteWindow && !deleteWindow.classList.contains('hidden')) {
-                    if (!deleteWindow.contains(event.target)) {
-                    deleteWindow.classList.add('hidden');
-                    }
-                }
-                });
-            } else {
-                console.error('Элемент #delete-window-id не найден.');
-                alert('Не удалось отобразить окно подтверждения.');
+    },
+    
+    // Настройка обработчиков событий
+    setupEventListeners: function() {
+        if (this.datePicker) {
+            this.datePicker.addEventListener('change', (e) => this.handleDateChange(e));
+        }
+        
+        // Обработчик для кнопки показа datePicker (если есть)
+        const showDatePickerBtn = document.querySelector('.show-datepicker');
+        if (showDatePickerBtn) {
+            showDatePickerBtn.addEventListener('click', () => this.showDatePicker());
+        }
+    },
+    
+    // Установка текущей даты по умолчанию
+    setCurrentDate: function() {
+        if (!this.datePicker) return;
+        
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        
+        this.datePicker.value = formattedDate;
+        this.selectedDate = formattedDate;
+        this.updateDateDisplay(today);
+    },
+    
+    // Обработчик изменения даты
+    handleDateChange: function(event) {
+        const selectedDate = event.target.value;
+        const selectedDateObj = new Date(selectedDate);
+        
+        this.selectedDate = selectedDate;
+        this.updateDateDisplay(selectedDateObj);
+        this.filterAndRenderEvents();
+        
+        if (this.datePicker) {
+            this.datePicker.style.display = "none";
+        }
+    },
+    
+    // Обновление отображения даты в интерфейсе
+    updateDateDisplay: function(date) {
+        const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+        const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 
+                        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+        
+        const dayWeekElement = document.querySelector('.day-week');
+        const dayNumberElement = document.querySelector('.day-number');
+        const monthElement = document.querySelector('.tasks-panel-h1');
+        
+        if (dayWeekElement) dayWeekElement.textContent = days[date.getDay()];
+        if (dayNumberElement) dayNumberElement.textContent = date.getDate();
+        if (monthElement) monthElement.textContent = months[date.getMonth()];
+    },
+    
+    showDatePicker: function() {
+        if (this.datePicker) {
+            this.datePicker.style.display = "block";
+            this.datePicker.focus();
+        }
+    },
+    
+    // Загрузка событий с сервера
+    async fetchEvents() {
+        try {
+            const userId = await this.fetchUserId();
+            if (!userId) throw new Error('Не удалось получить user_id');
+            
+            const response = await fetch('https://flask.stk8s.66bit.ru/get_all', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    table_name: "events"
+                })
+            });
+            
+            if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+            
+            const data = await response.json();
+            return data.objects || [];
+        } catch (error) {
+            console.error('Ошибка при получении событий:', error);
+            return [];
+        }
+    },
+    
+    async fetchUserId() {
+        try {
+            const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            
+            if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+            
+            const data = await response.json();
+            localStorage.setItem('user_id', data['user_id']);
+            return data['user_id'];
+        } catch (error) {
+            console.error('Ошибка при получении user_id:', error);
+            return null;
+        }
+    },
+    
+    // Преобразование данных событий
+    transformEvents(eventsArray) {
+        return eventsArray.map(event => ({
+            event_id: event[0],
+            user_id: event[1],
+            event_type: event[2],
+            event_name: event[3],
+            event_description: event[4],
+            event_date: event[5],
+            event_notification_time: event[6],
+            event_status: event[7],
+            event_time_first: event[8],
+            event_time_second: event[9]
+        }));
+    },
+    
+    // Фильтрация и отрисовка событий
+    async filterAndRenderEvents() {
+        try {
+            const rawEvents = await this.fetchEvents();
+            this.EVENT_DATA = this.transformEvents(rawEvents);
+            
+            // Если дата не выбрана, показываем все события
+            if (!this.selectedDate) {
+                this.renderEvents(this.EVENT_DATA);
+                return;
             }
-        });
-
-        articleElement.style.position = 'absolute';
-        articleElement.style.top = `${topPosition}px`;
-        articleElement.style.height = `${heightEventCard}px`;
-        articleElement.style.left = '0';
-        articleElement.style.right = '0';
-        articleElement.style.zIndex = '10';
-
-        container.appendChild(templateContent);
-    });
-}
-
-function calculateHeightEventCard(one, two, three, four) {
-    if (one > three || (one === three && two > four)) {
-        const calculatedHeight = (((one + two / 60) - (three + four / 60)) * 78).toFixed(1);
-        return Math.max(calculatedHeight, 12);
-    } else {
-        return 78 * (24 - (three + four / 60));
-    }
-}
-
-// Блокировка свайпа
-document.addEventListener('touchmove', (e) => {
-    if (e.touches?.[0]?.clientY > 0) {
-        e.preventDefault();
-    }
-}, { passive: false });
-
-// Основная функция загрузки и отрисовки
-async function loadAndRenderEvents() {
-    try {
-        const userId = await fetchUserId();
-        if (!userId) {
-            throw new Error('Не удалось получить user_id');
+            
+            // Фильтруем события по выбранной дате
+            const filteredEvents = this.EVENT_DATA.filter(event => {
+                const eventDate = new Date(event.event_date).toISOString().split('T')[0];
+                return eventDate === this.selectedDate;
+            });
+            
+            this.renderEvents(filteredEvents);
+        } catch (error) {
+            console.error('Ошибка загрузки событий:', error);
         }
-        localStorage.setItem('user_id', userId);
-
-        const rawEvents = await fetchEvents(userId);
-        EVENT_DATA = transformEvents(rawEvents);
-        renderEvents(EVENT_DATA);
-    } catch (error) {
-        console.error('Ошибка загрузки событий:', error);
-        alert('Не удалось загрузить события');
+    },
+    
+    // Отрисовка событий
+    renderEvents(events) {
+        const container = document.querySelector('.container');
+        if (!container) return;
+        
+        container.style.position = 'relative';
+        container.innerHTML = '';
+        
+        const template = document.getElementById('EventCardTemplate');
+        if (!template) return;
+        
+        events.forEach(event => {
+            const startTime = event.event_time_first;
+            const endTime = event.event_time_second;
+            
+            const startHours = Number(startTime.slice(0, 2));
+            const startMinutes = Number(startTime.slice(3, 5));
+            const endHours = Number(endTime.slice(0, 2));
+            const endMinutes = Number(endTime.slice(3, 5));
+            
+            const topPosition = 78 * startHours + Math.round((startMinutes / 60) * 78);
+            const height = this.calculateEventHeight(startHours, startMinutes, endHours, endMinutes);
+            
+            const eventElement = template.content.cloneNode(true);
+            const articleElement = eventElement.querySelector('.event-in-calendar');
+            
+            if (!articleElement) return;
+            
+            // Заполнение данных события
+            eventElement.querySelector('.event-name').textContent = event.event_name;
+            articleElement.dataset.eventId = event.event_id;
+            articleElement.dataset.date = event.event_date;
+            // ... другие данные события
+            
+            // Позиционирование
+            articleElement.style.position = 'absolute';
+            articleElement.style.top = `${topPosition}px`;
+            articleElement.style.height = `${height}px`;
+            
+            // Обработчики событий
+            articleElement.addEventListener('click', () => {
+                localStorage.setItem('current_event_data', JSON.stringify(event));
+                window.location.href = 'event-details.html';
+            });
+            
+            // Обработчик удаления
+            const deleteBtn = eventElement.querySelector('.icon-button');
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', (e) => this.handleDeleteEvent(e, event.event_id));
+            }
+            
+            container.appendChild(eventElement);
+        });
+    },
+    
+    // Вычисление высоты события
+    calculateEventHeight(startH, startM, endH, endM) {
+        if (endH > startH || (endH === startH && endM > startM)) {
+            const height = ((endH + endM/60) - (startH + startM/60)) * 78;
+            return Math.max(height, 12);
+        }
+        return 78 * (24 - (startH + startM/60));
+    },
+    
+    // Обработчик удаления события
+    async handleDeleteEvent(e, eventId) {
+        e.stopPropagation();
+        
+        try {
+            const userId = localStorage.getItem('user_id');
+            if (!userId) return;
+            
+            const success = await this.deleteEvent(eventId, userId);
+            if (success) {
+                this.filterAndRenderEvents();
+            }
+        } catch (error) {
+            console.error('Ошибка удаления события:', error);
+        }
+    },
+    
+    // Удаление события на сервере
+    async deleteEvent(eventId, userId) {
+        try {
+            const response = await fetch('https://flask.stk8s.66bit.ru/delete', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_id: parseInt(userId),
+                    id: eventId,
+                    type: 'event',
+                }),
+            });
+            
+            return response.ok;
+        } catch (error) {
+            console.error('Ошибка при удалении:', error);
+            return false;
+        }
     }
-}
+};
 
-// Функция для обновления событий после удаления
-window.refreshEvents = loadAndRenderEvents;
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    CalendarManager.init();
+    
+    // Блокировка свайпа
+    document.addEventListener('touchmove', (e) => {
+        if (e.touches?.[0]?.clientY > 0) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    // Разрешение скролла в контейнере
+    const scrollBox = document.querySelector('.list-tasks');
+    if (scrollBox) {
+        scrollBox.addEventListener('touchmove', (e) => {
+            e.stopPropagation();
+        }, { passive: true });
+    }
+});
 
-// Запуск при загрузке страницы
-document.addEventListener('DOMContentLoaded', loadAndRenderEvents);
+// Глобальная функция для обновления событий
+window.refreshEvents = () => CalendarManager.filterAndRenderEvents();

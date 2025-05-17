@@ -91,6 +91,7 @@ function getCurrentDate() {
         // Вызываем фильтрацию событий по сегодняшней дате
         filterEventsByDate(formattedDate);
     }
+    
 }
 
 window.onload = getCurrentDate;
