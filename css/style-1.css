@@ -207,18 +207,17 @@ body {
   text-align: center; 
 }
 
-/* Базовые стили для контейнера приоритета */
+
 .list-tags {
-    min-width: 80px; /* Фиксированная ширина для всех блоков */
-    height: 24px; /* Фиксированная высота */
-    border-radius: 12px; /* Скругленные углы */
+    min-width: 80px; 
+    height: 24px; 
+    border-radius: 12px; 
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 8px;
 }
 
-/* Стили текста приоритета */
 .list-tags p.priorit {
     color: white;
     font-size: 12px;
@@ -228,21 +227,21 @@ body {
     text-align: center;
 }
 
-/* Альтернативный вариант с CSS-классами */
+
 .priority-normal {
-    background-color: #4CAF50 !important; /* Зеленый */
+    background-color: #4CAF50 !important; 
 }
 
 .priority-matter {
-    background-color: #9E9E9E !important; /* Серый */
+    background-color: #9E9E9E !important; 
 }
 
 .priority-important {
-    background-color: #F44336 !important; /* Красный */
+    background-color: #F44336 !important; 
 }
 
 .priority-default {
-    background-color: #E0E0E0 !important; /* Серый по умолчанию */
+    background-color: #E0E0E0 !important; 
 }
 
 .deadline {
