@@ -29,7 +29,14 @@
       <main class="content">
         <section class="list-tasks">
           <input list="no-datalist" autocomplete="off" name="name-task" class="name-task"  placeholder="Название" maxlength="29" size="368" required>
-          <textarea list="no-datalist" autocomplete="off" name="desc-task" class="desc-task"  type="text" placeholder="Описание" size="368"></textarea>
+          <textarea 
+            list="no-datalist" 
+            autocomplete="off" 
+            name="desc-task" 
+            class="desc-task" 
+            placeholder="Описание"
+            style="resize: none; width: 368px; height: 100px;"
+          ></textarea>
         
           <section class="create-task-tags">
             <img src="/img/bookmark_add.png" class="task-tag-emblem"
@@ -68,7 +75,39 @@
             <div id="dateContainer" class="white-text">
               <input class="day-task" name="day-task" type="date" id="dateInput" required>
             </div>
+
+            <section class="task-time-picker">
+            <input type="text" name="task-time" class="task-time" autocomplete="off" readonly required>
+  
+            <div id="overlay" class="overlay"></div>
+            <div id="popup-time" class="popup-time">
+              <p class="choice">Выберите время</p>
+  
+              <div class="time-picker">
+                <div class="hours">
+                  <div id="hours-prev-value" class="time prev-time"></div>
+                  <div id="hours-current-value" class="time current-time"></div>
+                  <div id="hours-next-value" class="time future-time"></div>
+                </div>
+                <p class="time-divider">:</p>
+                <div class="minutes">
+                  <div id="minutes-prev-value" class="time prev-time"></div>
+                  <div id="minutes-current-value" class="time current-time"></div>
+                  <div id="minutes-next-value" class="time future-time"></div>
+                </div>
+              </div>
+  
+              <div class="buttons">
+                <button class="popup-cancel">
+                  <p>Отмена</p>
+                </button>
+                <button class="popup-save">
+                  <p>Сохранить</p>
+                </button>
+              </div>
+            </div>
           </section>
+        </section>
     
           <section class="notification">
             <img src="/img/notification_add.png" class="notification-bell"
@@ -93,6 +132,8 @@
       </form>
       <script src="js/task-details.js"></script>
       <script src="js/edit-darkTaskFormm.js"></script>
+      <!-- <script src="js/fetch-darkTaskForm.js"></script> -->
       <script src="js/theme-change.js"></script>
+      <script src="js/task-time-picker.js"></script>
   </body>
 </html>

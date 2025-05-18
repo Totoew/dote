@@ -128,7 +128,7 @@ const CalendarManager = {
             return null;
         }
     },
-    
+
     // Преобразование данных событий
     transformEvents(eventsArray) {
         return eventsArray.map(event => ({
@@ -144,7 +144,7 @@ const CalendarManager = {
             event_time_second: event[9]
         }));
     },
-    
+
     // Фильтрация и отрисовка событий
     async filterAndRenderEvents() {
         try {
@@ -168,7 +168,7 @@ const CalendarManager = {
             console.error('Ошибка загрузки событий:', error);
         }
     },
-    
+
     // Отрисовка событий
     renderEvents(events) {
         const container = document.querySelector('.container');
@@ -179,7 +179,7 @@ const CalendarManager = {
         
         const template = document.getElementById('EventCardTemplate');
         if (!template) return;
-        
+
         events.forEach(event => {
             const startTime = event.event_time_first;
             const endTime = event.event_time_second;
@@ -188,42 +188,42 @@ const CalendarManager = {
             const startMinutes = Number(startTime.slice(3, 5));
             const endHours = Number(endTime.slice(0, 2));
             const endMinutes = Number(endTime.slice(3, 5));
-            
+
             const topPosition = 78 * startHours + Math.round((startMinutes / 60) * 78);
             const height = this.calculateEventHeight(startHours, startMinutes, endHours, endMinutes);
-            
+
             const eventElement = template.content.cloneNode(true);
             const articleElement = eventElement.querySelector('.event-in-calendar');
-            
+
             if (!articleElement) return;
-            
+
             // Заполнение данных события
             eventElement.querySelector('.event-name').textContent = event.event_name;
             articleElement.dataset.eventId = event.event_id;
             articleElement.dataset.date = event.event_date;
             // ... другие данные события
-            
+
             // Позиционирование
             articleElement.style.position = 'absolute';
             articleElement.style.top = `${topPosition}px`;
             articleElement.style.height = `${height}px`;
-            
+
             // Обработчики событий
             articleElement.addEventListener('click', () => {
                 localStorage.setItem('current_event_data', JSON.stringify(event));
                 window.location.href = 'event-details.html';
             });
-            
+
             // Обработчик удаления
             const deleteBtn = eventElement.querySelector('.icon-button');
             if (deleteBtn) {
                 deleteBtn.addEventListener('click', (e) => this.handleDeleteEvent(e, event.event_id));
             }
-            
+
             container.appendChild(eventElement);
         });
     },
-    
+
     // Вычисление высоты события
     calculateEventHeight(startH, startM, endH, endM) {
         if (endH > startH || (endH === startH && endM > startM)) {
@@ -232,7 +232,7 @@ const CalendarManager = {
         }
         return 78 * (24 - (startH + startM/60));
     },
-    
+
     // Обработчик удаления события
     async handleDeleteEvent(e, eventId) {
         e.stopPropagation();
@@ -249,7 +249,7 @@ const CalendarManager = {
             console.error('Ошибка удаления события:', error);
         }
     },
-    
+
     // Удаление события на сервере
     async deleteEvent(eventId, userId) {
         try {
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         }
     }, { passive: false });
-    
+
     // Разрешение скролла в контейнере
     const scrollBox = document.querySelector('.list-tasks');
     if (scrollBox) {
