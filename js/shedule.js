@@ -91,6 +91,7 @@ function getCurrentDate() {
         // Вызываем фильтрацию событий по сегодняшней дате
         filterEventsByDate(formattedDate);
     }
+    
 }
 
 window.onload = getCurrentDate;
@@ -99,12 +100,12 @@ window.onload = getCurrentDate;
 // Отключаем свайп вниз на уровне документа
 document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
-      event.preventDefault();
+        event.preventDefault();
     }
-  }, { passive: false });
-  
+}, { passive: false });
+
 // Разрешаем скролл внутри контейнера .scroll-box
 const scrollBox = document.querySelector('.list-tasks');
 scrollBox.addEventListener('touchmove', function (event) {
     event.stopPropagation();
-  }, { passive: true });
+}, { passive: true });

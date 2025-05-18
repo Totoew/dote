@@ -153,15 +153,6 @@ select {
   width: 18px;
   height: 18px;
 }
-/*
-.button-add-task {
-  color: #818181;
-  width: 92px;
-  height: 21px;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 21px;
-}*/
 
 .button-add-task {
   color: #818181; 
@@ -173,19 +164,6 @@ select {
   margin: 0; 
   white-space: nowrap; 
 }
-
-/*
-.yellow-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  height: 40px;
-  gap: 10px;
-  border-radius: 8px;
-  background-color: #81818166;
-}
-*/
 
 .yellow-button {
   display: flex;

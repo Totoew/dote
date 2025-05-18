@@ -1,3 +1,5 @@
+// Записываем данные с формы событий и отправляем на сервер
+// Проверено, работает
 async function fetchUserId() {
     try {
         const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
@@ -13,11 +15,10 @@ async function fetchUserId() {
         return data['user_id'];
     } catch (error) {
         console.error('Ошибка при получении user_id:', error);
-        return null; // Вернуть null, если возникла ошибка
+        return null;
     }
 }
 
-// Получаем user_id и сохраняем в localStorage
 fetchUserId().then(userId => {
     if (userId) {
         localStorage.setItem('user_id', userId);
@@ -27,7 +28,6 @@ fetchUserId().then(userId => {
     }
 });
 
-// Обработчик формы
 document.getElementById('darkEvForm').addEventListener('submit', async function (evt) {
     evt.preventDefault();
 
@@ -38,7 +38,15 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
     }
 
     const form = evt.target;
-    const eventId = Date.now();
+
+    const startTimeInput = form.querySelector('[name="start-event-time"]');
+    const endTimeInput = form.querySelector('[name="finish-event-time"]');
+
+    if (startTimeInput.value === startTimeInput.placeholder || 
+        endTimeInput.value === endTimeInput.placeholder) {
+        alert('Пожалуйста, выберите время вручную!');
+        return;
+    }
 
     const event = {
         user_id: userId,
@@ -49,44 +57,30 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
         event_time_first: form.querySelector('[name="start-event-time"]').value,
         event_time_second: form.querySelector('[name="finish-event-time"]').value,
         event_notification_time: form.querySelector('[name="time-notification"]').value,
-        event_status: "pending", // Статус по умолчанию
+        event_status: "pending",
     };
 
-    const jsonData = JSON.stringify(event);
-    await getTaskData(jsonData);
-
-    // Сохраняем данные события в localStorage
-    localStorage.setItem(`event_${eventId}`, JSON.stringify(event));
-    console.log('Данные события сохранены в localStorage:', event);
-    window.location.href = 'shedule.html';
+    getTaskData(event);
 });
 
-// Функция для отправки данных
-async function getTaskData(jsonData) {
-    try {
-        const response = await fetch('https://flask.stk8s.66bit.ru/events', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: jsonData,
-        });
-
-        if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('Ответ сервера:', data);
-    } catch (error) {
-        console.error('Ошибка при отправке задачи:', error);
-        alert('Произошла ошибка при отправке формы.');
-    }
+async function getTaskData(eventData) {
+    fetch('https://flask.stk8s.66bit.ru/events', {
+  method: 'POST', //Тут было POST если что!!!
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(eventData),
+})
+.then(response => {
+  if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+  return response.json();
+})
+.then(data => {
+  console.log('Успех:', data);
+  alert('Данные отправлены! Проверьте консоль.');
+})
+.catch(error => {
+  console.error('Ошибка:', error);
+  alert('Ошибка отправки: ' + error.message);
+});
 }
-
-//не закрывать приложение при свайпе вниз
-document.addEventListener('touchmove', function (event) {
-    if (event.touches && event.touches[0].clientY > 0) {
-        event.preventDefault();
-    }
-}, { passive: false });
