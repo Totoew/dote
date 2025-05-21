@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Inter, serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.navigation {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.chosen-date {
+  font-family: Roboto serif;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.date-input {
+  display: none;
+}
+
+.date-button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+
+.week {
+  display: flex;
+  padding: 0 16px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.week-day {
+  display: flex;
+  flex-direction: column;
+  width: 36px;
+  height: 58px;
+  padding: 8px;
+  border-radius: 25px;
+  align-items: center;
+}
+
+.week-day-name {
+  font-size: 15px;
+  color: #FCBC02;
+  margin-bottom: 6px;
+}
+
+.chosen-day {
+    background-color: #F26E56;
+}
+
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: #FFFFFF;
+}
+
+.bottom-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 66px;
+  padding: 0 12.725vw;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.nav-item-0-txt,
+.nav-item-1-txt,
+.nav-item-2-txt {
+  font-size: 15px;
+  color: #818181;
+}
+
+.nav-item-0-txt {
+  color: #050505;
+}
