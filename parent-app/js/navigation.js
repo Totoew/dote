@@ -2,6 +2,7 @@ const chosenDate = document.querySelector('.chosen-date');
 const weekDays = document.querySelectorAll('.week-date');
 const dateButton = document.querySelector('.date-button');
 let chosenDay = document.querySelector('.chosen-day');
+const dateInput = document.querySelector('.date-input');
 
 const drawHeader = () => {
     const currentDate = chosenDate.textContent === '' ? new Date() : new Date(dateInput.value);
