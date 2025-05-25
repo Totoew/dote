@@ -55,7 +55,7 @@ profilesButton.onclick = () => {
     modal.style.display = 'block';
 };
 
-const getObjects = (params) => {
+function getObjects (params) {
     const avatarLinks = params.get('avatars').split(',');
     const childId = params.get('id').split(',');
     const childNames = params.get('names').split(',');
