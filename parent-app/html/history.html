@@ -13,13 +13,20 @@
 
     <div class="navigation">
       <button class="profiles-button">
-        <img class="profile-avatar" width="32" height="32" src="">
+        <img class="profile-avatar" src="/img/base-user.png">
       </button>
+
+      <div class="modal">
+        <div class="modal-content">
+          <input type="number" class="current-id hidden">
+          <div class="image-container"></div>
+        </div>
+      </div>
 
       <p class="chosen-date"></p>
 
       <button class="date-button">
-        <input type="date" class="date-input">
+        <input type="date" class="date-input hidden">
         <img class="date-image" src="/img/date_calendar.png">
       </button>
     </div>
@@ -63,10 +70,21 @@
     </div>
 
     <div class="tasks">
-      <div class="task">
+      <div class="task example hidden">
         <div class="task-data">
           <img class="task-alt" src="/img/task_alt.png">
           <p class="task-name">Занятие по танцам</p>
+        </div>
+
+        <div class="check-data">
+          <p class="task-time">16:00</p>
+          <img class="check" src="/img/double-check.png">
+        </div>
+      </div>
+
+      <div class="task example hidden">
+        <div class="task-data">
+          <p class="task-name-not-image">Занятие по танцам</p>
         </div>
 
         <div class="check-data">
@@ -102,7 +120,9 @@
 
       </section> 
     </div>
+    <script src="/js/draw-history.js"></script>
     <script src="/js/navigation.js"></script>
+    <script src="/js/profiles.js"></script>
 </body>
 </html>
 

@@ -1,5 +1,4 @@
 const chosenDate = document.querySelector('.chosen-date');
-const dateInput = document.querySelector('.date-input');
 const weekDays = document.querySelectorAll('.week-date');
 const dateButton = document.querySelector('.date-button');
 let chosenDay = document.querySelector('.chosen-day');
