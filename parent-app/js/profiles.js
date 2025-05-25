@@ -66,7 +66,7 @@ const getObjects = (params) => {
             avatar: avatarLinks[i],
             name: childNames[i]
         }
-        objects.push(objects);
+        objects.push(object);
     }
     return objects;
 };
