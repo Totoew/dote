@@ -6,9 +6,9 @@ const currentId = document.querySelector('.current-id');
 
 const params = new URLSearchParams(window.location.search);
 
-//const childObjects = getObjects(params);
+const childObjects = getObjects(params);
 
-const childObjects = [
+/*const childObjects = [
     {
         id: 965696687,
         avatar: 'https://api.telegram.org/file/bot7688220876:AAEdlJxaqWj9ZBaJsKU_b8Mxu0oBSC99CPY/photos/file_0.jpg',
@@ -19,7 +19,7 @@ const childObjects = [
         avatar: '/img/base-user.png',
         name: 'NeLaert'
     }
-];
+];*/
 
 const changeProfile = (object) => {
     profileImage.src = object.avatar;
