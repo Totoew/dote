@@ -4,6 +4,7 @@ const profileImage = document.querySelector('.profile-avatar');
 const imageContainer = document.querySelector('.image-container');
 const currentId = document.querySelector('.current-id');
 const search = window.location.search;
+const links = document.querySelectorAll('.nav-item a');
 
 links.forEach(link => {
   const href = link.getAttribute('href');
