@@ -3,10 +3,21 @@ const modal = document.querySelector('.modal');
 const profileImage = document.querySelector('.profile-avatar');
 const imageContainer = document.querySelector('.image-container');
 const currentId = document.querySelector('.current-id');
+const search = window.location.search;
 
-const params = new URLSearchParams(window.location.search);
+links.forEach(link => {
+  const href = link.getAttribute('href');
+  if (href && href !== '') {
+    const separator = href.includes('?') ? '&' : '?';
+    link.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
+  }
+});
+
+const params = new URLSearchParams(search);
 
 const childObjects = getObjects(params);
+
+
 
 /*const childObjects = [
     {
