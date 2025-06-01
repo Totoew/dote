@@ -63,7 +63,6 @@ document.getElementById('darkTaskForm').addEventListener('submit', async functio
     const form = evt.target;
 
     const task = {
-        /*'task_id': null,*/
         'user_id': userId, 
         'task_name': form.querySelector('[name="name-task"]').value,
         'task_description': form.querySelector('[name="desc-task"]').value,
@@ -82,7 +81,7 @@ document.getElementById('darkTaskForm').addEventListener('submit', async functio
 
 async function getTaskData(taskData) {
     fetch('https://flask.stk8s.66bit.ru/tasks', {
-  method: 'POST', //Тут было POST если что!!!
+  method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -94,7 +93,7 @@ async function getTaskData(taskData) {
 })
 .then(data => {
   console.log('Успех:', data);
-  alert('Данные отправлены! Проверьте консоль.');
+  window.location.href = 'index.html';
 })
 .catch(error => {
   console.error('Ошибка:', error);

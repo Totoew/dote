@@ -65,7 +65,7 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
 
 async function getTaskData(eventData) {
     fetch('https://flask.stk8s.66bit.ru/events', {
-  method: 'POST', //Тут было POST если что!!!
+  method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -77,7 +77,7 @@ async function getTaskData(eventData) {
 })
 .then(data => {
   console.log('Успех:', data);
-  alert('Данные отправлены! Проверьте консоль.');
+  window.location.href = 'shedule.html';
 })
 .catch(error => {
   console.error('Ошибка:', error);

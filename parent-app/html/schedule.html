@@ -2,37 +2,78 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8">
-    <title>График событий</title>
-    <link rel="icon" href="img/logo.png" type="png">
-    <link id="theme-style" href="css/style-5.css" rel="stylesheet">
+    <title>История</title>
+    <link href="../css/schedule.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="header-1">
-      <section class="tasks-panel">
-        <div class="date-icon">
-          <p class="day-week">Сб</p>
-          <div class="circle">
-            <p class="day-number">19</p>
-          </div>
+
+    <div class="navigation">
+      <button class="profiles-button">
+        <img class="profile-avatar" src="/img/base-user.png">
+      </button>
+
+      <div class="modal">
+        <div class="modal-content">
+          <input type="number" class="current-id hidden">
+          <div class="image-container"></div>
         </div>
-        <h1 class="tasks-panel-h1">*Месяц*</h1>
-        <button class="button-calendar" onclick="showDatePicker()">
-          <img class="tasks-panel-img" src="img/calendar_month_active.png"
-          data-light="img/calendar_month_light_active.png" data-dark="img/calendar_month_active.png" alt="Календарь">
-        </button>
-        <input name="datePickerName" type="date" id="datePicker" style="display:none;" onchange="handleDateChange(event)" required>
-        <p id="result"></p>   
-      </section>
+      </div>
+
+      <p class="chosen-date"></p>
+
+      <button class="date-button">
+        <input type="date" class="date-input hidden">
+        <img class="date-image" src="/img/date_calendar.png">
+      </button>
     </div>
+
+    <div class="week">
+
+      <div class="week-day chosen-day">
+        <p class="week-day-name">Пн</p>
+        <p class="week-date">1</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Вт</p>
+        <p class="week-date">2</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Ср</p>
+        <p class="week-date">3</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Чт</p>
+        <p class="week-date">4</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Пт</p>
+        <p class="week-date">5</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Сб</p>
+        <p class="week-date">6</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Вс</p>
+        <p class="week-date">7</p>
+      </div>
+    </div>
+
+    
 
     <div class="list-tasks">
       <section class="scroll-box">
         <div class="time-box">
-          <p class="time-box-elem-1">01:00</p>
+          <p class="time-box-elem-1 time-box-elem">01:00</p>
           <p class="time-box-elem">02:00</p>
           <p class="time-box-elem">03:00</p>
           <p class="time-box-elem">04:00</p>
@@ -59,27 +100,16 @@
         </div>
 
         <div class="empty-blocks">
-          <div id="delete-window-id" class="delete-window hidden">
-            <p class="confirm">Подтвердить удаление</p>
-            <div class="buttons-block">
-              <button class="confirm-true">Да</button>
-              <button class="confirm-false">Отмена</button>
-            </div>
-          </div>
-          
           <template id="EventCardTemplate">
             <article class="empty-blocks-elem">
               <div class="event-in-calendar">
                 <span class="event-name"></span>
-                <button class="icon-button">
-                  <img src="img/been.png" class="icon-image">
-                </button>
+                <span class="event-time"></span>
               </div>
             </article>
           </template>
           <div class="container" height=""></div>
-          <!-- Пустые блоки с атрибутами data-hour -->
-          <!--<article class="empty-blocks-elem" data-hour="00"></article>-->
+
           <article class="empty-blocks-elem" data-hour="01"></article>
           <article class="empty-blocks-elem" data-hour="02"></article>
           <article class="empty-blocks-elem" data-hour="03"></article>
@@ -107,45 +137,39 @@
       </section>
     </div>
 
-    <div class="footer-1">
+
+
+
+
+    <div class="footer">
       <section class="bottom-nav">
+
         <div class="nav-item nav-item-0">
-          <a href="settings.html">
-            <img class="tune image" src="/img/tune.png">
+          <a href="history.html">
+            <img class="tune image" src="/img/receipt_long.png">
           </a>
-          <p class="nav-item-0-txt p-tag">Настройки</p>
+          <b class="nav-item-0-txt p-tag">История</b>
         </div>
+
         <div class="nav-item nav-item-1">
-          <a href="shedule.html">
-            <img class="calendar image" src="/img/calendar_month_active.png"
-            data-light="img/calendar_month_light_active.png" data-dark="img/calendar_month_active.png" alt="Календарь">
+          <a href="">
+            <img class="calendar image" src="/img/calendar_month_black.png">
           </a>
-          <b class="nav-item-1-txt p-tag">Расписание</b>
+          <p class="nav-item-1-txt p-tag">Расписание</p>
         </div>
+
         <div class="nav-item nav-item-2">
-          <a href="index.html">
-            <img class="split-screen image" src="/img/splitscreen_passive.png">
+          <a href="tasks.html">
+            <img class="split-screen image" src="/img/splitscreen-parent.png">
           </a>
           <p class="nav-item-2-txt p-tag">Задачи</p>
         </div>
-      </section>
-  
-      <section class="footer">
-        <a class="a-none-decorat" href="create-new-event.html">
-          <div class="yellow-button">
-            <img class="plus" src="/img/add_2.png">
-            <p class="button-add-task">Добавить новое событие</p>
-          </div>
-        </a>
-      </section>
+
+      </section> 
     </div>
-
-    <script src="js/shedule.js"></script> 
-    <script src="js/draw-event.js"></script> 
-    <script src="js/theme-change.js"></script>
-  </body>
+    <script src="/js/navigation.js" type="module"></script>
+    <script src="/js/profiles.js" type="module"></script>
+    <script src="/js/draw-schedule.js" type="module"></script>
+</body>
 </html>
-
-
-
 
