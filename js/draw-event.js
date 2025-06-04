@@ -8,7 +8,7 @@ const CalendarManager = {
     init: function() {
         this.setupDatePicker();
         this.setupEventListeners();
-        this.loadAndRenderEvents();
+        this.filterAndRenderEvents();
         this.setCurrentDate();
     },
     
@@ -38,7 +38,13 @@ const CalendarManager = {
     setCurrentDate: function() {
         if (!this.datePicker) return;
         
-        const today = new Date();
+        let today = new Date();
+        const year = today.getFullYear();
+        const month1 = today.getMonth();
+        const day = today.getDate();
+
+        const dateString = `${year}-${(month1+ 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+        today = new Date(dateString);
         const formattedDate = today.toISOString().split('T')[0];
         
         this.datePicker.value = formattedDate;
@@ -295,3 +301,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Глобальная функция для обновления событий
 window.refreshEvents = () => CalendarManager.filterAndRenderEvents();
+
+document.addEventListener('DOMContentLoaded', () => CalendarManager.filterAndRenderEvents());

@@ -31,22 +31,7 @@ function handleDateChange(event) {
     filterEventsByDate(selectedDate);
 }
 
-/*
-function handleDateChange(event) {
-    const datePicker = event.target;
-    const selectedDate = new Date(datePicker.value);
 
-    const dayWeekElement = document.querySelector('.day-week');
-    const dayNumberElement = document.querySelector('.day-number');
-    const monthElement = document.querySelector('.tasks-panel-h1');
-
-    dayWeekElement.textContent = getDayOfWeek(selectedDate);
-    dayNumberElement.textContent = selectedDate.getDate();
-    monthElement.textContent = getMonthName(selectedDate);
-
-    datePicker.style.display = "none";
-}
-*/
 function showDatePicker() {
     const datePicker = document.getElementById("datePicker");
     datePicker.style.display = "block";
@@ -68,7 +53,13 @@ function getMonthName(date) {
 //Функция, которая по умолчанию ставит текущую дату 
 //на странице
 function getCurrentDate() {
-    const today = new Date();
+    let today = new Date();
+    const year = today.getFullYear();
+    const month1 = today.getMonth();
+    const day = today.getDate();
+
+    const dateString = `${year}-${(month1+ 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    today = new Date(dateString);
 
     const daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
     const dayOfWeek = daysOfWeek[today.getDay()];
