@@ -247,11 +247,20 @@ async function loadAndRenderTasks() {
 const search = window.location.search;
 const links = document.querySelectorAll('.nav-item a');
 
+const createLink = document.querySelector('.a-none-decorat');
+const href = createLink.getAttribute('href');
+if (href && href !== '') {
+    const separator = href.includes('?') ? '&' : '?';
+    createLink.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
+    console.log(createLink.getAttribute('href'));
+}
+
 links.forEach(link => {
   const href = link.getAttribute('href');
   if (href && href !== '') {
     const separator = href.includes('?') ? '&' : '?';
     link.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
+    console.log(link.getAttribute('href'));
   }
 });
 

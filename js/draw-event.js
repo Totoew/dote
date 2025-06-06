@@ -120,9 +120,9 @@ const CalendarManager = {
             const search = window.location.search;
             const params = new URLSearchParams(search);
             const user_id = Number(params.get('id'));
-            
+
             localStorage.setItem('user_id', user_id);
-            return data['user_id'];
+            return user_id;
         } catch (error) {
             console.error('Ошибка при получении user_id:', error);
             return null;

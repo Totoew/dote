@@ -20,6 +20,7 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
     evt.preventDefault();
 
     const userId = localStorage.getItem('user_id');
+    console.log(userId);
     if (!userId) {
         alert('Пользователь не авторизован. Попробуйте позже.');
         return;
@@ -65,7 +66,10 @@ async function getTaskData(eventData) {
 })
 .then(data => {
   console.log('Успех:', data);
-  window.location.href = 'shedule.html';
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+  const user_id = Number(params.get('id'));
+  window.location.href = `shedule.html?id=${user_id}`;
 })
 .catch(error => {
   console.error('Ошибка:', error);

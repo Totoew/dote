@@ -81,7 +81,10 @@ async function getTaskData(taskData) {
 })
 .then(data => {
   console.log('Успех:', data);
-  window.location.href = 'index.html';
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+  const user_id = Number(params.get('id'));
+  window.location.href = `index.html?id=${user_id}`;
 })
 .catch(error => {
   console.error('Ошибка:', error);
