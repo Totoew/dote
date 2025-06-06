@@ -1,32 +1,20 @@
 // Записываем данные с формы событий и отправляем на сервер
 // Проверено, работает
-async function fetchUserId() {
+function fetchUserId() {
     try {
-        const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
-        }
-        const data = await response.json();
-        return data['user_id'];
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const user_id = Number(params.get('id'));
+            
+        localStorage.setItem('user_id', user_id);
+        return user_id;
     } catch (error) {
         console.error('Ошибка при получении user_id:', error);
         return null;
     }
 }
 
-fetchUserId().then(userId => {
-    if (userId) {
-        localStorage.setItem('user_id', userId);
-        console.log('user_id сохранен в localStorage:', userId);
-    } else {
-        alert('Не удалось получить user_id. Попробуйте позже.');
-    }
-});
+fetchUserId();
 
 document.getElementById('darkEvForm').addEventListener('submit', async function (evt) {
     evt.preventDefault();
