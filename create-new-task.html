@@ -65,8 +65,13 @@
           data-light="img/schedule_light.png" data-dark="/img/schedule.png">
           <div id="dateContainer" class="white-text">
             <input class="day-task" name="day-task" type="date" id="dateInput" required>
+            <div id="date-error" class="error-message" style="color: red; font-size: 14px; display: none;">
+              Нельзя указывать дату из прошлого
+            </div>
           </div>
-
+          <div id="datetime-error" style="color: red; display: none; font-size: 14px;">
+            Нельзя указывать время из прошлого
+          </div>
           <section class="task-time-picker">
             <input type="text" name="task-time" class="task-time" autocomplete="off" readonly required>
   
@@ -89,10 +94,10 @@
               </div>
   
               <div class="buttons">
-                <button class="popup-cancel">
+                <button type="button" class="popup-cancel">
                   <p>Отмена</p>
                 </button>
-                <button class="popup-save">
+                <button type="button" class="popup-save">
                   <p>Сохранить</p>
                 </button>
               </div>
@@ -116,7 +121,7 @@
       </section>
   
       <section class="footer">
-        <button type="submit" class="yellow-button">
+        <button type="submit" class="yellow-button"> 
           <img class="plus" src="/img/add_2.png">
           <p class="button-add-task">Добавить новую задачу</p>
           <div class="home-indicator"></div>

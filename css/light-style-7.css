@@ -146,7 +146,7 @@ select {
   margin-top: 24px;
   margin-left: 12px;
   margin-right: 12px;
-  color:#ffffff
+  color:#000000
 }
 
 .desc-task{
@@ -378,6 +378,168 @@ margin-top:  15px;
   text-decoration-skip-ink: none;
   margin: 0px;
   padding: 0px;
+}
+
+.task-time-picker {
+  margin-top: 5px;
+}
+
+.task-time {
+  width: 74px;
+  height: 41px;
+  border-radius: 4px;
+  border: none;
+  background-color: #818181;
+  padding: 10px;
+  font-family: 'Inter' sans-serif;
+  font-weight: 600;
+  line-height: 25px;
+  font-size: 20px;
+  color: #333333;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup-time {
+  width: 364px;
+  height: 360px;
+  background-color: #ffffff;
+  border-radius: 12px;
+
+  flex-direction: column; 
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  z-index: 1000;
+  filter: blur(30);
+}
+
+.choice {
+  padding: 12px 18px 12px 16px;
+  font-family: "Inter" sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 25px;
+  width: 343px;
+  height: 49px;
+  margin: 0;
+}
+
+.time-picker {
+  width: 202px;
+  height: 168px;
+  margin: 15px 81px;
+  display: flex;
+  justify-content: center;
+}
+
+.hours, .minutes {
+  width: 101px;
+  height: 168px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.time, .time-divider {
+  font-family: 'Inter' sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 26px;
+  color: #9b9b9b;
+  height: 56px;
+  height: 56px;
+  display: flex;   
+  align-items: center; 
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.minutes .time {
+  margin-left: 0;
+  padding: 10px 0;
+  padding-right: 60px;
+  margin-bottom: 0;
+}
+
+.hours .time {
+  margin-right: 0;
+  padding: 10px 0;
+  padding-left: 60px;
+  margin-bottom: 0;
+}
+
+.time-divider {
+  margin: 0;
+  padding: 0;
+  padding-top: 70px;
+  padding-right: 0px;
+  color: #9f9f9f;
+  display: block;
+}
+
+.current-time {
+  color: #000000;
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+}
+
+.buttons {
+  width: 312px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.popup-cancel, .popup-save {
+  width: 148px;
+  height: 56px;
+  border-radius: 12px;
+  padding: 18px 16px;
+}
+
+.popup-cancel {
+  background-color: #ababab;
+  border: 1px solid #333333;
+}
+
+.popup-save {
+  background-color: #78BA6F;
+}
+
+.popup-cancel p, .popup-save p {
+  font-family: "Inter" sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.popup-save p {
+  color: #000000;
+}
+
+.popup-cancel p {
+  color: #000000;
 }
 
 .notification{
