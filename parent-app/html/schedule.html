@@ -137,7 +137,63 @@
       </section>
     </div>
 
+    <form class="add-event hidden">
+      <div class="event">
+        <h2 class="event-h">Событие</h2>
+        <img class="vector" src="/img/vector.svg">
+      </div>
 
+      <input class="new-event-name" name="new-event-name" type="text" placeholder="Название" required>
+
+      <div class="time-section">
+        <div class="time-block">
+          <img class="clock" src="/img/schedule.svg">
+
+          <div class="time-inputs">
+            <input type="text" name="start-event-time" class="start-event-time" autocomplete="off" placeholder="09:00" readonly required>      
+            <p class="tire">-</p>
+            <input type="text" name="finish-event-time" class="finish-event-time" autocomplete="off" placeholder="10:00" readonly required>
+          </div>
+        </div>
+
+        <div id="overlay" class="overlay"></div>
+          <div id="popup-time" class="popup-time">
+            <p class="choice">Выберите время</p>
+
+            <div class="time-picker">
+              <div class="hours">
+                <div id="hours-prev-value" class="time prev-time"></div>
+                <div id="hours-current-value" class="time current-time"></div>
+                <div id="hours-next-value" class="time future-time"></div>
+              </div>
+              <p class="time-divider">:</p>
+              <div class="minutes">
+                <div id="minutes-prev-value" class="time prev-time"></div>
+                <div id="minutes-current-value" class="time current-time"></div>
+                <div id="minutes-next-value" class="time future-time"></div>
+              </div>
+            </div>
+
+            <div class="buttons">
+              <button class="popup-cancel" type="button">
+                <p>Отмена</p>
+              </button>
+              <button class="popup-save" type="button">
+                <p>Сохранить</p>
+              </button>
+            </div>
+          </div>
+      </div>
+
+      <div class="event-buttons">
+        <button class="cancel-button" type="reset">Отмена</button>
+        <button class="approuve-button" type="submit">Добавить</button>
+      </div>
+    </form>
+
+    <div class="add-button">
+      <img class="cross" src="/img/add_2.png" width="18" height="18">
+    </div>
 
 
 
@@ -170,6 +226,8 @@
     <script src="/js/navigation.js" type="module"></script>
     <script src="/js/profiles.js" type="module"></script>
     <script src="/js/draw-schedule.js" type="module"></script>
+    <script src="/js/time-picker.js" type="module"></script>
+    <script src="/js/add-button.js" type="module"></script>
 </body>
 </html>
 

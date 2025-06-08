@@ -78,7 +78,7 @@ function renderEvents(events) {
         const endHours = Number(endTime.slice(0, 2));
         const endMinutes = Number(endTime.slice(3, 5));
 
-        const topPosition = 78 * startHours + Math.round((startMinutes / 60) * 78);
+        const topPosition = 80 * startHours + Math.round((startMinutes / 60) * 78);
         const height = calculateEventHeight(startHours, startMinutes, endHours, endMinutes);
 
         const eventElement = template.content.cloneNode(true);
@@ -106,9 +106,9 @@ function renderEvents(events) {
 function calculateEventHeight(startH, startM, endH, endM) {
     if (endH > startH || (endH === startH && endM > startM)) {
         const height = ((endH + endM/60) - (startH + startM/60)) * 78;
-        return Math.max(height, 12);
+        return Math.max(height, 12) - 12;
     }
-    return 78 * (24 - (startH + startM/60));
+    return 78 * (24 - (startH + startM/60)) - 12;
 }
 
 
