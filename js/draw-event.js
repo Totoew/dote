@@ -91,7 +91,7 @@ const CalendarManager = {
     // Загрузка событий с сервера
     async fetchEvents() {
         try {
-            const userId = await this.fetchUserId();
+            const userId = this.fetchUserId();
             if (!userId) throw new Error('Не удалось получить user_id');
             
             const response = await fetch('https://flask.stk8s.66bit.ru/get_all', {
@@ -115,20 +115,14 @@ const CalendarManager = {
         }
     },
     
-    async fetchUserId() {
+    fetchUserId() {
         try {
-            const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            
-            if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
-            
-            const data = await response.json();
-            localStorage.setItem('user_id', data['user_id']);
-            return data['user_id'];
+            const search = window.location.search;
+            const params = new URLSearchParams(search);
+            const user_id = Number(params.get('id'));
+
+            localStorage.setItem('user_id', user_id);
+            return user_id;
         } catch (error) {
             console.error('Ошибка при получении user_id:', error);
             return null;

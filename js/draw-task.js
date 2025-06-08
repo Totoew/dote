@@ -2,33 +2,19 @@ const template = document.getElementById('taskCardTemplate');
 const container = document.querySelector('.container');
 let TASK_DATA = [];
 
-async function fetchUserId() {
+function fetchUserId() {
     try {
-        const response = await fetch('https://flask.stk8s.66bit.ru/get_user_id', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
-        }
-        const data = await response.json();
-        return data['user_id'];
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const user_id = Number(params.get('id'));
+        localStorage.setItem('user_id', user_id);
+            
+        return user_id;
     } catch (error) {
         console.error('Ошибка при получении user_id:', error);
         return null;
     }
 }
-
-fetchUserId().then(userId => {
-    if (userId) {
-        localStorage.setItem('user_id', userId);
-        console.log('user_id сохранен в localStorage:', userId);
-    } else {
-        alert('Не удалось получить user_id. Попробуйте позже.');
-    }
-});
 
 async function fetchEvents() {
     try {
@@ -243,7 +229,7 @@ function formatTaskDate(dateString, timeString) {
 // Основная функция загрузки и отрисовки
 async function loadAndRenderTasks() {
     try {
-        const userId = await fetchUserId();
+        const userId = fetchUserId();
         if (!userId) {
             throw new Error('Не удалось получить user_id');
         }
@@ -257,6 +243,26 @@ async function loadAndRenderTasks() {
         alert('Не удалось загрузить задачи');
     }
 }
+
+const search = window.location.search;
+const links = document.querySelectorAll('.nav-item a');
+
+const createLink = document.querySelector('.a-none-decorat');
+const href = createLink.getAttribute('href');
+if (href && href !== '') {
+    const separator = href.includes('?') ? '&' : '?';
+    createLink.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
+    console.log(createLink.getAttribute('href'));
+}
+
+links.forEach(link => {
+  const href = link.getAttribute('href');
+  if (href && href !== '') {
+    const separator = href.includes('?') ? '&' : '?';
+    link.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
+    console.log(link.getAttribute('href'));
+  }
+});
 
 // Функция для обновления задач после удаления
 window.refreshTasks = loadAndRenderTasks;
