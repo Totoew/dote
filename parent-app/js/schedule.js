@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const dateInput = document.querySelector('.date-input');
-  const dateButton = document.querySelector('.date-button'); // <-- Новый селектор
+  const dateButton = document.querySelector('.date-button');
   const chosenDate = document.querySelector('.chosen-date');
   const weekContainer = document.querySelector('.week');
 
@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  const daysOfWeek = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+  // Сокращённые и полные названия дней недели
+  const daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+  const fullDaysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+
   const months = [
     'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
     'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
@@ -41,17 +44,28 @@ document.addEventListener('DOMContentLoaded', () => {
       dayElement.classList.remove('chosen-day');
       if (currentDate.toDateString() === baseDate.toDateString()) {
         dayElement.classList.add('chosen-day');
+
+        // Установка полного названия дня в .chosen-day
+        const chosenDayName = dayElement.querySelector('.week-day-name').textContent;
+        const fullDayName = fullDaysOfWeek[dayIndex];
+
+        // Предположим, что внутри .chosen-day есть span или p для вывода названия
+        const chosenDayDisplay = document.querySelector('.chosen-day-display');
+        if (chosenDayDisplay) {
+          chosenDayDisplay.textContent = fullDayName;
+        }
       }
     });
   }
 
   function updateChosenDate(date) {
     const dayOfWeek = daysOfWeek[date.getDay()];
+    const fullDayName = fullDaysOfWeek[date.getDay()]; // Получаем полное имя
     const day = date.getDate();
     const month = months[date.getMonth()];
     const year = date.getFullYear();
 
-    chosenDate.textContent = `${dayOfWeek}, ${day} ${month} ${year} года`;
+    chosenDate.textContent = `${fullDayName}, ${day} ${month} ${year} года`;
   }
 
   // --- Клик теперь по .date-button ---

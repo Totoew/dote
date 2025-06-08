@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {s
     const dateInput = document.querySelector('.date-input');
     const dateImage = document.querySelector('.date-image');
     const chosenDate = document.querySelector('.chosen-date');
