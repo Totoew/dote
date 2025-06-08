@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>История</title>
+    <link href="../css/tasks.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="navigation">
+      <button class="profiles-button">
+        <img class="profile-avatar" src="/parent-app/img/base-user.png">
+      </button>
+
+      <div class="modal">
+        <div class="modal-content">
+          <input type="number" class="current-id hidden">
+          <div class="image-container"></div>
+        </div>
+      </div>
+
+      <p class="chosen-date"></p>
+
+      <button class="date-button">
+        <input type="date" class="date-input hidden">
+        <img class="date-image" src="/parent-app/img/date_calendar.png">
+      </button>
+    </div>
+
+    <div class="week">
+
+      <div class="week-day chosen-day">
+        <p class="week-day-name">Пн</p>
+        <p class="week-date">1</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Вт</p>
+        <p class="week-date">2</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Ср</p>
+        <p class="week-date">3</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Чт</p>
+        <p class="week-date">4</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Пт</p>
+        <p class="week-date">5</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Сб</p>
+        <p class="week-date">6</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Вс</p>
+        <p class="week-date">7</p>
+      </div>
+    </div>
+
+    <div class="tasks">
+      <div class="task">
+        <div class="task-data">
+          <img class="task-alt" src="/parent-app/img/task_alt.png">
+          <p class="task-name">Занятие по танцам</p>
+        </div>
+
+        <div class="check-data">
+          <p class="task-time">16:00</p>
+          <img class="check" src="/parent-app/img/double-check.png">
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="task-data">
+          <p class="task-name-not-image">Занятие по танцам</p>
+        </div>
+
+        <div class="check-data">
+          <p class="task-time">16:00</p>
+          <img class="check" src="/parent-app/img/double-check.png">
+        </div>
+      </div>
+    </div> 
+
+    <div class="footer">
+      <section class="bottom-nav">
+
+        <div class="nav-item nav-item-0">
+          <a href="">
+            <img class="tune image" src="/parent-app/img/receipt_long.png">
+          </a>
+          <p class="nav-item-0-txt p-tag">История</p>
+        </div>
+
+        <div class="nav-item nav-item-1">
+          <a href="schedule.html">
+            <img class="calendar image" src="/parent-app/img/calendar_month.png">
+          </a>
+          <p class="nav-item-1-txt p-tag">Расписание</p>
+        </div>
+
+        <div class="nav-item nav-item-2">
+          <a href="tasks.html">
+            <img class="split-screen image" src="/parent-app/img/splitscreen_black.png">
+          </a>
+          <b class="nav-item-2-txt p-tag">Задачи</b>
+        </div>
+
+      </section> 
+    </div>
+    <script src="/parent-app/js/draw-history.js" type="module"></script>
+    <script src="/parent-app/js/navigation.js" type="module"></script>
+    <script src="/parent-app/js/profiles.js" type="module"></script>
+    <script src="/parent-app/js/history.js"></script>
+</body>
+</html>
+
