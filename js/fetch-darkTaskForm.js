@@ -1,8 +1,6 @@
 // Записываем данные с формы событий и отправляем на сервер
 //Проверено, работает
 
-const TAGS = getTagsAsArray();
-
 function fetchUserId() {
     try {
         const search = window.location.search;
@@ -30,6 +28,7 @@ function getTagsAsArray() {
 
     const tags = [];
     tagsContainer.querySelectorAll('.word-block').forEach(tagElement => {
+        console.log(tagElement);
         tags.push(tagElement.textContent.replace('✖', '').trim());
     });
 
@@ -55,7 +54,7 @@ document.getElementById('darkTaskForm').addEventListener('submit', async functio
         'task_name': form.querySelector('[name="name-task"]').value,
         'task_description': form.querySelector('[name="desc-task"]').value,
         'task_type': form.querySelector('[name="type-task"]').value,
-        'task_tags': TAGS,
+        'task_tags': getTagsAsArray(),
         'task_priority': form.querySelector('[name="priority-level"]').value,
         'task_date': form.querySelector('[name="day-task"]').value,
         'task_notification_time': Number(form.querySelector('[name="time-notification"]').value),

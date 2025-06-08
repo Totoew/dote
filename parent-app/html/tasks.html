@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>История</title>
+    <link href="../css/tasks.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="navigation">
+      <button class="profiles-button">
+        <img class="profile-avatar" src="/img/base-user.png">
+      </button>
+
+      <div class="modal">
+        <div class="modal-content">
+          <input type="number" class="current-id hidden">
+          <div class="image-container"></div>
+        </div>
+      </div>
+
+      <p class="chosen-date"></p>
+
+      <button class="date-button">
+        <input type="date" class="date-input hidden">
+        <img class="date-image" src="/img/date_calendar.png">
+      </button>
+    </div>
+
+    <div class="week">
+
+      <div class="week-day chosen-day">
+        <p class="week-day-name">Пн</p>
+        <p class="week-date">1</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Вт</p>
+        <p class="week-date">2</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Ср</p>
+        <p class="week-date">3</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Чт</p>
+        <p class="week-date">4</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Пт</p>
+        <p class="week-date">5</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Сб</p>
+        <p class="week-date">6</p>
+      </div>
+
+      <div class="week-day">
+        <p class="week-day-name">Вс</p>
+        <p class="week-date">7</p>
+      </div>
+    </div>
+
+    <div class="tasks">
+        <div class="task example hidden">
+            <div class="upper-task">
+                <img class="bell" src="/img/bell.svg">
+                <p class="task-name">Раора Пантера</p>
+            </div>
+
+            <div class="bottom-task">
+                <div class="task-variables">
+                    <div class="priority">
+                        <div class="signal-container">
+                            <img class="signal" src="/img/signal.svg">
+                        </div>
+                        <p class="priority-text">Важно</p>
+                    </div>
+                    <div class="tags">
+
+                    </div>
+                </div>
+                <p class="task-time">19:00</p>
+            </div>
+        </div>
+    </div> 
+
+    <div class="footer">
+      <section class="bottom-nav">
+
+        <div class="nav-item nav-item-0">
+          <a href="history.html">
+            <img class="tune image" src="/img/receipt_long.png">
+          </a>
+          <p class="nav-item-0-txt p-tag">История</p>
+        </div>
+
+        <div class="nav-item nav-item-1">
+          <a href="schedule.html">
+            <img class="calendar image" src="/img/calendar_month.png">
+          </a>
+          <p class="nav-item-1-txt p-tag">Расписание</p>
+        </div>
+
+        <div class="nav-item nav-item-2">
+          <a href="tasks.html">
+            <img class="split-screen image" src="/img/splitscreen_black.png">
+          </a>
+          <b class="nav-item-2-txt p-tag">Задачи</b>
+        </div>
+
+      </section> 
+    </div>
+    <script src="/js/draw-tasks.js" type="module"></script>
+    <script src="/js/navigation.js" type="module"></script>
+    <script src="/js/profiles.js" type="module"></script>
+</body>
+</html>

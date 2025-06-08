@@ -2,24 +2,24 @@ const currentId = document.querySelector('.current-id');
 const dateInput = document.querySelector('.date-input');
 let EVENT_DATA = null;
 
-async function filterAndRenderEvents() {
+async function filterAndRenderTasks() {
     try {
-        if (EVENT_DATA === null) {
-            const rawEvents = await fetchEvents();
-            EVENT_DATA = transformEvents(rawEvents);
+        if (TASK_DATA === null) {
+            const rawEvents = await fetchTasks();
+            TASK_DATA = transformTasks(rawEvents);
         }
         
-        const filteredEvents = EVENT_DATA.filter(event => {
+        const filteredEvents = TASK_DATA.filter(event => {
             const eventDate = new Date(event.event_date).toISOString().split('T')[0];
             return eventDate === dateInput.value;
         });   
-        renderEvents(filteredEvents);
+        renderTasks(filteredEvents);
     } catch (error) {
         console.error('Ошибка загрузки событий:', error);
     }
 }
 
-async function fetchEvents() {
+async function fetchTasks() {
     try {
         const userId = currentId.value;
             
@@ -44,7 +44,7 @@ async function fetchEvents() {
     }
 }
 
-function transformEvents(eventsArray) {
+function transformTasks(eventsArray) {
     return eventsArray.map(event => ({
         event_id: event[0],
         user_id: event[1],
@@ -59,7 +59,7 @@ function transformEvents(eventsArray) {
     }));
 }
 
-function renderEvents(events) {
+function renderTasks(events) {
     const container = document.querySelector('.container');
     if (!container) return;
         
@@ -115,7 +115,7 @@ function calculateEventHeight(startH, startM, endH, endM) {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', async () => {
-    await filterAndRenderEvents();
+    await filterAndRenderTasks();
     
     // Блокировка свайпа
     document.addEventListener('touchmove', (e) => {
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-dateInput.addEventListener('change', async () => await filterAndRenderEvents());
+dateInput.addEventListener('change', async () => await filterAndRenderTasks());
 currentId.addEventListener('change', async () => {
-    EVENT_DATA = null;
-    await filterAndRenderEvents();
+    TASK_DATA = null;
+    await filterAndRenderTasks();
 });
