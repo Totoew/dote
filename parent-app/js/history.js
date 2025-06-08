@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateImage = document.querySelector('.date-image');
     const chosenDate = document.querySelector('.chosen-date');
 
+
     const daysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 
     const months = [
@@ -115,3 +116,4 @@ document.addEventListener('DOMContentLoaded', () => {
     updateChosenDate(today);
     fillWeekDays(today);
 });
+
