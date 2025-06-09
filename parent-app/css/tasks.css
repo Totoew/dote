@@ -202,10 +202,11 @@ body {
 .nav-item-0-txt,
 .nav-item-1-txt,
 .nav-item-2-txt {
-    font-size: 15px;
-    color: #9f9f9f;
-    }
+  font-size: 15px;
+  color: #9f9f9f;
+}
 
 .nav-item-2-txt {
-    color: #050505;
-    }
+  color: #050505;
+}
+

@@ -23,7 +23,10 @@ document.getElementById('darkEvForm').addEventListener('submit', function (evt) 
     localStorage.setItem(`event_${eventId}`, JSON.stringify(updatedTask));
     console.log("Обновленные данные:", updatedTask);
 
-    window.location.href = 'shedule.html'; // Переход на нужную страницу после сохранения
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const user_id = Number(params.get('id'));
+    window.location.href = `shedule.html?id=${user_id}`; // Переход на нужную страницу после сохранения
 });
 
 //не закрывать приложение при свайпе вниз

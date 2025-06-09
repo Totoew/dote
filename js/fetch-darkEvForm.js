@@ -53,26 +53,26 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
 });
 
 async function getTaskData(eventData) {
-    fetch('https://flask.stk8s.66bit.ru/events', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(eventData),
-})
-.then(response => {
-  if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
-  return response.json();
-})
-.then(data => {
-  console.log('Успех:', data);
-  const search = window.location.search;
-  const params = new URLSearchParams(search);
-  const user_id = Number(params.get('id'));
-  window.location.href = `shedule.html?id=${user_id}`;
-})
-.catch(error => {
-  console.error('Ошибка:', error);
-  alert('Ошибка отправки: ' + error.message);
-});
+  fetch('https://flask.stk8s.66bit.ru/events', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(eventData),
+  })
+  .then(response => {
+    if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+    return response.json();
+  })
+  .then(data => {
+    console.log('Успех:', data);
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const user_id = Number(params.get('id'));
+    window.location.href = `shedule.html?id=${user_id}`;
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+    alert('Ошибка отправки: ' + error.message);
+  });
 }
