@@ -69,87 +69,94 @@
     </div>
 
     <div class="tasks">
-      <div class="task">
-        <div class="task-data">
-          <img class="task-alt" src="../img/task_alt.png">
-          <p class="task-name">Занятие по танцам</p>
+        <div class="task example hidden">
+            <div class="upper-task">
+                <img class="bell" src="../img/bell.svg">
+                <p class="task-name">Раора Пантера</p>
+            </div>
+
+            <div class="bottom-task">
+                <div class="task-variables">
+                    <div class="priority">
+                        <div class="signal-container">
+                            <img class="signal" src="../img/signal.svg">
+                        </div>
+                        <p class="priority-text">Важно</p>
+                    </div>
+                    <div class="tags">
+
+                    </div>
+                </div>
+                <p class="task-time">19:00</p>
+            </div>
         </div>
-        <div class="check-data">
-          <p class="task-time">16:00</p>
-          <img class="check" src="../img/double-check.png">
-        </div>
+    </div>
+
+    <form class="add-task hidden">
+      <div class="form-task">
+        <h2 class="task-h">Задача</h2>
+        <img class="vector" src="../img/task-vector.svg">
       </div>
-      <div class="task">
-        <div class="task-data">
-          <p class="task-name-not-image">Занятие по танцам</p>
+
+      <input class="new-task-name" name="new-task-name" type="text" placeholder="Название" required>
+
+      <div class="time-section">
+        <div class="time-block">
+          <img class="clock" src="../img/schedule.svg">
+
+          <div class="time-inputs">
+            <input type="text" name="start-task-time" class="start-task-time" autocomplete="off" placeholder="09:00" readonly required>
+          </div>
+
+          <section class="new-priority">
+            <select id="inputFieldPriority" class="add-priority" name='priority-level' required>
+                <option value="" disabled selected hidden>Приоритет</option>
+                <option value="not-matter">Не важно</option>
+                <option value="normal">Нормально</option>
+                <option value="matter">Важно</option>
+            </select>
+          </section>
         </div>
 
-        <div class="check-data">
-          <p class="task-time">16:00</p>
-          <img class="check" src="../img/double-check.png">
-        </div>
-      </div>
-      <div class="task">
-        <div class="task-data">
-          <p class="task-name-not-image">Занятие по танцам</p>
-        </div>
+        <div id="overlay" class="overlay"></div>
+          <div id="popup-time" class="popup-time">
+            <p class="choice">Выберите время</p>
 
-        <div class="check-data">
-          <p class="task-time">16:00</p>
-          <img class="check" src="../img/double-check.png">
-        </div>
-      </div>
-      <div class="task">
-        <div class="task-data">
-          <p class="task-name-not-image">Занятие по танцам</p>
-        </div>
+            <div class="time-picker">
+              <div class="hours">
+                <div id="hours-prev-value" class="time prev-time"></div>
+                <div id="hours-current-value" class="time current-time"></div>
+                <div id="hours-next-value" class="time future-time"></div>
+              </div>
+              <p class="time-divider">:</p>
+              <div class="minutes">
+                <div id="minutes-prev-value" class="time prev-time"></div>
+                <div id="minutes-current-value" class="time current-time"></div>
+                <div id="minutes-next-value" class="time future-time"></div>
+              </div>
+            </div>
 
-        <div class="check-data">
-          <p class="task-time">16:00</p>
-          <img class="check" src="../img/double-check.png">
-        </div>
+            <div class="buttons">
+              <button class="popup-cancel" type="button">
+                <p>Отмена</p>
+              </button>
+              <button class="popup-save" type="button">
+                <p>Сохранить</p>
+              </button>
+            </div>
+          </div>
       </div>
-      <div class="task">
-        <div class="task-data">
-          <p class="task-name-not-image">Занятие по танцам</p>
-        </div>
 
-        <div class="check-data">
-          <p class="task-time">16:00</p>
-          <img class="check" src="../img/double-check.png">
-        </div>
+      <div class="task-buttons">
+        <button class="cancel-button" type="reset">Отмена</button>
+        <button class="approuve-button" type="submit">Добавить</button>
       </div>
-      <div class="task">
-        <div class="task-data">
-          <p class="task-name-not-image">Занятие по танцам</p>
-        </div>
+    </form>
 
-        <div class="check-data">
-          <p class="task-time">16:00</p>
-          <img class="check" src="../img/double-check.png">
-        </div>
-      </div>
-      <div class="task">
-        <div class="task-data">
-          <p class="task-name-not-image">Занятие по танцам</p>
-        </div>
+    <div class="add-button">
+      <img class="cross" src="../img/add_2.png" width="18" height="18">
+    </div>
 
-        <div class="check-data">
-          <p class="task-time">16:00</p>
-          <img class="check" src="../img/double-check.png">
-        </div>
-      </div>
-      <div class="task">
-        <div class="task-data">
-          <p class="task-name-not-image">Занятие по танцам</p>
-        </div>
-
-        <div class="check-data">
-          <p class="task-time">16:00</p>
-          <img class="check" src="../img/double-check.png">
-        </div>
-      </div>
-    </div> 
 
     <div class="footer">
       <section class="bottom-nav">
