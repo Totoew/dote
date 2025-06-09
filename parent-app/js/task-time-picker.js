@@ -1,42 +1,26 @@
 const popup = document.getElementById('popup-time');
 const overlay = document.getElementById('overlay');
-const start_event = document.querySelector('.start-event-time');
-const finish_event = document.querySelector('.finish-event-time');
+const startTime = document.querySelector('.start-task-time');
 const hours = document.querySelector('.hours');
 const minutes = document.querySelector('.minutes');
 const min = 0;
 const maxHours = 24;
 const maxMinutes = 60;
-let flag = 'start';
 let currentHoursValue = NaN;
 let currentMinutesValue = NaN;
 
 
 window.onload = function() {
     const hours = new Date().getHours()
-    start_event.value = hours + 1 < 24 ? `${modifyTime(hours + 1)}:00` : '00:00';
-    start_event.placeholder = start_event.value;
-    if (hours + 2 == 25) {
-        finish_event.value = '01:00';
-    } else if (hours + 2 == 24) {
-        finish_event.value = '00:00';
-    } else {
-        finish_event.value = `${modifyTime(hours + 2)}:00`
-    }
-    finish_event.placeholder = finish_event.value;
+    startTime.value = hours + 1 < 24 ? `${modifyTime(hours + 1)}:00` : '00:00';
+    startTime.placeholder = startTime.value;
 }
 
 function initializeValues() {
     let value;
-    if (flag == 'start') {
-        value = start_event.value.split(':');
-        currentHoursValue = value[0] === '' ? 0 : Number(value[0]) || 0;
-        currentMinutesValue = value[1] === '' ? 0 : Number(value[1]) || 0;
-    } else if (flag == 'finish') {
-        value = finish_event.value.split(':');
-        currentHoursValue = value[0] === '' ? 0 : Number(value[0]) || 0;
-        currentMinutesValue = value[1] === '' ? 0 : Number(value[1]) || 0;
-    }
+    value = startTime.value.split(':');
+    currentHoursValue = value[0] === '' ? 0 : Number(value[0]) || 0;
+    currentMinutesValue = value[1] === '' ? 0 : Number(value[1]) || 0;
     updateDisplay('hours');
     updateDisplay('minutes');
 }
@@ -126,13 +110,7 @@ minutes.addEventListener('wheel', scrollValues);
 minutes.addEventListener('touchstart', startTouch);
 minutes.addEventListener('touchmove', moveTouch);
 
-start_event.addEventListener('click', () => {
-    flag = 'start';
-    togglePopup();
-});
-
-finish_event.addEventListener('click', () => {
-    flag = 'finish';
+startTime.addEventListener('click', () => {
     togglePopup();
 });
 
@@ -151,14 +129,8 @@ function closePopup() {
 document.querySelector('.popup-cancel').addEventListener('click', closePopup);
 
 document.querySelector('.popup-save').addEventListener('click', () => {
-    if (flag == 'start') {
-        start_event.value = `${modifyTime(currentHoursValue)}:${modifyTime(currentMinutesValue)}`;
-        start_event.style.backgroundColor = '#BF5442';
-        start_event.style.color = '#ffffff';
-    } else {
-        finish_event.value = `${modifyTime(currentHoursValue)}:${modifyTime(currentMinutesValue)}`;
-        finish_event.style.backgroundColor = '#BF5442';
-        finish_event.style.color = '#ffffff';
-    }
+    startTime.value = `${modifyTime(currentHoursValue)}:${modifyTime(currentMinutesValue)}`;
+    startTime.style.backgroundColor = '#BF5442';
+    startTime.style.color = '#ffffff';
     closePopup();
 });

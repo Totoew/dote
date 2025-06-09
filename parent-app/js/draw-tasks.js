@@ -2,16 +2,16 @@ const currentId = document.querySelector('.current-id');
 const dateInput = document.querySelector('.date-input');
 const container = document.querySelector('.tasks');
 const template = document.querySelector('.example');
-let TASK_DATA = null;
+let EVENT_DATA = null;
 
 async function filterAndRenderTasks() {
     try {
-        if (TASK_DATA === null) {
+        if (EVENT_DATA === null) {
             const rawEvents = await fetchTasks();
-            TASK_DATA = transformTasks(rawEvents);
+            EVENT_DATA = transformTasks(rawEvents);
         }
         
-        const filteredEvents = TASK_DATA.filter(task => {
+        const filteredEvents = EVENT_DATA.filter(task => {
             const taskDate = new Date(task.date).toISOString().split('T')[0];
             return taskDate === dateInput.value;
         });   
@@ -103,7 +103,6 @@ function renderTasks(tasks) {
         const taskTime = newTask.querySelector('.task-time');
         taskTime.textContent = task.task_time;
 
-        console.log(task.list_tags);
         const tags = newTask.querySelector('.tags');
             if (task.list_tags) {
                 let taskTags = task.list_tags.split(',');
@@ -149,6 +148,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 dateInput.addEventListener('change', async () => await filterAndRenderTasks());
 currentId.addEventListener('change', async () => {
-    TASK_DATA = null;
+    EVENT_DATA = null;
     await filterAndRenderTasks();
+});
+
+//функция для отображения приоритетов
+document.getElementById('inputFieldPriority').addEventListener('change', function () {
+    const select = this;
+
+    select.classList.remove('not-matter', 'normal', 'matter');
+
+    if (select.value === 'not-matter') {
+        select.classList.add('not-matter');
+    } else if (select.value === 'normal') {
+        select.classList.add('normal');
+    } else if (select.value === 'matter') {
+        select.classList.add('matter');
+    }
+});
+
+document.getElementById("inputFieldPriority").addEventListener("change", function () {
+    if (this.value !== "") {
+        // Если выбрана любая другая опция, кроме "Выберите..."
+        this.querySelectorAll("option")[0].style.display = "none"; 
+    } else {
+        this.options[0].style.display = ""; 
+    }
 });

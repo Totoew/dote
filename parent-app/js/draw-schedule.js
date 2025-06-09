@@ -4,12 +4,12 @@ let EVENT_DATA = null;
 
 async function filterAndRenderTasks() {
     try {
-        if (TASK_DATA === null) {
+        if (EVENT_DATA === null) {
             const rawEvents = await fetchTasks();
-            TASK_DATA = transformTasks(rawEvents);
+            EVENT_DATA = transformTasks(rawEvents);
         }
         
-        const filteredEvents = TASK_DATA.filter(event => {
+        const filteredEvents = EVENT_DATA.filter(event => {
             const eventDate = new Date(event.event_date).toISOString().split('T')[0];
             return eventDate === dateInput.value;
         });   
@@ -135,6 +135,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 dateInput.addEventListener('change', async () => await filterAndRenderTasks());
 currentId.addEventListener('change', async () => {
-    TASK_DATA = null;
+    EVENT_DATA = null;
     await filterAndRenderTasks();
 });
