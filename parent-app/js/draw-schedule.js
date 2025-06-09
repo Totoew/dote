@@ -2,24 +2,24 @@ const currentId = document.querySelector('.current-id');
 const dateInput = document.querySelector('.date-input');
 let EVENT_DATA = null;
 
-async function filterAndRenderEvents() {
+async function filterAndRenderTasks() {
     try {
         if (EVENT_DATA === null) {
-            const rawEvents = await fetchEvents();
-            EVENT_DATA = transformEvents(rawEvents);
+            const rawEvents = await fetchTasks();
+            EVENT_DATA = transformTasks(rawEvents);
         }
         
         const filteredEvents = EVENT_DATA.filter(event => {
             const eventDate = new Date(event.event_date).toISOString().split('T')[0];
             return eventDate === dateInput.value;
         });   
-        renderEvents(filteredEvents);
+        renderTasks(filteredEvents);
     } catch (error) {
         console.error('Ошибка загрузки событий:', error);
     }
 }
 
-async function fetchEvents() {
+async function fetchTasks() {
     try {
         const userId = currentId.value;
             
@@ -44,7 +44,7 @@ async function fetchEvents() {
     }
 }
 
-function transformEvents(eventsArray) {
+function transformTasks(eventsArray) {
     return eventsArray.map(event => ({
         event_id: event[0],
         user_id: event[1],
@@ -59,7 +59,7 @@ function transformEvents(eventsArray) {
     }));
 }
 
-function renderEvents(events) {
+function renderTasks(events) {
     const container = document.querySelector('.container');
     if (!container) return;
         
@@ -78,7 +78,7 @@ function renderEvents(events) {
         const endHours = Number(endTime.slice(0, 2));
         const endMinutes = Number(endTime.slice(3, 5));
 
-        const topPosition = 78 * startHours + Math.round((startMinutes / 60) * 78);
+        const topPosition = 80 * startHours + Math.round((startMinutes / 60) * 78);
         const height = calculateEventHeight(startHours, startMinutes, endHours, endMinutes);
 
         const eventElement = template.content.cloneNode(true);
@@ -106,16 +106,16 @@ function renderEvents(events) {
 function calculateEventHeight(startH, startM, endH, endM) {
     if (endH > startH || (endH === startH && endM > startM)) {
         const height = ((endH + endM/60) - (startH + startM/60)) * 78;
-        return Math.max(height, 12);
+        return Math.max(height, 12) - 12;
     }
-    return 78 * (24 - (startH + startM/60));
+    return 78 * (24 - (startH + startM/60)) - 12;
 }
 
 
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', async () => {
-    await filterAndRenderEvents();
+    await filterAndRenderTasks();
     
     // Блокировка свайпа
     document.addEventListener('touchmove', (e) => {
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-dateInput.addEventListener('change', async () => await filterAndRenderEvents());
+dateInput.addEventListener('change', async () => await filterAndRenderTasks());
 currentId.addEventListener('change', async () => {
     EVENT_DATA = null;
-    await filterAndRenderEvents();
+    await filterAndRenderTasks();
 });

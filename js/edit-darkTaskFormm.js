@@ -64,7 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!createResponse.ok) throw new Error('Не удалось обновить задачу');
 
-            window.location.href = 'index.html';
+            const search = window.location.search;
+            const params = new URLSearchParams(search);
+            const user_id = Number(params.get('id'));
+            window.location.href = `index.html?id=${user_id}`;
         } catch (error) {
             console.error('Ошибка:', error);
             alert('Ошибка при сохранении: ' + error.message);
