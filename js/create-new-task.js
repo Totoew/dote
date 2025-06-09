@@ -143,4 +143,67 @@ document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
         event.preventDefault();
     }
+
+    
 }, { passive: false });
+
+function validateDateTime(dateInputId, timeInputClass, errorId) {
+    const dateInput = document.getElementById(dateInputId);
+    const timeInput = document.querySelector(timeInputClass);
+    const error = document.getElementById(errorId);
+
+    if (!dateInput || !timeInput || !error) return;
+
+    function checkDateTime() {
+        const dateStr = dateInput.value;
+        const timeStr = timeInput.value.trim();
+
+        if (!dateStr || !timeStr) return false;
+
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        const selectedDateTime = new Date(dateStr);
+        selectedDateTime.setHours(hours, minutes, 0, 0);
+
+        const now = new Date();
+
+        if (selectedDateTime < now) {
+            error.style.display = 'block';
+            dateInput.style.borderColor = 'red';
+            timeInput.style.borderColor = 'red';
+            return false;
+        } else {
+            error.style.display = 'none';
+            dateInput.style.borderColor = '';
+            timeInput.style.borderColor = '';
+            return true;
+        }
+    }
+
+    // Проверяем при изменении любого из полей
+    dateInput.addEventListener('change', checkDateTime);
+    timeInput.addEventListener('change', checkDateTime);
+
+    return checkDateTime;
+}
+
+// Вызов функции и получаем готовую функцию checkDateTime
+const isDateTimeValid = validateDateTime('dateInput', '.task-time', 'datetime-error');
+
+document.querySelector('.popup-save').addEventListener('click', (event) => {
+    if (!isDateTimeValid()) {
+        // Если дата или время из прошлого — блокируем сохранение
+        event.preventDefault(); // Останавливаем любые действия
+        return;
+    }
+
+    // Здесь выполняется логика сохранения, если всё валидно
+    timePicker.value = `${modifyTime(currentHoursValue)}:${modifyTime(currentMinutesValue)}`;
+    timePicker.style.backgroundColor = '#292A3C';
+    timePicker.style.color = '#ffffff';
+    closePopup();
+});
+
+document.getElementById('darkTaskForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Полностью запрещаем стандартную отправку формы
+});
+

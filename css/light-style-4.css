@@ -141,7 +141,7 @@ select {
   padding: 12px 24px;
   border-radius: 16px;
   background-color: #ffffff;
-  color: #ffffff;
+  color: #000000;
   margin-top: 24px; 
   margin-left: 12px; 
   margin-right: 12px;
@@ -347,7 +347,7 @@ input[type="text"]::placeholder {
 }
 
 .popup-cancel {
-  background-color: #ffffff;
+  background-color: #9b9b9b;
   border: 1px solid #333333;
 }
 
@@ -363,11 +363,11 @@ input[type="text"]::placeholder {
 }
 
 .popup-save p {
-  color: #FFFFFF;
+  color: #000000;
 }
 
 .popup-cancel p {
-  color: #818181;
+  color: #000000;
 }
 
 .word-block {

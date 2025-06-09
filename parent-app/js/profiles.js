@@ -7,11 +7,11 @@ const search = window.location.search;
 const links = document.querySelectorAll('.nav-item a');
 
 links.forEach(link => {
-  const href = link.getAttribute('href');
-  if (href && href !== '') {
+    const href = link.getAttribute('href');
+    if (href && href !== '') {
     const separator = href.includes('?') ? '&' : '?';
     link.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
-  }
+    }
 });
 
 const params = new URLSearchParams(search);
