@@ -53,7 +53,7 @@ document.getElementById('darkEvForm').addEventListener('submit', async function 
 });
 
 async function getTaskData(eventData) {
-  fetch('https://flask.stk8s.66bit.ru/events', {
+fetch('https://flask.stk8s.66bit.ru/events', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
