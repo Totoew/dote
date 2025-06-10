@@ -78,7 +78,7 @@ function renderTasks(events) {
         const endHours = Number(endTime.slice(0, 2));
         const endMinutes = Number(endTime.slice(3, 5));
 
-        const topPosition = 80 * startHours + Math.round((startMinutes / 60) * 78);
+        const topPosition = 78 * startHours + Math.round((startMinutes / 60) * 78) + 6;
         const height = calculateEventHeight(startHours, startMinutes, endHours, endMinutes);
 
         const eventElement = template.content.cloneNode(true);
@@ -110,8 +110,6 @@ function calculateEventHeight(startH, startM, endH, endM) {
     }
     return 78 * (24 - (startH + startM/60)) - 12;
 }
-
-
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', async () => {

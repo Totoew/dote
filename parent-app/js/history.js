@@ -116,4 +116,3 @@ document.addEventListener('DOMContentLoaded', () => {s
     updateChosenDate(today);
     fillWeekDays(today);
 });
-

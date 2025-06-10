@@ -105,7 +105,7 @@ body {
 }
 
 .chosen-day {
-    background-color: #F26E56;
+  background-color: #F26E56;
 }
 
 
@@ -237,12 +237,14 @@ body {
 .add-event {
   width: 325px;
   height: 293px;
-  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
   background-color: #FFFFFF;
   border-radius: 16px;
   border: 1px solid #000000;
-  z-index: 1000;
-  margin-top: 80px;
 }
 
 .event {

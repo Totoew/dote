@@ -51,6 +51,7 @@ drawWeek();
 
 // --- Клик по кнопке открывает календарь ---
 dateButton.addEventListener('click', () => {
+  dateInput.showPicker?.();
   dateInput.click(); // Это работает везде, где поддерживается <input type="date">
 });
 

@@ -110,15 +110,16 @@ body {
 
 
 .tasks {
-  width: 393px;
   margin: 0 auto;
+  height: 400px;
   margin-top: 25px;
-  margin-bottom: 10px;
 
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  touch-action: auto;
+  touch-action: pan-y; 
+  -ms-overflow-style: scrollbar;
+  scrollbar-width: auto; 
 }
 
 .task {
@@ -136,6 +137,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-self: center;
+  position: relative;
 }
 
 .upper-task {
