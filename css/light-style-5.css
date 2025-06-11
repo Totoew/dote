@@ -61,57 +61,89 @@ object-fit: contain;
 }
 
 .delete-window {
-  position: fixed; 
-  top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  z-index: 100; 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   background-color: #375589;
-  width: 40vw; 
-  height: 25vw; 
+  width: min(80%, 400px); /* Изменено: максимальная ширина 400px, но не более 80% экрана */
+  aspect-ratio: 1.6; /* Сохраняем пропорции окна (ширина/высота) */
   border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+  padding: min(5%, 20px); /* Адаптивный padding */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.confirm {
+  color: white;
+  font-size: clamp(16px, 4vw, 24px); /* Адаптивный размер текста */
+  margin: 10px 0;
+  text-align: center;
+  width: 100%;
+  padding: 0 10px;
 }
 
 .hidden{
   display: none;
 }
 
-.confirm{
-  color: white;
-  font-size: 26px;
-  margin-top: 15px;
-  margin-left: 54.5px;
-  margin-right: 54.5px;
-  margin-bottom: 20px;
-}
-
-.buttons-block{
+.buttons-block {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap:10px;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: 15px;
 }
 
-.confirm-true{
-  background-color: #00811c; 
-  color: rgb(0, 0, 0);             
-  border-radius: 16px;
-  padding: 10px 20px;
-  font-size: 26px;
+.confirm-true,
+.confirm-false {
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: clamp(14px, 3.5vw, 20px); /* Адаптивный размер текста */
+  flex: 1; /* Кнопки занимают равное пространство */
+  max-width: 120px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.confirm-false{
-  background-color: #bb433a; 
-  color: rgb(0, 0, 0);              
-  border-radius: 16px;
-  padding: 10px 20px;
-  font-size: 26px;
+.confirm-true:hover,
+.confirm-false:hover {
+  transform: scale(1.05);
+}
+
+.confirm-true {
+  background-color: #00811c;
+  color: white;
+}
+
+.confirm-false {
+  background-color: #bb433a;
+  color: white;
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 400px) {
+  .delete-window {
+    width: 90%;
+  }
+  
+  .buttons-block {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .confirm-true,
+  .confirm-false {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .footer-1{

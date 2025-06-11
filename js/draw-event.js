@@ -169,7 +169,7 @@ const CalendarManager = {
         }
     },
 
-    // Отрисовка событий
+  //Отрисовка событий
     renderEvents(events) {
         const container = document.querySelector('.container');
         if (!container) return;
@@ -219,16 +219,15 @@ const CalendarManager = {
                 const user_id = Number(params.get('id'));
                 window.location.href = `event-details.html?id=${user_id}`;
             });
-
-            // Обработчик удаления
             const deleteBtn = eventElement.querySelector('.icon-button');
             if (deleteBtn) {
                 deleteBtn.addEventListener('click', (e) => this.handleDeleteEvent(e, event.event_id));
             }
-
+            
             container.appendChild(eventElement);
         });
     },
+    
 
     // Вычисление высоты события
     calculateEventHeight(startH, startM, endH, endM) {

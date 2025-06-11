@@ -119,3 +119,96 @@ links.forEach(link => {
     link.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
   }
 });
+
+// Добавляем обработчик для кнопок удаления
+function setupDeleteButtons() {
+    document.addEventListener('click', function(e) {
+        // Проверяем, был ли клик по кнопке удаления
+        if (e.target.closest('.icon-button') || e.target.classList.contains('icon-image')) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Показываем окно подтверждения
+            const deleteWindow = document.getElementById('delete-window-id');
+            if (deleteWindow) {
+                deleteWindow.classList.remove('hidden');
+                
+                // Получаем ID события из ближайшего элемента события
+                const eventCard = e.target.closest('.event-in-calendar');
+                const eventId = eventCard ? eventCard.dataset.eventId : null;
+                
+                // Обработчики для кнопок подтверждения
+                const confirmTrue = deleteWindow.querySelector('.confirm-true');
+                const confirmFalse = deleteWindow.querySelector('.confirm-false');
+                
+                // Удаляем старые обработчики
+                confirmTrue.onclick = null;
+                confirmFalse.onclick = null;
+                
+                // Добавляем новые обработчики
+                confirmTrue.onclick = function() {
+                    if (eventId) {
+                        deleteEvent(eventId).then(() => {
+                            // Обновляем список событий после удаления
+                            CalendarManager.filterAndRenderEvents();
+                        });
+                    }
+                    deleteWindow.classList.add('hidden');
+                };
+                
+                confirmFalse.onclick = function() {
+                    deleteWindow.classList.add('hidden');
+                };
+                
+                // Закрытие при клике вне окна
+                document.addEventListener('click', function closeWindow(evt) {
+                    if (!deleteWindow.contains(evt.target)) {
+                        deleteWindow.classList.add('hidden');
+                        document.removeEventListener('click', closeWindow);
+                    }
+                });
+            }
+        }
+    });
+}
+
+// Функция для удаления события
+async function deleteEvent(eventId) {
+    try {
+        const userId = localStorage.getItem('user_id');
+        if (!userId) return false;
+        
+        const response = await fetch('https://flask.stk8s.66bit.ru/delete', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: parseInt(userId),
+                id: eventId,
+                type: 'event',
+            }),
+        });
+        
+        return response.ok;
+    } catch (error) {
+        console.error('Ошибка при удалении:', error);
+        return false;
+    }
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация календаря
+    CalendarManager.init();
+    
+    // Настройка обработчиков кнопок удаления
+    setupDeleteButtons();
+    
+    // Блокировка свайпа
+    document.addEventListener('touchmove', function(e) {
+        if (e.touches?.[0]?.clientY > 0) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+});
