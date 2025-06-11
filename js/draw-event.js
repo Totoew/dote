@@ -210,8 +210,14 @@ const CalendarManager = {
 
             // Обработчики событий
             articleElement.addEventListener('click', () => {
+                /*localStorage.setItem('current_event_data', JSON.stringify(event));
+                window.location.href = 'event-details.html';*/
+
                 localStorage.setItem('current_event_data', JSON.stringify(event));
-                window.location.href = 'event-details.html';
+                const search = window.location.search;
+                const params = new URLSearchParams(search);
+                const user_id = Number(params.get('id'));
+                window.location.href = `event-details.html?id=${user_id}`;
             });
 
             // Обработчик удаления

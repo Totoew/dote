@@ -1,28 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Находим кнопку и форму
     const submitButton = document.querySelector('.yellow-button');
     const form = document.getElementById('darkTaskForm');
     
     if (!submitButton || !form) return;
 
-    // Вешаем обработчик на клик по кнопке
     submitButton.addEventListener('click', async (evt) => {
-        evt.preventDefault(); // Предотвращаем стандартное поведение
+        evt.preventDefault(); 
         
-        const userId = localStorage.getItem('user_id');
+        //const userId = localStorage.getItem('user_id');
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const userId = Number(params.get('id'));
         if (!userId) {
             alert("Ошибка: не удалось получить идентификатор пользователя.");
             return;
         }
 
-        // Получаем оригинальную задачу
         const originalTask = JSON.parse(localStorage.getItem('current_task_data'));
         if (!originalTask?.id) {
             alert("Ошибка: не найден ID задачи для обновления");
             return;
         }
 
-        // Формируем обновленную задачу
         const updatedTask = {
             id: originalTask.id,
             user_id: userId,
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            // 1. Удаляем старую задачу
             const deleteResponse = await fetch('https://flask.stk8s.66bit.ru/delete', {
                 method: 'PUT',
                 headers: {
@@ -53,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!deleteResponse.ok) throw new Error('Не удалось удалить задачу');
 
-            // 2. Создаем обновленную задачу
             const createResponse = await fetch('https://flask.stk8s.66bit.ru/tasks', {
                 method: 'POST',
                 headers: {
@@ -75,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Функция для получения тегов
 function getTagsAsArray() {
     const tagsContainer = document.getElementById('output');
     if (!tagsContainer) return [];

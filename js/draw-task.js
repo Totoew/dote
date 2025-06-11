@@ -198,7 +198,10 @@ function renderTasks(tasks) {
         // Обработчик клика по карточке для просмотра деталей
         taskElement.addEventListener('click', () => {
             localStorage.setItem('current_task_data', JSON.stringify(task));
-            window.location.href = 'task-details.html';
+            const search = window.location.search;
+            const params = new URLSearchParams(search);
+            const user_id = Number(params.get('id'));
+            window.location.href = `task-details.html?id=${user_id}`;
         });
 
         container.appendChild(templateContent);
