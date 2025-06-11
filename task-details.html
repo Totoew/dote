@@ -78,7 +78,6 @@
 
             <section class="task-time-picker">
             <input type="text" name="task-time" class="task-time" autocomplete="off" readonly required>
-  
             <div id="overlay" class="overlay"></div>
             <div id="popup-time" class="popup-time">
               <p class="choice">Выберите время</p>
@@ -106,8 +105,6 @@
                 </button>
               </div>
             </div>
-            <div id="date-error" style="color: red; display: none; margin-top: 5px;"></div>
-            <div id="datetime-error" style="color: red; display: none; margin-top: 5px;"></div>
 
           </section>
         </section>
@@ -138,5 +135,6 @@
       <!-- <script src="js/fetch-darkTaskForm.js"></script> -->
       <script src="js/theme-change.js"></script>
       <script src="js/task-time-picker.js"></script>
+      <div id="toast" class="toast hidden">Неверные дата или время</div>
   </body>
 </html>
