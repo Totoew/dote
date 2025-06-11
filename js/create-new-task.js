@@ -143,8 +143,6 @@ document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {
         event.preventDefault();
     }
-
-    
 }, { passive: false });
 
 function validateDateTime() {
@@ -152,84 +150,82 @@ function validateDateTime() {
     const timeInput = document.querySelector('.task-time');
     const errorDate = document.getElementById('date-error');
     const errorDateTime = document.getElementById('datetime-error');
-    
-    // Сбрасываем ошибки
+
     errorDate.style.display = 'none';
     errorDateTime.style.display = 'none';
-    
+
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    
-    // Проверка даты
+
     if (!dateInput.value) {
         errorDate.style.display = 'block';
-        errorDate.textContent = 'Пожалуйста, укажите дату';
+        errorDate.textContent = '';
+        showToast("Выберите дату");
         return false;
     }
-    
+
     const selectedDate = new Date(dateInput.value);
-    
-    // Проверяем, что дата не раньше сегодня
+
     if (selectedDate < today) {
         errorDate.style.display = 'block';
-        errorDate.textContent = 'Нельзя указывать дату из прошлого';
+        errorDate.textContent = '';
+        showToast("Нельзя выбрать дату в прошлом");
         return false;
     }
-    
-    // Проверка времени (если оно указано)
+
     if (timeInput.value) {
         const timeRegex = /^([01]?\d|2[0-3]):([0-5]\d)$/;
         if (!timeRegex.test(timeInput.value)) {
             errorDateTime.style.display = 'block';
             errorDateTime.textContent = 'Некорректный формат времени';
+            showToast("Неверный формат времени");
             return false;
         }
-        
-        // Если дата сегодняшняя, проверяем время
+
         if (selectedDate.getTime() === today.getTime()) {
             const [hours, minutes] = timeInput.value.split(':').map(Number);
             const selectedTime = new Date();
             selectedTime.setHours(hours, minutes, 0, 0);
-            
+
             if (selectedTime < now) {
-                errorDateTime.style.display = 'block';
-                errorDateTime.textContent = 'Нельзя указывать время из прошлого';
-                return false;
+                showToast("Нельзя выбрать время в прошлом");
+                return;
             }
         }
     }
-    
-    return true;
+    return true; 
 }
 
-// Обработчик отправки формы
 document.getElementById('darkTaskForm').addEventListener('submit', function(e) {
     if (!validateDateTime()) {
         e.preventDefault();
         return;
-    }
-    
-    // Если валидация прошла, форма отправится через fetch-darkTaskForm.js
+    } 
 });
 
-// Вызов функции и получаем готовую функцию checkDateTime
-const isDateTimeValid = validateDateTime('dateInput', '.task-time', 'date-error', 'datetime-error');
-
-// Единый обработчик отправки формы
 document.getElementById('darkTaskForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Блокируем стандартную отправку формы
+    e.preventDefault(); 
 
     if (!isDateTimeValid()) {
-        // Если дата или время неверны — выходим
         return;
     }
 
-    // Здесь можно выполнить AJAX-запрос или другую логику отправки
     console.log("Форма прошла валидацию");
-    this.submit(); // Либо заменить на fetch()
+    this.submit(); 
 });
 
 document.getElementById('darkTaskForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Полностью запрещаем стандартную отправку формы
+    e.preventDefault(); 
 });
 
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.remove("hidden");
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+        toast.classList.add("hidden");
+    }, 1000);
+}

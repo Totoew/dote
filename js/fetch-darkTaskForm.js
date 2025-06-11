@@ -35,7 +35,6 @@ function validateDateTime() {
     // 1. Проверка даты (только при отправке формы)
     if (!dateInput.value) {
         errorDate.style.display = 'block';
-        errorDate.textContent = 'Пожалуйста, укажите дату';
         return false;
     }
     
@@ -46,7 +45,6 @@ function validateDateTime() {
     // Проверяем, что дата не раньше сегодня
     if (selectedDate < today) {
         errorDate.style.display = 'block';
-        errorDate.textContent = 'Нельзя указывать дату из прошлого';
         return false;
     }
     
@@ -55,7 +53,6 @@ function validateDateTime() {
         const timeRegex = /^([01]?\d|2[0-3]):([0-5]\d)$/;
         if (!timeRegex.test(timeInput.value.trim())) {
             errorDateTime.style.display = 'block';
-            errorDateTime.textContent = 'Некорректный формат времени';
             return false;
         }
         
@@ -67,11 +64,10 @@ function validateDateTime() {
         // Проверяем, что выбранное время не в прошлом
         if (selectedDateTime < now) {
             errorDateTime.style.display = 'block';
-            errorDateTime.textContent = 'Нельзя указывать время из прошлого';
-            return false;
+            showToast("Нельзя выбрать время в прошлом");
+            return;
         }
     }
-    
     return true;
 }
 
@@ -124,3 +120,15 @@ document.addEventListener('touchmove', function(e) {
         e.preventDefault();
     }
 }, { passive: false });
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.remove("hidden");
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+        toast.classList.add("hidden");
+    }, 1000);
+}
