@@ -57,14 +57,16 @@ function transformEvents(tasksArray) {
     }));
 }
 
-(async function() {
-    const rawEvents = await fetchEvents();
-    console.log("Сюда: ", rawEvents);
-    const tasks = transformEvents(rawEvents);
+// (async function() {
+//     const rawEvents = await fetchEvents();
+//     console.log("Сюда: ", rawEvents);
+//     const tasks = transformEvents(rawEvents);
     
-    console.log('Данные с сервера (массив объектов):', tasks);
-    console.table(tasks);
-})();
+//     console.log('Данные с сервера (массив объектов):', tasks);
+//     console.table(tasks);
+// })();
+
+loadAndRenderTasks();
 
 async function deleteTaskById(taskId) {
     try {
@@ -99,13 +101,155 @@ async function deleteTaskById(taskId) {
     }
 }
 
-// Функция отрисовки задач
+// function renderTasks(tasks) {
+//     if (!container) {
+//         console.error('Контейнер для задач не найден!');
+//         return;
+//     }
+    
+//     container.innerHTML = '';
+
+//     if (tasks.length === 0) {
+//         container.innerHTML = '<p>Нет задач для отображения</p>';
+//         return;
+//     }
+
+//     tasks.forEach(task => {
+//         const templateContent = template.content.cloneNode(true);
+//         const taskElement = templateContent.querySelector('.task-card');
+        
+//         // Заполняем название задачи
+//         const nameElement = templateContent.querySelector('.name-task');
+//         nameElement.textContent = task.name || 'Без названия';
+
+//         // Работа с приоритетом
+//         const priorityElement = templateContent.querySelector('.priorit');
+//         const priorityContainer = templateContent.querySelector('.list-tags');
+
+//         // Устанавливаем стиль и текст в зависимости от приоритета
+//         switch(task.task_priority) {
+//             case 'normal':
+//                 priorityContainer.style.backgroundColor = '#4CAF50';
+//                 priorityElement.textContent = 'нормально';
+//                 break;
+//             case 'matter':
+//                 priorityContainer.style.backgroundColor = '#F44336';
+//                 priorityElement.textContent = 'важно';
+//                 break;
+//             case 'not-matter':
+//                 priorityContainer.style.backgroundColor = '#9E9E9E';
+//                 priorityElement.textContent = 'не важно';
+//                 break;
+//             default:
+//                 priorityContainer.style.backgroundColor = '#E0E0E0';
+//                 priorityElement.textContent = task.task_priority || 'нет';
+//         }
+
+//         // Создаем контейнер для тегов
+//         const chipList = templateContent.querySelector('.chip-list');
+//         const deadlineWrapper = templateContent.querySelector('.deadline').parentElement;
+
+//         priorityContainer.style.display = 'flex';
+//         priorityContainer.style.flexDirection = 'row';
+//         priorityContainer.style.alignItems = 'baseline';
+
+//         priorityContainer.style.flexDirection = 'row';
+//         priorityContainer.style.justifyContent = 'flex-start'; // ВЫРАВНИВАНИЕ ВЛЕВО
+
+//         const tagContainer = document.createElement('div');
+//         tagContainer.className = 'tag-line';
+//         tagContainer.style.display = 'flex';
+//         tagContainer.style.flexWrap = 'wrap';
+//         tagContainer.style.gap = '4px';
+//         tagContainer.style.marginLeft = '4px'; // отступ от приоритета
+//         tagContainer.style.flexGrow = '0'; // Запрет расширения
+//         // отступ слева от приоритета
+
+//         const tags = (task.list_tags || '').split(',').map(tag => tag.trim()).filter(tag => tag);
+
+//         tags.forEach(tag => {
+//             const tagEl = document.createElement('span');
+//             tagEl.textContent = tag;
+//             tagEl.style.backgroundColor = '#FFD700';
+//             tagEl.style.padding = '2px 6px';
+//             tagEl.style.borderRadius = '4px';
+//             tagEl.style.fontSize = '12px';
+//             tagEl.style.color = 'black';
+//             tagEl.style.display = 'inline-block';
+
+//             tagContainer.appendChild(tagEl);
+//         });
+
+//         // Вставляем блок тегов между приоритетом и дедлайном
+//         chipList.insertBefore(tagContainer, deadlineWrapper);
+
+//         // Заполняем дату и время
+//         const deadlineElement = templateContent.querySelector('.deadline');
+//         deadlineElement.textContent = formatTaskDate(task.date, task.task_time);
+
+//         // Обработчик кнопки удаления
+//         const deleteButton = templateContent.querySelector('.icon-button');
+//         deleteButton.addEventListener('click', (e) => {
+//             e.stopPropagation();
+//             const taskId = task.id;
+
+//             const deleteWindow = document.getElementById('delete-window');
+//             if (deleteWindow) {
+//                 deleteWindow.classList.remove('hidden');
+
+//                 const confirmTrueButton = deleteWindow.querySelector('.confirm-true');
+//                 const confirmFalseButton = deleteWindow.querySelector('.confirm-false');
+
+//                 confirmTrueButton.onclick = null;
+//                 confirmFalseButton.onclick = null;
+
+//                 confirmTrueButton.onclick = () => {
+//                     deleteTaskById(taskId)
+//                         .then(success => {
+//                             if (success) {
+//                                 console.log(`Задача с ID ${taskId} успешно удалена.`);
+//                                 loadAndRenderTasks();
+//                             } else {
+//                                 console.error(`Не удалось удалить задачу с ID ${taskId}.`);
+//                                 alert("Не удалось удалить задачу.");
+//                             }
+//                         });
+//                     deleteWindow.classList.add('hidden');
+//                 };
+
+//                 confirmFalseButton.onclick = () => {
+//                     deleteWindow.classList.add('hidden'); 
+//                 };
+
+//                 document.addEventListener('mousedown', (event) => {
+//                     if (deleteWindow && !deleteWindow.classList.contains('hidden')) {
+//                         if (!deleteWindow.contains(event.target)) {
+//                             deleteWindow.classList.add('hidden');
+//                         }
+//                     }
+//                 });
+//             }
+//         });
+
+//         // Обработчик клика по карточке для просмотра деталей
+//         taskElement.addEventListener('click', () => {
+//             localStorage.setItem('current_task_data', JSON.stringify(task));
+//             const search = window.location.search;
+//             const params = new URLSearchParams(search);
+//             const user_id = Number(params.get('id'));
+//             window.location.href = `task-details.html?id=${user_id}`;
+//         });
+
+//         container.appendChild(templateContent);
+//     });
+// }
+
 function renderTasks(tasks) {
     if (!container) {
         console.error('Контейнер для задач не найден!');
         return;
     }
-    
+
     container.innerHTML = '';
 
     if (tasks.length === 0) {
@@ -116,42 +260,56 @@ function renderTasks(tasks) {
     tasks.forEach(task => {
         const templateContent = template.content.cloneNode(true);
         const taskElement = templateContent.querySelector('.task-card');
-        
+
+        // Название задачи
         const nameElement = templateContent.querySelector('.name-task');
         nameElement.textContent = task.name || 'Без названия';
 
+        // Приоритет
         const priorityElement = templateContent.querySelector('.priorit');
         const priorityContainer = templateContent.querySelector('.list-tags');
-        
-        // Очищаем предыдущие классы и стили
-        priorityContainer.className = 'list-tags priority-container';
-        priorityContainer.style.display = 'flex';
-        priorityContainer.style.justifyContent = 'center';
-        priorityContainer.style.alignItems = 'center';
-        
-        // Устанавливаем стиль и текст в зависимости от приоритета
-        switch(task.task_priority) {
+
+        priorityElement.classList.remove('priority-normal', 'priority-matter', 'priority-important', 'priority-default');
+
+        switch (task.task_priority) {
             case 'normal':
-                priorityContainer.style.backgroundColor = '#4CAF50';
                 priorityElement.textContent = 'нормально';
+                priorityElement.classList.add('priority-normal');
                 break;
             case 'matter':
-                priorityContainer.style.backgroundColor = '#F44336';
                 priorityElement.textContent = 'важно';
+                priorityElement.classList.add('priority-important');
                 break;
             case 'not-matter':
-                priorityContainer.style.backgroundColor = '#9E9E9E';
                 priorityElement.textContent = 'не важно';
+                priorityElement.classList.add('priority-matter');
                 break;
             default:
-                priorityContainer.style.backgroundColor = '#E0E0E0';
                 priorityElement.textContent = task.task_priority || 'нет';
+                priorityElement.classList.add('priority-default');
         }
 
+        // Теги
+        const tagContainer = templateContent.querySelector('.tag-container');
+        tagContainer.innerHTML = ''; // Очистка перед вставкой
+
+        const tags = (task.list_tags || '')
+            .split(',')
+            .map(tag => tag.trim())
+            .filter(tag => tag);
+
+        tags.forEach(tag => {
+            const tagEl = document.createElement('span');
+            tagEl.textContent = tag;
+            tagEl.classList.add('list-tags-item');
+            tagContainer.appendChild(tagEl);
+        });
+
+        // Дата
         const deadlineElement = templateContent.querySelector('.deadline');
         deadlineElement.textContent = formatTaskDate(task.date, task.task_time);
 
-        // Обработчик для кнопки удаления
+        // Обработка удаления
         const deleteButton = templateContent.querySelector('.icon-button');
         deleteButton.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -172,7 +330,7 @@ function renderTasks(tasks) {
                         .then(success => {
                             if (success) {
                                 console.log(`Задача с ID ${taskId} успешно удалена.`);
-                                loadAndRenderTasks(); // Обновляем список задач
+                                loadAndRenderTasks();
                             } else {
                                 console.error(`Не удалось удалить задачу с ID ${taskId}.`);
                                 alert("Не удалось удалить задачу.");
@@ -182,7 +340,7 @@ function renderTasks(tasks) {
                 };
 
                 confirmFalseButton.onclick = () => {
-                    deleteWindow.classList.add('hidden'); 
+                    deleteWindow.classList.add('hidden');
                 };
 
                 document.addEventListener('mousedown', (event) => {
@@ -195,7 +353,7 @@ function renderTasks(tasks) {
             }
         });
 
-        // Обработчик клика по карточке для просмотра деталей
+        // Переход к деталям задачи
         taskElement.addEventListener('click', () => {
             localStorage.setItem('current_task_data', JSON.stringify(task));
             const search = window.location.search;
@@ -259,12 +417,12 @@ if (href && href !== '') {
 }
 
 links.forEach(link => {
-  const href = link.getAttribute('href');
-  if (href && href !== '') {
-    const separator = href.includes('?') ? '&' : '?';
-    link.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
-    console.log(link.getAttribute('href'));
-  }
+    const href = link.getAttribute('href');
+    if (href && href !== '') {
+        const separator = href.includes('?') ? '&' : '?';
+        link.setAttribute('href', href + (search ? separator + search.slice(1) : ''));
+        console.log(link.getAttribute('href'));
+    }
 });
 
 // Функция для обновления задач после удаления
