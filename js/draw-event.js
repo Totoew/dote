@@ -87,7 +87,7 @@ const CalendarManager = {
             this.datePicker.focus();
         }
     },
-    
+
     // Загрузка событий с сервера
     async fetchEvents() {
         try {
@@ -114,7 +114,7 @@ const CalendarManager = {
             return [];
         }
     },
-    
+
     fetchUserId() {
         try {
             const search = window.location.search;
@@ -145,13 +145,11 @@ const CalendarManager = {
         }));
     },
 
-    // Фильтрация и отрисовка событий
     async filterAndRenderEvents() {
         try {
             const rawEvents = await this.fetchEvents();
             this.EVENT_DATA = this.transformEvents(rawEvents);
-            
-            // Если дата не выбрана, показываем все события
+
             if (!this.selectedDate) {
                 this.renderEvents(this.EVENT_DATA);
                 return;
@@ -208,10 +206,11 @@ const CalendarManager = {
             articleElement.style.top = `${topPosition}px`;
             articleElement.style.height = `${height}px`;
 
-            // Обработчики событий
-            articleElement.addEventListener('click', () => {
-                /*localStorage.setItem('current_event_data', JSON.stringify(event));
-                window.location.href = 'event-details.html';*/
+            articleElement.addEventListener('click', (e) => {
+                if (e.target.closest('.icon-button') || e.target.classList.contains('icon-image')) {
+                    // Клик был по кнопке удаления — игнорируем переход
+                    return;
+                }
 
                 localStorage.setItem('current_event_data', JSON.stringify(event));
                 const search = window.location.search;
@@ -219,17 +218,22 @@ const CalendarManager = {
                 const user_id = Number(params.get('id'));
                 window.location.href = `event-details.html?id=${user_id}`;
             });
-            const deleteBtn = eventElement.querySelector('.icon-button');
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', (e) => this.handleDeleteEvent(e, event.event_id));
-            }
-            
+
             container.appendChild(eventElement);
+
+            const lastInsertedCards = container.querySelectorAll('.event-in-calendar');
+            const lastCard = lastInsertedCards[lastInsertedCards.length - 1]; 
+            const deleteBtn = lastCard.querySelector('.icon-button');
+
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    showDeleteConfirmation(event.event_id);
+                });
+            }
         });
     },
-    
 
-    // Вычисление высоты события
     calculateEventHeight(startH, startM, endH, endM) {
         if (endH > startH || (endH === startH && endM > startM)) {
             const height = ((endH + endM/60) - (startH + startM/60)) * 78;
@@ -238,24 +242,6 @@ const CalendarManager = {
         return 78 * (24 - (startH + startM/60));
     },
 
-    // Обработчик удаления события
-    async handleDeleteEvent(e, eventId) {
-        e.stopPropagation();
-        
-        try {
-            const userId = localStorage.getItem('user_id');
-            if (!userId) return;
-            
-            const success = await this.deleteEvent(eventId, userId);
-            if (success) {
-                this.filterAndRenderEvents();
-            }
-        } catch (error) {
-            console.error('Ошибка удаления события:', error);
-        }
-    },
-
-    // Удаление события на сервере
     async deleteEvent(eventId, userId) {
         try {
             const response = await fetch('https://flask.stk8s.66bit.ru/delete', {
@@ -298,7 +284,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Глобальная функция для обновления событий
 window.refreshEvents = () => CalendarManager.filterAndRenderEvents();
 
 document.addEventListener('DOMContentLoaded', () => CalendarManager.filterAndRenderEvents());
+
+let currentDeleteEventId = null;
+
+function showDeleteConfirmation(eventId) {
+    currentDeleteEventId = eventId;
+    const deleteWindow = document.getElementById('delete-window-id');
+    deleteWindow.classList.remove('hidden');
+}
+
+document.querySelector('.confirm-true').addEventListener('click', async () => {
+    if (currentDeleteEventId === null) return;
+
+    const userId = Number(new URLSearchParams(window.location.search).get('id'));
+    const success = await CalendarManager.deleteEvent(currentDeleteEventId, userId);
+
+    if (success) {
+        CalendarManager.filterAndRenderEvents();
+    } else {
+        alert('Ошибка при удалении');
+    }
+
+    document.getElementById('delete-window-id').classList.add('hidden');
+    currentDeleteEventId = null;
+});
+
+document.querySelector('.confirm-false').addEventListener('click', () => {
+    document.getElementById('delete-window-id').classList.add('hidden');
+    currentDeleteEventId = null;
+});
+
+// В renderEvents при клике на кнопку удаления:
+articleElement.querySelector('.icon-button').addEventListener('click', (e) => {
+    e.stopPropagation(); // чтобы не срабатывал клик по карточке
+    showDeleteConfirmation(event.event_id);
+});
