@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обработка изменения значения в select
     pageSelect.addEventListener('change', function () {
-        if (this.value !== '') { // Если выбрано значение
-            goButton.classList.add('active'); // Добавляем класс active
+        if (this.value !== '') { 
+            goButton.classList.add('active'); 
         } else {
-            goButton.classList.remove('active'); // Убираем класс active
+            goButton.classList.remove('active'); 
         }
     });
 

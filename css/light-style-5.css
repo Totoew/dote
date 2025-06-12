@@ -71,16 +71,16 @@ object-fit: contain;
   align-items: center;
   justify-content: center;
   background-color: #375589;
-  width: min(80%, 400px); /* Изменено: максимальная ширина 400px, но не более 80% экрана */
-  aspect-ratio: 1.6; /* Сохраняем пропорции окна (ширина/высота) */
+  width: min(80%, 400px); 
+  aspect-ratio: 1.6; 
   border-radius: 16px;
-  padding: min(5%, 20px); /* Адаптивный padding */
+  padding: min(5%, 20px); 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .confirm {
   color: white;
-  font-size: clamp(16px, 4vw, 24px); /* Адаптивный размер текста */
+  font-size: clamp(16px, 4vw, 24px); 
   margin: 10px 0;
   text-align: center;
   width: 100%;
@@ -104,8 +104,8 @@ object-fit: contain;
 .confirm-false {
   border-radius: 12px;
   padding: 8px 16px;
-  font-size: clamp(14px, 3.5vw, 20px); /* Адаптивный размер текста */
-  flex: 1; /* Кнопки занимают равное пространство */
+  font-size: clamp(14px, 3.5vw, 20px); 
+  flex: 1; 
   max-width: 120px;
   text-align: center;
   border: none;
@@ -128,7 +128,6 @@ object-fit: contain;
   color: white;
 }
 
-/* Для очень маленьких экранов */
 @media (max-width: 400px) {
   .delete-window {
     width: 90%;
@@ -289,18 +288,6 @@ h1{
   margin-left: 12px;
   margin-right: 32px;
 }
-
-/*.date-picker{
-    position: relative;
-}
-
-.datepicker--wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-*/
 
 .day-week{
   color: #FCBC02;

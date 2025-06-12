@@ -87,7 +87,6 @@ function getCurrentDate() {
 
 window.onload = getCurrentDate;
 
-
 // Отключаем свайп вниз на уровне документа
 document.addEventListener('touchmove', function (event) {
     if (event.touches && event.touches[0].clientY > 0) {

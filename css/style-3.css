@@ -181,12 +181,11 @@
     margin-top: 32px;
     margin-left: 12px;
     margin-right: 12px;
-    /*padding-left: 12px;*/
     gap: 7px;
   }
 
   .added-calendar{
-     margin-top: 15px;
+      margin-top: 15px;
   }
 
   .watch{
@@ -498,7 +497,6 @@ input[type="text"]::placeholder {
 .bottom-nav {
     display: flex;
     justify-content: space-between;
-    /*width: 393px;*/
     width: 100%;
     height: 66px;
     background-color: #111828;   
@@ -508,7 +506,6 @@ input[type="text"]::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  /*width: 393px;*/
   width: 100%;
   height: 48px;
   background-color: #26334A;

@@ -149,4 +149,3 @@ async function fetchEvents() {
     // Дополнительный красивый вывод в табличном формате
     console.table(tasks);
   })();
-

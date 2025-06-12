@@ -19,22 +19,6 @@
   width: 100%;
 }
 
-/*
-.event-in-calendar{
-  position: relative;
-  width: 154px;
-  height: 34px;
-  padding:0px;
-  border-radius: 8px;
-  opacity: 0px;
-  background-color: #FCBC02;
-  color: black;
-  padding: 8px;
-  margin: 0px;
-  margin-left: 15px;
-  margin-top: 61px;
-  z-index: 9999;
-}*/
 .event-in-calendar {
   background-color: #FCBC02; 
   display: inline-flex; 
@@ -87,16 +71,16 @@
   align-items: center;
   justify-content: center;
   background-color: #375589;
-  width: min(80%, 400px); /* Изменено: максимальная ширина 400px, но не более 80% экрана */
-  aspect-ratio: 1.6; /* Сохраняем пропорции окна (ширина/высота) */
+  width: min(80%, 400px); 
+  aspect-ratio: 1.6; 
   border-radius: 16px;
-  padding: min(5%, 20px); /* Адаптивный padding */
+  padding: min(5%, 20px); 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .confirm {
   color: white;
-  font-size: clamp(16px, 4vw, 24px); /* Адаптивный размер текста */
+  font-size: clamp(16px, 4vw, 24px); 
   margin: 10px 0;
   text-align: center;
   width: 100%;
@@ -120,8 +104,8 @@
 .confirm-false {
   border-radius: 12px;
   padding: 8px 16px;
-  font-size: clamp(14px, 3.5vw, 20px); /* Адаптивный размер текста */
-  flex: 1; /* Кнопки занимают равное пространство */
+  font-size: clamp(14px, 3.5vw, 20px); 
+  flex: 1; 
   max-width: 120px;
   text-align: center;
   border: none;
@@ -144,7 +128,6 @@
   color: white;
 }
 
-/* Для очень маленьких экранов */
 @media (max-width: 400px) {
   .delete-window {
     width: 90%;
@@ -234,7 +217,6 @@
   margin-left: 12px;
 }
 
-
 .empty-blocks{
   display: flex;
   flex-direction: column;
@@ -286,18 +268,6 @@
     margin-left: 12px;
     margin-right: 32px;
   }
-
-  /*.date-picker{
-      position: relative;
-  }
-
-  .datepicker--wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-*/
 
   .day-week{
     color: #FCBC02;
