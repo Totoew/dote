@@ -212,15 +212,6 @@ body {
   color: #FCFAEE;
 }
 
-/* .chip-list {
-  display: flex;
-  justify-content: space-between;
-  width: 280px;
-  height: 20px;
-  gap: 10px;
-  opacity: 0px;
-}  */
-
 .chip-list {
   display: flex;
   justify-content: space-between;
@@ -234,18 +225,6 @@ body {
   display: flex;
   gap: 4px;
 }
-
-/* .list-tags-item {
-  background-color: yellow;
-  font-size: 12px;
-  padding: 0 6px;
-  line-height: 20px;
-  white-space: nowrap;
-  height: 20px; 
-  box-sizing: border-box; 
-  border-radius: 32px;
-  text-align: center; 
-} */
 
 .list-tags-item {
   background-color: yellow;
@@ -310,12 +289,6 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
-
-/* .deadline {
-  font-size: 12px;
-  color: #ffffff;
-  margin-top: 4px;
-} */
 
 .deadline {
   color: white;
@@ -482,16 +455,6 @@ body {
 .tune:last-child {
   margin-right: 0;
 }
-/* 
-.task-tag {
-    background-color: #d0e8ff;
-    border-radius: 8px;
-    padding: 2px 6px;
-    font-size: 12px;
-    white-space: nowrap;
-    color: #333;
-}
- */
 
 .left-info {
   display: flex;
